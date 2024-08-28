@@ -1,0 +1,31 @@
+.add-department-container{
+position: absolute;
+top:570px; /* Adjust based on the height of your navbar */
+left:200px; /* Move further to the right by adjusting this value */
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+border: 2px solid #64919e;
+padding: 15px;
+border-radius: 5px;
+width: 230px;
+background-color: #f9f9f9;
+cursor: pointer;
+height: 128px;
+margin-bottom: 200px;
+}
+
+.department-icon{
+    margin-bottom: 10px;
+}
+.department-icon img {
+  width: 30px; /* Adjust the size of the icon as needed */
+  height: 20px;
+}
+
+.add-department-text {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+}

@@ -1,0 +1,39 @@
+.attendance-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.attendance-form div {
+  margin-bottom: 10px;
+}
+
+.attendance-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.attendance-form input,
+.attendance-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.attendance-form button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.attendance-form button:hover {
+  background-color: #45a049;
+}

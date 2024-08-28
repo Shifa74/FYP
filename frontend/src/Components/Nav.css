@@ -1,0 +1,43 @@
+.bottom-divs {
+  display: flex;
+  justify-content: space-around;
+  background-color: #b0e4eb; /* Dark background color */
+  padding: 1rem 0;
+  width: calc(100% - 130px); /* Adjust to match Sidebar width */
+  position: fixed;
+  top: 56px; /* Adjust based on the height of the first navbar */
+  left: 150px; /* Adjust to match Sidebar width */
+  z-index: 998; /* Ensure it stays below the navbar but above other content */
+}
+
+.bottom-div {
+  flex: 1;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  color: white; /* Make icons white */
+}
+
+.bottom-div-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  margin-left: 0.5rem; /* Add some spacing between the icon and the text */
+}
+
+.bottom-div-text {
+  color: black; /* Change text color to black */
+}
+
+.bottom-div-subtext {
+  color: black; /* Change subtext color to black */
+  font-weight: normal; /* Make subtext font weight normal */
+  font-size: 0.9rem; /* Smaller font size for subtext */
+  margin-top: 0.25rem; /* Add some spacing between the main text and the subtext */
+}

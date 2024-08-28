@@ -1,0 +1,241 @@
+/* LoginForm Styles */
+body {
+    background: linear-gradient(135deg, #293231 0%, #CAF0F8 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+}
+
+.wrapper {
+    width: 400px;
+    background: #64919e;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #ffffff; /* Base color */
+    background: linear-gradient(180deg, #ffffff 40%, #d1f0f4 100%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Required to make the gradient visible */
+}
+
+.wrapper h2 {
+    font-size: 22px;
+    margin-bottom: 30px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px 0 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus {
+    background: #8ecae6;
+}
+
+.input-box .icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.remember-forgot a {
+    color: rgb(152, 250, 234);
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    background: #caf0f8;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #293231;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #98e1eb;
+    opacity: 0.9;
+}
+
+.register-link p {
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.register-link a {
+    color:  #81f8e4;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Placeholder Styles */
+.input-box input::placeholder {
+    color: #ffffff; /* White color for better visibility */
+    opacity: 1.9; /* Adjust opacity if needed */
+}
+
+
+/* Popup Styles */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Darker background for a sleek look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure the popup appears above all other elements */
+}
+
+.popup {
+    width: 350px;
+    background: linear-gradient(135deg, #CAF0F8 0%, #8ecae6 100%); /* Smooth gradient */
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    position: relative;
+}
+
+.popup h3 {
+    margin-bottom: 25px;
+    font-size: 22px;
+    color: #023047; /* Deep blue for contrast */
+    font-weight: 600;
+}
+
+.popup input {
+    width: 100%;
+    height: 45px;
+    margin-bottom: 25px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.8); /* Light, semi-transparent input fields */
+    font-size: 16px;
+    color: #023047; /* Dark text color */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for inputs */
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.popup input:focus {
+    background: rgba(255, 255, 255, 1); /* Fully opaque on focus */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Slightly darker shadow on focus */
+}
+
+.popup button {
+    width: 100%;
+    height: 45px;
+    background: #023047; /* Deep blue background */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 25px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Slight shadow on button */
+}
+
+.popup button:hover {
+    background: #03506f; /* Slightly lighter blue on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
+
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+    color: #023047;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+    color: #03506f; /* Slight color change on hover */
+}
+
+/* Animation */
+@keyframes popup-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup {
+    animation: popup-appear 0.5s ease;
+}
+
+.error-message {
+    color: rgb(225, 20, 20);
+    margin-top: 5px;
+    font-size: 0.875rem; 
+}  

@@ -1,0 +1,110 @@
+.otp-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.otp-popup-content {
+    background: #46919e; /* Match the background color used in other popups */
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    color: white; /* Ensure text is visible on the dark background */
+}
+
+.otp-heading {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.otp-icon {
+    margin-bottom: 20px;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.otp-input {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #357882; /* Slightly darker shade of the background color */
+    border-radius: 8px;
+    outline: none;
+    background: linear-gradient(135deg, #5ab3b8, #357882); /* Complementary gradient */
+    color: #ffffff; /* White text for contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.otp-input:focus {
+    border-color: #46919e; /* Background color for focus border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on focus */
+    background: linear-gradient(135deg, #357882, #285c6e); /* Darker gradient on focus */
+}
+
+.otp-input:hover {
+    border-color: #5ab3b8; /* Lighter accent on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Same as on focus for consistency */
+}
+
+
+.verify-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(70deg, #56c4d3, #46919e); /* Gradient background */
+    color: #ffffff; /* White text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.verify-btn:hover {
+    background: linear-gradient(45deg, #46919e, #3b7b8b); /* Darker gradient on hover */
+    color: #ffffff; /* Keep text color white */
+}
+
+.go-back {
+    margin-top: 15px;
+    color: #fff;
+}
+
+.sign-in-link {
+    color: #d0f0c0; /* Light color to stand out against the background */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sign-in-link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: rgb(225, 20, 20);
+    margin-top: 5px;
+    font-size: 0.875rem; 
+}
+
+.success-message {
+    color: white;
+    margin-top: 5px;
+    font-size: 0.875rem; 
+}

@@ -1,0 +1,34 @@
+.allowance-list {
+    padding: 20px;
+}
+
+.allowance-list h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.allowance-list button {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.allowance-list button a {
+    color: white;
+    text-decoration: none;
+}
+
+.allowance-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.allowance-list ul li {
+    padding: 10px;
+    background-color: #ecf0f1;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}

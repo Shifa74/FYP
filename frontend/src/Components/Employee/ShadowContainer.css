@@ -1,0 +1,67 @@
+.shadow-form-container {
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 1200px; /* Adjust width as needed */
+    position: absolute;
+    right: 20px; /* Space from the right edge */
+    top: 80px; /* Space from the top of the container */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.shadow-form-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    flex: 1 1 30%; /* Adjust this value to fit three fields in one line */
+    margin-right: 10px;
+    min-width: 30%;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 3px;
+    color: #64919e;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.full-width {
+    flex: 1 1 100%;
+}

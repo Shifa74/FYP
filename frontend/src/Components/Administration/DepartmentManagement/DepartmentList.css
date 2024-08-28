@@ -1,0 +1,61 @@
+.department-list-container {
+  padding: 20px;
+  position: fixed;
+  top: 90px;
+  left: 190px;
+  border: 2px solid #008CBA;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.department-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.department-table th, .department-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.department-table th {
+  background-color: #f4f4f4;
+}
+
+.department-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button, .delete-button {
+  padding: 5px 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.add-department-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}

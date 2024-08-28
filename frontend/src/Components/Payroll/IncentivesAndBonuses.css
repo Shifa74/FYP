@@ -1,0 +1,70 @@
+.incentives-bonuses-container {
+    position: relative; /* Added for positioning the heading */
+    padding: 8px 20px; /* Reduced padding */
+    border: 2px solid #64919e;
+    border-radius: 8px;
+    background-color: #eef6f8;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 110%;
+    max-width: 300px; /* Reduced max-width */
+    margin: 0 auto;
+    position: relative;
+    left: 510px;
+    top: 15px;
+  }
+  .heading{
+    font-size: 1.2rem;
+  }
+  
+  
+  .chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 200px; /* Reduced max-width */
+    height: 130px; /* Reduced height */
+    margin: 0 auto 8px;
+  }
+  
+  .center-text {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -65%);
+    font-size: 0.9rem; /* Reduced font size */
+    color: #333;
+  }
+  
+  .legend {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 6px; /* Reduced margin */
+  }
+  
+  .legend-color {
+    width: 16px; /* Reduced size */
+    height: 16px; /* Reduced size */
+    display: inline-block;
+    margin-right: 4px; /* Reduced margin */
+  }
+  
+  .more-details-button {
+    padding: 4px 8px; /* Reduced padding */
+    border: none;
+    border-radius: 4px;
+    background-color: #64919e;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .more-details-button:hover {
+    background-color: #527b87;
+  }
+  

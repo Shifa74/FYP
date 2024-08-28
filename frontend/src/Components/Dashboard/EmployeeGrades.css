@@ -1,0 +1,83 @@
+.employee-grades-container {
+    background-color: #f1f4f5; /* Container background color */
+    padding: 26px; /* Further reduced padding */
+    border-radius: 8px;
+    border: 2px solid #64919e;
+    box-shadow: 0 2px 4px #64919e;
+    width: 450px; /* Reduced width */
+    position: absolute;
+    top: 332px; /* Adjust as needed */
+    left: 375px;
+    transform: translateX(-50%);
+    margin-left: 15px;
+    margin-top: 2px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; /* Further reduced margin */
+}
+
+.title-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    margin: 0;
+    font-size: 0.9rem; /* Reduced font size */
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 0.6rem; /* Further reduced subtitle font size */
+    color: #64919e;
+}
+
+.grade-dropdown {
+    margin-left: auto;
+    padding: 3px; /* Further reduced padding */
+    border: 1px solid #64919e;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #64919e;
+}
+
+.employee-grades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Further reduced gap */
+    justify-content: start; /* Align items to the left */
+}
+
+.grade-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc((100% / 3) - 6px); /* Reduced width */
+    box-sizing: border-box;
+}
+
+.grade-box {
+    background-color: #ffffff; /* White background for each grade box */
+    border: 1px solid #64919e;
+    border-radius: 6px;
+    padding: 6px; /* Further reduced padding */
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.grade-box h3 {
+    margin: 6px; /* Further reduced margin */
+    font-size: 0.7em; /* Further reduced font size */
+    color: #64919e;
+}
+
+.employee-count {
+    margin: 6px 0 0; /* Further reduced margin */
+    font-size: 0.8rem; /* Further reduced font size */
+    color: #64919e;
+}

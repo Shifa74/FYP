@@ -1,0 +1,50 @@
+/* employee.css */
+
+.stats-dashboard {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  justify-content: space-between;
+  background-color: #f9fcfd; /* Dark background color */
+  padding: 5px 10px 3px 30px; /* Adjusted padding */
+  position: absolute;
+  width: calc(100% - 130px); /* Adjust to match Sidebar width */
+  top: 58px; /* Adjust based on the height of the first navbar */
+  left: 130px; /* Adjust to match Sidebar width */
+  box-sizing: border-box;
+  overflow-x: hidden; /* Ensure no horizontal scroll */
+}
+
+.stat-box {
+  border: 2px solid #64919e;
+  border-radius: 8px;
+  padding: 5px 20px; /* Adjusted padding for smaller height */
+  text-align: center;
+  background-color: #f1f4f5;
+  flex: 1 1 20%; /* Adjust flex basis to fit items within the container */
+  min-width: 150px; /* Minimum width */
+  max-width: 250px; /* Maximum width */
+  box-sizing: border-box;
+  margin: 5px; /* Add margin to create space between items */
+}
+
+.stat-box h2 {
+  margin: 20px 0; /* Adjusted margin */
+  font-size: 1.4rem; /* Adjusted font size */
+  color: #64919e;
+}
+
+.stat-count {
+  font-size: 1.9rem; /* Adjusted font size */
+  color: #64919e;
+  margin: 10px 0; /* Adjusted margin */
+}
+
+.stat-description {
+  padding: 5px 0; /* Adjusted padding */
+  font-size: 1rem; /* Adjusted font size */
+  color: #64919e;
+}
+
+.sign{
+  font-size: 1.2rem; /* Adjust the size as needed */
+}
