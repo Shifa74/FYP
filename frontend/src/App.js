@@ -116,7 +116,7 @@ import LoginForm from './Components/LoginForm/LoginForm';
 // import RoleList from './Components/Administration/RoleManagement/RoleList';
 // import AllowanceList from './Components/Administration/Allowances/AllowanceList';
 // import DeductionList from './Components/Administration/Deduction/DeductionList';
-import UserManagement from './Components/Administration/UserManagement/UserManagement'; 
+// import UserManagement from './Components/Administration/UserManagement/UserManagement'; 
 
 
 
@@ -176,7 +176,7 @@ function App() {
                 {/* <Route path="/roles" element={<RoleList />} /> */}
                 {/* <Route path="/allowances" element={<AllowanceList />} /> */}
                 {/* <Route path="/deductions" element={<DeductionList />} /> */}
-                <Route path="/users/*" element={<UserManagement />} />
+                {/*<Route path="/users/*" element={<UserManagement />} /> */}
                  {/* <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<NotFound />} /> */}
             {/* </Routes> */}
