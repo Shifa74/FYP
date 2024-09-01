@@ -2,15 +2,24 @@ import React, { useState, useEffect } from 'react';
 import ShadowContainer from './ShadowContainer';
 import './EmployeeDetails.css';
 import { FaUserPlus, FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 const EmployeeDetails = () => {
   const [employees, setEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState(null);
+  const [filter, setFilter] = useState('');
+  const [filterType, setFilterType] = useState('id'); // Default filter by ID
+  const [currentPage, setCurrentPage] = useState(1);
+  const employeesPerPage = 9; // Number of employees per page
 
   useEffect(() => {
     // Simulated data fetch
     const fetchedData = [
+      // Your employee data
       {
         id: 1,
         firstName: "John",
@@ -21,7 +30,7 @@ const EmployeeDetails = () => {
         phoneNumber: "+1234567890",
         email: "john.doe@example.com",
         dateOfJoining: "2020-01-01",
-        address: "123 Main St, Anytown"
+        city: "Anytown"
       },
       {
         id: 2,
@@ -33,10 +42,9 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
-      },
-        {
-        id: 2,
+        city: "Othertown"
+      },{
+        id: 3,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -45,10 +53,120 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
+        city: "Othertown"
+      },{
+        id: 4,
+        firstName: "Jane",
+        lastName: "Shery",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 5,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 6,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 7,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 8,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 9,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 10,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 11,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 12,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 13,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
       },
       {
-        id: 2,
+        id: 14,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -57,10 +175,9 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
-      },
-      {
-        id: 2,
+        city: "Othertown"
+      },{
+        id: 15,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -69,10 +186,9 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
-      },
-      {
-        id: 2,
+        city: "Othertown"
+      },{
+        id: 16,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -81,10 +197,9 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
-      },
-      {
-        id: 2,
+        city: "Othertown"
+      },{
+        id: 17,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -93,10 +208,9 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
-      },
-      {
-        id: 2,
+        city: "Othertown"
+      },{
+        id: 18,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -105,10 +219,9 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
-      },
-      {
-        id: 2,
+        city: "Othertown"
+      },{
+        id: 19,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -117,10 +230,9 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
-      },
-      {
-        id: 2,
+        city: "Othertown"
+      },{
+        id: 20,
         firstName: "Jane",
         lastName: "Smith",
         dateOfBirth: "1990-07-22",
@@ -129,12 +241,78 @@ const EmployeeDetails = () => {
         phoneNumber: "+0987654321",
         email: "jane.smith@example.com",
         dateOfJoining: "2019-03-15",
-        address: "456 Elm St, Anytown"
+        city: "Othertown"
+      },{
+        id: 21,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 22,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 23,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 24,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 25,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
+      },{
+        id: 26,
+        firstName: "Jane",
+        lastName: "Smith",
+        dateOfBirth: "1990-07-22",
+        departmentName: "Finance",
+        grade: "B",
+        phoneNumber: "+0987654321",
+        email: "jane.smith@example.com",
+        dateOfJoining: "2019-03-15",
+        city: "Othertown"
       },
-      
-      // Add more employee data as needed
+      // Additional employee data...
     ];
     setEmployees(fetchedData);
+    setFilteredEmployees(fetchedData);
   }, []);
 
   const handleAddEmployeeClick = () => {
@@ -142,34 +320,81 @@ const EmployeeDetails = () => {
     setShowForm(true);
   };
 
-  const handleEditClick = (employee) => {
-    setEditingEmployee(employee);
-    setShowForm(true);
-  };
-
-  const handleDeleteClick = (id) => {
-    setEmployees(employees.filter(employee => employee.id !== id));
-  };
-
   const handleFormSubmit = (newEmployee) => {
     if (editingEmployee) {
-      setEmployees(employees.map(emp => emp.id === newEmployee.id ? newEmployee : emp));
+      setEmployees(
+        employees.map((emp) => (emp.id === newEmployee.id ? newEmployee : emp))
+      );
     } else {
       setEmployees([...employees, { ...newEmployee, id: employees.length + 1 }]);
     }
     setShowForm(false);
   };
 
+ 
+  const handleEditClick = (employee) => {
+    // Set the current employee data to be edited
+    setEditingEmployee(employee);
+    // Show the form
+    setShowForm(true);
+  };
+  
+
+  const handleDeleteClick = (id) => {
+    setEmployees(employees.filter(employee => employee.id !== id));
+    setFilteredEmployees(filteredEmployees.filter(employee => employee.id !== id));
+  };
+
+  const handleFilterChange = (e) => {
+    const value = e.target.value.toLowerCase();
+    setFilter(value);
+    const filtered = employees.filter(employee => {
+      if (filterType === 'id') {
+        return employee.id.toString().includes(value);
+      } else if (filterType === 'name') {
+        return employee.firstName.toLowerCase().includes(value) || employee.lastName.toLowerCase().includes(value);
+      }
+      return false;
+    });
+    setFilteredEmployees(filtered);
+    setCurrentPage(1); // Reset to the first page on filter change
+  };
+
+  const handleFilterTypeChange = (e) => {
+    setFilterType(e.target.value);
+    setFilter('');
+    setFilteredEmployees(employees);
+  };
+// Pagination logic
+const indexOfLastEmployee = currentPage * employeesPerPage;
+const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+
+const paginate = (pageNumber) => setCurrentPage(pageNumber);
+const totalPages = Math.ceil(filteredEmployees.length / employeesPerPage);
+
   return (
     <div className="employee-details-container">
-      <div style={{display:"flex"}}>
-      <h1 className="heading">Employee Details</h1>
-      <div className="add-employee-button-container">
-        <div className="add-employee-button" onClick={handleAddEmployeeClick}>
-          <FaUserPlus className="icon" />
-          <span className="text">Add New Employee</span>
+      <div className="top-bar">
+        <h1 className="heading">Employee Details</h1>
+        <div className="filter-container">
+          <select value={filterType} onChange={handleFilterTypeChange}>
+            <option value="id">Filter by ID</option>
+            <option value="name">Filter by Name</option>
+          </select>
+          <input
+            type="text"
+            placeholder={`Search by ${filterType}`}
+            value={filter}
+            onChange={handleFilterChange}
+          />
         </div>
-      </div>
+        <div className="add-employee-button-container">
+          <div className="add-employee-button" onClick={handleAddEmployeeClick}>
+            <FaUserPlus className="icon" />
+            <span className="text">Add New Employee</span>
+          </div>
+        </div>
       </div>
       <div className="employee-details-table-container">
         <table>
@@ -184,13 +409,13 @@ const EmployeeDetails = () => {
               <th style={{width:'200px'}}>Phone Number</th>
               <th className="wide-column">Email</th>
               <th style={{width:'350px'}}>Date of Joining</th>
-              <th className="wider-column" style={{width:'500px'}}>Address</th>
+              <th className="wider-column" style={{width:'500px'}}>City</th>
               <th style={{width:'150px'}}>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {employees.length > 0 ? (
-              employees.map(employee => (
+            {currentEmployees.length > 0 ? (
+              currentEmployees.map(employee => (
                 <tr key={employee.id}>
                   <td>{employee.id}</td>
                   <td>{employee.firstName}</td>
@@ -201,7 +426,7 @@ const EmployeeDetails = () => {
                   <td>{employee.phoneNumber}</td>
                   <td>{employee.email}</td>
                   <td>{employee.dateOfJoining}</td>
-                  <td>{employee.address}</td>
+                  <td>{employee.city}</td>
                   <td>
                     <div className="action-icons">
                       <FaEdit 
@@ -223,9 +448,45 @@ const EmployeeDetails = () => {
             )}
           </tbody>
         </table>
-      </div>     
-     
-      {showForm && <ShadowContainer employee={editingEmployee} onSubmit={handleFormSubmit} />}
+      </div>
+
+    
+    {/* Pagination */}
+    <div className="pagination">
+      {/* Previous button */}
+      <button
+        onClick={() => paginate(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="pagination-button"
+      >
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
+
+      {/* Page numbers */}
+      {Array.from({ length: totalPages }, (_, i) => (
+        <button
+          key={i}
+          onClick={() => paginate(i + 1)}
+          className={`pagination-button ${currentPage === i + 1 ? 'active' : ''}`}
+        >
+          {i + 1}
+        </button>
+      ))}
+
+      {/* Next button */}
+      <button
+        onClick={() => paginate(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="pagination-button"
+      >
+        <FontAwesomeIcon icon={faChevronRight} />
+      </button>
+    </div>
+      
+{showForm && ( <ShadowContainer  employee={editingEmployee} onSubmit={handleFormSubmit} 
+  />
+)}
+
     </div>
   );
 };

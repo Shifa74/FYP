@@ -1,67 +1,101 @@
+/* Container Styling */
 .shadow-form-container {
-    padding: 15px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    max-width: 1200px; /* Adjust width as needed */
+    padding: 20px;
+    background-color: #ffffff;
+    border:2px solid #46919e;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9); /* Subtle shadow for depth */
+    border-radius: 12px; /* Smooth rounded corners */
+    max-width: 600px; /* Limit the maximum width */
     position: absolute;
     right: 20px; /* Space from the right edge */
     top: 80px; /* Space from the top of the container */
     z-index: 1000; /* Ensure it appears above other elements */
+    font-family: 'Roboto', sans-serif; /* Modern font for better readability */
 }
 
+/* Heading Styling */
 .shadow-form-container h2 {
     text-align: center;
-    margin-bottom: 15px;
-    font-size: 18px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333; /* Darker shade for better contrast */
+    font-weight: 600;
 }
 
+/* Form Rows */
 .form-row {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* More space between rows */
 }
 
+/* Form Groups */
 .form-group {
     flex: 1 1 30%; /* Adjust this value to fit three fields in one line */
     margin-right: 10px;
     min-width: 30%;
+    margin-bottom: 10px; /* Consistent spacing between elements */
 }
 
+/* Remove margin for the last item in each row */
 .form-group:last-child {
     margin-right: 0;
 }
 
+/* Labels Styling */
 .form-group label {
     display: block;
-    margin-bottom: 3px;
-    color: #64919e;
-    font-size: 14px;
+    margin-bottom: 5px; /* Slightly more space between label and input */
+    color: #46919e; /* A consistent color that matches the overall theme */
+    font-size: 15px;
+    font-weight: 500; /* Slightly bolder text for labels */
 }
 
+/* Input Fields Styling */
 .form-group input {
     width: 100%;
-    padding: 5px;
-    font-size: 14px;
+    padding: 10px; /* More padding for a better touch target */
+    font-size: 15px;
+    border: 1px solid #46919e; /* Light border for input fields */
+    border-radius: 6px; /* Rounded corners for input fields */
     box-sizing: border-box;
+    transition: border-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.form-group input:focus {
+    border-color: #46919e; /* Border color on focus to indicate active input */
+    outline: none; /* Remove default outline */
+}
+
+/* Submit Button Styling */
 button {
     display: block;
     width: 100%;
-    padding: 8px;
-    background-color: #007BFF;
-    color: white;
+    padding: 12px;
+    background-color: #46919e;
+    color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #35798e; /* Darker shade for hover state */
 }
 
 .full-width {
     flex: 1 1 100%;
+}
+
+/* Adding hover effect for form-group */
+.form-group input:hover {
+    border-color: #bbb; /* Slightly darker border on hover */
+}
+
+/* Placeholder styling */
+.form-group input::placeholder {
+    color: #888; /* Light gray placeholder for subtlety */
 }

@@ -83,19 +83,19 @@
 import './App.css';
 // index.js or App.js
 
-import LoginForm from './Components/LoginForm/LoginForm';
+// import LoginForm from './Components/LoginForm/LoginForm';
 
 // import Register from './Components/LoginForm/Register'
 
-// import Navbar from './Components/Navbar';
-// import Sidebar from './Components/Sidebar';
+import Navbar from './Components/Navbar';
+import Sidebar from './Components/Sidebar';
 
 // import Employee from './Components/Dashboard/Employees'
 // import GradeWiseSalary from './Components/Dashboard/GradeWiseSalary';
 // import EmployeeGrades from './Components/Dashboard/EmployeeGrades';
 
 
-// import EmployeeDetails from './Components/Employee/EmployeeDetails';
+import EmployeeDetails from './Components/Employee/EmployeeDetails';
 
 //  import GenerateSalary from './Components/Payroll/GenerateSalary'
 //  import SalaryList from './Components/Payroll/SalaryList';
@@ -136,12 +136,12 @@ function App() {
   return (
 <>
 
-  <LoginForm/>  
+  {/* <LoginForm/>   */}
    {/* {/* <Register/>   */} 
-{/* 
+
    <Navbar title='PAYROLL'/>
    <Sidebar/>
-  */}
+ 
  {/* //Dashboard */}
 
  
@@ -151,9 +151,9 @@ function App() {
    <EmployeeGrades gradesData={gradesData} />
   </div>  */}
 
-{/* 
 
-<EmployeeDetails/>  */}
+
+<EmployeeDetails/>  
 
 
 
