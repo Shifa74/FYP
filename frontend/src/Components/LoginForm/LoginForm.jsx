@@ -122,6 +122,7 @@ function LoginForm({ onLogin }) {
           />
           <FaEnvelope className="icon" />
         </div>
+        {errors.password && <p className="error-message">{errors.password}</p>}
         <div className="input-box">
           <input
             type={showPassword ? "text" : "password"}
