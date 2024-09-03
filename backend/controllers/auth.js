@@ -1,12 +1,12 @@
 const Admin = require("../models/Admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const  createError  = require("../error");
+const createError = require("../error");
 
 // SIGNUP
 
 const signup = async (req, res, next) => {
-  console.log(req.body)
+  // console.log(req.body);
   const { email, password, confirmPassword } = req.body;
   try {
     adminExist = await Admin.findOne({ email: email });
@@ -33,11 +33,10 @@ const login = async (req, res, next) => {
   try {
     const adminExist = await Admin.findOne({ email: email });
     if (!adminExist) return next(createError(400, "User not found.", "email"));
-    
 
     const isMatch = await bcrypt.compare(password, adminExist.password);
-    if (!isMatch) return next(createError(400, "Incorrect Password", "password"));
-    
+    if (!isMatch)
+      return next(createError(400, "Incorrect Password", "password"));
 
     const token = jwt.sign({ id: adminExist._id }, process.env.JWT);
     res
@@ -51,7 +50,19 @@ const login = async (req, res, next) => {
   }
 };
 
+// LOGOUT
+
+const logout = (res, req, next) => {
+  try {
+    res.clearCookie("access_token");
+    res.status(200).json({ message: "Successfully logged out." });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   signup,
   login,
+  logout,
 };
