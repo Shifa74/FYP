@@ -2,7 +2,7 @@
 .shadow-form-container {
     padding: 20px;
     background-color: #ffffff;
-    border:2px solid #46919e;
+    border: 2px solid #46919e;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9); /* Subtle shadow for depth */
     border-radius: 12px; /* Smooth rounded corners */
     max-width: 600px; /* Limit the maximum width */
@@ -98,4 +98,58 @@ button:hover {
 /* Placeholder styling */
 .form-group input::placeholder {
     color: #888; /* Light gray placeholder for subtlety */
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and small desktops */
+@media (max-width: 1024px) {
+    .shadow-form-container {
+        right: 10px; /* Less space from the right */
+        max-width: 90%; /* Max width reduced to fit screen */
+        padding: 15px; /* Reduced padding */
+    }
+    .form-group {
+        flex: 1 1 45%; /* Two fields per row */
+        margin-right: 5px; /* Reduce margin between fields */
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .shadow-form-container {
+        top: 60px; /* Less space from the top */
+        max-width: 95%; /* Almost full width */
+        right: 10px; /* Adjust right space */
+        padding: 10px; /* Further reduced padding */
+    }
+    .form-group {
+        flex: 1 1 100%; /* One field per row */
+        margin-right: 0; /* No margin for full-width fields */
+    }
+    .shadow-form-container h2 {
+        font-size: 20px; /* Smaller heading font size */
+        margin-bottom: 15px; /* Less space below heading */
+    }
+    button {
+        padding: 10px; /* Reduced padding for button */
+        font-size: 14px; /* Smaller font size for button */
+    }
+}
+
+/* For extra small mobile devices */
+@media (max-width: 480px) {
+    .shadow-form-container {
+        top: 50px; /* Reduced top space */
+        right: 5px; /* Adjust right space */
+        padding: 8px; /* Further reduced padding */
+    }
+    .form-group input {
+        font-size: 13px; /* Smaller font size for inputs */
+        padding: 8px; /* Reduced padding for input fields */
+    }
+    button {
+        padding: 8px; /* Further reduced padding */
+        font-size: 13px; /* Further reduced font size for button */
+    }
 }

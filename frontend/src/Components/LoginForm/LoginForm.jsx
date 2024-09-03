@@ -29,10 +29,13 @@ function LoginForm({ onLogin }) {
     } else {
       localStorage.removeItem("rememberedEmail");
     }
-
+  
     try {
       const res = await axios.post("/auth/login", { email, password });
       console.log(res.data);
+      // Assuming successful login, navigate to the dashboard
+      navigate('/dashboard');
+      if (onLogin) onLogin(); // Call onLogin to update authentication state in App
     } catch (error) {
       setEmail("");
       setPassword("");
@@ -43,9 +46,8 @@ function LoginForm({ onLogin }) {
         }
       }
     }
-
-    console.log("Logging in with:", { email, password });
   };
+  
 
   useEffect(() => {
     if (email) {

@@ -1,5 +1,6 @@
 /* Container for the employee details */
 .employee-details-container {
+  min-width: 480px;
   width: calc(100% - 180px); /* Adjust width to fit next to the sidebar, reducing size slightly */
   margin-left: 160px; /* Ensure it doesn't go under the sidebar */
   padding: 8px; /* Reduced padding for a more compact look */
@@ -7,8 +8,15 @@
   background-color: #f9f9f9;
   border: 2px solid #ddd;
   border-radius: 4px;
-  margin-top: 70px;
+  margin-top: 150px;
   margin-left: 165px; /* Added margin to fit under the navbar */
+}
+
+@media (max-width: 768px) {
+  .employee-details-container  {
+    margin-left: 70px;
+    width: calc(100% - 100px);
+  }
 }
 
 /* Heading for the page, aligned to the left */
@@ -22,19 +30,17 @@
 }
 
 /* Table container */
+/* Container for the table with horizontal scrolling */
 .employee-details-table-container {
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 440px; /* Adjusted height to fit in a smaller container */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: auto; /* Disable vertical scrolling */
+  max-height: 440px; /* Adjust height as needed */
 }
 
-/* Styling the table */
+/* Ensure the table takes full width within the scrolling container */
 .employee-details-table-container table {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
-  border-radius: 8px; /* Slightly smaller border radius */
-  overflow: hidden;
 }
 
 /* Styling the table headers */
@@ -84,15 +90,13 @@ th.wider-column {
 }
 
 /* Container for the add employee button */
-.add-employee-button-container {
-  margin-left: 380px; /* Adjusted to align with reduced table size */
-  text-align: left;
-}
+
 
 /* Styling the add employee button */
 .add-employee-button {
-  display: inline-flex;
+  width: 210px;
   align-items: center;
+  text-align: left;
   background-color: #64919e;
   color: white;
   padding: 8px 20px; /* Reduced padding */
@@ -139,9 +143,6 @@ th.wider-column {
   color: #07e3eb;
 }
 
-.employee-details-table-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
-}
 
 /* Separate styles for each action icon */
 .edit-icon {
@@ -162,7 +163,7 @@ th.wider-column {
 
 .filter-container {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 2px; /* Reduced gap */
 }
 
@@ -204,3 +205,4 @@ th.wider-column {
   cursor: not-allowed;
   opacity: 0.5;
 }
+

@@ -5,66 +5,49 @@
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   height: 56px; /* Adjust the height as needed */
-  width: 100%;
+  width: calc(100% - 150px);
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  position: fixed;
   top: 0;
-  left: 0;
+  left: 150px;
+  transition: left 0.3s;
 }
-.navbar-brand {
+
+.navbar.expanded {
+  background-color: #34495e; /* Background color when expanded */
+  height: auto; /* Adjust height when expanded */
+}
+
+.collapse.show {
+   /* Background color when menu is open */
+  transition: background-color 0.3s;
+}
+
+.navbar-nav {
   display: flex;
   align-items: center;
+}
+
+.nav-item {
+  margin-left: 1rem;
+}
+
+.nav-link {
+  color: #ecf0f1;
+  font-size: 1.1rem;
   text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  background: linear-gradient(90deg, #64c7cc, #3b8c8f); /* Gradient colors */
-  
-  /* Vendor-prefixed properties for compatibility */
-  -webkit-background-clip: text; /* Chrome, Safari */
-  -moz-background-clip: text;    /* Firefox */
-  -ms-background-clip: text;     /* Internet Explorer */
-  -o-background-clip: text;      /* Opera */
-  
-  /* Standard property */
-  background-clip: text;         /* Modern browsers */
-  
-  -webkit-text-fill-color: transparent; /* Make the text color transparent */
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.brand-icon {
-  font-size: 1.8rem; /* Adjust icon size */
-  background: linear-gradient(90deg, #64c7cc, #3b8c8f); /* Gradient colors */
-  
-  /* Vendor-prefixed properties for compatibility */
-  -webkit-background-clip: text; /* Chrome, Safari */
-  -moz-background-clip: text;    /* Firefox */
-  -ms-background-clip: text;     /* Internet Explorer */
-  -o-background-clip: text;      /* Opera */
-  
-  /* Standard property */
-  background-clip: text;         /* Modern browsers */
-  
-  -webkit-text-fill-color: transparent; /* Make the icon color transparent */
+.nav-link:hover {
+  color: #1abc9c; /* Match with the accent color */
+  transform: scale(1.1);
 }
 
-
-.brand-name {
-  margin-left: 0.5rem;
-}
-
-.navbar-toggler {
-  border: none;
-  background-color: transparent; /* Keep background transparent */
-}
-
-.navbar-toggler-icon {
-  background-color: #ecf0f1; /* Light color for the toggler icon */
-}
-
-.position-relative {
-  position: relative;
+.icon {
+  margin-right: 0.5rem; /* Adjust the spacing between icon and text */
 }
 
 .search-wrapper {
@@ -82,6 +65,7 @@
 }
 
 .search-input {
+  width: 700px;
   padding-left: 2.5rem; /* Adjust padding for the icon */
   font-size: 1.2rem;
   border: 2px solid #34495e; /* Border matching the dark theme */
@@ -89,6 +73,22 @@
   background-color: #34495e; /* Dark background to match navbar */
   color: #ecf0f1; /* Light text color */
   transition: border 0.3s ease;
+}
+
+@media (max-width: 968px) {
+  .search-input {
+    width: 570px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+  .search-input {
+    width: 460px;
+  }
 }
 
 .search-input:focus {
@@ -110,28 +110,4 @@
 .search-button:hover {
   background-color: #16a085; /* Slightly darker on hover */
   transform: translateY(-2px); /* Lift effect on hover */
-}
-
-.navbar-icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.navbar-icons .nav-link {
-  color: #ecf0f1;
-  font-size: 1.1rem;
-  text-decoration: none;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.navbar-icons .nav-link:hover {
-  color: #1abc9c; /* Match with the accent color */
-  transform: scale(1.1);
-}
-
-.navbar-icons .icon {
-  margin-right: 0.5rem; /* Adjust the spacing between icon and text */
 }

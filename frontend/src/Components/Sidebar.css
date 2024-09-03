@@ -1,13 +1,14 @@
+/* Sidebar styling */
 .sidebar {
-  width: 150px; /* Width remains 150px */
-  background-color:white;
+  width: 150px;
+  background-color: #343a40;
   height: 100vh;
   position: fixed;
-  top: 56px;
+  top: 0px;
   left: 0;
-  padding-top: 56px; /* Adjust based on the height of the first navbar */
-  z-index: 1000; /* Ensure it stays on top */
-  box-shadow: 2px 0 5px #64919e;
+  padding-top: 20px;
+  z-index: 1000;
+  transition: width 0.3s;
 }
 
 .sidebar ul {
@@ -17,22 +18,22 @@
 }
 
 .sidebar ul li {
-  padding: 8px 8px; /* Adjust padding to fit within the width */
+  padding: 8px;
   text-align: left;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
-  margin-bottom: 8px; /* Add space between list items */
-  position: relative; /* Add position relative for the tooltip */
 }
 
 .sidebar ul li a {
-  color: rgb(63, 60, 51);
+  color: white ;
   text-decoration: none;
   display: flex;
   align-items: center;
   width: 100%;
   padding: 8px;
   border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 .sidebar ul li a:hover {
@@ -43,34 +44,29 @@
 .sidebar ul li a .icon {
   margin-right: 8px;
   font-size: 18px;
-  min-width: 20px; /* Ensure the icons have enough space */
-  color: black; /* Set icon color to black */
+  min-width: 20px;
 }
 
 .sidebar ul li a .text {
   flex-grow: 1;
-  font-size: 12px; /* Adjust font size to fit within 150px width */
+  font-size: 14px;
 }
 
-/* Tooltip styling */
-.sidebar ul li .tooltip {
-  visibility: hidden;
-  width: 120px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  left: 160px; /* Position to the right of the sidebar */
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 0.3s;
+.brandLink{
+  text-decoration-color: linear-gradient(90deg, #64c7cc, #3b8c8f); /* Gradient colors */
 }
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px; /* Collapse sidebar to icon-only */
+    overflow-x: hidden;
+  }
 
-.sidebar ul li:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
+  .sidebar ul li a .text {
+    display: none; /* Hide text when collapsed */
+  }
+
+  .sidebar ul li {
+    justify-content: center; /* Center icons */
+  }
 }
