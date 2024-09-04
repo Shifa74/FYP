@@ -10,21 +10,32 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");  // New state for success message
 
   const navigate = useNavigate();  // Initialize the useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      // Handle signup logic here
       try {
+
         const res = await axios.post("/auth/signup", {
           email,
           password,
           confirmPassword,
         });
         console.log(res.data);
-        navigate('/login');  // Navigate to login page after successful signup
+        setSuccessMessage("Account created successfully!");
+
+        // Clear the form
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        
+        // Set a timeout to navigate to the dashboard after showing the success message
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 2000);  
       } catch (error) {
         setEmail("");
         setPassword("");
@@ -49,13 +60,14 @@ const Signup = () => {
   }, [email]);
 
   const navigateToLogin = () => {
-    navigate('/login');  // Navigate to login page when the user clicks "Login"
+    navigate('/login');  
   };
 
   return (
     <div className="login-container">
       <div className="wrapper">
         <h1>Signup</h1>
+        {successMessage && <p className="success-message">{successMessage}</p>} {/* Display success message */}
         <form onSubmit={handleSubmit}>
           {errors.email && <p className="error-message">{errors.email}</p>}
           <div className="input-box">
