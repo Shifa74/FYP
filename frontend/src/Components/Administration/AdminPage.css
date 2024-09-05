@@ -5,11 +5,10 @@
   padding: 20px;
   background-color: #f7f9fc;
   min-height: 100vh;
-  
-
-position: absolute;
-top: 100px;
-left: 190px;
+  position: absolute;
+  top: 100px;
+  left: 190px;
+  transition: left 0.3s ease; /* Add a transition for smooth movement */
 }
 
 .dashboard-header {
@@ -33,7 +32,7 @@ left: 190px;
   grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
   gap: 20px; /* Gap between cards */
   width: 100%;
-  max-width: 1400px; /* Increased max-width to make cards wider */
+  max-width: 1400px;
 }
 
 .dashboard-card {
@@ -66,4 +65,85 @@ left: 190px;
 .dashboard-card p {
   font-size: 14px; /* Description size */
   color: #7f8c8d;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  }
+
+  .dashboard-card {
+    height: 140px; /* Slightly smaller height */
+    padding: 12px; /* Reduce padding */
+  }
+
+  .dashboard-card h3 {
+    font-size: 16px; /* Smaller title size */
+  }
+
+  .dashboard-card p {
+    font-size: 13px; /* Smaller description size */
+  }
+
+  .card-icon {
+    font-size: 26px; /* Slightly smaller icon size */
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+
+  .dashboard-card {
+    height: 130px; /* Smaller height */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .dashboard-card h3 {
+    font-size: 15px; /* Smaller title size */
+  }
+
+  .dashboard-card p {
+    font-size: 12px; /* Smaller description size */
+  }
+
+  .card-icon {
+    font-size: 24px; /* Smaller icon size */
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-page {
+    padding: 10px; /* Reduce padding on small screens */
+    left: 50%; /* Center the admin page horizontally */
+    top: 60px; /* Adjust top position */
+    transform: translateX(-50%); /* Offset by 50% of the page's width to truly center it */
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr; /* 1 card per row */
+    gap: 15px; /* Reduce gap between cards */
+    justify-content: center; /* Center the grid */
+  }
+
+  .dashboard-card {
+    height: 120px; /* Smaller height */
+    padding: 8px; /* Reduce padding */
+    width: 100%; /* Make cards take up full width */
+    max-width: 500px; /* Limit the max width of cards */
+  }
+
+  .dashboard-card h3 {
+    font-size: 14px; /* Smaller title size */
+  }
+
+  .dashboard-card p {
+    font-size: 11px; /* Smaller description size */
+  }
+
+  .card-icon {
+    font-size: 22px; /* Smaller icon size */
+  }
 }

@@ -4,7 +4,7 @@
   position: fixed;
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  height: 56px; /* Adjust the height as needed */
+  height: 59px; /* Adjust the height as needed */
   width: calc(100% - 150px);
   display: flex;
   align-items: center;
@@ -68,12 +68,28 @@
   width: 700px;
   padding-left: 2.5rem; /* Adjust padding for the icon */
   font-size: 1.2rem;
-  border: 2px solid #34495e; /* Border matching the dark theme */
-  border-radius: 4px; /* Slightly rounded corners */
-  background-color: #34495e; /* Dark background to match navbar */
-  color: #ecf0f1; /* Light text color */
+  border: 2px solid #34495e;
+  border-radius: 4px;
+  background-color: #34495e;
+  color: #ecf0f1;
+  height: 38px; /* Set a fixed height */
   transition: border 0.3s ease;
 }
+
+.search-button {
+  font-size: 1.2rem;
+  padding: 0 20px; /* Adjust padding */
+  background-color: #1abc9c;
+  border: none;
+  border-radius: 4px;
+  color: #ecf0f1;
+  height: 38px; /* Match the height with search-input */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
 
 @media (max-width: 968px) {
   .search-input {
@@ -96,18 +112,41 @@
   outline: none;
 }
 
-.search-button {
-  font-size: 0.85rem;
-  padding: 0.25rem 0.5rem;
-  width: 100px;
-  background-color: #1abc9c; /* Primary accent color */
-  border: none;
-  border-radius: 4px; /* Slightly rounded corners */
-  color: #ecf0f1; /* Light text color */
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
 
 .search-button:hover {
   background-color: #16a085; /* Slightly darker on hover */
   transform: translateY(-2px); /* Lift effect on hover */
+}
+
+
+/* Notification button styling */
+.navbar-nav .nav-item .nav-link {
+  color: #ecf0f1;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #1abc9c; /* Accent color on hover */
+  transform: scale(1.1);
+}
+
+.navbar-nav .nav-item .icon {
+  margin-right: 0.5rem; /* Spacing for icons */
+}
+
+/* Notification badge styling */
+.navbar-nav .nav-item .notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #e74c3c; /* Red color for notifications */
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./Navbar.css";
-import { FaSignInAlt, FaSearch } from "react-icons/fa"; // Import FaSearch icon
+import { FaSignInAlt, FaSearch,FaBell  } from "react-icons/fa"; // Import FaSearch icon
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -52,7 +52,7 @@ export default function Navbar(props) {
                     left: "10px",
                     top: "50%",
                     transform: "translateY(-50%)",
-                    color: "#888",
+                    color: "white",
                   }}
                 />
                 <input
@@ -71,6 +71,11 @@ export default function Navbar(props) {
             </form>
           </div>
           <ul className="navbar-nav">
+          <li className="nav-item">
+              <a href="/notifications" className="nav-link">
+                <FaBell className="icon" /> {/* Notification icon */}
+              </a>
+            </li>
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={handleLogout}>
                 <FaSignInAlt className="icon" /> Logout

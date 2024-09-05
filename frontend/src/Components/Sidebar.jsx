@@ -20,7 +20,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/employee-details">
+          <Link to="/Employee">
             <i className="fas fa-users icon"></i>
             <span className="text">Employees</span>
           </Link>

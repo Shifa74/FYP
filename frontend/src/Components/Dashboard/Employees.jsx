@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Employees.css';
 // import GradeWiseSalary from './GradeWiseSalary';
-import NotificationsAndAlerts from './NotificationsAndAlerts';
+// import NotificationsAndAlerts from './NotificationsAndAlerts';
 import EmployeeGrades from './EmployeeGrades';
 import GradeWiseSalary from './GradeWiseSalary';
 
@@ -59,10 +59,6 @@ const StatsDashboard = () => {
         {/* <p className="sign">Dollars</p> */}
       </div>
 
-      {/* Paid Salary Card */}
-      <div >
-        <NotificationsAndAlerts />
-      </div>
 
       <div>
         <EmployeeGrades gradesData={gradesData}/>

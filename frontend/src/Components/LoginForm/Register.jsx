@@ -64,6 +64,8 @@ const Signup = () => {
   };
 
   return (
+
+    <div className="bg">
     <div className="login-container">
       <div className="wrapper">
         <h1>Signup</h1>
@@ -109,6 +111,9 @@ const Signup = () => {
         </div>
       </div>
     </div>
+    
+    </div>
+    
   );
 };
 

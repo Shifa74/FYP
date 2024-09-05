@@ -4,30 +4,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 // Import components
 import Register from './Components/LoginForm/Register';
-import Navbar from './Components/Navbar';
-import Sidebar from './Components/Sidebar';
 import LoginForm from './Components/LoginForm/LoginForm';
-import Employee from './Components/Dashboard/Employees';
-
+import Dashboard from './Components/Dashboard/Employees';
 import EmployeeDetails from './Components/Employee/EmployeeDetails';
+import  PayrollDashboard from './Components/Payroll/PayrollDashboard'
+import Administration from './Components/Administration/AdminPage'
+import Attendance from './Components/Attendance/Attendance'
+import Layout from './Layout'; // Import the Layout component
 
-// Define grades data
-
-
-// Dashboard Component
-function Dashboard() {
-  return (
-    <>
-      <Navbar title='PAYROLL' />
-      <Sidebar />
-      <div className="app">
-        <Employee />
-      </div>
-    </>
-  );
-}
-
-// App Component with Routes
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -36,10 +20,9 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route 
-  path="/" 
-  element={isAuthenticated ? <Navigate to="/dashboard" /> : <LoginForm onLogin={() => setIsAuthenticated(true)} />} 
-/>
-
+          path="/" 
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <LoginForm onLogin={() => setIsAuthenticated(true)} />} 
+        />
         <Route 
           path="/register" 
           element={<Register />} 
@@ -52,12 +35,24 @@ function App() {
         {/* Protected Routes */}
         <Route 
           path="/dashboard" 
-          element= {<Dashboard />} 
+          element={<Layout><Dashboard /></Layout>} 
         />
         <Route 
           path="/employee" 
-          element={<EmployeeDetails/>} 
+          element={<Layout><EmployeeDetails /></Layout>} 
         />
+        <Route 
+          path="/payroll" 
+          element={<Layout><PayrollDashboard/></Layout>} 
+        />
+        <Route 
+          path="/Administration" 
+          element={<Layout><Administration /></Layout>}
+         /> 
+          <Route 
+          path="/Attendance" 
+          element={<Layout><Attendance /></Layout>}
+         /> 
       </Routes>
     </Router>
   );
