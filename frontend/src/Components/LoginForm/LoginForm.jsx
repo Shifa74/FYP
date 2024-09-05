@@ -106,7 +106,8 @@ function LoginForm({ onLogin }) {
   };
 
   return (
-    <div className="wrapper login-container">
+   <div className="bg">
+ <div className="wrapper login-container">
       <h1>Welcome Back!</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
         <h2>Login to Your Account</h2>
@@ -173,6 +174,9 @@ function LoginForm({ onLogin }) {
         />
       )}
     </div>
+   </div>
+
+   
   );
 }
 

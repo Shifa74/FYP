@@ -1,9 +1,9 @@
 /* employee.css */
 
 .stats-dashboard {
+  align-content: center;
   display: flex;
   flex-wrap: wrap; /* Allow items to wrap to the next line */
-  justify-content: space-between;
   background-color: #f9fcfd; /* Dark background color */
   padding: 5px 10px 3px 30px; /* Adjusted padding */
   position: absolute;
@@ -14,17 +14,28 @@
   overflow-x: hidden; /* Ensure no horizontal scroll */
 }
 
+@media (max-width: 768px) {
+  .stats-dashboard  {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+}
+
 .stat-box {
   border: 2px solid #64919e;
   border-radius: 8px;
   padding: 5px 20px; /* Adjusted padding for smaller height */
   text-align: center;
   background-color: #f1f4f5;
+  min-height: 180px;
+  max-height: 302px;
   flex: 1 1 20%; /* Adjust flex basis to fit items within the container */
-  min-width: 150px; /* Minimum width */
-  max-width: 250px; /* Maximum width */
+  min-width: 390px; /* Minimum width */
+  max-width: 390px; /* Maxim  um width */
   box-sizing: border-box;
-  margin: 5px; /* Add margin to create space between items */
+  margin-right: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .stat-box h2 {

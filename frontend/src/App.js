@@ -8,22 +8,11 @@ import Navbar from './Components/Navbar';
 import Sidebar from './Components/Sidebar';
 import LoginForm from './Components/LoginForm/LoginForm';
 import Employee from './Components/Dashboard/Employees';
-import GradeWiseSalary from './Components/Dashboard/GradeWiseSalary';
-import EmployeeGrades from './Components/Dashboard/EmployeeGrades';
+
 import EmployeeDetails from './Components/Employee/EmployeeDetails';
 
 // Define grades data
-const gradesData = [
-    { numberOfEmployees: 10 },
-    { numberOfEmployees: 15 },
-    { numberOfEmployees: 20 },
-    { numberOfEmployees: 25 },
-    { numberOfEmployees: 30 },
-    { numberOfEmployees: 35 },
-    { numberOfEmployees: 40 },
-    { numberOfEmployees: 45 },
-    { numberOfEmployees: 50 }
-];
+
 
 // Dashboard Component
 function Dashboard() {
@@ -33,8 +22,6 @@ function Dashboard() {
       <Sidebar />
       <div className="app">
         <Employee />
-        <GradeWiseSalary />
-        <EmployeeGrades gradesData={gradesData} />
       </div>
     </>
   );
@@ -68,8 +55,8 @@ function App() {
           element= {<Dashboard />} 
         />
         <Route 
-          path="/employee-details" 
-          element={isAuthenticated ? <EmployeeDetails /> : <Navigate to="/" />} 
+          path="/employee" 
+          element={<EmployeeDetails/>} 
         />
       </Routes>
     </Router>

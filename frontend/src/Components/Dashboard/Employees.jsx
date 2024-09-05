@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Employees.css';
 // import GradeWiseSalary from './GradeWiseSalary';
 import NotificationsAndAlerts from './NotificationsAndAlerts';
+import EmployeeGrades from './EmployeeGrades';
+import GradeWiseSalary from './GradeWiseSalary';
 
 const StatsDashboard = () => {
   const [totalEmployees, setTotalEmployees] = useState(0);
@@ -19,6 +21,17 @@ const StatsDashboard = () => {
 
     fetchStats();
   }, []);
+  const gradesData = [
+    { numberOfEmployees: 10 },
+    { numberOfEmployees: 15 },
+    { numberOfEmployees: 20 },
+    { numberOfEmployees: 25 },
+    { numberOfEmployees: 30 },
+    { numberOfEmployees: 35 },
+    { numberOfEmployees: 40 },
+    { numberOfEmployees: 45 },
+    { numberOfEmployees: 50 }
+];
 
   return (
     <div className="stats-dashboard">
@@ -46,10 +59,18 @@ const StatsDashboard = () => {
         {/* <p className="sign">Dollars</p> */}
       </div>
 
-      <div className="dashboard-container">
-      <NotificationsAndAlerts />
-    </div>
-  
+      {/* Paid Salary Card */}
+      <div >
+        <NotificationsAndAlerts />
+      </div>
+
+      <div>
+        <EmployeeGrades gradesData={gradesData}/>
+      </div>
+
+      <div>
+        <GradeWiseSalary/>
+      </div>
 
     </div>
   );

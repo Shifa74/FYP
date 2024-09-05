@@ -1,15 +1,16 @@
 /* LoginForm Styles */
-body {
+.bg{
     background: linear-gradient(135deg, #293231 0%, #CAF0F8 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
     font-family: 'Poppins', sans-serif;
-    padding: 20px;
-}
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 
+}
 .wrapper {
     width: 400px;
     background: #64919e;
@@ -17,6 +18,8 @@ body {
     padding: 40px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
+     
+    
 }
 
 .wrapper h1 {
