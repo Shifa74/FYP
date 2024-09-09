@@ -154,7 +154,7 @@ function LoginForm({ onLogin }) {
             Forgot password?
           </a>
         </div>
-        <button type="submit">Login</button>
+        <button className="login-button" type="submit">Login</button>
         <div className="register-link">
           <p>
             Don't have an account? <a href="#!" onClick={navigateToRegister}>Register</a>

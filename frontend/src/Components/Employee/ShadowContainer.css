@@ -25,6 +25,7 @@
 /* Form Rows */
 .form-row {
     display: flex;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 15px; /* More space between rows */
 }
@@ -32,9 +33,9 @@
 /* Form Groups */
 .form-group {
     flex: 1 1 30%; /* Adjust this value to fit three fields in one line */
-    margin-right: 10px;
+    margin-right: px;
     min-width: 30%;
-    margin-bottom: 10px; /* Consistent spacing between elements */
+    margin-bottom: 20px; /* Consistent spacing between elements */
 }
 
 /* Remove margin for the last item in each row */
@@ -52,9 +53,11 @@
 }
 
 /* Input Fields Styling */
-.form-group input {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 10px; /* More padding for a better touch target */
+    height: 40px;
     font-size: 15px;
     border: 1px solid #46919e; /* Light border for input fields */
     border-radius: 6px; /* Rounded corners for input fields */
@@ -62,13 +65,24 @@
     transition: border-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group select:focus {
     border-color: #46919e; /* Border color on focus to indicate active input */
     outline: none; /* Remove default outline */
 }
 
+/* Styling for Select Dropdown */
+.form-group select {
+    background-color: #ffffff; /* Background color to match the input fields */
+    cursor: pointer; /* Pointer cursor to indicate it's clickable */
+}
+
+.form-group select:hover {
+    border-color: #35798e; /* Darker border color on hover */
+}
+
 /* Submit Button Styling */
-button {
+.submit-button {
     display: block;
     width: 100%;
     padding: 12px;
@@ -82,7 +96,7 @@ button {
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-button:hover {
+.submit-button:hover {
     background-color: #35798e; /* Darker shade for hover state */
 }
 
@@ -91,7 +105,8 @@ button:hover {
 }
 
 /* Adding hover effect for form-group */
-.form-group input:hover {
+.form-group input:hover,
+.form-group select:hover {
     border-color: #bbb; /* Slightly darker border on hover */
 }
 
@@ -131,7 +146,7 @@ button:hover {
         font-size: 20px; /* Smaller heading font size */
         margin-bottom: 15px; /* Less space below heading */
     }
-    button {
+    .submit-button {
         padding: 10px; /* Reduced padding for button */
         font-size: 14px; /* Smaller font size for button */
     }
@@ -144,12 +159,23 @@ button:hover {
         right: 5px; /* Adjust right space */
         padding: 8px; /* Further reduced padding */
     }
-    .form-group input {
+    .form-group input,
+    .form-group select {
         font-size: 13px; /* Smaller font size for inputs */
         padding: 8px; /* Reduced padding for input fields */
     }
-    button {
+    .submit-button {
         padding: 8px; /* Further reduced padding */
         font-size: 13px; /* Further reduced font size for button */
     }
+}
+.error-message{
+    color: red;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.form-group input.error-input,
+.form-group select.error-input{
+    border: 1px solid red;
+    background-color: #f8d7da;
 }

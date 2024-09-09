@@ -1,56 +1,55 @@
-import React, { useState, useEffect, } from 'react';
-import ShadowContainer from './ShadowContainer';
-import './EmployeeDetails.css';
-import { FaUserPlus, FaEdit, FaTrashAlt } from 'react-icons/fa';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from "react";
+import ShadowContainer from "./ShadowContainer";
+import "./EmployeeDetails.css";
+import { FaUserPlus, FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const EmployeeDetails = () => {
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState(null);
-  const [filter, setFilter] = useState('');
-  const [filterType, setFilterType] = useState('id');
+  const [filter, setFilter] = useState("");
+  const [filterType, setFilterType] = useState("id");
   const [currentPage, setCurrentPage] = useState(1);
   const employeesPerPage = 9;
-
-
+  const [departments, setDepartments] = useState([]);
+  const [grades, setGrades] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchEmployees = async () => {
-      // Simulated data fetch
-      const fetchedData = [
-        {
-          id: 1,
-          firstName: 'John',
-          lastName: 'Doe',
-          dateOfBirth: '1985-06-15',
-          departmentName: 'HR',
-          grade: 'A',
-          phoneNumber: '+1234567890',
-          email: 'john.doe@example.com',
-          dateOfJoining: '2020-01-01',
-          city: '123 Main St, Anytown',
-        },
-        {
-          id: 2,
-          firstName: 'Jane',
-          lastName: 'Smith',
-          dateOfBirth: '1990-07-22',
-          departmentName: 'Finance',
-          grade: 'B',
-          phoneNumber: '+0987654321',
-          email: 'jane.smith@example.com',
-          dateOfJoining: '2019-03-15',
-          city: '456 Elm St, Anytown',
-        },
-        // Other employee objects...
-      ];
-      setEmployees(fetchedData);
-      setFilteredEmployees(fetchedData);
+      try {
+        const response = await axios.get("/employee/get");
+        setEmployees(response.data);
+        setFilteredEmployees(response.data);
+      } catch (error) {
+        console.error("Error fetching employee data", error);
+      }
     };
+
+    const fetchDepartmentsAndGrades = async () => {
+      try {
+        const [deptResponse, gradeResponse] = await Promise.all([
+          axios.get("/dept/get"),
+          axios.get("/grade/get"),
+        ]);
+        setDepartments(deptResponse.data);
+        setGrades(gradeResponse.data);
+      } catch (error) {
+        console.error("Error fetching departments and grades", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchEmployees();
+    fetchDepartmentsAndGrades();
   }, []);
 
   const handleAddEmployeeClick = () => {
@@ -62,13 +61,13 @@ const EmployeeDetails = () => {
     if (editingEmployee) {
       setEmployees(
         employees.map((emp) =>
-          emp.id === newEmployee.id ? newEmployee : emp
+          emp._id === newEmployee._id ? newEmployee : emp
         )
       );
     } else {
       setEmployees([
         ...employees,
-        { ...newEmployee, id: employees.length + 1 },
+        { ...newEmployee, _id: employees.length + 1 },
       ]);
     }
     setShowForm(false);
@@ -79,18 +78,29 @@ const EmployeeDetails = () => {
     setShowForm(true);
   };
 
-  const handleDeleteClick = (id) => {
-    setEmployees(employees.filter((employee) => employee.id !== id));
-    setFilteredEmployees(filteredEmployees.filter((employee) => employee.id !== id));
+  const handleDeleteClick = async (id) => {
+    try {
+      // Find the employee to delete based on the id
+      const employeeToDelete = employees.find(
+        (employee) => employee._id === id
+      );
+      await axios.delete(`/employee/delete/${employeeToDelete._id}`);
+      setEmployees(employees.filter((employee) => employee._id !== id));
+      setFilteredEmployees(
+        filteredEmployees.filter((employee) => employee._id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting employee", error);
+    }
   };
 
   const handleFilterChange = (e) => {
     const value = e.target.value.toLowerCase();
     setFilter(value);
     const filtered = employees.filter((employee) => {
-      if (filterType === 'id') {
-        return employee.id.toString().includes(value);
-      } else if (filterType === 'name') {
+      if (filterType === "id") {
+        return employee.employeeId.toString().includes(value);
+      } else if (filterType === "name") {
         return (
           employee.firstName.toLowerCase().includes(value) ||
           employee.lastName.toLowerCase().includes(value)
@@ -104,25 +114,30 @@ const EmployeeDetails = () => {
 
   const handleFilterTypeChange = (e) => {
     setFilterType(e.target.value);
-    setFilter('');
+    setFilter("");
     setFilteredEmployees(employees);
   };
 
   const indexOfLastEmployee = currentPage * employeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = filteredEmployees.slice(
-    indexOfFirstEmployee,
-    indexOfLastEmployee
-  );
+  const currentEmployees = filteredEmployees
+    ? filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee)
+    : [];
 
-  const totalPages = Math.ceil(filteredEmployees.length / employeesPerPage);
+  const totalPages = filteredEmployees
+    ? Math.ceil(filteredEmployees.length / employeesPerPage)
+    : 0;
 
   return (
     <div className="employee-details-container">
       <div className="top-bar">
         <h1 className="heading">Employee Details</h1>
         <div className="filter-container">
-          <select style={{ width: '185px' }} value={filterType} onChange={handleFilterTypeChange}>
+          <select
+            style={{ width: "185px" }}
+            value={filterType}
+            onChange={handleFilterTypeChange}
+          >
             <option value="id">Filter by ID</option>
             <option value="name">Filter by Name</option>
           </select>
@@ -134,7 +149,10 @@ const EmployeeDetails = () => {
           />
         </div>
         <div className="add-employee-button-container">
-          <button className="add-employee-button" onClick={handleAddEmployeeClick}>
+          <button
+            className="add-employee-button"
+            onClick={handleAddEmployeeClick}
+          >
             <FaUserPlus className="icon" />
             <span className="text">Add New Employee</span>
           </button>
@@ -145,31 +163,37 @@ const EmployeeDetails = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th style={{ width: '250px' }}>First Name</th>
-              <th style={{ width: '200px' }}>Last Name</th>
-              <th style={{ width: '350px' }}>Date of Birth</th>
+              <th style={{ width: "250px" }}>First Name</th>
+              <th style={{ width: "200px" }}>Last Name</th>
+              <th style={{ width: "350px" }}>Date of Birth</th>
               <th className="wide-column">Department</th>
               <th className="wide-column">Grade</th>
-              <th style={{ width: '200px' }}>Phone Number</th>
+              <th style={{ width: "200px" }}>Phone Number</th>
               <th className="wide-column">Email</th>
-              <th style={{ width: '350px' }}>Date of Joining</th>
-              <th className="wider-column" style={{ width: '500px' }}>City</th>
-              <th style={{ width: '150px' }}>Actions</th>
+              <th style={{ width: "350px" }}>Date of Joining</th>
+              <th className="wider-column" style={{ width: "500px" }}>
+                City
+              </th>
+              <th style={{ width: "150px" }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentEmployees.length > 0 ? (
               currentEmployees.map((employee) => (
-                <tr key={employee.id}>
-                  <td>{employee.id}</td>
+                <tr key={employee._id}>
+                  <td>{employee.employeeId}</td>
                   <td>{employee.firstName}</td>
                   <td>{employee.lastName}</td>
-                  <td>{employee.dateOfBirth}</td>
-                  <td>{employee.departmentName}</td>
-                  <td>{employee.grade}</td>
-                  <td>{employee.phoneNumber}</td>
+                  <td>{new Date(employee.dob).toISOString().slice(0, 10)}</td>
+                  <td>{employee.deptName ? employee.deptName.name : "N/A"}</td>
+                  <td>{employee.gradeNo ? employee.gradeNo.gradeNo : "N/A"}</td>
+                  <td>{employee.phoneNo}</td>
                   <td>{employee.email}</td>
-                  <td>{employee.dateOfJoining}</td>
+                  <td>
+                    {new Date(employee.dateOfJoining)
+                      .toISOString()
+                      .slice(0, 10)}
+                  </td>
                   <td>{employee.city}</td>
                   <td>
                     <div className="action-icons">
@@ -179,7 +203,7 @@ const EmployeeDetails = () => {
                       />
                       <FaTrashAlt
                         className="action-icon delete-icon"
-                        onClick={() => handleDeleteClick(employee.id)}
+                        onClick={() => handleDeleteClick(employee._id)}
                       />
                     </div>
                   </td>
@@ -194,35 +218,49 @@ const EmployeeDetails = () => {
         </table>
       </div>
       <div className="pagination">
-        <button
-          onClick={() => setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))}
-          disabled={currentPage === 1}
-          className="pagination-button"
-        >
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </button>
-        {Array.from({ length: totalPages }, (_, i) => (
+        <div>
           <button
-            key={i}
-            onClick={() => setCurrentPage(i + 1)}
-            className={`pagination-button ${currentPage === i + 1 ? 'active' : ''}`}
+            onClick={() =>
+              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+            }
+            disabled={currentPage === 1}
+            className="pagination-button"
           >
-            {i + 1}
+            <FontAwesomeIcon icon={faChevronLeft} />
           </button>
+        </div>
+        {Array.from({ length: totalPages }, (_, i) => (
+          <div>
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`pagination-button ${
+                currentPage === i + 1 ? "active" : ""
+              }`}
+            >
+              {i + 1}
+            </button>
+          </div>
         ))}
-        <button
-          onClick={() => setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="pagination-button"
-        >
-          <FontAwesomeIcon icon={faChevronRight} />
-        </button>
+        <div>
+          <button
+            onClick={() =>
+              setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className="pagination-button"
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </div>
       </div>
       {showForm && (
         <ShadowContainer
           employee={editingEmployee}
           onSubmit={handleFormSubmit}
-        
+          departments={departments}
+          grades={grades}
+          loading={loading}
         />
       )}
     </div>
