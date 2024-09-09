@@ -13,7 +13,7 @@ const EmployeeDetails = () => {
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState('id');
   const [currentPage, setCurrentPage] = useState(1);
-  const employeesPerPage = 9;
+  const employeesPerPage =2;
 
 
 
@@ -35,6 +35,53 @@ const EmployeeDetails = () => {
         },
         {
           id: 2,
+          firstName: 'Jane',
+          lastName: 'Smith',
+          dateOfBirth: '1990-07-22',
+          departmentName: 'Finance',
+          grade: 'B',
+          phoneNumber: '+0987654321',
+          email: 'jane.smith@example.com',
+          dateOfJoining: '2019-03-15',
+          city: '456 Elm St, Anytown',
+        },
+        {
+          id: 2,
+          firstName: 'Jane',
+          lastName: 'Smith',
+          dateOfBirth: '1990-07-22',
+          departmentName: 'Finance',
+          grade: 'B',
+          phoneNumber: '+0987654321',
+          email: 'jane.smith@example.com',
+          dateOfJoining: '2019-03-15',
+          city: '456 Elm St, Anytown',
+        }, {
+          id: 3,
+          firstName: 'Jane',
+          lastName: 'Smith',
+          dateOfBirth: '1990-07-22',
+          departmentName: 'Finance',
+          grade: 'B',
+          phoneNumber: '+0987654321',
+          email: 'jane.smith@example.com',
+          dateOfJoining: '2019-03-15',
+          city: '456 Elm St, Anytown',
+        },
+        {
+          id: 4,
+          firstName: 'Jane',
+          lastName: 'Smith',
+          dateOfBirth: '1990-07-22',
+          departmentName: 'Finance',
+          grade: 'B',
+          phoneNumber: '+0987654321',
+          email: 'jane.smith@example.com',
+          dateOfJoining: '2019-03-15',
+          city: '456 Elm St, Anytown',
+        },
+        {
+          id: 5,
           firstName: 'Jane',
           lastName: 'Smith',
           dateOfBirth: '1990-07-22',
