@@ -17,6 +17,6 @@ router.get("/get", getEmployees);
 router.put("/edit/:id", updateEmployee);
 
 // DELETE
-router.delete("/:id", deleteEmployee);
+router.delete("/delete/:id", deleteEmployee);
 
 module.exports = router;

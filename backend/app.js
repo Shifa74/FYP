@@ -18,8 +18,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api", passResetRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/attendance", attendanceRoutes);
-app.use("/api/employee/grade", gradeRoutes);
-app.use("/api/admin/dept", deptRoutes);
+app.use("/api/grade", gradeRoutes);
+app.use("/api/dept", deptRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
