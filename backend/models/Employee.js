@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const employeeSchema = new mongoose.Schema({
-  employee_id: {
+  employeeId: {
     type: Number,
     required: true,
     unique: true,
@@ -33,14 +33,14 @@ const employeeSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true
+    // required: true
   },
   gradeNo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Grade",
     required: true
   },
-  address: {
+  city: {
     type: String,
     required: true,
   },

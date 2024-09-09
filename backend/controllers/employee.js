@@ -5,24 +5,35 @@ const Grade = require("../models/Grade");
 
 // ADD AN EMPLOYEE
 const addEmployee = async (req, res, next) => {
+  // console.log(req.body)
   try {
-    const emp = await Employee.findOne({ employee_id: req.body.employee_id });
+    const errors = [];
+    const emp = await Employee.findOne({ employeeId: req.body.employeeId });
     if (emp) {
-      return next(createError(422, "ID already exists"));
+      errors.push(createError(422, "ID already exists", "employeeId"));
     }
     const empByEmail = await Employee.findOne({ email: req.body.email });
     if (empByEmail) {
-      return next(createError(422, "Email already exists"));
+      errors.push(createError(422, "Email already exists", "email"));
     }
-    const department = await Department.findOne({ name: req.body.deptName });
+    const department = await Department.findById(req.body.deptName);
     if (!department) {
       return next(createError(422, "Department not found"));
     }
 
-    const grade = await Grade.findOne({ gradeNo: req.body.gradeNo });
+    const grade = await Grade.findById(req.body.gradeNo);
     if (!grade) {
       return next(createError(422, "Grade not found"));
     }
+    
+    if (errors.length > 0) {
+      const errorResponse = errors.reduce((acc, err) => {
+        acc[err.field] = err.message;
+        return acc;
+      }, {});
+      return res.status(422).json({ errors: errorResponse });
+    }
+
     const newEmployee = new Employee({
       ...req.body,
       deptName: department._id,
@@ -49,51 +60,15 @@ const getEmployees = async (req, res, next) => {
 };
 
 // UPDATE EMPLOYEE
-const updateEmployeeFields = async (fieldsToUpdate) => {
-  const updateData = {};
-
-  if (fieldsToUpdate.gradeNo) {
-    const newGrade = await Grade.findOne({ gradeNo: fieldsToUpdate.gradeNo });
-    if (!newGrade) {
-      throw new Error("Grade Not Found");
-    }
-    updateData.gradeNo = newGrade._id;
-  }
-
-  if (fieldsToUpdate.deptName) {
-    const newDeptName = await Department.findOne({
-      name: fieldsToUpdate.deptName,
-    });
-    if (!newDeptName) {
-      throw new Error("Department Not Found");
-    }
-    updateData.deptName = newDeptName._id;
-  }
-
-  // Handle other fields that can be directly updated
-  for (const key in fieldsToUpdate) {
-    if (!["gradeNo", "deptName"].includes(key)) {
-      updateData[key] = fieldsToUpdate[key];
-    }
-  }
-
-  return updateData;
-};
 
 const updateEmployee = async (req, res, next) => {
   try {
     const employeeId = req.params.id;
     const fieldsToUpdate = req.body;
-
-    const updateData = await updateEmployeeFields(fieldsToUpdate);
-
-    if (Object.keys(updateData).length === 0) {
-      return next(createError(400, "No valid fields to update"));
-    }
-
+  
     const updatedEmployee = await Employee.findByIdAndUpdate(
       employeeId,
-      updateData,
+      fieldsToUpdate,
       { new: true }
     ).populate("gradeNo deptName");
 
@@ -103,10 +78,10 @@ const updateEmployee = async (req, res, next) => {
 
     res.status(200).json(updatedEmployee);
   } catch (error) {
+    console.log("Update Error:", error);
     next(error);
   }
 };
-
 
 // DELETE AN EMPLOYEE
 const deleteEmployee = async (req, res, next) => {
