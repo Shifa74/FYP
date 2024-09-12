@@ -33,9 +33,9 @@
 /* Form Groups */
 .form-group {
     flex: 1 1 30%; /* Adjust this value to fit three fields in one line */
-    margin-right: px;
+    margin-right: 0px;
     min-width: 30%;
-    margin-bottom: 20px; /* Consistent spacing between elements */
+    margin-bottom: 4px;
 }
 
 /* Remove margin for the last item in each row */
@@ -45,8 +45,7 @@
 
 /* Labels Styling */
 .form-group label {
-    display: block;
-    margin-bottom: 5px; /* Slightly more space between label and input */
+    display: block; /* Slightly more space between label and input */
     color: #46919e; /* A consistent color that matches the overall theme */
     font-size: 15px;
     font-weight: 500; /* Slightly bolder text for labels */

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ShadowContainer.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ShadowContainer = ({
   employee,
@@ -18,6 +19,8 @@ const ShadowContainer = ({
   const [selectedGrade, setSelectedGrade] = useState(
     employee?.gradeNo?._id || ""
   );
+
+  const naviagte = useNavigate()
 
   // Update formData when employee prop changes
   useEffect(() => {
@@ -54,7 +57,7 @@ const ShadowContainer = ({
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, path) => {
     e.preventDefault();
     try {
       console.log("Submitting data: ", formData);
@@ -71,6 +74,7 @@ const ShadowContainer = ({
         console.log("Add response:", response.data);
       }
       onSubmit(formData);
+      naviagte(path);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.errors) {
         setErrors(error.response.data.errors);
@@ -164,9 +168,7 @@ const ShadowContainer = ({
               ))}
             </select>
           </div>
-        </div>
-
-        <div className="form-row">
+          
           <div className="form-group">
             <label htmlFor="phoneNumber">Phone Number</label>
             <input
@@ -203,9 +205,7 @@ const ShadowContainer = ({
               onChange={handleInputChange}
             />
           </div>
-        </div>
 
-        <div className="form-row">
           <div className="form-group full-width">
             <label htmlFor="city">City</label>
             <input
@@ -213,10 +213,11 @@ const ShadowContainer = ({
               id="city"
               name="city"
               value={formData.city || ""}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e, "/employee")}
             />
           </div>
         </div>
+        
         <div>
           <button className="submit-button" type="submit">
             {employee ? "Update" : "Submit"}
