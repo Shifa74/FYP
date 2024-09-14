@@ -8,10 +8,10 @@ const Sidebar = () => {
     <div className="sidebar">
       <ul>
         <li style={{marginBottom:'30px'}}>
-          <Link to="/dashboard">
+          <div className='icon_header'>
             <FaMoneyCheckAlt className="icon" style={{ marginRight: '0.5rem' }} /> {/* Payroll icon */}
             <span className="text">Payroll</span>
-          </Link>
+          </div>
         </li>
         <li>
           <Link to="/dashboard">

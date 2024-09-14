@@ -4,20 +4,84 @@ import AttendanceList from './AttendanceList';
 import './Attendance.css';
 
 const Attendance = () => {
-  const [attendanceData, setAttendanceData] = useState([]);
+  const [attendanceRecords, setAttendanceRecords] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [editingAttendance, setEditingAttendance] = useState(null);
 
-  const handleAddAttendance = (data) => {
-    setAttendanceData([...attendanceData, data]);
+  const handleAddAttendance = (attendanceData) => {
+    if (editingAttendance) {
+      // Update existing record
+      setAttendanceRecords(
+        attendanceRecords.map((record) =>
+          record._id === attendanceData._id ? attendanceData : record
+        )
+      );
+    } else {
+      // Add new record
+      setAttendanceRecords([...attendanceRecords, attendanceData]);
+    }
+    setShowForm(false); // Close form after submission
+    setEditingAttendance(null); // Reset editing state
   };
 
+  const toggleForm = () => {
+    setShowForm(!showForm);
+    setEditingAttendance(null); // Reset editing state when toggling form
+  };
+
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+  };
+
+  // Filter attendance by selected month
+  const filteredRecords = attendanceRecords.filter(
+    (record) => selectedMonth === '' || record.month === selectedMonth
+  );
+
   return (
-    <div className="attendance-container">
-      <div className="attendance-form-container">
-        <AttendanceForm onAddAttendance={handleAddAttendance} />
+    <div className="attendance-page">
+      <div className="attendance-header">
+        <h1 className='attendnace-header'>Employee Attendance</h1>
+        <div className="attendnace-buttons">
+          <button className="add-attendance-btn" onClick={toggleForm}>
+            Add Attendance
+          </button>
+          <select className="month-select" value={selectedMonth} onChange={handleMonthChange}>
+            <option value="">All Months</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+        </div>
       </div>
-      <div className="attendance-list-container">
-        <AttendanceList attendanceData={attendanceData} />
-      </div>
+
+      {showForm && (
+        <>
+          <div className="attendance-backdrop" onClick={toggleForm}></div>
+          <div className="popup-form-container">
+            <AttendanceForm
+              onAddAttendance={handleAddAttendance}
+              editingAttendance={editingAttendance}
+            />
+          </div>
+        </>
+      )}
+
+      <AttendanceList
+        attendanceRecords={filteredRecords}
+        setAttendanceRecords={setAttendanceRecords}
+        setEditingAttendance={setEditingAttendance}
+      />
     </div>
   );
 };

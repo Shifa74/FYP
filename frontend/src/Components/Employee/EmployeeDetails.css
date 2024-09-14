@@ -185,7 +185,7 @@ th.wider-column {
 }
 
 .pagination-button {
-  width: fit-content;
+  /* width: fit-content; */
   border: 1px solid #ddd;
   background-color: white;
   color: #333;

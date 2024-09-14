@@ -128,6 +128,10 @@ const EmployeeDetails = () => {
     ? Math.ceil(filteredEmployees.length / employeesPerPage)
     : 0;
 
+  const handleCloseForm = () => {
+    setShowForm(false);
+  };
+
   return (
     <div className="employee-details-container">
       <div className="top-bar">
@@ -230,9 +234,8 @@ const EmployeeDetails = () => {
           </button>
         </div>
         {Array.from({ length: totalPages }, (_, i) => (
-          <div>
+          <div key={i}>
             <button
-              key={i}
               onClick={() => setCurrentPage(i + 1)}
               className={`pagination-button ${
                 currentPage === i + 1 ? "active" : ""
@@ -254,16 +257,24 @@ const EmployeeDetails = () => {
           </button>
         </div>
       </div>
+
       {showForm && (
+        <>
+        <div className="backdrop" onClick={handleCloseForm}></div>
         <ShadowContainer
           employee={editingEmployee}
           onSubmit={handleFormSubmit}
           departments={departments}
           grades={grades}
           loading={loading}
+          onClose={handleCloseForm} // Pass the handleCloseForm function
         />
+        </>
       )}
     </div>
+
+
+
   );
 };
 

@@ -45,7 +45,7 @@ const AdminPage = () => {
                     <h3>Manage Allowances</h3>
                     <p>View and manage allowances</p>
                 </Link>
-                <Link to="/deductions" className="dashboard-card">
+                <Link to="/deductions" className="dashboard-card  deduct">
                     <div className="card-icon">💸</div>
                     <h3>Manage Deductions</h3>
                     <p>View and manage deductions</p>
