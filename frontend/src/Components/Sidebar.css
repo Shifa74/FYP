@@ -10,6 +10,22 @@
   z-index: 1000;
   transition: width 0.3s;
 }
+.icon_header .text{
+  /* color: white; */
+  font-size: 22px;
+    font-size: 22px;
+    background: linear-gradient(to right, #83cdeb, #05bada); /* Define your gradient */
+    -webkit-background-clip: text; /* For WebKit browsers (Chrome, Safari) */
+    background-clip: text; /* Standard property */
+    color: transparent; /* Make the text color transparent to reveal the gradient */
+  
+  
+}
+.icon_header .icon{
+   left: 200px;
+   color: #00796b;
+   font-size:35px;
+}
 
 .sidebar ul {
   list-style-type: none;
@@ -61,7 +77,9 @@
     width: 60px; /* Collapse sidebar to icon-only */
     overflow-x: hidden;
   }
-
+ .icon_header .text{
+  display: none;
+ }
   .sidebar ul li a .text {
     display: none; /* Hide text when collapsed */
   }

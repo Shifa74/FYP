@@ -8,8 +8,8 @@ const ShadowContainer = ({
   departments,
   grades,
   loading,
+  onClose,
 }) => {
-  // Initialize form data with employee prop or empty object
   const [formData, setFormData] = useState(employee || {});
   const [errors, setErrors] = useState({});
   const [selectedDept, setSelectedDept] = useState(
@@ -19,22 +19,39 @@ const ShadowContainer = ({
     employee?.gradeNo?._id || ""
   );
 
-  // Update formData when employee prop changes
   useEffect(() => {
     setFormData(employee || {});
     setSelectedDept(employee?.deptName?._id || "");
     setSelectedGrade(employee?.gradeNo?._id || "");
   }, [employee]);
+  const handleClose = () => {
+    if (onClose) {
+      onClose(); // Call the onClose prop when the form is closed
+    }
+  };
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.employeeId) newErrors.employeeId = "Employee ID is required.";
+    if (!formData.firstName) newErrors.firstName = "First Name is required.";
+    if (!formData.lastName) newErrors.lastName = "Last Name is required.";
+    if (!formData.dob) newErrors.dob = "Date of Birth is required.";
+    if (!selectedDept) newErrors.deptName = "Department is required.";
+    if (!selectedGrade) newErrors.gradeNo = "Grade is required.";
+    if (!formData.phoneNo) newErrors.phoneNo = "Phone Number is required.";
+    if (!formData.email) newErrors.email = "Email is required.";
+    if (!formData.dateOfJoining) newErrors.dateOfJoining = "Date of Joining is required.";
+    if (!formData.city) newErrors.city = "City is required.";
 
-  // Handle input changes
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-
-    setErrors({ ...errors, [name]: "" });
+    setErrors((prevState) => ({ ...prevState, [name]: "" }));
   };
 
-  // Handle department and grade changes
   const handleDeptChange = (e) => {
     const selectedDeptId = e.target.value;
     setSelectedDept(selectedDeptId);
@@ -42,6 +59,7 @@ const ShadowContainer = ({
       ...prevState,
       deptName: selectedDeptId,
     }));
+    setErrors((prevState) => ({ ...prevState, deptName: "" }));
   };
 
   const handleGradeChange = (e) => {
@@ -51,37 +69,43 @@ const ShadowContainer = ({
       ...prevState,
       gradeNo: selectedGradeId,
     }));
+    setErrors((prevState) => ({ ...prevState, gradeNo: "" }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     try {
-      console.log("Submitting data: ", formData);
       if (employee) {
-        // If editing an existing employee
         const response = await axios.put(
           `/employee/edit/${employee._id}`,
           formData
         );
         console.log("Edit response:", response.data);
       } else {
-        // If adding a new employee
         const response = await axios.post("/employee/add", formData);
         console.log("Add response:", response.data);
       }
       onSubmit(formData);
+      onClose();
     } catch (error) {
       if (error.response && error.response.data && error.response.data.errors) {
         setErrors(error.response.data.errors);
       }
     }
   };
+
   if (loading) return <p>Loading...</p>;
 
   return (
     <div className="shadow-form-container">
-      <h2>{employee ? "Edit Employee" : "Add Employee"}</h2>
+      <div className="form-header">
+        <h2>{employee ? "Edit Employee" : "Add Employee"}</h2>
+        <button className="close-button" onClick={handleClose}>
+          &times;
+        </button>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
@@ -106,7 +130,11 @@ const ShadowContainer = ({
               name="firstName"
               value={formData.firstName || ""}
               onChange={handleInputChange}
+              className={errors.firstName ? "error-input" : ""}
             />
+            {errors.firstName && (
+              <p className="error-message">{errors.firstName}</p>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="lastName">Last Name</label>
@@ -116,7 +144,11 @@ const ShadowContainer = ({
               name="lastName"
               value={formData.lastName || ""}
               onChange={handleInputChange}
+              className={errors.lastName ? "error-input" : ""}
             />
+            {errors.lastName && (
+              <p className="error-message">{errors.lastName}</p>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="dateOfBirth">Date of Birth</label>
@@ -130,7 +162,9 @@ const ShadowContainer = ({
                   : ""
               }
               onChange={handleInputChange}
+              className={errors.dob ? "error-input" : ""}
             />
+            {errors.dob && <p className="error-message">{errors.dob}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="departmentName">Department</label>
@@ -139,6 +173,7 @@ const ShadowContainer = ({
               name="deptName"
               value={selectedDept}
               onChange={handleDeptChange}
+              className={errors.deptName ? "error-input" : ""}
             >
               <option value="">Select Department</option>
               {departments.map((dept) => (
@@ -147,6 +182,7 @@ const ShadowContainer = ({
                 </option>
               ))}
             </select>
+            {errors.deptName && <p className="error-message">{errors.deptName}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="grade">Grade</label>
@@ -155,6 +191,7 @@ const ShadowContainer = ({
               name="gradeNo"
               value={selectedGrade}
               onChange={handleGradeChange}
+              className={errors.gradeNo ? "error-input" : ""}
             >
               <option value="">Select Grade</option>
               {grades.map((grade) => (
@@ -163,6 +200,7 @@ const ShadowContainer = ({
                 </option>
               ))}
             </select>
+            {errors.gradeNo && <p className="error-message">{errors.gradeNo}</p>}
           </div>
         </div>
 
@@ -175,7 +213,9 @@ const ShadowContainer = ({
               name="phoneNo"
               value={formData.phoneNo || ""}
               onChange={handleInputChange}
+              className={errors.phoneNo ? "error-input" : ""}
             />
+            {errors.phoneNo && <p className="error-message">{errors.phoneNo}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -201,7 +241,11 @@ const ShadowContainer = ({
                   : ""
               }
               onChange={handleInputChange}
+              className={errors.dateOfJoining ? "error-input" : ""}
             />
+            {errors.dateOfJoining && (
+              <p className="error-message">{errors.dateOfJoining}</p>
+            )}
           </div>
         </div>
 
@@ -214,12 +258,15 @@ const ShadowContainer = ({
               name="city"
               value={formData.city || ""}
               onChange={handleInputChange}
+              className={errors.city ? "error-input" : ""}
             />
+            {errors.city && <p className="error-message">{errors.city}</p>}
           </div>
         </div>
-        <div>
+
+        <div className="form-actions">
           <button className="submit-button" type="submit">
-            {employee ? "Update" : "Submit"}
+            {employee ? "Update Employee" : "Add Employee"}
           </button>
         </div>
       </form>

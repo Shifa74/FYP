@@ -8,7 +8,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
- 
+
 const EmployeeDetails = () => {
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -17,7 +17,7 @@ const EmployeeDetails = () => {
   const [filter, setFilter] = useState("");
   const [filterType, setFilterType] = useState("id");
   const [currentPage, setCurrentPage] = useState(1);
-  const employeesPerPage =9;
+  const employeesPerPage = 9;
   const [departments, setDepartments] = useState([]);
   const [grades, setGrades] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -128,6 +128,10 @@ const EmployeeDetails = () => {
     ? Math.ceil(filteredEmployees.length / employeesPerPage)
     : 0;
 
+  const handleCloseForm = () => {
+    setShowForm(false);
+  };
+
   return (
     <div className="employee-details-container">
       <div className="top-bar">
@@ -230,9 +234,8 @@ const EmployeeDetails = () => {
           </button>
         </div>
         {Array.from({ length: totalPages }, (_, i) => (
-          <div>
+          <div key={i}>
             <button
-              key={i}
               onClick={() => setCurrentPage(i + 1)}
               className={`pagination-button ${
                 currentPage === i + 1 ? "active" : ""
@@ -254,16 +257,24 @@ const EmployeeDetails = () => {
           </button>
         </div>
       </div>
+
       {showForm && (
+        <>
+        <div className="backdrop" onClick={handleCloseForm}></div>
         <ShadowContainer
           employee={editingEmployee}
           onSubmit={handleFormSubmit}
           departments={departments}
           grades={grades}
           loading={loading}
+          onClose={handleCloseForm} // Pass the handleCloseForm function
         />
+        </>
       )}
     </div>
+
+
+
   );
 };
 

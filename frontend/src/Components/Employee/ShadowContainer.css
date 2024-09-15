@@ -22,6 +22,18 @@
     font-weight: 600;
 }
 
+/* Existing styles */
+
+.error-input {
+    border: 1px solid red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 0.25em;
+  }
+  
 /* Form Rows */
 .form-row {
     display: flex;
@@ -179,3 +191,31 @@
     border: 1px solid red;
     background-color: #f8d7da;
 }
+.close-button {
+    position: absolute; /* Position absolutely within the form-header */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    background: transparent;
+    border-radius: 6px;
+    font-size: 1.7em;
+    cursor: pointer;
+     width: 37px;
+    
+    color: #333; /* Color of the close button */
+  }
+
+  
+  .close-button:hover {
+    color: black; /* Change color on hover */
+    background-color: #35798e;
+  }
+
+  .backdrop {
+    position: absolute; /* Changed to absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 100; /* Ensure it's on top of other elements within this container */
+  }

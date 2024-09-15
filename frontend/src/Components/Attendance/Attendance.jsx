@@ -1,82 +1,89 @@
-
 import React, { useState } from 'react';
-import './Attendance.css'; // Import custom styles
+import AttendanceForm from './AttendanceForm';
+import AttendanceList from './AttendanceList';
+import './Attendance.css';
 
-const AttendancePage = () => {
-  const [attendanceList, setAttendanceList] = useState([]);
-  const [employeeId, setEmployeeId] = useState('');
-  const [status, setStatus] = useState('Present');
-  const [overtime, setOvertime] = useState(0);
+const Attendance = () => {
+  const [attendanceRecords, setAttendanceRecords] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [editingAttendance, setEditingAttendance] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newAttendance = { employeeId, status, overtime };
-    setAttendanceList([...attendanceList, newAttendance]);
-    setEmployeeId('');
-    setStatus('Present');
-    setOvertime(0);
+  const handleAddAttendance = (attendanceData) => {
+    if (editingAttendance) {
+      // Update existing record
+      setAttendanceRecords(
+        attendanceRecords.map((record) =>
+          record._id === attendanceData._id ? attendanceData : record
+        )
+      );
+    } else {
+      // Add new record
+      setAttendanceRecords([...attendanceRecords, attendanceData]);
+    }
+    setShowForm(false); // Close form after submission
+    setEditingAttendance(null); // Reset editing state
   };
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+    setEditingAttendance(null); // Reset editing state when toggling form
+  };
+
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+  };
+
+  // Filter attendance by selected month
+  const filteredRecords = attendanceRecords.filter(
+    (record) => selectedMonth === '' || record.month === selectedMonth
+  );
 
   return (
     <div className="attendance-page">
-      <div className="attendance-form-container">
-        <h2 className="title">Add Employee Attendance</h2>
-        <form onSubmit={handleSubmit} className="attendance-form">
-          <label htmlFor="employeeId">Employee ID</label>
-          <input
-            type="text"
-            id="employeeId"
-            value={employeeId}
-            onChange={(e) => setEmployeeId(e.target.value)}
-            required
-          />
-
-          <label htmlFor="status">Attendance Status</label>
-          <select
-            id="status"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
-            <option value="Present">Present</option>
-            <option value="Absent">Absent</option>
-            <option value="On Leave">On Leave</option>
+      <div className="attendance-header">
+        <h1 className='attendnace-header'>Employee Attendance</h1>
+        <div className="attendnace-buttons">
+          <button className="add-attendance-btn" onClick={toggleForm}>
+            Add Attendance
+          </button>
+          <select className="month-select" value={selectedMonth} onChange={handleMonthChange}>
+            <option value="">All Months</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
           </select>
-
-          <label htmlFor="overtime">Overtime Hours</label>
-          <input
-            type="number"
-            id="overtime"
-            value={overtime}
-            onChange={(e) => setOvertime(e.target.value)}
-            min="0"
-          />
-
-          <button type="submit" className="submit-btn">Submit Attendance</button>
-        </form>
-      </div>
-
-      <div className="attendance-list-container">
-        <h2 className="title">Attendance Records</h2>
-        <div className="attendance-list">
-          {attendanceList.length === 0 ? (
-            <p>No attendance records yet.</p>
-          ) : (
-            attendanceList.map((entry, index) => (
-              <div key={index} className={`list-item ${entry.status.toLowerCase().replace(' ', '-')}`}>
-                <div className="list-item-info">
-                  <span className="list-item-id">ID: {entry.employeeId}</span>
-                  <span className={`status-badge ${entry.status.toLowerCase()}`}>
-                    {entry.status}
-                  </span>
-                </div>
-                <span className="list-item-overtime">Overtime: {entry.overtime} hrs</span>
-              </div>
-            ))
-          )}
         </div>
       </div>
+
+      {showForm && (
+        <>
+          <div className="attendance-backdrop" onClick={toggleForm}></div>
+          <div className="popup-form-container">
+            <AttendanceForm
+              onAddAttendance={handleAddAttendance}
+              editingAttendance={editingAttendance}
+            />
+          </div>
+        </>
+      )}
+
+      <AttendanceList
+        attendanceRecords={filteredRecords}
+        setAttendanceRecords={setAttendanceRecords}
+        setEditingAttendance={setEditingAttendance}
+      />
     </div>
   );
 };
 
-export default AttendancePage;
+export default Attendance;
