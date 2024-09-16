@@ -8,7 +8,7 @@ const AttendanceList = ({
   setEditingAttendance,
 }) => {
   const handleEditClick = (record) => {
-    setEditingAttendance(record);
+    setEditingAttendance(record); // Pass the record to be edited
   };
 
   const handleDeleteClick = (id) => {
@@ -24,7 +24,7 @@ const AttendanceList = ({
             <th>Employee ID</th>
             <th>No. of Days Present</th>
             <th>No. of Days Absent</th>
-            <th style={{ width: "150px" }}>Actions</th>
+            <th style={{ width: '150px' }}>Actions</th>
           </tr>
         </thead>
         <tbody>
