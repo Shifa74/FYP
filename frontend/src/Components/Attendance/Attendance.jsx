@@ -34,6 +34,11 @@ const Attendance = () => {
     setSelectedMonth(e.target.value);
   };
 
+  const handleEditAttendance = (record) => {
+    setEditingAttendance(record);
+    setShowForm(true); // Open form when editing
+  };
+
   // Filter attendance by selected month
   const filteredRecords = attendanceRecords.filter(
     (record) => selectedMonth === '' || record.month === selectedMonth
@@ -42,10 +47,10 @@ const Attendance = () => {
   return (
     <div className="attendance-page">
       <div className="attendance-header">
-        <h1 className='attendnace-header'>Employee Attendance</h1>
-        <div className="attendnace-buttons">
-          <button className="add-attendance-btn" onClick={toggleForm}>
-            Add Attendance
+        <h1 className="attendance-header">Employee Attendance</h1>
+        <div className="aattendance-buttons">
+          <button className="aadd-attendance-btn" onClick={toggleForm}>
+            {editingAttendance ? 'Cancel Edit' : 'Add Attendance'}
           </button>
           <select className="month-select" value={selectedMonth} onChange={handleMonthChange}>
             <option value="">All Months</option>
@@ -71,7 +76,7 @@ const Attendance = () => {
           <div className="popup-form-container">
             <AttendanceForm
               onAddAttendance={handleAddAttendance}
-              editingAttendance={editingAttendance}
+              initialData={editingAttendance} // Pass editing data to the form
             />
           </div>
         </>
@@ -80,7 +85,7 @@ const Attendance = () => {
       <AttendanceList
         attendanceRecords={filteredRecords}
         setAttendanceRecords={setAttendanceRecords}
-        setEditingAttendance={setEditingAttendance}
+        setEditingAttendance={handleEditAttendance} // Pass handleEdit function
       />
     </div>
   );

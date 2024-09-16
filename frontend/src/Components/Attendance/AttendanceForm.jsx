@@ -1,5 +1,4 @@
-// AttendanceForm.js
-import React, { useState ,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AttendanceForm.css'; // Ensure you have styles for the form
 
 const AttendanceForm = ({ onAddAttendance, initialData }) => {
@@ -8,6 +7,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
   const [daysAbsent, setDaysAbsent] = useState('');
   const [month, setMonth] = useState('');
 
+  // Populate the form fields when editing
   useEffect(() => {
     if (initialData) {
       setEmployeeId(initialData.employeeId || '');
@@ -16,6 +16,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
       setMonth(initialData.month || '');
     }
   }, [initialData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -24,7 +25,6 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
       return;
     }
 
-  
     const attendanceData = {
       _id: initialData ? initialData._id : new Date().toISOString(), // Generate new ID if adding
       employeeId,
@@ -42,7 +42,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
 
   return (
     <form className="attendance-form" onSubmit={handleSubmit}>
-      <div className="form-attendance-group">
+      <div className="form-group">
         <label htmlFor="employeeId">Employee ID:</label>
         <input
           type="text"
@@ -51,7 +51,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
           onChange={(e) => setEmployeeId(e.target.value)}
           required
           placeholder="Enter Employee ID"
-          className='attendnace-text'
+          className="attendance-text"
         />
       </div>
       <div className="form-group">
@@ -63,7 +63,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
           onChange={(e) => setDaysPresent(e.target.value)}
           required
           placeholder="Enter Days Present"
-          className='attendnace-number'
+          className="attendance-number"
         />
       </div>
       <div className="form-group">
@@ -75,7 +75,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
           onChange={(e) => setDaysAbsent(e.target.value)}
           required
           placeholder="Enter Days Absent"
-          className='attendnace-number'
+          className="attendance-number"
         />
       </div>
       <div className="form-group">
