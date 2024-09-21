@@ -4,7 +4,7 @@ import './AttendanceForm.css'; // Ensure you have styles for the form
 const AttendanceForm = ({ onAddAttendance, initialData }) => {
   const [employeeId, setEmployeeId] = useState('');
   const [daysPresent, setDaysPresent] = useState('');
-  const [daysAbsent, setDaysAbsent] = useState('');
+  const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
 
   // Populate the form fields when editing
@@ -12,7 +12,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
     if (initialData) {
       setEmployeeId(initialData.employeeId || '');
       setDaysPresent(initialData.daysPresent || '');
-      setDaysAbsent(initialData.daysAbsent || '');
+      setYear(initialData.year || '');
       setMonth(initialData.month || '');
     }
   }, [initialData]);
@@ -20,7 +20,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!employeeId || !daysPresent || !daysAbsent || !month) {
+    if (!employeeId || !daysPresent || !year || !month) {
       alert('Please fill in all required fields.');
       return;
     }
@@ -29,14 +29,14 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
       _id: initialData ? initialData._id : new Date().toISOString(), // Generate new ID if adding
       employeeId,
       daysPresent: Number(daysPresent),
-      daysAbsent: Number(daysAbsent),
+      year,
       month,
     };
 
     onAddAttendance(attendanceData);
     setEmployeeId('');
     setDaysPresent('');
-    setDaysAbsent('');
+    setYear('');
     setMonth('');
   };
 
@@ -67,16 +67,21 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="daysAbsent">No. of Days Absent:</label>
-        <input
-          type="number"
-          id="daysAbsent"
-          value={daysAbsent}
-          onChange={(e) => setDaysAbsent(e.target.value)}
+        <label htmlFor="year">Year:</label>
+        <select
+          id="year"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
           required
-          placeholder="Enter Days Absent"
-          className="attendance-number"
-        />
+          className="attendance-select"
+        >
+          <option value="">Select Year</option>
+          {Array.from({ length: 2035 - 2023 + 1 }, (_, i) => 2023 + i).map((yr) => (
+            <option key={yr} value={yr}>
+              {yr}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="form-group">
         <label htmlFor="month">Month:</label>

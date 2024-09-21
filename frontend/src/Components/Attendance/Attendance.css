@@ -37,18 +37,45 @@
   background-color: #46919e;
   color: white;
   border: none;
-  margin-right: 20px;
+  margin-right: 6px;
+  margin-top: 10px;
 }
 
 .aadd-attendance-btn:hover {
   background-color: #387a84;
 }
 
-.month-select {
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 8px;
+.attendance-filters {
+  display: flex;
+  gap: 10px; /* Adjust spacing as needed */
+  margin-top: 10px;
 }
+
+.month-select, .year-select, .apply-btn, .clear-btn {
+  padding: 10px;
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.apply-btn {
+  background-color: #46919e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+}
+
+.clear-btn {
+  background-color: #f44336; /* Red color for clear button */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.apply-btn:hover, .clear-btn:hover {
+  opacity: 0.8; /* Slightly dim buttons on hover */
+}
+
 
 .attendance-list-container {
   margin-top: 30px;
@@ -93,6 +120,60 @@
 }
 
 
+/* Pagination Styles */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 10px;
+  position: absolute; 
+  right: 10px;
+  
+}
+
+.pagination-btn.active {
+  background-color: #76c9d4;
+  font-weight: bold;
+  cursor: default;
+}
+
+.pagination-controls li {
+  margin: 0 5px;
+}
+
+.pagination-btn {
+  padding: 8px 12px;
+  background-color: #46919e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #367b84;
+}
+
+.page-indicator{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+
+}
+.pagination-btn:focus {
+  outline: none;
+}
+
+
 
 @media (max-width: 1030px) {
   .attendance-page {
@@ -134,8 +215,8 @@
   .attendance-header {
     flex-direction: column;
     align-items: center;
-    /* text-align: center; */
-    /* margin-left: 110px; */
+    text-align: center; 
+     margin-left: 70px;
   }
 
   .attendance-table {
@@ -163,6 +244,7 @@
     left: 200px;
     width: 40%;
     padding: 10px;
+    
   }
 
   .attendance-header {
@@ -190,7 +272,7 @@
 }
 @media (max-width: 830px) {
   .attendance-page {
-    left: 220px;
+    left: 190px;
     width: 40%;
     padding: 10px;
   }
@@ -202,7 +284,7 @@
   }
 
   .attendance-table {
-    width: 500px; /* Increase width of the table */
+    width: 550px; /* Increase width of the table */
   }
   .aattendnace-buttons {
     flex-direction: row;
@@ -222,27 +304,28 @@
 /* Responsive Design for Tablets */
 @media (max-width: 768px) {
   .attendance-page {
-    left: 110px;
+    left: 80px;
     width: 50%;
-    padding: 10px;
+    padding: -20px;
   }
   .attendance-table {
-    width: 400px; /* Increase width of the table */
+    width: 450px; /* Increase width of the table */
   }
+  
+.month-select, .year-select, .apply-btn, .clear-btn{
+width: 90px;
+padding: 10px;
+}
 
 
 
-  .attendnace-header {
-    margin-left: 100px;
-    align-items: center;
-    text-align: center;
-  }
+ 
 
   .aattendnace-buttons {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin-left: 90px;
+    gap: 2px;
+    margin-left: 20px;
   }
 
   .attendance-table th, .attendance-table td {
@@ -260,3 +343,5 @@
     margin: 20px;
   }
 }
+
+

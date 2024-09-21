@@ -23,7 +23,7 @@ const AttendanceList = ({
           <tr>
             <th>Employee ID</th>
             <th>No. of Days Present</th>
-            <th>No. of Days Absent</th>
+            <th>Year</th> {/* Updated to Year */}
             <th style={{ width: '150px' }}>Actions</th>
           </tr>
         </thead>
@@ -39,7 +39,7 @@ const AttendanceList = ({
               <tr key={record._id}>
                 <td>{record.employeeId}</td>
                 <td>{record.daysPresent}</td>
-                <td>{record.daysAbsent}</td>
+                <td>{record.year}</td> {/* Display Year instead of Days Absent */}
                 <td>
                   <div className="action-icons">
                     <FaEdit
