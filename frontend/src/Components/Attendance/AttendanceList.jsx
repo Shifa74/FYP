@@ -1,6 +1,7 @@
-import React from 'react';
-import './AttendanceList.css'; // Ensure you have styles for the table
+import React from "react";
+import "./AttendanceList.css"; // Ensure you have styles for the table
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import axios from "axios";
 
 const AttendanceList = ({
   attendanceRecords,
@@ -11,9 +12,22 @@ const AttendanceList = ({
     setEditingAttendance(record); // Pass the record to be edited
   };
 
-  const handleDeleteClick = (id) => {
+  const handleDeleteClick = async (id) => {
     // Remove record from local state
-    setAttendanceRecords(attendanceRecords.filter((record) => record._id !== id));
+    try {
+      const attendanceToDelete = attendanceRecords.find(
+        (record) => record._id === id
+      );
+      await axios.delete(
+        `/attendance/delete/${attendanceToDelete._id}`
+      );
+      // console.log(response.data);
+      setAttendanceRecords(
+        attendanceRecords.filter((record) => record._id !== id)
+      );
+    } catch (error) {
+      console.log("error:", error.message)
+    }
   };
 
   return (
@@ -24,7 +38,7 @@ const AttendanceList = ({
             <th>Employee ID</th>
             <th>No. of Days Present</th>
             <th>No. of Days Absent</th>
-            <th style={{ width: '150px' }}>Actions</th>
+            <th style={{ width: "150px" }}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -37,9 +51,11 @@ const AttendanceList = ({
           ) : (
             attendanceRecords.map((record) => (
               <tr key={record._id}>
-                <td>{record.employeeId}</td>
-                <td>{record.daysPresent}</td>
-                <td>{record.daysAbsent}</td>
+                <td>
+                  {record.employeeId ? record.employeeId.employeeId : "N/A"}
+                </td>
+                <td>{record.presentDays}</td>
+                <td>{record.absentDays}</td>
                 <td>
                   <div className="action-icons">
                     <FaEdit

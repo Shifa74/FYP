@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
-import AttendanceForm from './AttendanceForm';
-import AttendanceList from './AttendanceList';
-import './Attendance.css';
+import React, { useEffect, useState } from "react";
+import AttendanceForm from "./AttendanceForm";
+import AttendanceList from "./AttendanceList";
+import "./Attendance.css";
+import axios from "axios";
 
 const Attendance = () => {
   const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState("");
   const [editingAttendance, setEditingAttendance] = useState(null);
+
+  useEffect(() => {
+    const fetchAttendance = async () => {
+      try {
+        const response = await axios.get("/attendance/get");
+        setAttendanceRecords(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log("error", error.message)
+      }
+    };
+    fetchAttendance();
+  }, []);
 
   const handleAddAttendance = (attendanceData) => {
     if (editingAttendance) {
@@ -41,7 +55,7 @@ const Attendance = () => {
 
   // Filter attendance by selected month
   const filteredRecords = attendanceRecords.filter(
-    (record) => selectedMonth === '' || record.month === selectedMonth
+    (record) => selectedMonth === "" || record.month === selectedMonth
   );
 
   return (
@@ -50,9 +64,13 @@ const Attendance = () => {
         <h1 className="attendance-header">Employee Attendance</h1>
         <div className="aattendance-buttons">
           <button className="aadd-attendance-btn" onClick={toggleForm}>
-            {editingAttendance ? 'Cancel Edit' : 'Add Attendance'}
+            {editingAttendance ? "Cancel Edit" : "Add Attendance"}
           </button>
-          <select className="month-select" value={selectedMonth} onChange={handleMonthChange}>
+          <select
+            className="month-select"
+            value={selectedMonth}
+            onChange={handleMonthChange}
+          >
             <option value="">All Months</option>
             <option value="January">January</option>
             <option value="February">February</option>

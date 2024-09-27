@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// AttendanceForm.js
+import React, { useState ,useEffect } from 'react';
 import './AttendanceForm.css'; // Ensure you have styles for the form
 
 const AttendanceForm = ({ onAddAttendance, initialData }) => {
@@ -7,7 +8,6 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
   const [daysAbsent, setDaysAbsent] = useState('');
   const [month, setMonth] = useState('');
 
-  // Populate the form fields when editing
   useEffect(() => {
     if (initialData) {
       setEmployeeId(initialData.employeeId || '');
@@ -16,7 +16,6 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
       setMonth(initialData.month || '');
     }
   }, [initialData]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -42,7 +41,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
 
   return (
     <form className="attendance-form" onSubmit={handleSubmit}>
-      <div className="form-group">
+      <div className="form-attendance-group">
         <label htmlFor="employeeId">Employee ID:</label>
         <input
           type="text"
@@ -51,7 +50,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
           onChange={(e) => setEmployeeId(e.target.value)}
           required
           placeholder="Enter Employee ID"
-          className="attendance-text"
+          className='attendnace-text'
         />
       </div>
       <div className="form-group">
@@ -63,7 +62,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
           onChange={(e) => setDaysPresent(e.target.value)}
           required
           placeholder="Enter Days Present"
-          className="attendance-number"
+          className='attendnace-number'
         />
       </div>
       <div className="form-group">
@@ -75,7 +74,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
           onChange={(e) => setDaysAbsent(e.target.value)}
           required
           placeholder="Enter Days Absent"
-          className="attendance-number"
+          className='attendnace-number'
         />
       </div>
       <div className="form-group">
