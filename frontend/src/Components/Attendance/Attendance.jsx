@@ -7,8 +7,13 @@ import axios from "axios";
 const Attendance = () => {
   const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState("");
   const [editingAttendance, setEditingAttendance] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 5;
+
+  // State for month and year
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
 
   useEffect(() => {
     const fetchAttendance = async () => {
@@ -25,44 +30,97 @@ const Attendance = () => {
 
   const handleAddAttendance = (attendanceData) => {
     if (editingAttendance) {
-      // Update existing record
       setAttendanceRecords(
         attendanceRecords.map((record) =>
           record._id === attendanceData._id ? attendanceData : record
         )
       );
     } else {
-      // Add new record
       setAttendanceRecords([...attendanceRecords, attendanceData]);
     }
-    setShowForm(false); // Close form after submission
-    setEditingAttendance(null); // Reset editing state
+    setShowForm(false);
+    setEditingAttendance(null);
   };
 
   const toggleForm = () => {
     setShowForm(!showForm);
-    setEditingAttendance(null); // Reset editing state when toggling form
+    setEditingAttendance(null);
   };
 
   const handleMonthChange = (e) => {
     setSelectedMonth(e.target.value);
   };
 
-  const handleEditAttendance = (record) => {
-    setEditingAttendance(record);
-    setShowForm(true); // Open form when editing
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
   };
 
-  // Filter attendance by selected month
+  const handleApplyFilter = () => {
+    setCurrentPage(1); // Reset to the first page on applying filter
+  };
+
+  const handleClearFilter = () => {
+    setSelectedMonth('');
+    setSelectedYear('');
+  };
+
+  const handleEditAttendance = (record) => {
+    setEditingAttendance(record);
+    setShowForm(true);
+  };
+
+  // Filter attendance by selected month and year
   const filteredRecords = attendanceRecords.filter(
-    (record) => selectedMonth === "" || record.month === selectedMonth
+    (record) => 
+      (selectedMonth === '' || record.month === selectedMonth) && 
+      (selectedYear === '' || record.year === selectedYear)
   );
+
+  // Pagination logic
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = filteredRecords.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(filteredRecords.length / recordsPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  // Generate month options
+  const monthOptions = [
+    'January', 'February', 'March', 'April', 'May', 'June', 
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  
+  const yearOptions = Array.from({ length: 12 }, (_, i) => 2024 + i);
+
 
   return (
     <div className="attendance-page">
       <div className="attendance-header">
         <h1 className="attendance-header">Employee Attendance</h1>
-        <div className="aattendance-buttons">
+        <div className="attendance-filters">
+          <select className="month-select" value={selectedMonth} onChange={handleMonthChange}>
+            <option value="">Select Month</option>
+            {monthOptions.map((month, index) => (
+              <option key={index} value={month}>{month}</option>
+            ))}
+          </select>
+          <select className="year-select" value={selectedYear} onChange={handleYearChange}>
+            <option value="">Select Year</option>
+            {yearOptions.map((year) => (
+              <option key={year} value={year}>{year}</option>
+            ))}
+          </select>
+          <button className="apply-btn" onClick={handleApplyFilter}>Apply</button>
+          <button className="clear-btn" onClick={handleClearFilter}>Clear</button>
+        </div>
+        <div className="attendance-buttons">
           <button className="aadd-attendance-btn" onClick={toggleForm}>
             {editingAttendance ? "Cancel Edit" : "Add Attendance"}
           </button>
@@ -94,17 +152,36 @@ const Attendance = () => {
           <div className="popup-form-container">
             <AttendanceForm
               onAddAttendance={handleAddAttendance}
-              initialData={editingAttendance} // Pass editing data to the form
+              initialData={editingAttendance}
             />
           </div>
         </>
       )}
 
       <AttendanceList
-        attendanceRecords={filteredRecords}
+        attendanceRecords={currentRecords}
         setAttendanceRecords={setAttendanceRecords}
-        setEditingAttendance={handleEditAttendance} // Pass handleEdit function
+        setEditingAttendance={handleEditAttendance}
       />
+      <div className="pagination-controls">
+        <button
+          className="pagination-btn"
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span className="page-indicator">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          className="pagination-btn"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
