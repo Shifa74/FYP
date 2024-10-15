@@ -10,6 +10,9 @@
   z-index: 1000;
   transition: width 0.3s;
 }
+.icon_header {
+  display: flex;
+}
 .icon_header .text{
   /* color: white; */
   font-size: 22px;

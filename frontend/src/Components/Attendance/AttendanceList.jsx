@@ -18,15 +18,13 @@ const AttendanceList = ({
       const attendanceToDelete = attendanceRecords.find(
         (record) => record._id === id
       );
-      await axios.delete(
-        `/attendance/delete/${attendanceToDelete._id}`
-      );
+      await axios.delete(`/attendance/delete/${attendanceToDelete._id}`);
       // console.log(response.data);
       setAttendanceRecords(
         attendanceRecords.filter((record) => record._id !== id)
       );
     } catch (error) {
-      console.log("error:", error.message)
+      console.log("error:", error.message);
     }
   };
 
@@ -37,8 +35,8 @@ const AttendanceList = ({
           <tr>
             <th>Employee ID</th>
             <th>No. of Days Present</th>
-            <th>Year</th> {/* Updated to Year */}
-            <th style={{ width: '150px' }}>Actions</th>
+            <th>No. of Absent Days</th>
+            <th style={{ width: "150px" }}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -51,9 +49,11 @@ const AttendanceList = ({
           ) : (
             attendanceRecords.map((record) => (
               <tr key={record._id}>
-                <td>{record.employeeId}</td>
-                <td>{record.daysPresent}</td>
-                <td>{record.year}</td> {/* Display Year instead of Days Absent */}
+                <td>
+                  {record.employeeId ? record.employeeId.employeeId : "N/A"}
+                </td>
+                <td>{record.presentDays}</td>
+                <td>{record.absentDays}</td>
                 <td>
                   <div className="action-icons">
                     <FaEdit

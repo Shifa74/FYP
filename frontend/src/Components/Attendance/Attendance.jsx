@@ -4,6 +4,22 @@ import AttendanceList from "./AttendanceList";
 import "./Attendance.css";
 import axios from "axios";
 
+// Generate month options
+const monthOptions = [
+  { number: 1, name: "January" },
+  { number: 2, name: "February" },
+  { number: 3, name: "March" },
+  { number: 4, name: "April" },
+  { number: 5, name: "May" },
+  { number: 6, name: "June" },
+  { number: 7, name: "July" },
+  { number: 8, name: "August" },
+  { number: 9, name: "September" },
+  { number: 10, name: "October" },
+  { number: 11, name: "November" },
+  { number: 12, name: "December" },
+];
+
 const Attendance = () => {
   const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -12,17 +28,24 @@ const Attendance = () => {
   const recordsPerPage = 5;
 
   // State for month and year
-  const [selectedMonth, setSelectedMonth] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
+    const currentMonthNumber = new Date().getMonth() + 1;
+    const currentMonthName = monthOptions.find(
+      (m) => m.number === currentMonthNumber
+    )?.name;
+
+    setSelectedMonth(currentMonthName);
+
     const fetchAttendance = async () => {
       try {
         const response = await axios.get("/attendance/get");
         setAttendanceRecords(response.data);
         console.log(response.data);
       } catch (error) {
-        console.log("error", error.message)
+        console.log(error.response.data.message);
       }
     };
     fetchAttendance();
@@ -60,8 +83,8 @@ const Attendance = () => {
   };
 
   const handleClearFilter = () => {
-    setSelectedMonth('');
-    setSelectedYear('');
+    setSelectedMonth("");
+    setSelectedYear("");
   };
 
   const handleEditAttendance = (record) => {
@@ -70,16 +93,23 @@ const Attendance = () => {
   };
 
   // Filter attendance by selected month and year
-  const filteredRecords = attendanceRecords.filter(
-    (record) => 
-      (selectedMonth === '' || record.month === selectedMonth) && 
-      (selectedYear === '' || record.year === selectedYear)
-  );
+  const filteredRecords = attendanceRecords.filter((record) => {
+    const monthNumber = monthOptions.find(
+      (m) => m.name === selectedMonth
+    )?.number;
+    return (
+      (selectedMonth === "" || record.month === monthNumber) &&
+      (selectedYear === "" || record.year === selectedYear)
+    );
+  });
 
   // Pagination logic
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = filteredRecords.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = filteredRecords.slice(
+    indexOfFirstRecord,
+    indexOfLastRecord
+  );
   const totalPages = Math.ceil(filteredRecords.length / recordsPerPage);
 
   const handleNextPage = () => {
@@ -90,35 +120,43 @@ const Attendance = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  // Generate month options
-  const monthOptions = [
-    'January', 'February', 'March', 'April', 'May', 'June', 
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
-  
   const yearOptions = Array.from({ length: 12 }, (_, i) => 2024 + i);
-
 
   return (
     <div className="attendance-page">
       <div className="attendance-header">
         <h1 className="attendance-header">Employee Attendance</h1>
         <div className="attendance-filters">
-          <select className="month-select" value={selectedMonth} onChange={handleMonthChange}>
+          <select
+            className="month-select"
+            value={selectedMonth}
+            onChange={handleMonthChange}
+          >
             <option value="">Select Month</option>
-            {monthOptions.map((month, index) => (
-              <option key={index} value={month}>{month}</option>
+            {monthOptions.map((m) => (
+              <option key={m.number} value={m.name}>
+                {m.name}
+              </option>
             ))}
           </select>
-          <select className="year-select" value={selectedYear} onChange={handleYearChange}>
+          <select
+            className="year-select"
+            value={selectedYear}
+            onChange={handleYearChange}
+          >
             <option value="">Select Year</option>
             {yearOptions.map((year) => (
-              <option key={year} value={year}>{year}</option>
+              <option key={year} value={year}>
+                {year}
+              </option>
             ))}
           </select>
-          <button className="apply-btn" onClick={handleApplyFilter}>Apply</button>
-          <button className="clear-btn" onClick={handleClearFilter}>Clear</button>
+          <button className="apply-btn" onClick={handleApplyFilter}>
+            Apply
+          </button>
+          <button className="clear-btn" onClick={handleClearFilter}>
+            Clear
+          </button>
         </div>
         <div className="attendance-buttons">
           <button className="aadd-attendance-btn" onClick={toggleForm}>

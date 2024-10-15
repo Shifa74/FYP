@@ -94,7 +94,9 @@
 }
 
 .attendance-table th {
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
+  background-color: #46919e;
+  color: white;
 }
 
 .popup-form-container {

@@ -9,7 +9,7 @@ const Sidebar = () => {
       <ul>
         <li style={{marginBottom:'30px'}}>
           <div className='icon_header'>
-            <FaMoneyCheckAlt className="icon" style={{ marginRight: '0.5rem' }} /> {/* Payroll icon */}
+            <FaMoneyCheckAlt className="icon" style={{ marginRight: '0.5rem'}} /> {/* Payroll icon */}
             <span className="text">Payroll</span>
           </div>
         </li>
