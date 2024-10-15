@@ -5,7 +5,6 @@ const Grade = require("../models/Grade");
 
 // ADD AN EMPLOYEE
 const addEmployee = async (req, res, next) => {
-  // console.log(req.body)
   try {
     const errors = [];
     const emp = await Employee.findOne({ employeeId: req.body.employeeId });
