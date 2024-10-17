@@ -31,7 +31,7 @@ const UserManagement = () => {
         <Routes>
             <Route
                 path="/"
-                element={<UserList users={users} onDelete={handleDeleteUser} />}
+                element={<UserList users={users} onSave={handleSaveUser} onDelete={handleDeleteUser} />}
             />
             <Route
                 path="add"
