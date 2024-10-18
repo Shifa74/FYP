@@ -12,6 +12,16 @@ import Administration from './Components/Administration/AdminPage'
 import Attendance from './Components/Attendance/Attendance'
 import Layout from './Layout'; // Import the Layout component
 
+
+// Import Admin page components
+import ManageDepartments from './Components/Administration/DepartmentManagement/DepartmentList';
+import ManageUsers from './Components/Administration/UserManagement/UserManagement';
+import AddDepartment from './Components/Administration//DepartmentManagement/AddDepartment';
+import AddUser from './Components/Administration/UserManagement/AddUser';
+import ManageAllowances from './Components/Administration/Allowances/AllowanceList';
+import ManageDeductions from './Components/Administration/Deduction/DeductionList';
+// import Settings from './Components/Administration/Settings';
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -53,6 +63,36 @@ function App() {
           path="/Attendance" 
           element={<Layout><Attendance /></Layout>}
          /> 
+          {/* Admin Page Routes */}
+        <Route 
+          path="/departments" 
+          element={<Layout><ManageDepartments /></Layout>} 
+        />
+        <Route 
+          path="/users" 
+          element={<Layout><ManageUsers /></Layout>} 
+        />
+        <Route 
+          path="/departments/add" 
+          element={<Layout><AddDepartment /></Layout>} 
+        />
+        <Route 
+          path="/users/add" 
+          element={<Layout><AddUser /></Layout>} 
+        />
+        <Route 
+          path="/allowances" 
+          element={<Layout><ManageAllowances /></Layout>} 
+        />
+        <Route 
+          path="/deductions" 
+          element={<Layout><ManageDeductions /></Layout>} 
+        />
+        {/* <Route 
+          path="/settings" 
+          element={<Layout><Settings /></Layout>} 
+        /> */}
+      
       </Routes>
     </Router>
   );

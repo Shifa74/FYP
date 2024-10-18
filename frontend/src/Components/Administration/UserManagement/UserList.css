@@ -1,5 +1,8 @@
 .user-list-container {
   padding: 20px;
+  width: 40%;
+  position: absolute;
+  left: 300px;
 }
 
 h2 {
@@ -33,6 +36,7 @@ h2 {
   text-decoration: none;
   border: none;
   cursor: pointer;
+ 
 }
 
 .edit-button {

@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './UserList.css';
-import { Link } from 'react-router-dom';
+import AddEditUser from './AddUser';
 
-const UserList = ({ users, onEdit, onDelete }) => {
+const UserList = ({ users, onSave, onDelete }) => {
+    const [showPopup, setShowPopup] = useState(false);
+    const [userToEdit, setUserToEdit] = useState(null);
+
+    const openPopup = (user = null) => {
+        setUserToEdit(user);
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+        setUserToEdit(null);
+    };
+
     return (
         <div className="user-list-container">
             <h2>User List</h2>
@@ -18,14 +31,23 @@ const UserList = ({ users, onEdit, onDelete }) => {
                         <tr key={user.id}>
                             <td>{user.name}</td>
                             <td className="user-actions">
-                                <Link to={`/users/edit/${user.id}`} className="edit-button">Edit</Link>
+                                <button className="edit-button" onClick={() => openPopup(user)}>Edit</button>
                                 <button className="delete-button" onClick={() => onDelete(user.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <Link to="/users/add" className="add-user-button">Add User</Link>
+            <button className="add-user-button" onClick={() => openPopup()}>Add User</button>
+
+            {/* AddEditUser Popup */}
+            {showPopup && (
+                <AddEditUser 
+                    onSave={onSave} 
+                    initialData={userToEdit} 
+                    closePopup={closePopup} 
+                />
+            )}
         </div>
     );
 };

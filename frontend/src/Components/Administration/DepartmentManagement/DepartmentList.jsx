@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import './DepartmentList.css';
 import { Link } from 'react-router-dom';
+import AddDepartment from './AddDepartment'; // Import the AddDepartment component
 
 const DepartmentList = () => {
     const [departments, setDepartments] = useState([]);
+    const [isPopupOpen, setIsPopupOpen] = useState(false); // State to manage popup visibility
 
     useEffect(() => {
+        // Fetch departments from localStorage when the component mounts
         const storedDepartments = JSON.parse(localStorage.getItem('departments')) || [];
         setDepartments(storedDepartments);
     }, []);
 
     const handleDelete = (id) => {
         const updatedDepartments = departments.filter(dept => dept.id !== id);
-        setDepartments(updatedDepartments);
-        localStorage.setItem('departments', JSON.stringify(updatedDepartments));
+        setDepartments(updatedDepartments); // Update the state
+        localStorage.setItem('departments', JSON.stringify(updatedDepartments)); // Update localStorage
+    };
+
+    // Function to add a new department to the list and localStorage
+    const addDepartment = (newDepartment) => {
+        const updatedDepartments = [...departments, newDepartment];
+        setDepartments(updatedDepartments); // Update the state
+        localStorage.setItem('departments', JSON.stringify(updatedDepartments)); // Update localStorage
     };
 
     return (
@@ -40,7 +50,16 @@ const DepartmentList = () => {
                     ))}
                 </tbody>
             </table>
-            <Link to="/departments/add" className="add-department-button">Add Department</Link>
+            <button className="add-department-button" onClick={() => setIsPopupOpen(true)}>Add Department</button>
+
+            {/* Popup for Add Department */}
+            {isPopupOpen && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <AddDepartment closePopup={() => setIsPopupOpen(false)} addDepartment={addDepartment} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
