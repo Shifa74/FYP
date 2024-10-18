@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddUser.css';
@@ -15,6 +14,10 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
         }
     }, [initialData]);
 
+    useEffect(() => {
+        console.log('Received closePopup function:', closePopup); // Add logging
+    }, [closePopup]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         onSave({ 
@@ -22,12 +25,13 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
             name, 
             email 
         });
-        closePopup(); // Close the popup after saving
+        closePopup(); // Ensure closePopup is triggered here
     };
 
     const handleClose = () => {
-        closePopup();
-        navigate('/admin'); // Navigate back to the admin page
+        console.log('Closing popup'); // Add logging
+        closePopup(); // Correct closePopup function
+        navigate('/administration'); // Navigate back to the admin page
     };
 
     return (

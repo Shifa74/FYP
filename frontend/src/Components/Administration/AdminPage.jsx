@@ -3,37 +3,35 @@ import { Link } from 'react-router-dom';
 import { FaBuilding, FaUsers, FaPlusSquare, FaUserPlus, FaMoneyBillAlt, FaMinusCircle, FaCog } from 'react-icons/fa'; 
 import './AdminPage.css';
 import AddDepartment from './DepartmentManagement/AddDepartment';
-import AddEditUser from './UserManagement/AddUser'
+import AddEditUser from './UserManagement/AddUser';
 
 const AdminPage = () => {
     const [departments, setDepartments] = useState(() => {
-        // Retrieve departments from localStorage
         return JSON.parse(localStorage.getItem('departments')) || [];
     });
     const [showAddDeptPopup, setShowAddDeptPopup] = useState(false);
+    const [showAddUserPopup, setShowAddUserPopup] = useState(false);
 
-    // Function to toggle the popup
     const toggleAddDeptPopup = () => {
         setShowAddDeptPopup(!showAddDeptPopup);
     };
 
-    // Function to add a new department
+    const toggleAddUserPopup = () => {
+        console.log('Toggling Add User Popup'); // Add this to see if it’s triggered
+        setShowAddUserPopup(!showAddUserPopup);
+    };
+
     const addDepartment = (newDept) => {
         const updatedDepartments = [...departments, newDept];
         setDepartments(updatedDepartments);
         localStorage.setItem('departments', JSON.stringify(updatedDepartments));
     };
-    const [showAddUserPopup, setShowAddUserPopup] = useState(false);
-
-    const toggleAddUserPopup = () => {
-        setShowAddUserPopup(!showAddUserPopup);
-    };
 
     const handleSaveUser = (user) => {
         console.log('Saved user:', user);
-        // Handle saving user logic here
         toggleAddUserPopup(); // Close the popup after saving
     };
+
     return (
         <div className="admin-page">
             <div className="dashboard-header">
@@ -56,7 +54,7 @@ const AdminPage = () => {
                     <h3>Add Department</h3>
                     <p>Create a new department</p>
                 </Link>
-                <Link to="/users/add" className="dashboard-card">
+                <Link className="dashboard-card" onClick={toggleAddUserPopup}>
                     <div className="card-icon"><FaUserPlus /></div>
                     <h3>Add User</h3>
                     <p>Add a new user</p>
@@ -77,23 +75,21 @@ const AdminPage = () => {
                     <p>Configure application settings</p>
                 </Link>
 
-                {/* AddDepartment Popup */}
                 {showAddDeptPopup && (
                     <div className="popup-overlay">
                         <div className="popup-content">
                             <button className="close-popup" onClick={toggleAddDeptPopup}>X</button>
-                            {/* Pass addDepartment function as prop */}
                             <AddDepartment closePopup={toggleAddDeptPopup} addDepartment={addDepartment} />
                         </div>
                     </div>
                 )}
-                 {/* Render AddEditUser popup */}
-            {showAddUserPopup && (
-                <AddEditUser
-                    onSave={handleSaveUser}
-                    closePopup={toggleAddUserPopup} // Pass closePopup function
-                />
-            )}
+                
+                {showAddUserPopup && (
+                    <AddEditUser
+                        onSave={handleSaveUser}
+                        closePopup={toggleAddUserPopup} // Pass toggle function here
+                    />
+                )}
             </div>
         </div>
     );
