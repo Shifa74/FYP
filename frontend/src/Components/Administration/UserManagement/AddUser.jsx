@@ -1,20 +1,27 @@
+
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './AddUser.css';
 
 const AddEditUser = ({ onSave, initialData, closePopup }) => {
     const [name, setName] = useState(initialData ? initialData.name : '');
-    const navigate = useNavigate(); // Initialize useNavigate
+    const [email, setEmail] = useState(initialData ? initialData.email : '');
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (initialData) {
             setName(initialData.name);
+            setEmail(initialData.email);
         }
     }, [initialData]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSave({ id: initialData ? initialData.id : null, name });
+        onSave({ 
+            id: initialData ? initialData.id : null, 
+            name, 
+            email 
+        });
         closePopup(); // Close the popup after saving
     };
 
@@ -25,8 +32,7 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
 
     return (
         <div className="popup-overlay">
-            <div className="popup-content">
-                <button className="close-popup" onClick={handleClose}>X</button>
+            <div className="popup">
                 <h2>{initialData ? 'Edit User' : 'Add User'}</h2>
                 <form onSubmit={handleSubmit} className="add-edit-user-form">
                     <div className="form-group">
@@ -40,8 +46,19 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
                             required
                         />
                     </div>
+                    <div className="form-group">
+                        <label htmlFor="userEmail">Email:</label>
+                        <input
+                            type="email"
+                            id="userEmail"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter user email"
+                            required
+                        />
+                    </div>
                     <div className="form-actions">
-                        <button type="submit" className="save-button">Save</button>
+                        <button type="submit" className="submit-button">Save</button>
                         <button type="button" className="cancel-button" onClick={handleClose}>
                             Cancel
                         </button>

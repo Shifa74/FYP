@@ -23,6 +23,7 @@ const UserList = ({ users, onSave, onDelete }) => {
                 <thead>
                     <tr>
                         <th>User Name</th>
+                        <th>Email</th> {/* Add Email column */}
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -30,6 +31,7 @@ const UserList = ({ users, onSave, onDelete }) => {
                     {users.map(user => (
                         <tr key={user.id}>
                             <td>{user.name}</td>
+                            <td>{user.email}</td> {/* Display Email */}
                             <td className="user-actions">
                                 <button className="edit-button" onClick={() => openPopup(user)}>Edit</button>
                                 <button className="delete-button" onClick={() => onDelete(user.id)}>Delete</button>

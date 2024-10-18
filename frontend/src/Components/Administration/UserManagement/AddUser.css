@@ -2,6 +2,8 @@
     padding: 20px;
     max-width: 600px;
     margin: 0 auto;
+    border: 2px solid #008CBA; /* Match the border color */
+    margin-top: 80px; /* Match the margin-top */
 }
 
 h2 {
@@ -18,7 +20,8 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -26,63 +29,61 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
-.form-actions {
-    text-align: center;
+.error-message {
+    color: red;
+    margin-bottom: 10px;
 }
 
-.save-button, .cancel-button {
+.submit-button,
+.cancel-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%; /* Full width for buttons */
+    margin-top: 4px; /* Space above buttons */
 }
 
-.save-button {
-    background-color: #4CAF50;
+.submit-button {
+    background-color: #4CAF50; /* Save button color */
     color: white;
-    margin-right: 10px;
 }
 
 .cancel-button {
-    background-color: #f44336;
+    background-color: #f44336; /* Cancel button color */
     color: white;
 }
-/* AddUser.css */
+
+/* Popup styling */
 .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background overlay */
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000; /* Ensure the popup is above other content */
 }
 
-.popup-content {
-    background: white;
+.popup {
+    background-color: white;
     padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    max-width: 600px; /* Match the max-width of department popup */
     width: 100%;
+    position: relative;
 }
 
 .close-popup {
-    background: none;
-    border: none;
-    font-size: 18px;
     position: absolute;
     top: 10px;
     right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem; /* Size of close button */
     cursor: pointer;
-}
-
-.add-edit-user-form .form-group {
-    margin-bottom: 15px;
-}
-
-.add-edit-user-form .form-actions {
-    display: flex;
-    justify-content: space-between;
 }
