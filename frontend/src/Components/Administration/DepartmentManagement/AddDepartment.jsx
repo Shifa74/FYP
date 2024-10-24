@@ -37,6 +37,7 @@ const AddDepartment = ({ closePopup, addDepartment }) => {
                     <div className="form-group">
                         <label htmlFor="departmentName">Department Name</label>
                         <input
+                        className='usersinputs'
                             type="text"
                             id="departmentName"
                             value={name}
@@ -51,6 +52,7 @@ const AddDepartment = ({ closePopup, addDepartment }) => {
                     <div className="form-group">
                         <label htmlFor="employeeCount">Number of Employees</label>
                         <input
+                        className='usersinputs'
                             type="number"
                             id="employeeCount"
                             value={employees}

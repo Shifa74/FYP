@@ -36,5 +36,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(8800, () => {
-  console.log("App is runnig on port no 8800");
+  console.log("App is running on port no 8800");
 });

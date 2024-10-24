@@ -1,0 +1,69 @@
+.deduction-page-container {
+    padding: 30px;
+    min-height: 80vh;
+    box-sizing: border-box;
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    width: calc(100% - 250px);
+    border-radius: 10px;
+    background: linear-gradient(135deg, #e0e0e0, #c2c2c2); /* Subtle darker gradient */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly darker shadow */
+    border: 1px solid #aaa; /* Darker border */
+}
+
+.heading-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.deduction-page-title {
+    font-size: 2.4rem;
+    color: #2d2d2d;  /* Darker text color */
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.open-form-button {
+    padding: 12px 24px;
+    background-color: #3a7380; /* Darker teal */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Darker shadow for button */
+}
+
+/* Add hover effect */
+.open-form-button:hover {
+    background-color: #305e68;  /* Darker hover effect */
+    transform: translateY(-2px);  /* Lift effect */
+}
+
+.open-form-button:active {
+    background-color: #274e56;
+    transform: translateY(0);
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .heading-button-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .deduction-page-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .open-form-button {
+        width: 100%;
+        text-align: center;
+    }
+}

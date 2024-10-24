@@ -1,34 +1,245 @@
-.allowance-list {
-    padding: 20px;
+/* Base styles for the allowances page */
+.allowances-page {
+    padding: 2vw;
+    width: calc(100% - 250px);
+    margin: 0 auto;
+    position: absolute;
+    top: 13vh;
+    left: 12vw;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background-color: #b1cfec;  /* Light background for the page */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
 }
 
-.allowance-list h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+/* Heading styles */
+.allowances-heading  {
+    text-align: left;
+    margin-bottom: 2vh;
+    font-size: 1.8vw;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.allowance-list button {
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    background-color: #3498db;
+
+/* Form styling */
+.allowance-form form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5vw;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    background-color: #fff;  /* White background for form */
+    padding: 7px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Shadow around form */
+}
+
+/* Form input styling */
+.allowance-form input {
+    flex: 1 1 20%;
+    margin-top: 5px;
+    padding: 1vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1vw;
+    background-color: #f1f1f1;
+    transition: border-color 0.3s ease;
+}
+
+.allowance-form input:focus {
+    border-color: #46919e;
+    outline: none;
+}
+
+/* Button styling */
+.allowance-form button {
+    margin-top: 3px;
+    padding: 16px;
+    background-color: #46919e;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1vw;
+    transition: background-color 0.3s ease;
 }
 
-.allowance-list button a {
+.allowance-form button:hover {
+    background-color: #357d85;
+}
+
+/* Table styling */
+.allowances-table {
+    margin-top: 2vh;
+    max-height: 50vh;  /* Table height limit */
+    overflow-y: auto;  /* Scroll on vertical axis */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Shadow for table */
+}
+
+.allowances-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1vw;
+}
+
+.allowances-table th,
+.allowances-table td {
+    padding: 1.5vh 1vw;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.allowances-table th {
+    background-color: #46919e;
     color: white;
-    text-decoration: none;
+    text-transform: uppercase;
 }
 
-.allowance-list ul {
-    list-style: none;
-    padding: 0;
+.allowances-table td {
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-.allowance-list ul li {
-    padding: 10px;
-    background-color: #ecf0f1;
-    margin-bottom: 10px;
+.allowances-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Action buttons styling */
+.action-buttons {
+    display: flex;
+    gap: 2px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 0.5vw 1.5vw;
+    color: white;
+    border: none;
     border-radius: 4px;
+    cursor: pointer;
+    font-size: 1vw;
+}
+
+.edit-btn {
+    background-color: #5bc0de;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #39a1c3;
+}
+
+.delete-btn {
+    background-color: #d9534f;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Responsive adjustments */
+
+/* Tablet screens (between 768px and 1024px) */
+@media (max-width: 1024px) {
+    .allowances-page {
+        top: 10vw;
+        left: 30vw;
+        width: 60%;
+        padding: 2vh;
+    }
+
+    .allowances-heading h1 {
+        font-size: 2.5vw;
+    }
+
+    .allowance-form form {
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    .allowance-form input,
+    .allowance-form button {
+        width: 100%;
+        font-size: 1.8vw;
+    }
+
+    .allowances-table th, .allowances-table td {
+        font-size: 1.6vw;
+        padding: 1vh;
+    }
+}
+
+/* Mobile screens (less than 768px) */
+@media (max-width: 768px) {
+    .allowances-page {
+        left: 20vw;
+        width: 70%;
+        padding: 2vh;
+        top: 10vh;
+    }
+
+    .allowances-heading h1 {
+        font-size: 3vw;
+    }
+
+    .allowance-form form {
+        gap: 2vh;
+    }
+
+    .allowance-form input,
+    .allowance-form button {
+        width: 100%;
+        font-size: 2.2vw;
+        padding: 1.5vh;
+    }
+
+    .allowances-table th, .allowances-table td {
+        font-size: 2vw;
+        padding: 0.8vh;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .edit-btn, .delete-btn {
+        font-size: 2vw;
+        padding: 1vh 1vh;
+    }
+}
+
+/* Extra small screens (less than 480px) */
+@media (max-width: 480px) {
+    .allowances-page {
+        left: 0;
+        padding: 1vh;
+        width: 100%;
+    }
+
+    .allowances-heading h1 {
+        font-size: 4vw;
+    }
+
+    .allowance-form input, 
+    .allowance-form button {
+        width: 100%;
+        font-size: 3vw;
+        padding: 1.5vh;
+    }
+
+    .allowances-table th, 
+    .allowances-table td {
+        font-size: 2.5vw;
+        padding: 1vh;
+    }
+
+    .edit-btn, .delete-btn {
+        font-size: 2.8vw;
+        padding: 1.2vh 1.5vh;
+    }
 }

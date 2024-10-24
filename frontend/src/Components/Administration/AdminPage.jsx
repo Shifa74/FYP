@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBuilding, FaUsers, FaPlusSquare, FaUserPlus, FaMoneyBillAlt, FaMinusCircle, FaCog } from 'react-icons/fa'; 
+import { FaBuilding, FaUsers, FaPlusSquare, FaUserPlus, FaMoneyBillAlt, FaMinusCircle } from 'react-icons/fa'; 
 import './AdminPage.css';
 import AddDepartment from './DepartmentManagement/AddDepartment';
 import AddEditUser from './UserManagement/AddUser';
@@ -29,8 +29,19 @@ const AdminPage = () => {
 
     const handleSaveUser = (user) => {
         console.log('Saved user:', user);
-        toggleAddUserPopup(); // Close the popup after saving
-    };
+    
+        // Get current users from localStorage
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+    
+        // Add the new user to the existing users list
+        const updatedUsers = [...existingUsers, { ...user, id: existingUsers.length ? existingUsers[existingUsers.length - 1].id + 1 : 1 }];
+        
+        // Save the updated users list back to localStorage
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        
+        // Close the popup after saving
+        toggleAddUserPopup();
+    };    
 
     return (
         <div className="admin-page">
@@ -69,11 +80,7 @@ const AdminPage = () => {
                     <h3>Manage Deductions</h3>
                     <p>View and manage deductions</p>
                 </Link>
-                <Link to="/settings" className="dashboard-card">
-                    <div className="card-icon"><FaCog /></div>
-                    <h3>Settings</h3>
-                    <p>Configure application settings</p>
-                </Link>
+              
 
                 {showAddDeptPopup && (
                     <div className="popup-overlay">

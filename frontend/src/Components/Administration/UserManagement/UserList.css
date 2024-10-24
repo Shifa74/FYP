@@ -1,29 +1,82 @@
 .user-list-container {
   padding: 20px;
-  width: 40%;
+  width: 85%;
+  top: 90px;
   position: absolute;
-  left: 300px;
+  left: 170px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(9, 121, 69, 0.1);
+  overflow: hidden;
 }
 
-h2 {
-  text-align: center;
+.user-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
+}
+
+userlist-heading h2 {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.add-user-button {
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.add-user-button:hover {
+  background-color: #007B9E;
+}
+
+.user-table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto; /* Allow horizontal scroll on small screens */
+  margin-top: 10px;
 }
 
 .user-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .user-table th, .user-table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px 15px;
   text-align: left;
+  font-family: 'Arial', sans-serif;
+  color: #555;
 }
 
 .user-table th {
   background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1; /* Ensure the header stays above the table rows */
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-table tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s;
 }
 
 .user-actions {
@@ -32,11 +85,12 @@ h2 {
 }
 
 .edit-button, .delete-button {
-  padding: 5px 10px;
+  padding: 5px 15px;
   text-decoration: none;
   border: none;
   cursor: pointer;
- 
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .edit-button {
@@ -44,18 +98,37 @@ h2 {
   color: white;
 }
 
+.edit-button:hover {
+  background-color: #45a049;
+}
+
 .delete-button {
   background-color: #f44336;
   color: white;
 }
 
-.add-user-button {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-  background-color: #008CBA;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
+.delete-button:hover {
+  background-color: #e41e26;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-list-container {
+    width: 95%;
+    left: 10px;
+  }
+
+  .user-table-container {
+    max-height: 300px; /* Adjust height for smaller screens */
+  }
+
+  .user-list-header {
+    flex-direction: column; /* Stack the header and button on smaller screens */
+    align-items: flex-start;
+  }
+
+  .add-user-button {
+    margin-top: 10px;
+    align-self: flex-end; /* Align button to the right in smaller screens */
+  }
 }

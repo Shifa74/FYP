@@ -1,18 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import './DeductionList.css';
 
-const DeductionList = () => {
-    return (
-        <div>
-            <h2>Deductions</h2>
-            <button><Link to="/deductions/add">Add Deduction</Link></button>
-            <ul>
-                {/* Deduction items will be mapped here */}
-                <li>Deduction 1</li>
-                <li>Deduction 2</li>
-            </ul>
-        </div>
-    );
+const DeductionList = ({ deductions }) => {
+  return (
+    <div className="deduction-list-container">
+      <h2 className="deduction-list-title">Employee Deductions</h2>
+      <table className="deduction-list-table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Deduction Type</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {deductions.map((deduction, index) => (
+            <tr key={index}>
+              <td>{deduction.employeeId}</td>
+              <td>{deduction.deductionType}</td>
+              <td>${deduction.amount.toFixed(2)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default DeductionList;

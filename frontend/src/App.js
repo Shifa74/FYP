@@ -19,8 +19,8 @@ import ManageUsers from './Components/Administration/UserManagement/UserManageme
 import AddDepartment from './Components/Administration//DepartmentManagement/AddDepartment';
 import AddUser from './Components/Administration/UserManagement/AddUser';
 import ManageAllowances from './Components/Administration/Allowances/AllowanceList';
-import ManageDeductions from './Components/Administration/Deduction/DeductionList';
-// import Settings from './Components/Administration/Settings';
+import ManageDeductions from './Components/Administration/Deduction/DeductionPage';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -88,10 +88,7 @@ function App() {
           path="/deductions" 
           element={<Layout><ManageDeductions /></Layout>} 
         />
-        {/* <Route 
-          path="/settings" 
-          element={<Layout><Settings /></Layout>} 
-        /> */}
+      
       
       </Routes>
     </Router>

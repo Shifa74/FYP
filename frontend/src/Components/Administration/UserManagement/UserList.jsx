@@ -18,31 +18,35 @@ const UserList = ({ users, onSave, onDelete }) => {
 
     return (
         <div className="user-list-container">
-            <h2>User List</h2>
-            <table className="user-table">
-                <thead>
-                    <tr>
-                        <th>User Name</th>
-                        <th>Email</th> {/* Add Email column */}
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td> {/* Display Email */}
-                            <td className="user-actions">
-                                <button className="edit-button" onClick={() => openPopup(user)}>Edit</button>
-                                <button className="delete-button" onClick={() => onDelete(user.id)}>Delete</button>
-                            </td>
+            <div className="user-list-header">
+                <h2 className='userlist-heading'>User List</h2>
+                <button className="add-user-button" onClick={() => openPopup()}>Add User</button>
+            </div>
+            
+            <div className="user-table-container">
+                <table className="user-table">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <button className="add-user-button" onClick={() => openPopup()}>Add User</button>
+                    </thead>
+                    <tbody>
+                        {users.map(user => (
+                            <tr key={user.id}>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td className="user-actions">
+                                    <button className="edit-button" onClick={() => openPopup(user)}>Edit</button>
+                                    <button className="delete-button" onClick={() => onDelete(user.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
-            {/* AddEditUser Popup */}
             {showPopup && (
                 <AddEditUser 
                     onSave={onSave} 

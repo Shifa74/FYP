@@ -31,17 +31,18 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
     const handleClose = () => {
         console.log('Closing popup'); // Add logging
         closePopup(); // Correct closePopup function
-        navigate('/administration'); // Navigate back to the admin page
+        navigate('/users'); // Navigate back to the admin page
     };
 
     return (
         <div className="popup-overlay">
             <div className="popup">
-                <h2>{initialData ? 'Edit User' : 'Add User'}</h2>
+                <h2 className='user_heading'>{initialData ? 'Edit User' : 'Add User'}</h2>
                 <form onSubmit={handleSubmit} className="add-edit-user-form">
                     <div className="form-group">
-                        <label htmlFor="userName">User Name:</label>
+                        <label className='user_labellabel' htmlFor="userName">User Name:</label>
                         <input
+                        className='user_input'
                             type="text"
                             id="userName"
                             value={name}
@@ -51,8 +52,9 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="userEmail">Email:</label>
+                        <label className='user_label' htmlFor="userEmail">Email:</label>
                         <input
+                        className='user_inputinput'
                             type="email"
                             id="userEmail"
                             value={email}
@@ -62,8 +64,8 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
                         />
                     </div>
                     <div className="form-actions">
-                        <button type="submit" className="submit-button">Save</button>
-                        <button type="button" className="cancel-button" onClick={handleClose}>
+                        <button type="submit" className="user-submit-button">Save</button>
+                        <button type="button" className="user-cancel-button" onClick={handleClose}>
                             Cancel
                         </button>
                     </div>

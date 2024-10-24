@@ -9,5 +9,6 @@ mongoose
     console.log("Connection successful");
   })
   .catch((err) => {
+    console.log(err);
     console.log("No connection");
   });

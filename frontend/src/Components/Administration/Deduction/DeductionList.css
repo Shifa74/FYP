@@ -1,34 +1,87 @@
-.deduction-list {
-    padding: 20px;
+.deduction-list-container {
+  margin-top: 20px;
+  max-height: 300px; /* Adjusted for 5 rows */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  background-color: #fff;
+  position: relative;
 }
 
-.deduction-list h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.deduction-list-title {
+  font-size: 1.5rem;
+  margin: 0; /* Remove margin to eliminate space */
+  padding: 10px 0; /* Add some padding for aesthetics */
+  position: sticky;
+  top: 0; /* Stick to the top of the container */
+  background-color: #fff; /* Solid background */
+  z-index: 10; /* Higher z-index to stay above content */
+  border-bottom: 1px solid #ddd;
 }
 
-.deduction-list button {
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
+.deduction-list-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.deduction-list button a {
-    color: white;
-    text-decoration: none;
+.deduction-list-table thead th {
+  position: sticky;
+  top: 40px; /* Adjust to the height of the title (if padding is added) */
+  background-color: #f2f2f2; /* Ensure the header has a solid background */
+  z-index: 9; /* Keep it below the title but above content */
+  border-bottom: 2px solid #ddd;
 }
 
-.deduction-list ul {
-    list-style: none;
-    padding: 0;
+.deduction-list-table th,
+.deduction-list-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
 }
 
-.deduction-list ul li {
-    padding: 10px;
-    background-color: #ecf0f1;
-    margin-bottom: 10px;
-    border-radius: 4px;
+.deduction-list-table th {
+  background-color: #f2f2f2;
+}
+
+/* Popup form styles */
+.popup-form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 20; /* Ensure popup is on top of everything */
+  width: 80%;
+  max-width: 600px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 19; /* Below the form but above the page content */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .deduction-list-container {
+      max-height: 200px; /* Adjusted for smaller screens */
+  }
+
+  .deduction-list-title {
+      font-size: 1.2rem;
+  }
+
+  .popup-form-container {
+      width: 90%; /* Full width on smaller screens */
+  }
 }
