@@ -99,7 +99,7 @@
   color: white;
 }
 
-.popup-form-container {
+.Ppopup-form-container {
   position: fixed;
   top: 50px;
   right: 0;
@@ -111,7 +111,7 @@
   border-radius: 8px;
 }
 
-.attendance-backdrop {
+.Aattendance-backdrop {
   position: fixed;
   top: 0;
   left: 0;

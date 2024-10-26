@@ -22,6 +22,8 @@ import ManageAllowances from './Components/Administration/Allowances/AllowanceLi
 import ManageDeductions from './Components/Administration/Deduction/DeductionPage';
 
 
+import ReportPage from './Components/Report/ReportPage';
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -59,10 +61,19 @@ function App() {
           path="/Administration" 
           element={<Layout><Administration /></Layout>}
          /> 
+         <Route 
+          path="/report" 
+          element={<Layout><ReportPage /></Layout>}
+         /> 
           <Route 
           path="/Attendance" 
           element={<Layout><Attendance /></Layout>}
          /> 
+
+
+
+
+         
           {/* Admin Page Routes */}
         <Route 
           path="/departments" 

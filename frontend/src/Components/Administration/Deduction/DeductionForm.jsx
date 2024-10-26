@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './DeductionForm.css';
 
 const DeductionForm = ({ onSubmit, onClose }) => {
-  const [employeeId, setEmployeeId] = useState('');
   const [deductionType, setDeductionType] = useState('');
   const [amount, setAmount] = useState('');
 
@@ -10,7 +9,7 @@ const DeductionForm = ({ onSubmit, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newDeduction = { employeeId, deductionType, amount: Number(amount) };
+    const newDeduction = { deductionType, amount: Number(amount) };
     onSubmit(newDeduction);  // Pass the new deduction up to the parent component
     onClose(); // Close the popup after submitting
   };
@@ -21,17 +20,6 @@ const DeductionForm = ({ onSubmit, onClose }) => {
         <button onClick={onClose} className="deduction-form-close">&times;</button>
         <h2>Add Deduction</h2>
         <form className="deduction-form-container" onSubmit={handleSubmit}>
-          <div className="deduction-form-group">
-            <label htmlFor="employeeId" className="deduction-form-label">Employee ID</label>
-            <input
-              type="text"
-              id="employeeId"
-              className="deduction-form-input"
-              value={employeeId}
-              onChange={(e) => setEmployeeId(e.target.value)}
-              required
-            />
-          </div>
           <div className="deduction-form-group">
             <label htmlFor="deductionType" className="deduction-form-label">Deduction Type</label>
             <select

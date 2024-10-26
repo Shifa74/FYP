@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBuilding, FaUsers, FaPlusSquare, FaUserPlus, FaMoneyBillAlt, FaMinusCircle } from 'react-icons/fa'; 
+import { FaBuilding, FaUsers, FaPlusSquare, FaUserPlus, FaMoneyBillAlt, FaMinusCircle, FaGraduationCap } from 'react-icons/fa';
 import './AdminPage.css';
 import AddDepartment from './DepartmentManagement/AddDepartment';
 import AddEditUser from './UserManagement/AddUser';
+import AddGrade from './GradeManagement/AddGrade'; // Assuming this is your Add Grade component
 
 const AdminPage = () => {
     const [departments, setDepartments] = useState(() => {
@@ -11,14 +12,18 @@ const AdminPage = () => {
     });
     const [showAddDeptPopup, setShowAddDeptPopup] = useState(false);
     const [showAddUserPopup, setShowAddUserPopup] = useState(false);
+    const [showAddGradePopup, setShowAddGradePopup] = useState(false); // New state for Add Grade popup
 
     const toggleAddDeptPopup = () => {
         setShowAddDeptPopup(!showAddDeptPopup);
     };
 
     const toggleAddUserPopup = () => {
-        console.log('Toggling Add User Popup'); // Add this to see if it’s triggered
         setShowAddUserPopup(!showAddUserPopup);
+    };
+
+    const toggleAddGradePopup = () => {
+        setShowAddGradePopup(!showAddGradePopup); // Toggle for Add Grade popup
     };
 
     const addDepartment = (newDept) => {
@@ -28,20 +33,11 @@ const AdminPage = () => {
     };
 
     const handleSaveUser = (user) => {
-        console.log('Saved user:', user);
-    
-        // Get current users from localStorage
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-    
-        // Add the new user to the existing users list
         const updatedUsers = [...existingUsers, { ...user, id: existingUsers.length ? existingUsers[existingUsers.length - 1].id + 1 : 1 }];
-        
-        // Save the updated users list back to localStorage
         localStorage.setItem('users', JSON.stringify(updatedUsers));
-        
-        // Close the popup after saving
         toggleAddUserPopup();
-    };    
+    };
 
     return (
         <div className="admin-page">
@@ -50,6 +46,7 @@ const AdminPage = () => {
                 <p>Manage all aspects of your application from a single place</p>
             </div>
             <div className="dashboard-grid">
+                {/* Existing links */}
                 <Link to="/departments" className="dashboard-card">
                     <div className="card-icon"><FaBuilding /></div>
                     <h3>Manage Departments</h3>
@@ -80,8 +77,15 @@ const AdminPage = () => {
                     <h3>Manage Deductions</h3>
                     <p>View and manage deductions</p>
                 </Link>
-              
 
+                {/* New Add Grade card */}
+                <Link className="dashboard-card" onClick={toggleAddGradePopup}>
+                    <div className="card-icon"><FaGraduationCap /></div>
+                    <h3>Add Grade</h3>
+                    <p>Add a new grade</p>
+                </Link>
+
+                {/* Popup components */}
                 {showAddDeptPopup && (
                     <div className="popup-overlay">
                         <div className="popup-content">
@@ -90,12 +94,19 @@ const AdminPage = () => {
                         </div>
                     </div>
                 )}
-                
                 {showAddUserPopup && (
                     <AddEditUser
                         onSave={handleSaveUser}
-                        closePopup={toggleAddUserPopup} // Pass toggle function here
+                        closePopup={toggleAddUserPopup}
                     />
+                )}
+                {showAddGradePopup && (
+                    <div className="popup-overlay">
+                        <div className="popup-content">
+                            <button className="close-popup" onClick={toggleAddGradePopup}>X</button>
+                            <AddGrade closePopup={toggleAddGradePopup} /> {/* Add Grade component */}
+                        </div>
+                    </div>
                 )}
             </div>
         </div>

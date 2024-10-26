@@ -1,0 +1,97 @@
+.add-grade-popup {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.3s ease-in-out; /* Added animation for pop-up */
+}
+
+.add-grade-popup h2 {
+    margin-bottom: 20px;
+    font-size: 28px; /* Increased font size */
+    color: #46919e; /* Updated color */
+    text-align: center; /* Centered title */
+    font-family: 'Arial', sans-serif; /* Improved font style */
+    border-bottom: 2px solid #46919e; /* Added bottom border */
+    padding-bottom: 10px; /* Padding for bottom */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555; /* Softer label color */
+    font-size: 16px; /* Slightly increased label font size */
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px; /* Increased padding for inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s; /* Smooth border transition */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #46919e; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px; /* Increased minimum height */
+}
+
+.submit-button {
+    background-color: #46919e;
+    color: white;
+    padding: 12px 20px; /* Adjusted padding for button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Slightly larger font size */
+    width: 100%; /* Full width */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.submit-button:hover {
+    background-color: #397b88; /* Darker shade on hover */
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #d9534f; /* Highlighted close button color */
+    cursor: pointer;
+    transition: color 0.3s; /* Smooth transition for close button */
+}
+
+.close-popup:hover {
+    color: #c9302c; /* Darker red on hover */
+}
+
+/* Animation for the popup appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Slightly moves up during fade-in */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

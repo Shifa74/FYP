@@ -8,7 +8,6 @@ const DeductionList = ({ deductions }) => {
       <table className="deduction-list-table">
         <thead>
           <tr>
-            <th>Employee ID</th>
             <th>Deduction Type</th>
             <th>Amount</th>
           </tr>
@@ -16,7 +15,6 @@ const DeductionList = ({ deductions }) => {
         <tbody>
           {deductions.map((deduction, index) => (
             <tr key={index}>
-              <td>{deduction.employeeId}</td>
               <td>{deduction.deductionType}</td>
               <td>${deduction.amount.toFixed(2)}</td>
             </tr>

@@ -3,7 +3,6 @@ import './AddDepartment.css';
 
 const AddDepartment = ({ closePopup, addDepartment }) => {
     const [name, setName] = useState('');
-    const [employees, setEmployees] = useState(0);
     const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
@@ -13,20 +12,14 @@ const AddDepartment = ({ closePopup, addDepartment }) => {
             return;
         }
 
-        const storedDepartments = JSON.parse(localStorage.getItem('departments')) || [];
-        const newDepartment = {
-            id: storedDepartments.length ? storedDepartments[storedDepartments.length - 1].id + 1 : 1,
-            name,
-            employees: parseInt(employees, 10)
-        };
+        // Create new department object without employees count
+        const newDepartment = { name };
 
-        const updatedDepartments = [...storedDepartments, newDepartment];
-        localStorage.setItem('departments', JSON.stringify(updatedDepartments));
-
-        // Call the addDepartment function passed from DepartmentList to update the state
+        // Call addDepartment to update department list
         addDepartment(newDepartment);
 
-        closePopup(); // Close the popup after submission
+        // Close the popup after submission
+        closePopup();
     };
 
     return (
@@ -37,7 +30,7 @@ const AddDepartment = ({ closePopup, addDepartment }) => {
                     <div className="form-group">
                         <label htmlFor="departmentName">Department Name</label>
                         <input
-                        className='usersinputs'
+                            className='usersinputs'
                             type="text"
                             id="departmentName"
                             value={name}
@@ -46,18 +39,6 @@ const AddDepartment = ({ closePopup, addDepartment }) => {
                                 setError(''); // Clear error when user types
                             }}
                             placeholder="Enter department name"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="employeeCount">Number of Employees</label>
-                        <input
-                        className='usersinputs'
-                            type="number"
-                            id="employeeCount"
-                            value={employees}
-                            onChange={(e) => setEmployees(e.target.value)}
-                            placeholder="Enter number of employees"
                             required
                         />
                     </div>

@@ -186,8 +186,8 @@ const Attendance = () => {
 
       {showForm && (
         <>
-          <div className="attendance-backdrop" onClick={toggleForm}></div>
-          <div className="popup-form-container">
+          <div className="Aattendance-backdrop" onClick={toggleForm}></div>
+          <div className="Ppopup-form-container">
             <AttendanceForm
               onAddAttendance={handleAddAttendance}
               initialData={editingAttendance}
