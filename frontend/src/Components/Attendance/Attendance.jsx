@@ -31,7 +31,18 @@ const Attendance = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
+  const fetchAttendance = async () => {
+    try {
+      const response = await axios.get("/attendance/get");
+      setAttendanceRecords(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
+    fetchAttendance();
     const currentMonthNumber = new Date().getMonth() + 1;
     const currentMonthName = monthOptions.find(
       (m) => m.number === currentMonthNumber
@@ -39,16 +50,7 @@ const Attendance = () => {
 
     setSelectedMonth(currentMonthName);
 
-    const fetchAttendance = async () => {
-      try {
-        const response = await axios.get("/attendance/get");
-        setAttendanceRecords(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.response.data.message);
-      }
-    };
-    fetchAttendance();
+    
   }, []);
 
   const handleAddAttendance = (attendanceData) => {
@@ -61,6 +63,7 @@ const Attendance = () => {
     } else {
       setAttendanceRecords([...attendanceRecords, attendanceData]);
     }
+    fetchAttendance();
     setShowForm(false);
     setEditingAttendance(null);
   };
