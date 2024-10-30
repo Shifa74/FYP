@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddDepartment.css';
 
-const AddDepartment = ({ closePopup, addDepartment }) => {
+const AddDepartment = ({ closePopup, addOrUpdateDepartment, departmentToEdit }) => {
     const [name, setName] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (departmentToEdit) {
+            setName(departmentToEdit.name); // Set name if editing an existing department
+        } else {
+            setName(''); // Clear name if adding a new department
+        }
+    }, [departmentToEdit]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,20 +20,15 @@ const AddDepartment = ({ closePopup, addDepartment }) => {
             return;
         }
 
-        // Create new department object without employees count
         const newDepartment = { name };
-
-        // Call addDepartment to update department list
-        addDepartment(newDepartment);
-
-        // Close the popup after submission
+        addOrUpdateDepartment(newDepartment);
         closePopup();
     };
 
     return (
         <div className="popup-overlay">
             <div className="popup">
-                <h2>Add Department</h2>
+                <h2>{departmentToEdit ? 'Edit Department' : 'Add Department'}</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="departmentName">Department Name</label>
@@ -36,14 +39,16 @@ const AddDepartment = ({ closePopup, addDepartment }) => {
                             value={name}
                             onChange={(e) => {
                                 setName(e.target.value);
-                                setError(''); // Clear error when user types
+                                setError('');
                             }}
                             placeholder="Enter department name"
                             required
                         />
                     </div>
                     {error && <p className="error-message">{error}</p>}
-                    <button type="submit" className="submit-button">Add Department</button>
+                    <button type="submit" className="submit-button">
+                        {departmentToEdit ? 'Update Department' : 'Add Department'}
+                    </button>
                     <button type="button" className="cancel-button" onClick={closePopup}>Cancel</button>
                 </form>
             </div>

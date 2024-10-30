@@ -1,29 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import './DepartmentList.css';
-import { Link } from 'react-router-dom';
-import AddDepartment from './AddDepartment'; // Import the AddDepartment component
+// import { Link } from 'react-router-dom';
+import AddDepartment from './AddDepartment';
 
 const DepartmentList = () => {
     const [departments, setDepartments] = useState([]);
-    const [isPopupOpen, setIsPopupOpen] = useState(false); // State to manage popup visibility
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [departmentToEdit, setDepartmentToEdit] = useState(null); // Track department being edited
 
     useEffect(() => {
-        // Fetch departments from localStorage when the component mounts
         const storedDepartments = JSON.parse(localStorage.getItem('departments')) || [];
         setDepartments(storedDepartments);
     }, []);
 
     const handleDelete = (id) => {
         const updatedDepartments = departments.filter(dept => dept.id !== id);
-        setDepartments(updatedDepartments); // Update the state
-        localStorage.setItem('departments', JSON.stringify(updatedDepartments)); // Update localStorage
+        setDepartments(updatedDepartments);
+        localStorage.setItem('departments', JSON.stringify(updatedDepartments));
     };
 
-    // Function to add a new department to the list and localStorage
-    const addDepartment = (newDepartment) => {
-        const updatedDepartments = [...departments, newDepartment];
-        setDepartments(updatedDepartments); // Update the state
-        localStorage.setItem('departments', JSON.stringify(updatedDepartments)); // Update localStorage
+    const addOrUpdateDepartment = (newDepartment) => {
+        let updatedDepartments;
+        if (departmentToEdit) {
+            // Update the existing department
+            updatedDepartments = departments.map(dept =>
+                dept.id === departmentToEdit.id ? { ...dept, ...newDepartment } : dept
+            );
+        } else {
+            // Add new department
+            newDepartment.id = new Date().getTime().toString(); // Generate unique ID
+            updatedDepartments = [...departments, newDepartment];
+        }
+        setDepartments(updatedDepartments);
+        localStorage.setItem('departments', JSON.stringify(updatedDepartments));
+        setIsPopupOpen(false); // Close the popup after submission
+        setDepartmentToEdit(null); // Reset edit state
+    };
+
+    const openAddPopup = () => {
+        setDepartmentToEdit(null);
+        setIsPopupOpen(true);
+    };
+
+    const openEditPopup = (department) => {
+        setDepartmentToEdit(department);
+        setIsPopupOpen(true);
     };
 
     return (
@@ -41,23 +62,25 @@ const DepartmentList = () => {
                     {departments.map(department => (
                         <tr key={department.id}>
                             <td>{department.name}</td>
-                            <td>{department.employees}</td>
+                            <td>{department.employees || 0}</td>
                             <td className="department-actions">
-                                <Link to={`/departments/edit/${department.id}`} className="edit-button">Edit</Link>
-                                <button className="delete-button" onClick={() => handleDelete(department.id)}>Delete</button>
+                                <button onClick={() => openEditPopup(department)} className="edit-button">Edit</button>
+                                <button onClick={() => handleDelete(department.id)} className="delete-button">Delete</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <button className="add-department-button" onClick={() => setIsPopupOpen(true)}>Add Department</button>
+            <button className="add-department-button" onClick={openAddPopup}>Add Department</button>
 
-            {/* Popup for Add Department */}
+            {/* Popup for Add or Edit Department */}
             {isPopupOpen && (
                 <div className="popup-overlay">
-                    <div className="popup">
-                        <AddDepartment closePopup={() => setIsPopupOpen(false)} addDepartment={addDepartment} />
-                    </div>
+                    <AddDepartment
+                        closePopup={() => setIsPopupOpen(false)}
+                        addOrUpdateDepartment={addOrUpdateDepartment}
+                        departmentToEdit={departmentToEdit}
+                    />
                 </div>
             )}
         </div>
