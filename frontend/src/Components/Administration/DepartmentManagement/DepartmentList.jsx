@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "./DepartmentList.css";
-import { Link } from "react-router-dom";
-import AddDepartment from "./AddDepartment";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import './DepartmentList.css';
+// import { Link } from 'react-router-dom';
+import AddDepartment from './AddDepartment';
 
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
@@ -37,59 +36,44 @@ const DepartmentList = () => {
     setRefresh((prev) => !prev); // Toggle refresh to trigger useEffect
   };
 
-  return (
-    <div className="department-list-container">
-      <h2>Manage Departments</h2>
-      <table className="department-table">
-        <thead>
-          <tr>
-            <th>Department Name</th>
-            <th>Number of Employees</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {departments.map((department) => (
-            <tr key={department._id}>
-              <td>{department.departmentName}</td>
-              <td>{department.employeeCount}</td>
-              <td className="department-actions">
-                <Link
-                  to={`/departments/edit/${department._id}`}
-                  className="edit-button"
-                >
-                  Edit
-                </Link>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(department._id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button
-        className="add-department-button"
-        onClick={() => setIsPopupOpen(true)}
-      >
-        Add Department
-      </button>
+    return (
+        <div className="department-list-container">
+            <h2>Manage Departments</h2>
+            <table className="department-table">
+                <thead>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Number of Employees</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {departments.map(department => (
+                        <tr key={department.id}>
+                            <td>{department.name}</td>
+                            <td>{department.employees || 0}</td>
+                            <td className="department-actions">
+                                <button onClick={() => openEditPopup(department)} className="edit-button">Edit</button>
+                                <button onClick={() => handleDelete(department.id)} className="delete-button">Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <button className="add-department-button" onClick={openAddPopup}>Add Department</button>
 
-      {isPopupOpen && (
-        <div className="popup-overlay">
-          <div className="popup">
-            <AddDepartment
-              closePopup={() => setIsPopupOpen(false)}
-              addDepartment={addDepartment}
-            />
-          </div>
+            {/* Popup for Add or Edit Department */}
+            {isPopupOpen && (
+                <div className="popup-overlay">
+                    <AddDepartment
+                        closePopup={() => setIsPopupOpen(false)}
+                        addOrUpdateDepartment={addOrUpdateDepartment}
+                        departmentToEdit={departmentToEdit}
+                    />
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default DepartmentList;
