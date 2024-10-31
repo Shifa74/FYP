@@ -6,6 +6,9 @@ const employeeRoutes = require("./routes/employee");
 const attendanceRoutes = require("./routes/attendace");
 const deptRoutes = require("./routes/department");
 const gradeRoutes = require("./routes/grade");
+const allowanceRoutes = require("./routes/allowance");
+const deductionRotes = require("./routes/deduction");
+const usersRoute = require("./routes/users");
 const cookieParser = require("cookie-parser");
 const app = express();
 
@@ -20,6 +23,9 @@ app.use("/api/employee", employeeRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/grade", gradeRoutes);
 app.use("/api/dept", deptRoutes);
+app.use("/api/allowance", allowanceRoutes);
+app.use("/api/deduction", deductionRotes);
+app.use("/api/users", usersRoute);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
@@ -29,11 +35,9 @@ app.use((err, req, res, next) => {
     success: false,
     status,
     message,
-    field
+    field,
   });
 });
-
-
 
 app.listen(8800, () => {
   console.log("App is running on port no 8800");

@@ -24,7 +24,7 @@ const addEmployee = async (req, res, next) => {
     if (!grade) {
       return next(createError(422, "Grade not found"));
     }
-    
+
     if (errors.length > 0) {
       const errorResponse = errors.reduce((acc, err) => {
         acc[err.field] = err.message;
@@ -64,7 +64,7 @@ const updateEmployee = async (req, res, next) => {
   try {
     const employeeId = req.params.id;
     const fieldsToUpdate = req.body;
-  
+
     const updatedEmployee = await Employee.findByIdAndUpdate(
       employeeId,
       fieldsToUpdate,
@@ -93,4 +93,45 @@ const deleteEmployee = async (req, res, next) => {
   }
 };
 
-module.exports = { addEmployee, getEmployees, updateEmployee, deleteEmployee };
+// const getEmpCountByDept = async (req, res, next) => {
+//   try {
+//     const employeeCounts = await Employee.aggregate([
+//       {
+//         $group: {
+//           _id: "$employee",
+//           employeeCount: { $sum: 1 },
+//         },
+//       },
+//       {
+//         $lookup: {
+//           from: "departments",
+//           localField: "_id",
+//           foreignField: "_id",
+//           as: "department",
+//         },
+//       },
+//       {
+//         $unwind: "$department",
+//       },
+//       {
+//         $project: {
+//           _id: 0,
+//           departmentName: "$department.name",
+//           employeeCount: 1,
+//         },
+//       },
+//     ]);
+//     res.status(200).json(employeeCounts);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+
+
+module.exports = {
+  addEmployee,
+  getEmployees,
+  updateEmployee,
+  deleteEmployee,
+};
