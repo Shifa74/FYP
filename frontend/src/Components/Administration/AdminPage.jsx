@@ -27,14 +27,13 @@ const AdminPage = () => {
 
   const toggleAddUserPopup = () => {
     setShowAddUserPopup(!showAddUserPopup);
-    console.log(showAddUserPopup);
   };
 
   const toggleAddGradePopup = () => {
     setShowAddGradePopup(!showAddGradePopup); // Toggle for Add Grade popup
   };
 
-  const addDepartment = (newDept) => {
+  const addOrUpdateDepartment = (newDept) => {
     const updatedDepartments = [...departments, newDept];
     setDepartments(updatedDepartments);
   };
@@ -113,12 +112,17 @@ const AdminPage = () => {
               </button>
               <AddDepartment
                 closePopup={toggleAddDeptPopup}
-                addDepartment={addDepartment}
+                addOrUpdateDepartment={addOrUpdateDepartment}
               />
             </div>
           </div>
         )}
-        {showAddUserPopup && <AddEditUser onSave={handleSaveUser} closePopup={toggleAddUserPopup} />}
+        {showAddUserPopup && (
+          <AddEditUser
+            onSave={handleSaveUser}
+            closePopup={toggleAddUserPopup}
+          />
+        )}
         {showAddGradePopup && (
           <div className="popup-overlay">
             <div className="popup-content">
