@@ -7,9 +7,9 @@ const AddDepartment = ({ closePopup, addOrUpdateDepartment, departmentToEdit }) 
 
     useEffect(() => {
         if (departmentToEdit) {
-            setName(departmentToEdit.name); // Set name if editing an existing department
+            setName(departmentToEdit.name);
         } else {
-            setName(''); // Clear name if adding a new department
+            setName('');
         }
     }, [departmentToEdit]);
 
@@ -21,19 +21,20 @@ const AddDepartment = ({ closePopup, addOrUpdateDepartment, departmentToEdit }) 
         }
 
         const newDepartment = { name };
+        console.log("Received addOrUpdateDepartment:", addOrUpdateDepartment);
+
         addOrUpdateDepartment(newDepartment);
         closePopup();
     };
 
     return (
-        <div className="popup-overlay">
-            <div className="popup">
+        <div className="deptpopup-overlay">
+            <div className="deptpopup">
                 <h2>{departmentToEdit ? 'Edit Department' : 'Add Department'}</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="departmentName">Department Name</label>
                         <input
-                            className='usersinputs'
                             type="text"
                             id="departmentName"
                             value={name}

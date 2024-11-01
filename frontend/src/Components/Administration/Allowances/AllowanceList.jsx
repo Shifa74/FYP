@@ -3,10 +3,10 @@ import './AllowanceList.css';
 
 const AllowancesPage = () => {
     const [allowances, setAllowances] = useState([
-        { id: 1, name: 'Housing', amount: 1000, type: 'Monthly' },
-        { id: 2, name: 'Transport', amount: 300, type: 'Monthly' },
-        { id: 1, name: 'Housing', amount: 1000, type: 'Monthly' },
-        { id: 2, name: 'Transport', amount: 300, type: 'Monthly' }
+        { id: 1, name: 'Housing', amount: 1000 },
+        { id: 2, name: 'Transport', amount: 300  },
+        { id: 1, name: 'Housing', amount: 1000  },
+        { id: 2, name: 'Transport', amount: 300 }
     ]);
     const [editingAllowance, setEditingAllowance] = useState(null);
     const [allowanceForm, setAllowanceForm] = useState({ name: '', amount: '', type: '' });
@@ -70,14 +70,6 @@ const AllowancesPage = () => {
                         onChange={handleInputChange}
                         required
                     />
-                    <input
-                        type="text"
-                        name="type"
-                        placeholder="Type (e.g., Monthly)"
-                        value={allowanceForm.type}
-                        onChange={handleInputChange}
-                        required
-                    />
                     
                     <button type="submit">{editingAllowance ? 'Update Allowance' : 'Add Allowance'}</button>
                 </form>
@@ -89,7 +81,6 @@ const AllowancesPage = () => {
                         <tr>
                             <th>Name</th>
                             <th>Amount</th>
-                            <th>Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -98,7 +89,6 @@ const AllowancesPage = () => {
                             <tr key={allowance.id}>
                                 <td>{allowance.name}</td>
                                 <td>{allowance.amount}</td>
-                                <td>{allowance.type}</td>
                                 <td>
                                     <div className="action-buttons">
                                         <button

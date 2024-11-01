@@ -4,7 +4,6 @@ import { FaBuilding, FaUsers, FaPlusSquare, FaUserPlus, FaMoneyBillAlt, FaMinusC
 import './AdminPage.css';
 import AddDepartment from './DepartmentManagement/AddDepartment';
 import AddEditUser from './UserManagement/AddUser';
-import AddGrade from './GradeManagement/AddGrade'; // Assuming this is your Add Grade component
 
 const AdminPage = () => {
     const [departments, setDepartments] = useState(() => {
@@ -12,7 +11,6 @@ const AdminPage = () => {
     });
     const [showAddDeptPopup, setShowAddDeptPopup] = useState(false);
     const [showAddUserPopup, setShowAddUserPopup] = useState(false);
-    const [showAddGradePopup, setShowAddGradePopup] = useState(false); // New state for Add Grade popup
 
     const toggleAddDeptPopup = () => {
         setShowAddDeptPopup(!showAddDeptPopup);
@@ -20,10 +18,6 @@ const AdminPage = () => {
 
     const toggleAddUserPopup = () => {
         setShowAddUserPopup(!showAddUserPopup);
-    };
-
-    const toggleAddGradePopup = () => {
-        setShowAddGradePopup(!showAddGradePopup); // Toggle for Add Grade popup
     };
 
     const addDepartment = (newDept) => {
@@ -46,7 +40,6 @@ const AdminPage = () => {
                 <p>Manage all aspects of your application from a single place</p>
             </div>
             <div className="dashboard-grid">
-                {/* Existing links */}
                 <Link to="/departments" className="dashboard-card">
                     <div className="card-icon"><FaBuilding /></div>
                     <h3>Manage Departments</h3>
@@ -78,11 +71,11 @@ const AdminPage = () => {
                     <p>View and manage deductions</p>
                 </Link>
 
-                {/* New Add Grade card */}
-                <Link className="dashboard-card" onClick={toggleAddGradePopup}>
+                {/* Link to Grade Management page */}
+                <Link to="/grade-management" className="dashboard-card">
                     <div className="card-icon"><FaGraduationCap /></div>
-                    <h3>Add Grade</h3>
-                    <p>Add a new grade</p>
+                    <h3>Grade Management</h3>
+                    <p>View and manage grades</p>
                 </Link>
 
                 {/* Popup components */}
@@ -99,14 +92,6 @@ const AdminPage = () => {
                         onSave={handleSaveUser}
                         closePopup={toggleAddUserPopup}
                     />
-                )}
-                {showAddGradePopup && (
-                    <div className="popup-overlay">
-                        <div className="popup-content">
-                            <button className="close-popup" onClick={toggleAddGradePopup}>X</button>
-                            <AddGrade closePopup={toggleAddGradePopup} /> {/* Add Grade component */}
-                        </div>
-                    </div>
                 )}
             </div>
         </div>

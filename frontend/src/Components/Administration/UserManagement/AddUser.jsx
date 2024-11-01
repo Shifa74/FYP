@@ -35,8 +35,8 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
     };
 
     return (
-        <div className="popup-overlay">
-            <div className="popup">
+        <div className="userpopup-overlay">
+            <div className="userpopup">
                 <h2 className='user_heading'>{initialData ? 'Edit User' : 'Add User'}</h2>
                 <form onSubmit={handleSubmit} className="add-edit-user-form">
                     <div className="form-group">

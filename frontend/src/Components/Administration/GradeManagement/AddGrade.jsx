@@ -1,39 +1,58 @@
-import React, { useState } from 'react';
-import './AddGrade.css'; // Import the unique CSS for the AddGrade component
+import React, { useState, useEffect } from 'react';
 
-const AddGrade = ({ closePopup }) => {
+const AddGrade = ({ closePopup, addGrade, currentGrade }) => {
     const [gradeName, setGradeName] = useState('');
+    const [baseSalary, setBaseSalary] = useState('');
+
+    useEffect(() => {
+        if (currentGrade) {
+            setGradeName(currentGrade.gradeName);
+            setBaseSalary(currentGrade.baseSalary);
+        } else {
+            setGradeName('');
+            setBaseSalary('');
+        }
+    }, [currentGrade]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('New Grade:', { gradeName });
-
-        setGradeName('');
+        const grade = { gradeName, baseSalary };
+        addGrade(grade);
         closePopup();
     };
 
-    // Prevent click events on the popup from propagating to the backdrop
-    const handlePopupClick = (e) => {
-        e.stopPropagation();
+    const handleBackdropClick = (e) => {
+        if (e.target.className === 'backdrop') {
+            closePopup();
+        }
     };
 
     return (
-        <div className="backdrop" onClick={closePopup}>
-            <div className="add-grade-popup" onClick={handlePopupClick}>
-                <h2>Add New Grade</h2>
+        <div className="backdrop" onClick={handleBackdropClick}>
+            <div className="add-grade-popup">
+                <h2>{currentGrade ? 'Edit Grade' : 'Add Grade'}</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="gradeName">Grade Name:</label>
+                        <label>Grade Name</label>
                         <input
                             type="text"
-                            id="gradeName"
                             value={gradeName}
                             onChange={(e) => setGradeName(e.target.value)}
                             required
                         />
                     </div>
-                    <button type="submit" className="submit-button">Add Grade</button>
+                    <div className="form-group">
+                        <label>Base Salary</label>
+                        <input
+                            type="number"
+                            value={baseSalary}
+                            onChange={(e) => setBaseSalary(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="submit-button">{currentGrade ? 'Update' : 'Add'}</button>
                 </form>
+                <button onClick={closePopup} className="close-button">Close</button>
             </div>
         </div>
     );

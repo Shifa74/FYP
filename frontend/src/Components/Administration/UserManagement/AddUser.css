@@ -54,7 +54,7 @@ user_inputinput {
 }
 
 /* Popup styling */
-.popup-overlay {
+.userpopup-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -67,7 +67,7 @@ user_inputinput {
     z-index: 1000; /* Ensure the popup is above other content */
 }
 
-.popup {
+.userpopup {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -77,12 +77,3 @@ user_inputinput {
     position: relative;
 }
 
-.close-popup {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5rem; /* Size of close button */
-    cursor: pointer;
-}

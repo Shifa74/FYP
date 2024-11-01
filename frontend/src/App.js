@@ -20,6 +20,7 @@ import AddDepartment from './Components/Administration//DepartmentManagement/Add
 import AddUser from './Components/Administration/UserManagement/AddUser';
 import ManageAllowances from './Components/Administration/Allowances/AllowanceList';
 import ManageDeductions from './Components/Administration/Deduction/DeductionPage';
+import GradeList from './Components/Administration/GradeManagement/GradeList'
 
 
 import ReportPage from './Components/Report/ReportPage';
@@ -99,6 +100,10 @@ function App() {
           path="/deductions" 
           element={<Layout><ManageDeductions /></Layout>} 
         />
+          <Route 
+          path="/grade-management" 
+          element={<Layout><GradeList /></Layout>}
+         />
       
       
       </Routes>

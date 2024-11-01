@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './DepartmentList.css';
-// import { Link } from 'react-router-dom';
 import AddDepartment from './AddDepartment';
 
 const DepartmentList = () => {
     const [departments, setDepartments] = useState([]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [departmentToEdit, setDepartmentToEdit] = useState(null); // Track department being edited
+    const [departmentToEdit, setDepartmentToEdit] = useState(null);
 
     useEffect(() => {
         const storedDepartments = JSON.parse(localStorage.getItem('departments')) || [];
@@ -22,20 +21,19 @@ const DepartmentList = () => {
     const addOrUpdateDepartment = (newDepartment) => {
         let updatedDepartments;
         if (departmentToEdit) {
-            // Update the existing department
             updatedDepartments = departments.map(dept =>
                 dept.id === departmentToEdit.id ? { ...dept, ...newDepartment } : dept
             );
         } else {
-            // Add new department
-            newDepartment.id = new Date().getTime().toString(); // Generate unique ID
+            newDepartment.id = new Date().getTime().toString(); // Unique ID for new departments
             updatedDepartments = [...departments, newDepartment];
         }
         setDepartments(updatedDepartments);
         localStorage.setItem('departments', JSON.stringify(updatedDepartments));
-        setIsPopupOpen(false); // Close the popup after submission
-        setDepartmentToEdit(null); // Reset edit state
+        setIsPopupOpen(false);
+        setDepartmentToEdit(null);
     };
+    
 
     const openAddPopup = () => {
         setDepartmentToEdit(null);
@@ -73,16 +71,17 @@ const DepartmentList = () => {
             </table>
             <button className="add-department-button" onClick={openAddPopup}>Add Department</button>
 
-            {/* Popup for Add or Edit Department */}
             {isPopupOpen && (
-                <div className="popup-overlay">
-                    <AddDepartment
-                        closePopup={() => setIsPopupOpen(false)}
-                        addOrUpdateDepartment={addOrUpdateDepartment}
-                        departmentToEdit={departmentToEdit}
-                    />
-                </div>
-            )}
+    <div className="popup-overlay">
+        <AddDepartment
+            closePopup={() => setIsPopupOpen(false)}
+            addOrUpdateDepartment={addOrUpdateDepartment} // Check this line
+            departmentToEdit={departmentToEdit}
+        />
+    </div>
+)}
+
+
         </div>
     );
 };
