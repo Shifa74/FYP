@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './UserList.css';
 import AddEditUser from './AddUser';
 
-const UserList = ({ users, onSave, onDelete }) => {
+const UserList = ({ users, onSave, onDelete, loading }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [userToEdit, setUserToEdit] = useState(null);
 
@@ -25,6 +25,7 @@ const UserList = ({ users, onSave, onDelete }) => {
             
             <div className="user-table-container">
                 <table className="user-table">
+                    {loading && <p style={{"text-align":"center"}}>Loading...</p>}
                     <thead>
                         <tr>
                             <th>User Name</th>
@@ -39,7 +40,7 @@ const UserList = ({ users, onSave, onDelete }) => {
                                 <td>{user.email}</td>
                                 <td className="user-actions">
                                     <button className="edit-button" onClick={() => openPopup(user)}>Edit</button>
-                                    <button className="delete-button" onClick={() => onDelete(user.id)}>Delete</button>
+                                    <button className="delete-button" onClick={() => onDelete(user._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

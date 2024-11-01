@@ -1,89 +1,103 @@
-import React, { useState, useEffect } from 'react';
-import './DepartmentList.css';
-import AddDepartment from './AddDepartment';
+import React, { useState, useEffect } from "react";
+import "./DepartmentList.css";
+import AddDepartment from "./AddDepartment";
+import axios from "axios";
 
 const DepartmentList = () => {
-    const [departments, setDepartments] = useState([]);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [departmentToEdit, setDepartmentToEdit] = useState(null);
-
-    useEffect(() => {
-        const storedDepartments = JSON.parse(localStorage.getItem('departments')) || [];
-        setDepartments(storedDepartments);
-    }, []);
-
-    const handleDelete = (id) => {
-        const updatedDepartments = departments.filter(dept => dept.id !== id);
-        setDepartments(updatedDepartments);
-        localStorage.setItem('departments', JSON.stringify(updatedDepartments));
+  const [departments, setDepartments] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [departmentToEdit, setDepartmentToEdit] = useState(null); // Track department being edited
+  const [refresh, setRefresh] = useState(false); 
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const res = await axios.get("/dept/employeeCountByDept");
+        console.log(res.data);
+        setDepartments(res.data);
+      } catch (error) {
+        console.log("Error fetching departments", error.message);
+      }
     };
+    fetchDepartments();
+  }, [refresh]);
 
-    const addOrUpdateDepartment = (newDepartment) => {
-        let updatedDepartments;
-        if (departmentToEdit) {
-            updatedDepartments = departments.map(dept =>
-                dept.id === departmentToEdit.id ? { ...dept, ...newDepartment } : dept
-            );
-        } else {
-            newDepartment.id = new Date().getTime().toString(); // Unique ID for new departments
-            updatedDepartments = [...departments, newDepartment];
-        }
-        setDepartments(updatedDepartments);
-        localStorage.setItem('departments', JSON.stringify(updatedDepartments));
-        setIsPopupOpen(false);
-        setDepartmentToEdit(null);
-    };
-    
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/dept/delete/${id}`);
+      setDepartments((prevDepartments) =>
+        prevDepartments.filter((dept) => dept._id !== id)
+      );
+    } catch (error) {
+      console.log("Error deleting department", error.message);
+    }
+  };
 
-    const openAddPopup = () => {
-        setDepartmentToEdit(null);
-        setIsPopupOpen(true);
-    };
+  const addOrUpdateDepartment = async (newDepartment) => {
+    setDepartments((prevDepartments) => [...prevDepartments, newDepartment]);
+    setIsPopupOpen(false);
+    setRefresh((prev) => !prev);
+  };
 
-    const openEditPopup = (department) => {
-        setDepartmentToEdit(department);
-        setIsPopupOpen(true);
-    };
+  const openAddPopup = () => {
+    setDepartmentToEdit(null);
+    setIsPopupOpen(true);
+  };
 
-    return (
-        <div className="department-list-container">
-            <h2>Manage Departments</h2>
-            <table className="department-table">
-                <thead>
-                    <tr>
-                        <th>Department Name</th>
-                        <th>Number of Employees</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {departments.map(department => (
-                        <tr key={department.id}>
-                            <td>{department.name}</td>
-                            <td>{department.employees || 0}</td>
-                            <td className="department-actions">
-                                <button onClick={() => openEditPopup(department)} className="edit-button">Edit</button>
-                                <button onClick={() => handleDelete(department.id)} className="delete-button">Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <button className="add-department-button" onClick={openAddPopup}>Add Department</button>
+  const openEditPopup = (department) => {
+    setDepartmentToEdit(department);
+    setIsPopupOpen(true);
+  };
 
-            {isPopupOpen && (
-    <div className="popup-overlay">
-        <AddDepartment
+  return (
+    <div className="department-list-container">
+      <h2>Manage Departments</h2>
+      <table className="department-table">
+        <thead>
+          <tr>
+            <th>Department Name</th>
+            <th>Number of Employees</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {departments.map((department) => (
+            <tr key={department._id}>
+              <td>{department.departmentName}</td>
+              <td>{department.employeeCount}</td>
+              <td className="department-actions">
+                <button
+                  onClick={() => openEditPopup(department)}
+                  className="edit-button"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(department._id)}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button className="add-department-button" onClick={openAddPopup}>
+        Add Department
+      </button>
+
+      {/* Popup for Add or Edit Department */}
+      {isPopupOpen && (
+        <div className="popup-overlay">
+          <AddDepartment
             closePopup={() => setIsPopupOpen(false)}
-            addOrUpdateDepartment={addOrUpdateDepartment} // Check this line
+            addOrUpdateDepartment={addOrUpdateDepartment}
             departmentToEdit={departmentToEdit}
-        />
-    </div>
-)}
-
-
+          />
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default DepartmentList;

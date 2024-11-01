@@ -22,17 +22,18 @@ const EmployeeDetails = () => {
   const [grades, setGrades] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const response = await axios.get("/employee/get");
-        setEmployees(response.data);
-        setFilteredEmployees(response.data);
-      } catch (error) {
-        console.error("Error fetching employee data", error);
-      }
-    };
+  const fetchEmployees = async () => {
+    try {
+      const response = await axios.get("/employee/get");
+      setEmployees(response.data);
+      setFilteredEmployees(response.data);
+    } catch (error) {
+      console.error("Error fetching employee data", error);
+    }
+  };
 
+  useEffect(() => { 
+    fetchEmployees()
     const fetchDepartmentsAndGrades = async () => {
       try {
         const [deptResponse, gradeResponse] = await Promise.all([
@@ -48,7 +49,6 @@ const EmployeeDetails = () => {
       }
     };
 
-    fetchEmployees();
     fetchDepartmentsAndGrades();
   }, []);
 
@@ -70,6 +70,7 @@ const EmployeeDetails = () => {
         { ...newEmployee, _id: employees.length + 1 },
       ]);
     }
+    fetchEmployees();
     setShowForm(false);
   };
 
@@ -85,6 +86,7 @@ const EmployeeDetails = () => {
         (employee) => employee._id === id
       );
       await axios.delete(`/employee/delete/${employeeToDelete._id}`);
+      fetchEmployees();
       setEmployees(employees.filter((employee) => employee._id !== id));
       setFilteredEmployees(
         filteredEmployees.filter((employee) => employee._id !== id)

@@ -6,7 +6,7 @@
     margin-top: 80px; /* Match the margin-top */
 }
 
-user_heading  h2 {
+.user_heading  h2 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -15,12 +15,12 @@ user_heading  h2 {
     margin-bottom: 15px;
 }
 
-user_labellabel {
+.user_label {
     display: block;
     margin-bottom: 5px;
 }
 
-user_inputinput {
+.user_input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -77,3 +77,7 @@ user_inputinput {
     position: relative;
 }
 
+.error-input {
+    border: 2px solid red;
+    background: rgb(234, 0, 0);
+}
