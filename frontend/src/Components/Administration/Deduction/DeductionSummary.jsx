@@ -1,8 +1,7 @@
 import React from 'react';
 import './deductionSummary.css';
 
-const DeductionSummary = () => {
-  const totalDeductions = 5000; // Placeholder for calculation logic
+const DeductionSummary = ({totalDeductions}) => {
 
   return (
     <div className="deduction-summary-container">

@@ -111,3 +111,6 @@
     width: 90%;  /* Adjust popup width for smaller screens */
   }
 }
+.err-mess{
+  color: red;
+}

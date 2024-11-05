@@ -45,7 +45,9 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
         `/attendance/getWorkingDays?month=${monthNumber}&year=${year}`
       );
       setTotalWorkingDays(response.data.workingDays);
-      console.log(`Total working days for ${month} ${year}: ${response.data.workingDays}`);
+      console.log(
+        `Total working days for ${month} ${year}: ${response.data.workingDays}`
+      );
     } catch (error) {
       console.error("Error fetching working days:", error);
       setTotalWorkingDays(0);
@@ -76,7 +78,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
     }
 
     const monthNumber = monthMap.find((m) => m.name === month)?.number;
-    console.log(monthNumber)
+    console.log(monthNumber);
     const attendanceData = {
       // _id: initialData ? initialData._id : new Date().toISOString(),  // Generate new ID if adding
       employeeId,
@@ -87,29 +89,19 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
 
     try {
       if (initialData) {
-        const res = await axios.put(
-          `/attendance/edit/${initialData._id}`,
-          attendanceData
-        );
-        console.log(res.data);
+        await axios.put(`/attendance/edit/${initialData._id}`, attendanceData);
       } else {
-        const res = await axios.post("/attendance/add", attendanceData);
-        console.log(res.data);
+        await axios.post("/attendance/add", attendanceData);
       }
       onAddAttendance(attendanceData);
       setError("");
       setIsSubmitted(false);
-      // setEmployeeId("");
-      // setPresentDays("");
-      // setYear("");
-      // setMonth("");
     } catch (error) {
       if (
         error.response &&
         error.response.data &&
         error.response.data.message
       ) {
-        // Use the message from the error response
         console.log(error.response.data.message);
         setError(error.response.data.message);
       } else {

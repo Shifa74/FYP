@@ -33,10 +33,6 @@ const AllowancesPage = () => {
   // Handle adding a new allowance
   const handleAddAllowance = async (e) => {
     e.preventDefault();
-    // if (!allowanceForm) {
-    //   setError("Fields are required");
-    //   return
-    // }
     if (!allowanceForm.allowanceType || !allowanceForm.amount) {
       setError("Both fields are required.");
       return;

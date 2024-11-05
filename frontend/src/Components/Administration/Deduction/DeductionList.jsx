@@ -21,13 +21,13 @@ const DeductionList = ({ deductions, onEdit, onDelete }) => {
               <td>
                 <button 
                   className="deduction-edit-btn"
-                  onClick={() => onEdit(deduction)} // Pass the deduction to edit
+                  onClick={() => onEdit(deduction._id)} // Pass the deduction to edit
                 >
                   Edit
                 </button>
                 <button 
                   className="deduction-delete-btn"
-                  onClick={() => onDelete(deduction)} // Pass the deduction to delete
+                  onClick={() => onDelete(deduction._id)} // Pass the deduction to delete
                 >
                   Delete
                 </button>
