@@ -54,7 +54,8 @@ const AddDepartment = ({
     <div className="popup-overlay">
       <div className="popup">
         <h2>{departmentToEdit ? "Edit Department" : "Add Department"}</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
+            {error && <p className="error-message">{error}</p>}
           <div className="form-group">
             <label htmlFor="departmentName">Department Name</label>
             <input
@@ -70,7 +71,6 @@ const AddDepartment = ({
               required
             />
           </div>
-          {error && <p className="error-message">{error}</p>}
           <button type="submit" className="submit-button">
             {departmentToEdit ? "Update Department" : "Add Department"}
           </button>

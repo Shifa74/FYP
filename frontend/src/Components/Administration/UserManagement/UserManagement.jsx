@@ -10,7 +10,7 @@ const UserManagement = () => {
   const navigate = useNavigate();
 
   const fetchUsers = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     const res = await axios.get("/users/get");
     setUsers(res.data);
     setIsLoading(false);
@@ -23,11 +23,9 @@ const UserManagement = () => {
   const handleSaveUser = async (user) => {
     try {
       if (user._id) {
-        const res = await axios.put(`/users/edit/${user._id}`, user);
-        console.log(res.data);
+        await axios.put(`/users/edit/${user._id}`, user);
       } else {
-        const res = await axios.post("/users/add", user);
-        console.log(res.data);
+        await axios.post("/users/add", user);
       }
       fetchUsers();
       navigate("/users"); // Navigate back to user list after saving

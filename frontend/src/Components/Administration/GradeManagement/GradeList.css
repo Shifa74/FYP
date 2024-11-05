@@ -223,3 +223,8 @@
         padding: 8px;
     }
 }
+
+.grade-error-message {
+    color: red;
+    margin-bottom: 10px;
+}
