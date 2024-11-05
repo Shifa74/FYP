@@ -44,32 +44,39 @@ const getEmpCountByDept = async (req, res, next) => {
       },
     ]);
 
-    res.status(200).json(employeeCounts); // Send the department employee count data as JSON
+    res.status(200).json(employeeCounts); 
   } catch (error) {
-    next(error); // Pass any errors to the error handling middleware
+    next(error);
   }
 };
 
 
 const updateDept = async (req, res, next) => {
-  const dept = await Department.findOne({ name: req.body.name });
-  if (!dept) {
-    try {
-      const updatedDept = await Department.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        {
-          new: true,
-        }
-      );
-      res.status(200).json(updatedDept);
-    } catch (error) {
-      next(error);
+  try {
+    const dept = await Department.findOne({
+      name: req.body.name,
+      _id: { $ne: req.params.id },
+    });
+    if (dept) {
+      return next(createError(422, "Department already exists"));
     }
-  } else {
-    return next(createError(422, "Department already exists"));
+    const updatedDept = await Department.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      {
+        new: true,
+      }
+    );
+
+    if (!updatedDept) {
+      return next(createError(404, "Department not found"));
+    }
+
+    res.status(200).json(updatedDept);
+  } catch (error) {
+    next(error);
   }
 };
 
