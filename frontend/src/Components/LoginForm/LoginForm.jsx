@@ -1,13 +1,13 @@
 // import { useNavigate } from 'react-router-dom';
 
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./LoginRegisterForm.css";
 import EmailPopup from "./EmailPopup";
 import OTPPopup from "./OTPPopup";
 import NewPasswordPopup from "./NewPasswordPopup";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function LoginForm({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ function LoginForm({ onLogin }) {
   const [isNewPasswordPopupOpen, setIsNewPasswordPopupOpen] = useState(false);
   const [message, setMessage] = useState("");
 
-  const navigate = useNavigate();  // Initialize the useNavigate hook
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,12 +29,16 @@ function LoginForm({ onLogin }) {
     } else {
       localStorage.removeItem("rememberedEmail");
     }
-  
+
     try {
-      const res = await axios.post("/auth/login", { email, password });
+      const res = await axios.post("/auth/login", {
+        email,
+        password,
+        rememberMe,
+      });
       console.log(res.data);
       // Assuming successful login, navigate to the dashboard
-      navigate('/dashboard');
+      navigate("/dashboard");
       if (onLogin) onLogin(); // Call onLogin to update authentication state in App
     } catch (error) {
       setEmail("");
@@ -47,7 +51,6 @@ function LoginForm({ onLogin }) {
       }
     }
   };
-  
 
   useEffect(() => {
     if (email) {
@@ -102,82 +105,92 @@ function LoginForm({ onLogin }) {
   };
 
   const navigateToRegister = () => {
-    navigate('/register');  // Navigate to the Register page
+    navigate("/register"); // Navigate to the Register page
   };
 
   return (
-   <div className="bg">
- <div className="wrapper login-container">
-      <h1>Welcome Back!</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <h2>Login to Your Account</h2>
-        {errors.email && <p className="error-message">{errors.email}</p>}
-        <div className="input-box">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            autoComplete="off"
-          />
-          <FaEnvelope className="icon" />
-        </div>
-        {errors.password && <p className="error-message">{errors.password}</p>}
-        <div className="input-box">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            autoComplete="off"
-          />
-          <FaLock className="icon" />
-          <span
-            onClick={togglePasswordVisibility}
-            className="password-toggle-icon"
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </div>
-        <div className="remember-forgot">
-          <label>
+    <div className="bg">
+      <div className="wrapper login-container">
+        <h1>Welcome Back!</h1>
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <h2>Login to Your Account</h2>
+          {errors.email && <p className="error-message">{errors.email}</p>}
+          <div className="input-box">
             <input
-              type="checkbox"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="off"
             />
-            Remember me
-          </label>
-          <a href="#!" onClick={openEmailPopup}>
-            Forgot password?
-          </a>
-        </div>
-        <button className="login-button" type="submit">Login</button>
-        <div className="register-link">
-          <p>
-            Don't have an account? <a href="#!" onClick={navigateToRegister}>Register</a>
-          </p> {/* Add onClick to navigate */}
-        </div>
-      </form>
+            <FaEnvelope className="icon" />
+          </div>
+          {errors.password && (
+            <p className="error-message">{errors.password}</p>
+          )}
+          <div className="input-box">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="off"
+            />
+            <FaLock className="icon" />
+            <span
+              onClick={togglePasswordVisibility}
+              className="password-toggle-icon"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+          <div className="remember-forgot">
+            <label>
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              Remember me
+            </label>
+            <a href="#!" onClick={openEmailPopup}>
+              Forgot password?
+            </a>
+          </div>
+          <button className="login-button" type="submit">
+            Login
+          </button>
+          <div className="register-link">
+            <p>
+              Don't have an account?{" "}
+              <a href="#!" onClick={navigateToRegister}>
+                Register
+              </a>
+            </p>{" "}
+            {/* Add onClick to navigate */}
+          </div>
+        </form>
 
-      {isEmailPopupOpen && (
-        <EmailPopup onClose={closeEmailPopup} onNext={openOTPPopup} />
-      )}
-      {isOTPPopupOpen && (
-        <OTPPopup onClose={closeOTPPopup} onNext={openNewPasswordPopup} message={message} />
-      )}
-      {isNewPasswordPopupOpen && (
-        <NewPasswordPopup
-          onClose={closeNewPasswordPopup}
-          onPasswordUpdate={handlePasswordUpdate}
-        />
-      )}
+        {isEmailPopupOpen && (
+          <EmailPopup onClose={closeEmailPopup} onNext={openOTPPopup} />
+        )}
+        {isOTPPopupOpen && (
+          <OTPPopup
+            onClose={closeOTPPopup}
+            onNext={openNewPasswordPopup}
+            message={message}
+          />
+        )}
+        {isNewPasswordPopupOpen && (
+          <NewPasswordPopup
+            onClose={closeNewPasswordPopup}
+            onPasswordUpdate={handlePasswordUpdate}
+          />
+        )}
+      </div>
     </div>
-   </div>
-
-   
   );
 }
 
