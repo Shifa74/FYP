@@ -1,3 +1,4 @@
+/* Base Styles */
 .payroll-dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -10,7 +11,7 @@
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
-  top: 80px; /* Adjusted position */
+  top: 80px;
   left: 200px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -70,7 +71,9 @@
   top: 80px;
   left: 220px;
   width: 80%;
+  flex-wrap: wrap; /* Enable wrapping for responsive design */
 }
+
 .payroll-popup-overlay {
   position: fixed;
   top: 0;
@@ -92,7 +95,6 @@
   max-width: 400px;
   position: relative;
 }
-
 
 .payroll-dashboard-card {
   background-color: #fff;
@@ -125,4 +127,60 @@
   font-size: 1.1rem;
   font-weight: 500;
   color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .payroll-dashboard-header {
+    width: calc(100% - 200px);
+    left: 150px;
+  }
+  .payroll-dashboard {
+    width: 85%;
+    left: 150px;
+  }
+}
+
+@media (max-width: 992px) {
+  .payroll-dashboard-header {
+    width: calc(100% - 150px);
+    left: 100px;
+  }
+  .payroll-dashboard {
+    width: 90%;
+    left: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .payroll-dashboard-header {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    left: 0;
+  }
+  .payroll-dashboard-header h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .payroll-dashboard {
+    width: 100%;
+    left: 0;
+    gap: 5px;
+  }
+  .payroll-dashboard-card {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 576px) {
+  .payroll-dashboard-card {
+    flex: 1 1 60%;
+    padding: 8px;
+  }
+  .payroll-generate-salary-button {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
 }

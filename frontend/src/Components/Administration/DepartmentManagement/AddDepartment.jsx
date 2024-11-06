@@ -51,15 +51,15 @@ const AddDepartment = ({
   };
 
   return (
-    <div className="popup-overlay">
-      <div className="popup">
+    <div className="deptpopup-overlay">
+      <div className="deptpopup">
         <h2>{departmentToEdit ? "Edit Department" : "Add Department"}</h2>
         <form onSubmit={handleSubmit} noValidate>
-            {error && <p className="error-message">{error}</p>}
-          <div className="form-group">
+            {error && <p className="depterror-message">{error}</p>}
+          <div className="deptform-group">
             <label htmlFor="departmentName">Department Name</label>
             <input
-              className="usersinputs"
+              className="deptusersinputs"
               type="text"
               id="departmentName"
               value={name}
@@ -71,10 +71,10 @@ const AddDepartment = ({
               required
             />
           </div>
-          <button type="submit" className="submit-button">
+          <button type="submit" className="deptsubmit-button">
             {departmentToEdit ? "Update Department" : "Add Department"}
           </button>
-          <button type="button" className="cancel-button" onClick={closePopup}>
+          <button type="button" className="deptcancel-button" onClick={closePopup}>
             Cancel
           </button>
         </form>

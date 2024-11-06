@@ -40,7 +40,7 @@ userlist-heading h2 {
 .user-table-container {
   max-height: 400px;
   overflow-y: auto;
-  overflow-x: auto; /* Allow horizontal scroll on small screens */
+  overflow-x: auto;
   margin-top: 10px;
 }
 
@@ -67,7 +67,7 @@ userlist-heading h2 {
   font-weight: bold;
   position: sticky;
   top: 0;
-  z-index: 1; /* Ensure the header stays above the table rows */
+  z-index: 1;
 }
 
 .user-table tr:nth-child(even) {
@@ -84,25 +84,26 @@ userlist-heading h2 {
   gap: 10px;
 }
 
-.edit-button, .delete-button {
+.useredit-button, .userdelete-button {
   padding: 5px 15px;
   text-decoration: none;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
+
 }
 
-.edit-button {
-  background-color: #4CAF50;
+.useredit-button {
+  background-color: #3ae5eb;
   color: white;
 }
 
-.edit-button:hover {
-  background-color: #45a049;
+.useredit-button:hover {
+  background-color: rgb(0, 0, 0);
 }
 
-.delete-button {
+.userdelete-button {
   background-color: #f44336;
   color: white;
 }
@@ -111,24 +112,94 @@ userlist-heading h2 {
   background-color: #e41e26;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Responsive Design for 1400px */
+@media (max-width: 1400px) {
   .user-list-container {
-    width: 95%;
-    left: 10px;
+    width: 80%;
+    left: 200px;
   }
-
-  .user-table-container {
-    max-height: 300px; /* Adjust height for smaller screens */
+  .user-table {
+    width: 100%;
+    padding: 10px;
   }
-
+  .user-table th, .user-table td {
+    padding: 6px;
+  }
+  
   .user-list-header {
-    flex-direction: column; /* Stack the header and button on smaller screens */
+    flex-direction: column;
     align-items: flex-start;
   }
 
   .add-user-button {
-    margin-top: 10px;
-    align-self: flex-end; /* Align button to the right in smaller screens */
+    padding: 8px 16px;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .user-list-container {
+    width: 75%;
+    left: 190px;
+  }
+  .user-table {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .user-table th, .user-table td {
+    padding: 6px;
+  }
+
+  .add-user-button {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-list-container {
+    width: 70%;
+    left: 120px;
+    padding: 15px;
+  }
+  .user-table {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .user-heading {
+    flex-direction: column; /* Stack heading and button vertically on smaller screens */
+    align-items: center;
+  }
+
+  .add-user-button {
+    margin-top: 10px; /* Add some space between title and button */
+  }
+
+  .user-table th, .user-table td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-list-container {
+    width: 20%;
+    left: 0;
+    padding: 10px;
+    top: 60px;
+  }
+  .user-table {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .user-table th, .user-table td {
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  .add-user-button {
+    padding: 6px 12px;
+    font-size: 14px;
   }
 }

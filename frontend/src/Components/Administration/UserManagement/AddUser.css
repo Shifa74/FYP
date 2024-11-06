@@ -11,16 +11,16 @@
     margin-bottom: 20px;
 }
 
-.form-group {
+.user-form-group {
     margin-bottom: 15px;
 }
 
-.user_label {
+.user-label {
     display: block;
     margin-bottom: 5px;
 }
 
-.user_input {
+.add-user-input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -28,7 +28,7 @@
     box-sizing: border-box;
 }
 
-.error-message {
+.usererror-message {
     color: red;
     margin-bottom: 10px;
 }
@@ -77,7 +77,104 @@
     position: relative;
 }
 
-.error-input {
+.user-error-input {
     border: 2px solid red;
     background: rgb(234, 0, 0);
+}
+
+
+
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .user-form-group {
+        padding: 10px;
+        margin-top: 40px;
+        font-size: 0.8rem;
+    }
+
+    .user_heading {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .user-label {
+        font-size: 0.8rem;
+    }
+
+    .add-user-input {
+        padding: 8px;
+    }
+
+    .user-submit-button, .user-cancel-button {
+        padding: 10px 2px;
+        font-size: 0.9rem;
+        width: 80%;
+        margin: 4px 40px;
+    }
+
+    .userpopup {
+        padding: 10px;
+        max-width: 40%; /* Keeps the popup centered within the screen */
+        box-shadow: none;
+        font-size: 0.8rem;
+        left: 100px;
+
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .user-form-group {
+        padding: 10px;
+        margin-top: 40px;
+        font-size: 0.8rem;
+    }
+
+    .user_heading {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .user-label {
+        font-size: 0.8rem;
+    }
+
+    .add-user-input {
+        padding: 8px;
+    }
+
+    .user-submit-button, .user-cancel-button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        margin: 4px 40px;
+    }
+
+    .userpopup {
+        padding: 10px;
+        max-width: 50%; /* Keeps the popup centered within the screen */
+        box-shadow: none;
+        /* align-items: center; */
+        font-size: 0.8rem;
+        left: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+   
+
+    .userpopup {
+        /* padding: 10px; */
+        max-width: 50%;
+        font-size: 0.9rem;
+        left:40px
+    }
+
+    .user-submit-button, .user-cancel-button {
+        padding: 10px 5px;
+        font-size: 0.9rem;
+        margin: 4px 30px;
+    }
+    
+   
 }
