@@ -1,40 +1,128 @@
+.payroll-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  width: calc(100% - 250px);
+  border-radius: 12px;
+  padding: 0 20px;
+  height: 60px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: 80px; /* Adjusted position */
+  left: 200px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.payroll-dashboard-header h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.payroll-generate-salary-button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  background-color: #005f73;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payroll-generate-salary-button:hover {
+  background-color: #007a8d;
+}
+
+.payroll-header-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.payroll-header-filters label {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.payroll-header-filters select {
+  padding: 4px;
+  border: 1px solid #d1d9dd;
+  border-radius: 6px;
+  background-color: #eef6f8;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.payroll-header-filters select:hover {
+  background-color: #dce9ec;
+  border: 1px solid #64919e;
+}
+
+/* Cards Section */
 .payroll-dashboard {
-    display: flex;
-    gap: 20px; /* Space between cards */
-    margin-bottom: 20px;
-    overflow-x: auto; /* Allows horizontal scrolling if content overflows */
-    padding: 10px; /* Add padding around the container */
-    top: 80px;
-    left: 190px;
-    position: absolute;
-  }
-  
-  .dashboard-card {
-    background-color: #eef6f8;
-    border: 2px solid #64919e;
-    border-radius: 8px;
-    padding: 20px;
-    flex: 1 1 22%; /* Flexible width with some margin to ensure cards stay on one line */
-    max-width: 22%; /* Adjust width to fit the container */
-    min-width: 270px; /* Minimum width for each card to prevent wrapping */
-    height: 100px; /* Increase height if needed */
-    box-sizing: border-box;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .dashboard-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .dashboard-card p {
-    font-size: 1.2rem;
-    margin: 5px 0;
-    color: #666;
-  }
-  
+  display: flex;
+  gap: 10px; 
+  margin-top: 20px;
+  position: relative;
+  top: 80px;
+  left: 220px;
+  width: 80%;
+}
+.payroll-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.payroll-popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+
+.payroll-dashboard-card {
+  background-color: #fff;
+  border: 2px solid #d4e1e6;
+  border-radius: 12px;
+  padding: 10px;
+  flex: 1 1 30%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payroll-dashboard-card:hover {
+  transform: translateY(-8px); /* Lift on hover */
+  border-color: #64919e;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.payroll-dashboard-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #005f73;
+  margin-bottom: 8px;
+}
+
+.payroll-dashboard-card p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}

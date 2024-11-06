@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .deduction-popup {
@@ -15,10 +16,19 @@
   padding: 30px; /* Increased padding for better spacing */
   border-radius: 12px; /* More rounded corners */
   width: 400px;
-  position: relative;
+  position: absolute;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
   animation: fadeIn 0.3s ease; /* Fade-in animation */
+  z-index: 1000; 
+  top: 20%;
+  left: 35%;
 }
+
+
+
+
+/* Ensure other styles are here */
+
 
 .deduction-form-close {
   position: absolute;

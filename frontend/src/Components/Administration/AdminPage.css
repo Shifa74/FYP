@@ -8,7 +8,7 @@
   border: 2px solid #2c3e50;
   position: relative;
   width: 100%; /* Full width */
-  max-width: 1100px; /* Adjust the maximum width as needed */
+  max-width: 1000px; /* Adjust the maximum width as needed */
   margin: 0 auto; /* Center horizontally */
   top: 90px;
   left: 90px;
@@ -37,7 +37,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Center the cards */
-  gap: 10px;
+  gap: 20px;
   width: 100%;
 }
 .popup-overlay {
@@ -64,13 +64,13 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+  padding: 25px;
   text-align: center;
   text-decoration: none;
   color: #2c3e50;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   flex: 1 1 calc(25% - 20px); /* Adjust for 4 cards per row, including gap */
-  max-width: calc(25% - 20px);
+  max-width: calc(25% - 10px);
   height: auto; /* Allow height to scale with content */
   box-sizing: border-box; /* Include padding in size */
 }

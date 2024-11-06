@@ -7,23 +7,22 @@ import Register from './Components/LoginForm/Register';
 import LoginForm from './Components/LoginForm/LoginForm';
 import Dashboard from './Components/Dashboard/Employees';
 import EmployeeDetails from './Components/Employee/EmployeeDetails';
-import  PayrollDashboard from './Components/Payroll/PayrollDashboard'
-import Administration from './Components/Administration/AdminPage'
-import Attendance from './Components/Attendance/Attendance'
+import PayrollDashboard from './Components/Payroll/PayrollDashboard';
+import Administration from './Components/Administration/AdminPage';
+import Attendance from './Components/Attendance/Attendance';
 import Layout from './Layout'; // Import the Layout component
-
+import IncentivesAndBonusesDetails from "./Components/Payroll/IncentivesAndBonusesDetails"
 
 // Import Admin page components
 import ManageDepartments from './Components/Administration/DepartmentManagement/DepartmentList';
 import ManageUsers from './Components/Administration/UserManagement/UserManagement';
-import AddDepartment from './Components/Administration//DepartmentManagement/AddDepartment';
+import AddDepartment from './Components/Administration/DepartmentManagement/AddDepartment';
 import AddUser from './Components/Administration/UserManagement/AddUser';
 import ManageAllowances from './Components/Administration/Allowances/AllowanceList';
 import ManageDeductions from './Components/Administration/Deduction/DeductionPage';
-import GradeList from './Components/Administration/GradeManagement/GradeList'
-
-
+import GradeList from './Components/Administration/GradeManagement/GradeList';
 import ReportPage from './Components/Report/ReportPage';
+import ProtectedRoute from './ProtectedRoute'; // Import the ProtectedRoute component
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,64 +47,118 @@ function App() {
         {/* Protected Routes */}
         <Route 
           path="/dashboard" 
-          element={<Layout><Dashboard /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><Dashboard /></Layout>
+            </ProtectedRoute>
+          } 
         />
         <Route 
           path="/employee" 
-          element={<Layout><EmployeeDetails /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><EmployeeDetails /></Layout>
+            </ProtectedRoute>
+          } 
         />
         <Route 
           path="/payroll" 
-          element={<Layout><PayrollDashboard/></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><PayrollDashboard /></Layout>
+            </ProtectedRoute>
+          } 
         />
         <Route 
           path="/Administration" 
-          element={<Layout><Administration /></Layout>}
-         /> 
-         <Route 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><Administration /></Layout>
+            </ProtectedRoute>
+          }
+        /> 
+        <Route 
           path="/report" 
-          element={<Layout><ReportPage /></Layout>}
-         /> 
-          <Route 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><ReportPage /></Layout>
+            </ProtectedRoute>
+          }
+        /> 
+        <Route 
           path="/Attendance" 
-          element={<Layout><Attendance /></Layout>}
-         /> 
-
-
-
-
-         
-          {/* Admin Page Routes */}
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><Attendance /></Layout>
+            </ProtectedRoute>
+          }
+        /> 
+          <Route 
+          path="/incentives-bonuses-details" 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><IncentivesAndBonusesDetails/></Layout>
+            </ProtectedRoute>
+          }
+        /> 
+        
+        {/* Admin Page Routes */}
         <Route 
           path="/departments" 
-          element={<Layout><ManageDepartments /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><ManageDepartments /></Layout>
+            </ProtectedRoute>
+          }
         />
         <Route 
           path="/users" 
-          element={<Layout><ManageUsers /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><ManageUsers /></Layout>
+            </ProtectedRoute>
+          }
         />
         <Route 
           path="/departments/add" 
-          element={<Layout><AddDepartment /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><AddDepartment /></Layout>
+            </ProtectedRoute>
+          }
         />
         <Route 
           path="/users/add" 
-          element={<Layout><AddUser /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><AddUser /></Layout>
+            </ProtectedRoute>
+          }
         />
         <Route 
           path="/allowances" 
-          element={<Layout><ManageAllowances /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><ManageAllowances /></Layout>
+            </ProtectedRoute>
+          }
         />
         <Route 
           path="/deductions" 
-          element={<Layout><ManageDeductions /></Layout>} 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><ManageDeductions /></Layout>
+            </ProtectedRoute>
+          }
         />
-          <Route 
+        <Route 
           path="/grade-management" 
-          element={<Layout><GradeList /></Layout>}
-         />
-      
-      
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><GradeList /></Layout>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

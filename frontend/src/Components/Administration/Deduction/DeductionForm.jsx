@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './DeductionForm.css';
 
-const DeductionForm = ({ onSubmit, onClose }) => {
+const DeductionForm = ({ onSubmit, onClose, deductionData }) => {
   const [deductionType, setDeductionType] = useState('');
   const [amount, setAmount] = useState('');
 
   const deductionOptions = ['Tax', 'Insurance', 'Retirement', 'Other']; // Dropdown options
 
+  // Use effect to set the form fields when editing
+  useEffect(() => {
+    if (deductionData) {
+      setDeductionType(deductionData.deductionType);
+      setAmount(deductionData.amount);
+    }
+  }, [deductionData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newDeduction = { deductionType, amount: Number(amount) };
+    const newDeduction = { ...deductionData, deductionType, amount: Number(amount) }; // Update existing deduction
     onSubmit(newDeduction);  // Pass the new deduction up to the parent component
     onClose(); // Close the popup after submitting
   };
@@ -18,7 +26,7 @@ const DeductionForm = ({ onSubmit, onClose }) => {
     <div className="deduction-popup-overlay">
       <div className="deduction-popup">
         <button onClick={onClose} className="deduction-form-close">&times;</button>
-        <h2>Add Deduction</h2>
+        <h2>{deductionData ? 'Edit Deduction' : 'Add Deduction'}</h2>
         <form className="deduction-form-container" onSubmit={handleSubmit}>
           <div className="deduction-form-group">
             <label htmlFor="deductionType" className="deduction-form-label">Deduction Type</label>
@@ -46,7 +54,9 @@ const DeductionForm = ({ onSubmit, onClose }) => {
               required
             />
           </div>
-          <button type="submit" className="deduction-form-submit">Submit</button>
+          <button type="submit" className="deduction-form-submit">
+            {deductionData ? 'Update Deduction' : 'Add Deduction'} {/* Change button text based on context */}
+          </button>
         </form>
       </div>
     </div>

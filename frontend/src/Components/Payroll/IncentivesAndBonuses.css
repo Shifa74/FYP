@@ -3,15 +3,14 @@
     padding: 8px 20px; /* Reduced padding */
     border: 2px solid #64919e;
     border-radius: 8px;
-    background-color: #eef6f8;
+    /* background-color: #eef6f8; */
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* width: 20%; */
-    max-width: 300px; /* Reduced max-width */
+    max-width: 390px; /* Reduced max-width */
     margin: 0 auto;
-    position: relative;
-    left: 200px;
-    top: 300px;
+    top: 65px;
+    left: 475px;
   }
   .heading{
     font-size: 1.0rem;
@@ -21,19 +20,23 @@
   .chart-container {
     position: relative;
     width: 100%;
-    max-width: 100px; /* Reduced max-width */
+    max-width: 120px; /* Reduced max-width */
     height: 120px; /* Reduced height */
     margin: 0 auto 8px;
   }
   
   .center-text {
     position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -65%);
-    font-size: 0.9rem; /* Reduced font size */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -40%); /* Adjust to bring the text fully inside */
+    font-size: 0.9rem;
     color: #333;
+    line-height: 1.2; /* Keeps the spacing between "Total" and the amount compact */
+    text-align: center; /* Centers text alignment */
   }
+  
+  
   
   .legend {
     display: flex;
