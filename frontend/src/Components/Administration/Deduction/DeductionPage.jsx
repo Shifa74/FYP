@@ -27,7 +27,14 @@ const DeductionPage = () => {
     setDeductions([...deductions, newDeduction]);
     setShowForm(false); // Close popup after submit
   };
+  const handleEdit = (deduction) => {
+    setCurrentDeduction(deduction); // Set deduction to be edited
+    setShowForm(true); // Open form
+  };
 
+  const handleDelete = (deduction) => {
+    setDeductions(deductions.filter(d => d.id !== deduction.id)); // Remove deduction
+  };
   return (
     <div className="deduction-page-container">
       <div className="heading-button-container">
