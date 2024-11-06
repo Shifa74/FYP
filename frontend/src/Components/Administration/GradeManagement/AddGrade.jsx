@@ -1,61 +1,88 @@
-import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 const AddGrade = ({ closePopup, addGrade, currentGrade }) => {
-    const [gradeName, setGradeName] = useState('');
-    const [baseSalary, setBaseSalary] = useState('');
+  const [gradeNo, setGradeNo] = useState("");
+  const [baseSalary, setBaseSalary] = useState("");
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-        if (currentGrade) {
-            setGradeName(currentGrade.gradeName);
-            setBaseSalary(currentGrade.baseSalary);
-        } else {
-            setGradeName('');
-            setBaseSalary('');
-        }
-    }, [currentGrade]);
+  useEffect(() => {
+    if (currentGrade) {
+      setGradeNo(currentGrade.gradeNo);
+      setBaseSalary(currentGrade.baseSalary);
+    } else {
+      setGradeNo("");
+      setBaseSalary("");
+    }
+  }, [currentGrade]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const grade = { gradeName, baseSalary };
-        addGrade(grade);
-        closePopup();
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const grade = { gradeNo, baseSalary };
+    try {
+      let res;
+      if (currentGrade && currentGrade._id) {
+        res = await axios.put(`/grade/edit/${currentGrade._id}`, grade);
+      } else {
+        res = await axios.post("/grade/add", grade);
+      }
+      addGrade(res.data);
+      closePopup();
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+        console.log(error.response.data.message);
+      }
+    }
+  };
 
-    const handleBackdropClick = (e) => {
-        if (e.target.className === 'backdrop') {
-            closePopup();
-        }
-    };
+  const handleBackdropClick = (e) => {
+    if (e.target.className === "backdrop") {
+      closePopup();
+    }
+  };
 
-    return (
-        <div className="backdrop" onClick={handleBackdropClick}>
-            <div className="add-grade-popup">
-                <h2>{currentGrade ? 'Edit Grade' : 'Add Grade'}</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label>Grade Name</label>
-                        <input
-                            type="text"
-                            value={gradeName}
-                            onChange={(e) => setGradeName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Base Salary</label>
-                        <input
-                            type="number"
-                            value={baseSalary}
-                            onChange={(e) => setBaseSalary(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="submit-button">{currentGrade ? 'Update' : 'Add'}</button>
-                </form>
-                <button onClick={closePopup} className="close-button">Close</button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="backdrop" onClick={handleBackdropClick}>
+      <div className="add-grade-popup">
+        <h2>{currentGrade ? "Edit Grade" : "Add Grade"}</h2>
+        <form onSubmit={handleSubmit} noValidate>
+            {error && <p className="grade-error-message">{error}</p>}
+          <div className="form-group">
+            <label>Grade No</label>
+            <input
+              type="text"
+              value={gradeNo}
+              onChange={(e) => {
+                setGradeNo(e.target.value);
+                setError("");
+              }}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Base Salary</label>
+            <input
+              type="number"
+              value={baseSalary}
+              onChange={(e) => setBaseSalary(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="submit-button">
+            {currentGrade ? "Update" : "Add"}
+          </button>
+        </form>
+        <button onClick={closePopup} className="close-button">
+          Close
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default AddGrade;

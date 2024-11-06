@@ -1,5 +1,5 @@
-import React from 'react';
-import './DeductionList.css';
+import React from "react";
+import "./DeductionList.css";
 
 const DeductionList = ({ deductions, onEdit, onDelete }) => {
   return (
@@ -14,8 +14,8 @@ const DeductionList = ({ deductions, onEdit, onDelete }) => {
           </tr>
         </thead>
         <tbody>
-          {deductions.map((deduction, index) => (
-            <tr key={index}>
+          {deductions.map((deduction) => (
+            <tr key={deduction._id}>
               <td>{deduction.deductionType}</td>
               <td>${deduction.amount.toFixed(2)}</td>
               <td>
@@ -38,6 +38,6 @@ const DeductionList = ({ deductions, onEdit, onDelete }) => {
       </table>
     </div>
   );
-}
+};
 
 export default DeductionList;

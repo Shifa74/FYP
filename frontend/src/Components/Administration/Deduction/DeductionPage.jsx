@@ -1,42 +1,31 @@
-import React, { useState } from 'react';
-import DeductionForm from './DeductionForm';
-import DeductionList from './DeductionList';
-import DeductionSummary from './DeductionSummary';
-import './DeductionPage.css';
+import React, { useEffect, useState } from "react";
+import DeductionForm from "./DeductionForm";
+import DeductionList from "./DeductionList";
+import DeductionSummary from "./DeductionSummary";
+import "./DeductionPage.css";
+import axios from "axios";
 
 const DeductionPage = () => {
-  const [deductions, setDeductions] = useState([
-    { employeeId: 1, deductionType: 'Tax', amount: 200 },
-    { employeeId: 2, deductionType: 'Insurance', amount: 150 },
-    { employeeId: 1, deductionType: 'Tax', amount: 200 },
-    { employeeId: 2, deductionType: 'Insurance', amount: 150 },
-    { employeeId: 1, deductionType: 'Tax', amount: 200 },
-    { employeeId: 2, deductionType: 'Insurance', amount: 150 },
-    // Add more initial deductions if needed
-  ]); // Initial deductions list
-
+  const [deductions, setDeductions] = useState([]); // Initial deductions list
   const [showForm, setShowForm] = useState(false);
+
+  const fetchDeductions = async () => {
+    try {
+      const res = await axios.get("/deduction/get");
+      setDeductions(res.data);
+    } catch (error) {
+      console.log("Error fetching deductions", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchDeductions();
+  }, [])
   const [currentDeduction, setCurrentDeduction] = useState(null); // Store deduction being edited
 
   const handleFormSubmit = (newDeduction) => {
-    if (newDeduction.employeeId) { // Update existing deduction
-      setDeductions(deductions.map(deduction => 
-        deduction.employeeId === newDeduction.employeeId ? newDeduction : deduction
-      ));
-    } else { // Add new deduction
-      setDeductions([...deductions, newDeduction]);
-    }
+    setDeductions([...deductions, newDeduction]);
     setShowForm(false); // Close popup after submit
-    setCurrentDeduction(null); // Reset current deduction
-  };
-
-  const handleEdit = (deduction) => {
-    setCurrentDeduction(deduction); // Set deduction to be edited
-    setShowForm(true); // Open form
-  };
-
-  const handleDelete = (deduction) => {
-    setDeductions(deductions.filter(d => d.employeeId !== deduction.employeeId)); // Remove deduction
   };
 
   return (
@@ -54,11 +43,17 @@ const DeductionPage = () => {
 
       {showForm && (
         <>
-          <div className="popup-overlay" onClick={() => setShowForm(false)}></div>
+          <div
+            className="popup-overlay"
+            onClick={() => setShowForm(false)}
+          ></div>
           <div className="popup-form-container">
-            <DeductionForm 
-              onSubmit={handleFormSubmit} 
-              onClose={() => setShowForm(false)} 
+            <DeductionForm
+              
+              onSubmit={handleFormSubmit}
+              
+              onClose={() => setShowForm(false)}
+            
               deductionData={currentDeduction} // Pass current deduction to form
             />
           </div>
@@ -70,7 +65,12 @@ const DeductionPage = () => {
         onEdit={handleEdit} // Handle edit button click
         onDelete={handleDelete} // Handle delete button click
       />
-      <DeductionSummary totalDeductions={deductions.reduce((sum, deduction) => sum + deduction.amount, 0)} />
+      <DeductionSummary
+        totalDeductions={deductions.reduce(
+          (sum, deduction) => sum + deduction.amount,
+          0
+        )}
+      />
     </div>
   );
 };

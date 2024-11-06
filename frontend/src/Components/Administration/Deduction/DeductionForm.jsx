@@ -1,11 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
 import './DeductionForm.css';
 
 const DeductionForm = ({ onSubmit, onClose, deductionData }) => {
   const [deductionType, setDeductionType] = useState('');
   const [amount, setAmount] = useState('');
-
-  const deductionOptions = ['Tax', 'Insurance', 'Retirement', 'Other']; // Dropdown options
+  
+  const deductionOptions = ['Tax', 'Insurance', 'Retirement', 'Other'];
 
   // Use effect to set the form fields when editing
   useEffect(() => {
@@ -18,8 +19,8 @@ const DeductionForm = ({ onSubmit, onClose, deductionData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newDeduction = { ...deductionData, deductionType, amount: Number(amount) }; // Update existing deduction
-    onSubmit(newDeduction);  // Pass the new deduction up to the parent component
-    onClose(); // Close the popup after submitting
+    onSubmit(newDeduction);
+    onClose();
   };
 
   return (
@@ -30,18 +31,19 @@ const DeductionForm = ({ onSubmit, onClose, deductionData }) => {
         <form className="deduction-form-container" onSubmit={handleSubmit}>
           <div className="deduction-form-group">
             <label htmlFor="deductionType" className="deduction-form-label">Deduction Type</label>
-            <select
+            <input
               id="deductionType"
               className="deduction-form-input"
+              list="deductionOptions" // Allows autocomplete with options
               value={deductionType}
               onChange={(e) => setDeductionType(e.target.value)}
               required
-            >
-              <option value="">Select Type</option>
+            />
+            <datalist id="deductionOptions">
               {deductionOptions.map((option, index) => (
-                <option key={index} value={option}>{option}</option>
+                <option key={index} value={option} />
               ))}
-            </select>
+            </datalist>
           </div>
           <div className="deduction-form-group">
             <label htmlFor="amount" className="deduction-form-label">Amount</label>

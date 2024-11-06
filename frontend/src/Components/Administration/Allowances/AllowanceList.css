@@ -8,12 +8,14 @@
     left: 12vw;
     transition: all 0.3s ease;
     box-sizing: border-box;
-    background-color: #b1cfec;  /* Light background for the page */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+    background-color: #b1cfec;
+    /* Light background for the page */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
 }
 
 /* Heading styles */
-.allowances-heading  {
+.allowances-heading {
     text-align: left;
     margin-bottom: 2vh;
     font-size: 1.8vw;
@@ -30,10 +32,12 @@
     gap: 1.5vw;
     justify-content: space-between;
     transition: all 0.3s ease;
-    background-color: #fff;  /* White background for form */
+    background-color: #fff;
+    /* White background for form */
     padding: 7px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Shadow around form */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Shadow around form */
 }
 
 /* Form input styling */
@@ -73,12 +77,15 @@
 /* Table styling */
 .allowances-table {
     margin-top: 2vh;
-    max-height: 50vh;  /* Table height limit */
-    overflow-y: auto;  /* Scroll on vertical axis */
+    max-height: 50vh;
+    /* Table height limit */
+    overflow-y: auto;
+    /* Scroll on vertical axis */
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Shadow for table */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Shadow for table */
 }
 
 .allowances-table table {
@@ -115,7 +122,8 @@
     gap: 2px;
 }
 
-.edit-btn, .delete-btn {
+.edit-btn,
+.delete-btn {
     padding: 0.5vw 1.5vw;
     color: white;
     border: none;
@@ -168,7 +176,8 @@
         font-size: 1.8vw;
     }
 
-    .allowances-table th, .allowances-table td {
+    .allowances-table th,
+    .allowances-table td {
         font-size: 1.6vw;
         padding: 1vh;
     }
@@ -198,7 +207,8 @@
         padding: 1.5vh;
     }
 
-    .allowances-table th, .allowances-table td {
+    .allowances-table th,
+    .allowances-table td {
         font-size: 2vw;
         padding: 0.8vh;
     }
@@ -207,7 +217,8 @@
         flex-direction: column;
     }
 
-    .edit-btn, .delete-btn {
+    .edit-btn,
+    .delete-btn {
         font-size: 2vw;
         padding: 1vh 1vh;
     }
@@ -225,21 +236,32 @@
         font-size: 4vw;
     }
 
-    .allowance-form input, 
+    .allowance-form input,
     .allowance-form button {
         width: 100%;
         font-size: 3vw;
         padding: 1.5vh;
     }
 
-    .allowances-table th, 
+    .allowances-table th,
     .allowances-table td {
         font-size: 2.5vw;
         padding: 1vh;
     }
 
-    .edit-btn, .delete-btn {
+    .edit-btn,
+    .delete-btn {
         font-size: 2.8vw;
         padding: 1.2vh 1.5vh;
     }
+}
+
+.err-mess {
+    color: #c9302c;
+}
+
+.err-mess1 {
+    border: 2px solid #c9302c;
+    background-color: #ffe6e6;
+
 }

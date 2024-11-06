@@ -1,85 +1,111 @@
-import React, { useState } from 'react';
-import AddGrade from './AddGrade';
-import './GradeList.css';
+import React, { useState, useEffect } from "react";
+import AddGrade from "./AddGrade";
+import "./GradeList.css";
+import axios from "axios";
 
 const GradeList = () => {
-    const [grades, setGrades] = useState([]);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [currentGradeIndex, setCurrentGradeIndex] = useState(null); // To store the index of the grade being edited
+  const [grades, setGrades] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [currentGradeIndex, setCurrentGradeIndex] = useState(null); // To store the index of the grade being edited
 
-    // Add or update a grade in the list
-    const addGrade = (grade) => {
-        if (currentGradeIndex !== null) {
-            // If editing, replace the current grade
-            const updatedGrades = grades.map((g, index) =>
-                index === currentGradeIndex ? grade : g
-            );
-            setGrades(updatedGrades);
-            setCurrentGradeIndex(null); // Reset currentGradeIndex after updating
-        } else {
-            // If adding, append the new grade
-            setGrades([...grades, grade]);
-        }
+  useEffect(() => {
+    const fetchGrades = async () => {
+      try {
+        const res = await axios.get("/grade/get");
+        setGrades(res.data);
+      } catch (error) {
+        console.error("Error fetching grade", error.message);
+      }
     };
+    fetchGrades();
+  }, []);
 
-    // Show the AddGrade popup
-    const openPopup = (index = null) => {
-        if (index !== null) {
-            setCurrentGradeIndex(index);
-        }
-        setIsPopupOpen(true);
-    };
+  // Add or update a grade in the list
+  const addGrade = (grade) => {
+    if (currentGradeIndex) {
+      // If editing, replace the current grade
+      setGrades((prev) =>
+        prev.map((g) => (g._id === grade._id ? grade : g))
+      );
+    } else {
+      // If adding, append the new grade
+      setGrades((prev) => [...prev, grade]);
+    }
+  };
 
-    // Close the AddGrade popup
-    const closePopup = () => {
-        setIsPopupOpen(false);
-        setCurrentGradeIndex(null); // Reset on close
-    };
+  // Show the AddGrade popup
+  const openPopup = (grade = null) => {
+    setCurrentGradeIndex(grade);
+    setIsPopupOpen(true);
+  };
 
-    // Delete a grade by index
-    const deleteGrade = (index) => {
-        const updatedGrades = grades.filter((_, i) => i !== index);
-        setGrades(updatedGrades);
-    };
+  // Close the AddGrade popup
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    setCurrentGradeIndex(null); // Reset on close
+  };
 
-    return (
-        <div className="grade-list-container">
-            <div className="header-container">
-                <h2>Grade List</h2>
-                <button onClick={() => openPopup()} className="add-grade-button">Add Grade</button>
-            </div>
+  // Delete a grade by id
+  const deleteGrade = async (id) => {
+    try {
+      await axios.delete(`/grade/delete/${id}`);
+      const updatedGrades = grades.filter((grade) => grade._id !== id);
+      setGrades(updatedGrades);
+    } catch (error) {
+      console.error("Error deleting grade", error.message);
+    }
+  };
 
-            <table className="grade-table">
-                <thead>
-                    <tr>
-                        <th>Grade Name</th>
-                        <th>Base Salary</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {grades.map((grade, index) => (
-                        <tr key={index}>
-                            <td>{grade.gradeName}</td>
-                            <td>{grade.baseSalary}</td>
-                            <td>
-                                <button onClick={() => openPopup(index)} className="edit-button">Edit</button>
-                                <button onClick={() => deleteGrade(index)} className="delete-button">Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+  return (
+    <div className="grade-list-container">
+      <div className="header-container">
+        <h2>Grade List</h2>
+        <button onClick={() => openPopup()} className="add-grade-button">
+          Add Grade
+        </button>
+      </div>
 
-            {isPopupOpen && (
-                <AddGrade
-                    closePopup={closePopup}
-                    addGrade={addGrade}
-                    currentGrade={grades[currentGradeIndex]} // Pass current grade for editing
-                />
-            )}
-        </div>
-    );
+      <table className="grade-table">
+        <thead>
+          <tr>
+            <th>Grade Name</th>
+            <th>Base Salary</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {grades.map((grade) => (
+            <tr key={grade._id}>
+              <td>{grade.gradeNo}</td>
+              <td>{grade.baseSalary}</td>
+              <td>
+                <button
+                  onClick={() => openPopup(grade)}
+                  className="edit-button"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => deleteGrade(grade._id)}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {isPopupOpen && (
+        <AddGrade
+          closePopup={closePopup}
+          addGrade={addGrade}
+          currentGrade={currentGradeIndex} // Pass current grade for editing
+        />
+      )}
+    </div>
+  );
 };
 
 export default GradeList;
