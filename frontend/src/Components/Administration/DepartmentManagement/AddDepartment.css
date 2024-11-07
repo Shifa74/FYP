@@ -1,9 +1,8 @@
-.add-department-container {
+.deptform-group {
     padding: 20px;
     max-width: 600px;
     margin: 0 auto;
-    border: 2px solid #008CBA;
-    margin-top: 80px;
+    /* margin-top: 80px; */
 }
 
 h2 {
@@ -11,7 +10,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-.form-group {
+.deptform-group {
     margin-bottom: 15px;
 }
 
@@ -20,7 +19,7 @@ label {
     margin-bottom: 5px;
 }
 
-.usersinputs {
+.deptusersinputs {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -28,26 +27,26 @@ label {
     box-sizing: border-box;
 }
 
-.error-message {
+.depterror-message {
     color: red;
     margin-bottom: 10px;
 }
 
-.submit-button, .cancel-button {
+.deptsubmit-button, .deptcancel-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 4px;
+    width: 90%;
+    margin: 4px 30px;
 }
 
-.submit-button {
+.deptsubmit-button {
     background-color: #4CAF50;
     color: white;
 }
 
-.cancel-button {
+.deptcancel-button {
     background-color: #f44336;
     color: white;
 }
@@ -59,19 +58,19 @@ label {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark background overlay */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure the popup is above other content */
+    z-index: 1000;
 }
 
-.deptpopup {
+.deptpopup { 
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    max-width: 600px; /* Match the max-width of department popup */
+    max-width: 600px;
     width: 100%;
     position: relative;
 }
@@ -84,4 +83,152 @@ label {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .deptform-group {
+        padding: 10px;
+        margin-top: 40px;
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .deptform-group label {
+        font-size: 0.8rem;
+    }
+
+    .usersinputs {
+        padding: 8px;
+    }
+
+    .deptsubmit-button, .deptcancel-button {
+        padding: 10px 6px;
+        font-size: 0.8rem;
+        margin: 4px 27px;
+    }
+
+    .deptpopup {
+        padding: 10px;
+        max-width: 40%; /* Keeps the popup centered within the screen */
+        box-shadow: none;
+        font-size: 0.8rem;
+        left: 100px;
+
+    }
+
+    .close-popup {
+        font-size: 1.2rem;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .deptform-group {
+        padding: 10px;
+        margin-top: 40px;
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .deptform-group label {
+        font-size: 0.8rem;
+    }
+
+    .usersinputs {
+        padding: 8px;
+    }
+
+    .deptsubmit-button, .deptcancel-button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        margin: 4px 26px;
+    }
+
+    .deptpopup {
+        padding: 10px;
+        max-width: 50%; /* Keeps the popup centered within the screen */
+        box-shadow: none;
+        /* align-items: center; */
+        font-size: 0.8rem;
+        left: 70px;
+    }
+
+    .close-popup {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .deptform-group {
+        padding: 15px;
+        margin-top: 60px;
+        font-size: 0.9rem;
+        left: 300px;
+    }
+
+    .deptpopup {
+        padding: 15px;
+        max-width: 90%;
+        font-size: 0.9rem;
+    }
+
+    .deptsubmit-button, .deptcancel-button {
+        padding: 10px 5px;
+        font-size: 0.9rem;
+        margin: 4px 15px;
+    }
+    
+    .deptpopup {
+        padding: 10px;
+        max-width: 50%; /* Keeps the popup centered within the screen */
+        box-shadow: none;
+        font-size: 0.8rem;
+        left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .deptform-group {
+        padding: 10px;
+        margin-top: 40px;
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .deptform-group label {
+        font-size: 0.8rem;
+    }
+
+    .usersinputs {
+        padding: 8px;
+    }
+
+    .deptsubmit-button, .deptcancel-button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .deptpopup {
+        padding: 10px;
+        max-width: 30%; /* Keeps the popup centered within the screen */
+        box-shadow: none;
+        font-size: 0.8rem;
+    }
+
+    .close-popup {
+        font-size: 1.2rem;
+    }
 }

@@ -228,3 +228,45 @@
     color: red;
     margin-bottom: 10px;
 }
+
+
+@media (max-width: 768px) {
+    .grade-list-container {
+        width: calc(100% - 150px);
+        left: 60px;
+        right: 20px;
+        top: 80px;
+        padding: 15px;
+    }
+
+    .add-grade-button {
+        width: 140px;
+        font-size: 14px;
+    }
+
+    .grade-table th, .grade-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .add-grade-popup {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .add-grade-popup h2 {
+        font-size: 20px;
+    }
+
+    .add-grade-popup input[type="text"],
+    .add-grade-popup input[type="number"],
+    .add-grade-popup .submit-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+.grade-error-message {
+    color: red;
+    margin-bottom: 10px;
+}

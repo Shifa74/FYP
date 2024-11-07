@@ -67,13 +67,14 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
           {initialData ? "Edit User" : "Add User"}
         </h2>
         <form onSubmit={handleSubmit} noValidate className="add-edit-user-form">
-          <div className="form-group">
-            {error && <p className="error-message">{error}</p>}
-            <label className="user_label" htmlFor="userName">
+
+          <div className="user-form-group">
+            {error && <p className="user-error-message">{error}</p>}
+            <label className="user-label" htmlFor="userName">
               User Name:
             </label>
             <input
-              className="user_input"
+              className="add-user-input"
               type="text"
               id="userName"
               value={name}
@@ -82,12 +83,12 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
               required
             />
           </div>
-          <div className="form-group">
-            <label className="user_label" htmlFor="userEmail">
+          <div className="user-form-group">
+            <label className="user-label" htmlFor="userEmail">
               Email:
             </label>
             <input
-              className={`user_input ${error ? "error-input" : ""}`}
+              className={`add-user-input ${error ? "user-error-input" : ""}`}
               type="email"
               id="userEmail"
               value={email}

@@ -50,7 +50,12 @@ const DepartmentList = () => {
 
   return (
     <div className="department-list-container">
-      <h2>Manage Departments</h2>
+    <div className="department-heading">
+        <h2 className="department-page-title">Manage Departments</h2>
+        <button className="add-department-button" onClick={openAddPopup}>
+          Add Department
+        </button>
+      </div>
       <table className="department-table">
         <thead>
           <tr>
@@ -82,9 +87,7 @@ const DepartmentList = () => {
           ))}
         </tbody>
       </table>
-      <button className="add-department-button" onClick={openAddPopup}>
-        Add Department
-      </button>
+     
 
       {/* Popup for Add or Edit Department */}
       {isPopupOpen && (
