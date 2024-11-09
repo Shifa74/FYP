@@ -2,7 +2,6 @@ const createError = require("../error");
 const Attendance = require("../models/Attendance");
 const Employee = require("../models/Employee");
 const { getWorkingDays } = require("../utils/workingDays");
-const { getCustomHolidays, getIslamicHolidays } = require("../utils/holidays");
 
 // ADD ATTENDANCE
 const addAttendance = async (req, res, next) => {
@@ -13,11 +12,6 @@ const addAttendance = async (req, res, next) => {
     if (!employee) {
       return next(createError(404, "Employee not found."));
     }
-
-    const totalWorkingDays = getWorkingDays(req.body.month, req.body.year);
-    const presentDays = req.body.presentDays;
-    const absentDays = totalWorkingDays - presentDays;
-    console.log("absent days", absentDays);
 
     // Check if attendance record already exists for the same employee and date
     const existingAttendance = await Attendance.findOne({

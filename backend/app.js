@@ -8,7 +8,8 @@ const deptRoutes = require("./routes/department");
 const gradeRoutes = require("./routes/grade");
 const allowanceRoutes = require("./routes/allowance");
 const deductionRoutes = require("./routes/deduction");
-const usersRoute = require("./routes/users");
+const usersRoutes = require("./routes/users");
+const salaryRoutes = require("./routes/salary");
 const cookieParser = require("cookie-parser");
 const app = express();
 
@@ -25,7 +26,8 @@ app.use("/api/grade", gradeRoutes);
 app.use("/api/dept", deptRoutes);
 app.use("/api/allowance", allowanceRoutes);
 app.use("/api/deduction", deductionRoutes);
-app.use("/api/users", usersRoute);
+app.use("/api/users", usersRoutes);
+app.use("/api/salary", salaryRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

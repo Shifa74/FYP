@@ -29,7 +29,7 @@ const signup = async (req, res, next) => {
 // LOGIN
 
 const login = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password,rememberMe } = req.body;
   try {
     const adminExist = await Admin.findOne({ email: email });
     if (!adminExist) return next(createError(400, "User not found.", "email"));
@@ -38,7 +38,9 @@ const login = async (req, res, next) => {
     if (!isMatch)
       return next(createError(400, "Incorrect Password", "password"));
 
-    const token = jwt.sign({ id: adminExist._id }, process.env.JWT);
+    const jwtExpiration = rememberMe ? '30d' : '1h';
+
+    const token = jwt.sign({ id: adminExist._id }, process.env.JWT,  { expiresIn: jwtExpiration });
     res
       .cookie("access_token", token, {
         httpOnly: true,

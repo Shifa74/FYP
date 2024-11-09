@@ -1,5 +1,5 @@
 const createError = require("../error");
-const Allowance = require("../models/Allownace");
+const Allowance = require("../models/Allowance");
 
 // ADD ALLOWANCE
 const addAllowance = async (req, res, next) => {

@@ -1,5 +1,4 @@
 const createError = require("../error");
-const { findByIdAndUpdate } = require("../models/Allownace");
 const Deduction = require("../models/Deduction");
 
 // ADD DEDUCTION
