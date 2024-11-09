@@ -8,6 +8,7 @@ const GenerateSalary = ({ onClose }) => {
   const [employeeId, setEmployeeId] = useState('');
   const [deductions, setDeductions] = useState('');
   const [allowances, setAllowances] = useState('');
+  const [overtimeHours, setOvertimeHours] = useState('');
   const navigate = useNavigate();
 
   const handleGenerateSalary = () => {
@@ -16,28 +17,49 @@ const GenerateSalary = ({ onClose }) => {
       return;
     }
 
-    const salaryData = [
-      {
-        id: employeeId,
-        employeeName: 'SHAHRIYAR',
-        date: `${selectedMonth} ${selectedYear}`,
-        baseAmount: 3500,
-        deductions: parseFloat(deductions) || 0,
-        allowances: parseFloat(allowances) || 0,
-        netAmount: 3500 - (parseFloat(deductions) || 0) + (parseFloat(allowances) || 0),
-      },
-    ];
+    const baseAmount = 3500;
+    const overtimeRate = 20; // Rate per hour for overtime
+    const overtimePay = (parseFloat(overtimeHours) || 0) * overtimeRate;
 
-    localStorage.setItem('salaryData', JSON.stringify(salaryData));
+    const netAmount = baseAmount - (parseFloat(deductions) || 0) + 
+                      (parseFloat(allowances) || 0) + overtimePay;
+
+    const salaryData = {
+      id: employeeId,
+      employeeName: 'SHAHRIYAR',
+      date: `${selectedMonth} ${selectedYear}`,
+      baseAmount,
+      deductions: parseFloat(deductions) || 0,
+      allowances: parseFloat(allowances) || 0,
+      overtimeHours: parseFloat(overtimeHours) || 0,
+      overtimePay,
+      netAmount,
+    };
+
+    // Retrieve current salary data from localStorage and update it
+    const existingData = JSON.parse(localStorage.getItem('salaryData')) || [];
+    existingData.push(salaryData);
+    localStorage.setItem('salaryData', JSON.stringify(existingData));
+
     alert('Salary data generated successfully!');
+    resetForm();
     onClose();
-    navigate('/salary-list');
+    navigate('/Salary-List');
   };
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains('salary-modal-overlay')) {
       onClose();
     }
+  };
+
+  const resetForm = () => {
+    setSelectedMonth('');
+    setSelectedYear('');
+    setEmployeeId('');
+    setDeductions('');
+    setAllowances('');
+    setOvertimeHours('');
   };
 
   return (
@@ -92,6 +114,13 @@ const GenerateSalary = ({ onClose }) => {
             placeholder="Allowances"
             value={allowances}
             onChange={(e) => setAllowances(e.target.value)}
+            className="salary-input-field"
+          />
+          <input
+            type="number"
+            placeholder="Overtime Hours"
+            value={overtimeHours}
+            onChange={(e) => setOvertimeHours(e.target.value)}
             className="salary-input-field"
           />
         </div>

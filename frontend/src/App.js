@@ -11,8 +11,7 @@ import PayrollDashboard from './Components/Payroll/PayrollDashboard';
 import Administration from './Components/Administration/AdminPage';
 import Attendance from './Components/Attendance/Attendance';
 import Layout from './Layout'; // Import the Layout component
-import IncentivesAndBonusesDetails from "./Components/Payroll/IncentivesAndBonusesDetails"
-
+import SalaryList from "./Components/Payroll/SalaryList";
 // Import Admin page components
 import ManageDepartments from './Components/Administration/DepartmentManagement/DepartmentList';
 import ManageUsers from './Components/Administration/UserManagement/UserManagement';
@@ -94,14 +93,14 @@ function App() {
           }
         /> 
           <Route 
-          path="/incentives-bonuses-details" 
+          path="/Salary-List" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><IncentivesAndBonusesDetails/></Layout>
+              <Layout><SalaryList/></Layout>
             </ProtectedRoute>
           }
         /> 
-        
+ 
         {/* Admin Page Routes */}
         <Route 
           path="/departments" 

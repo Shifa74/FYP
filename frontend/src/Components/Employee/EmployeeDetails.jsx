@@ -29,6 +29,8 @@ const EmployeeDetails = () => {
       setFilteredEmployees(response.data);
     } catch (error) {
       console.error("Error fetching employee data", error);
+    } finally {
+      setLoading(false); // Stop loading after fetching data
     }
   };
 
@@ -177,14 +179,19 @@ const EmployeeDetails = () => {
               <th style={{ width: "200px" }}>Phone Number</th>
               <th className="wide-column">Email</th>
               <th style={{ width: "350px" }}>Date of Joining</th>
-              <th className="wider-column" style={{ width: "500px" }}>
-                City
-              </th>
+              <th className="wider-column" style={{ width: "500px" }}>City</th>
               <th style={{ width: "150px" }}>Actions</th>
             </tr>
+            {loading && (
+              <tr className="loading-row">
+                <td colSpan="11" className="loading-text">
+                  Loading...
+                </td>
+              </tr>
+            )}
           </thead>
           <tbody>
-            {currentEmployees.length > 0 ? (
+            {!loading && currentEmployees.length > 0 ? (
               currentEmployees.map((employee) => (
                 <tr key={employee._id}>
                   <td>{employee.employeeId}</td>
@@ -259,25 +266,22 @@ const EmployeeDetails = () => {
           </button>
         </div>
       </div>
-
+  
       {showForm && (
         <>
-        <div className="backdrop" onClick={handleCloseForm}></div>
-        <ShadowContainer
-          employee={editingEmployee}
-          onSubmit={handleFormSubmit}
-          departments={departments}
-          grades={grades}
-          loading={loading}
-          onClose={handleCloseForm} // Pass the handleCloseForm function
-        />
+          <div className="backdrop" onClick={handleCloseForm}></div>
+          <ShadowContainer
+            employee={editingEmployee}
+            onSubmit={handleFormSubmit}
+            departments={departments}
+            grades={grades}
+            loading={loading}
+            onClose={handleCloseForm}
+          />
         </>
       )}
     </div>
-
-
-
   );
-};
+}  
 
 export default EmployeeDetails;

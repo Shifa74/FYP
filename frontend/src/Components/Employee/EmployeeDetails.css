@@ -12,6 +12,19 @@
   margin-left: 165px; /* Added margin to fit under the navbar */
 }
 
+.loading-row {
+  text-align: center;
+}
+
+.loading-text {
+  font-size: 24px; /* Adjust as needed */
+  color: #888; /* Optional, change to a more visible color */
+  padding: 20px 0;
+}
+
+
+
+
 @media (max-width: 768px) {
   .employee-details-container  {
     margin-left: 70px;

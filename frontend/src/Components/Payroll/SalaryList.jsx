@@ -1,35 +1,57 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// SalaryList.js
+import React, { useEffect, useState } from 'react';
 import './SalaryList.css';
+import SalaryDetails from './SalaryDetails';
 
 const SalaryList = () => {
-  const navigate = useNavigate();
+  const [salaries, setSalaries] = useState([]);
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
 
-  const salaryData = JSON.parse(localStorage.getItem('salaryData')) || [
-    { id: 1, employeeName: 'SHAHRIYAR', date: 'January 2024', amount: 3500 },
-    { id: 2, employeeName: 'ALI', date: 'January 2024', amount: 4200 },
-    { id: 3, employeeName: 'NJAM', date: 'January 2024', amount: 3000 },
-    { id: 4, employeeName: 'FATIMA', date: 'January 2024', amount: 4500 },
-    { id: 5, employeeName: 'EMAN', date: 'January 2024', amount: 3700 },
-    { id: 6, employeeName: 'HASAN', date: 'January 2024', amount: 4100 },
-  ];
+  useEffect(() => {
+    const salaryData = JSON.parse(localStorage.getItem('salaryData')) || [];
+    setSalaries(salaryData);
+  }, []);
 
-  const handleClick = (id) => {
-    navigate(`/salary-details/${id}`);
+  const handleViewDetails = (employeeId) => {
+    setSelectedEmployeeId(employeeId); // Set selected employee ID to open the modal
+  };
+
+  const closePopup = () => {
+    setSelectedEmployeeId(null); // Reset the selected employee ID to close the modal
   };
 
   return (
     <div className="salary-list-container">
-      <h2 className="heading">Salary List</h2>
-      <div className="salary-grid">
-        {salaryData.map((salary) => (
-          <div key={salary.id} className="salary-card" onClick={() => handleClick(salary.id)}>
-            <h3>{salary.employeeName}</h3>
-            <p>{salary.date}</p>
-            <p>${salary.amount.toFixed(2)}</p>
-          </div>
-        ))}
-      </div>
+      <h2>Salary List</h2>
+      <table className="salary-table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Total Salary</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {salaries.map((salary, index) => (
+            <tr key={index}>
+              <td>{salary.id}</td>
+              <td>{salary.employeeName}</td>
+              <td>${salary.netAmount.toFixed(2)}</td>
+              <td>
+                <button onClick={() => handleViewDetails(salary.id)}>
+                  View Details
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Render SalaryDetails as a popup if an employee ID is selected */}
+      {selectedEmployeeId && (
+        <SalaryDetails employeeId={selectedEmployeeId} onClose={closePopup} />
+      )}
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './PayrollDashboard.css';
 import GenerateSalary from './GenerateSalary';
 import PayrollList from './PayrollList'
-import IncentivesAndBonuses from './IncentivesAndBonuses'
 
 const PayrollDashboard = () => { 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -70,9 +69,7 @@ const PayrollDashboard = () => {
       </div>
       <div>
         <h2>PayrollList Details</h2>
-        <PayrollList /> {/* Render the SalaryList component */}
-        {/* <h2>ALLOWANCES AND BONUSES</h2>\ */}
-        <IncentivesAndBonuses/>
+        <PayrollList /> 
       </div>
     </div>
   );

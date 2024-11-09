@@ -1,17 +1,16 @@
-// src/components/ReportList.jsx
 import React from 'react';
 import './report.css';
 
-const ReportList = ({ reports }) => {
+const ReportList = ({ reports, onReportClick }) => {
   return (
     <div className="report-list">
-      <h3>Available Reports</h3>
+      <h3>Previous Reports</h3>
       {reports.length === 0 ? (
-        <p>No reports available.</p>
+        <p>No previous reports available.</p>
       ) : (
         <ul>
           {reports.map((report, index) => (
-            <li key={index}>
+            <li key={index} onClick={() => onReportClick(report.month, report.year)}>
               {report.month} {report.year} - {report.employeeCount} Employees
             </li>
           ))}

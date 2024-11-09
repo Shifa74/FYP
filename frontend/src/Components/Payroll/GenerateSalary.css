@@ -5,22 +5,26 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  -webkit-backdrop-filter: blur(5px); /* Webkit prefix for Safari */
+  backdrop-filter: blur(5px); /* Standard property */
 }
 
 /* Popup Container */
 .generate-salary-popup {
-  background-color: #eef6f8;
-  border-radius: 8px;
-  padding: 30px;
-  width: 90%;
-  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
+  animation: fadeIn 0.3s ease-out;
 }
 
 /* Popup Header */
@@ -28,77 +32,104 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* Ensure header takes full width */
-  margin-bottom: 20px; /* Space below the header */
+  margin-bottom: 30px; /* More space below the header */
 }
 
 .salary-heading {
-  font-size: 1.4rem;
-  color: #64919e;
-  margin: 0; /* Remove default margin */
+  font-size: 1.6rem;
+  color: #3f6c74;
+  margin: 0;
+  font-weight: 600;
 }
 
 .popup-close-btn {
   background: none;
   border: none;
-  color: #64919e;
-  font-size: 1.2rem; /* Make it larger for better visibility */
+  color: #3f6c74;
+  font-size: 1.4rem;
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .popup-close-btn:hover {
-  color: #30666d; /* A darker shade for hover */
-  transform: scale(1.1); /* Slight enlargement */
+  color: #1d4e4b;
+  transform: scale(1.1);
 }
 
 .popup-close-btn:active {
-  color: #1f4a4f; /* Even darker for the click effect */
-  transform: scale(0.95); /* Slightly reduce size */
+  color: #1d4e4b;
+  transform: scale(0.95);
 }
 
+/* Subtitle */
 .salary-subtitle {
-  font-size: 1rem;
-  color: #64919e;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #6c7c7f;
+  margin-bottom: 20px;
 }
 
-.salary-dropdown-container, .salary-input-group {
-  margin: 10px 0;
+/* Form Fields */
+.salary-input-group, .salary-dropdown-container {
+  margin: 15px 0;
   display: flex;
-  gap: 10px;
-  justify-content: center;
+  gap: 15px;
+  justify-content: space-between;
 }
 
 .salary-dropdown, .salary-input-field {
-  width: 45%;
-  padding: 8px;
-  border: 1px solid #64919e;
-  border-radius: 4px;
+  width: 48%;
+  padding: 10px;
+  border: 1px solid #b6d1d0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.salary-dropdown:focus, .salary-input-field:focus {
+  border-color: #3f6c74;
+  transform: scale(1.02); /* Slightly enlarge input fields on focus */
+}
+
+.salary-dropdown {
+  background-color: #f7f7f7;
 }
 
 .salary-generate-button {
-  padding: 8px 12px;
-  background-color: #64919e;
-  color: #f1f1f1;
+  padding: 12px 20px;
+  background-color: #3f6c74;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .salary-generate-button:hover {
-  background-color: #f1f1f1;
-  color: #64919e;
+  background-color: #1d4e4b;
+  transform: scale(1.05);
+}
+
+.salary-generate-button:active {
+  background-color: #1a3f3c;
+  transform: scale(1);
+}
+
+/* Animation for fade-in */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @media (max-width: 768px) {
   .generate-salary-popup {
     width: 90%;
-    padding: 20px;
+    padding: 30px;
   }
   .salary-dropdown-container, .salary-input-group {
     flex-direction: column;
+    align-items: center;
   }
   .salary-dropdown, .salary-input-field {
     width: 100%;
