@@ -1,0 +1,149 @@
+.incentives-bonuses-container {
+    position: relative;
+    padding:7px 10px;
+    border: 2px solid #64919e;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 390px;
+    margin: 0 auto;
+    top: 65px;
+    left: 200px;
+  }
+  
+  .heading {
+    font-size: 1.0rem;
+  }
+  
+  .chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 120px;
+    height: 120px;
+    margin: 0 auto 8px;
+  }
+  
+  .center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.2;
+    text-align: center;
+  }
+  
+  .legend {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 6px;
+  }
+  
+  .legend-color {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 4px;
+  }
+  
+  .more-details-button {
+    padding: 2px 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: #64919e;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .more-details-button:hover {
+    background-color: #527b87;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 1200px) {
+    .incentives-bonuses-container {
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 340px;
+    }
+    .heading {
+        font-size: 0.95rem;
+    }
+    .chart-container {
+        max-width: 100px;
+        height: 100px;
+    }
+    .center-text {
+        font-size: 0.85rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .incentives-bonuses-container {
+        top: 30px;
+        max-width: 280px;
+        padding: 8px 15px;
+    }
+    .heading {
+        font-size: 0.9rem;
+    }
+    .legend {
+        margin-bottom: 6px;
+    }
+    .legend-item {
+        margin: 0 4px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .incentives-bonuses-container {
+        top: 20px;
+        padding: 8px 10px;
+        max-width: 240px;
+    }
+    .heading {
+        font-size: 0.85rem;
+    }
+    .chart-container {
+        max-width: 90px;
+        height: 90px;
+    }
+    .center-text {
+        font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .incentives-bonuses-container {
+        padding: 5px 8px;
+        max-width: 200px;
+    }
+    .heading {
+        font-size: 0.8rem;
+    }
+    .chart-container {
+        max-width: 80px;
+        height: 80px;
+    }
+    .center-text {
+        font-size: 0.75rem;
+    }
+    .legend {
+        flex-direction: column; /* Stack legend items vertically */
+        align-items: center;
+    }
+    .more-details-button {
+        padding: 2px 8px;
+        font-size: 0.8rem;
+    }
+  }
+  

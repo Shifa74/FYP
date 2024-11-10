@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './PayrollList.css';
 import { FaPrint, FaDownload } from 'react-icons/fa';
+import { jsPDF } from 'jspdf';
 
 const PayrollList = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,22 +10,60 @@ const PayrollList = () => {
     { id: 1, name: 'M SHAHRIYAR', grade: 'A', date: '2023-07-01', time: '10:00 AM', salary: '$3000', status: 'Pending' },
     { id: 2, name: 'M ALI', grade: 'B', date: '2023-07-02', time: '11:00 AM', salary: '$2500', status: 'Pending' },
     { id: 3, name: 'EMAN FATIMA', grade: 'A', date: '2023-07-03', time: '12:00 PM', salary: '$4000', status: 'Pending' },
-    { id: 4, name: 'YASHA', grade: 'B', date: '2023-07-02', time: '11:00 AM', salary: '$2500', status: 'Pending' },
-    { id: 5, name: 'SHIFA', grade: 'A', date: '2023-07-03', time: '12:00 PM', salary: '$4000', status: 'Pending' },
-    { id: 4, name: 'ABEEHA', grade: 'B', date: '2023-07-02', time: '11:00 AM', salary: '$2500', status: 'Pending' },
-    { id: 5, name: 'ZOHA', grade: 'A', date: '2023-07-03', time: '12:00 PM', salary: '$4000', status: 'Pending' },
-    { id: 4, name: 'YASHA', grade: 'B', date: '2023-07-02', time: '11:00 AM', salary: '$2500', status: 'Pending' },
-    { id: 5, name: 'SHIFA', grade: 'A', date: '2023-07-03', time: '12:00 PM', salary: '$4000', status: 'Pending' },
-    { id: 4, name: 'ABEEHA', grade: 'B', date: '2023-07-02', time: '11:00 AM', salary: '$2500', status: 'Pending' },
-    { id: 5, name: 'ZOHA', grade: 'A', date: '2023-07-03', time: '12:00 PM', salary: '$4000', status: 'Pending' },
+    // Add more data as needed
   ]);
 
-  const handleGenerateSlip = (id) => {
+  const handleGenerateSlip = (id, action) => {
+    const selectedData = payrollData.find(item => item.id === id);
+
+    if (action === 'print') {
+      printSlip(selectedData);
+    } else if (action === 'download') {
+      downloadSlip(selectedData);
+    }
+
     setPayrollData(prevData =>
       prevData.map(item =>
         item.id === id ? { ...item, status: 'Paid' } : item
       )
     );
+  };
+
+  const printSlip = (data) => {
+    const printContent = `
+      <div>
+        <h2>Payroll Details</h2>
+        <p>ID: ${data.id}</p>
+        <p>Name: ${data.name}</p>
+        <p>Grade: ${data.grade}</p>
+        <p>Date: ${data.date}</p>
+        <p>Time: ${data.time}</p>
+        <p>Salary: ${data.salary}</p>
+        <p>Status: ${data.status}</p>
+      </div>
+    `;
+
+    const printWindow = window.open('', '', 'width=800,height=600');
+    printWindow.document.write('<html><head><title>Print Payroll Slip</title></head><body>');
+    printWindow.document.write(printContent);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  };
+
+  const downloadSlip = (data) => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text('Payroll Details', 20, 20);
+    doc.text(`ID: ${data.id}`, 20, 30);
+    doc.text(`Name: ${data.name}`, 20, 40);
+    doc.text(`Grade: ${data.grade}`, 20, 50);
+    doc.text(`Date: ${data.date}`, 20, 60);
+    doc.text(`Time: ${data.time}`, 20, 70);
+    doc.text(`Salary: ${data.salary}`, 20, 80);
+    doc.text(`Status: ${data.status}`, 20, 90);
+
+    doc.save(`${data.name}_PayrollSlip.pdf`);
   };
 
   const filteredData = payrollData.filter(item => {
@@ -80,12 +119,12 @@ const PayrollList = () => {
                 <FaPrint
                   className="icon print-icon"
                   title="Print"
-                  onClick={() => handleGenerateSlip(item.id)}
+                  onClick={() => handleGenerateSlip(item.id, 'print')}
                 />
                 <FaDownload
                   className="icon download-icon"
                   title="Download"
-                  onClick={() => handleGenerateSlip(item.id)}
+                  onClick={() => handleGenerateSlip(item.id, 'download')}
                 />
               </td>
             </tr>
