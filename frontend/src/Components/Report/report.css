@@ -150,7 +150,3 @@ button:hover {
 .report-list li:hover {
   background-color: #bbdefb;
 }
-.report-err-mess{
-  color: red;
-  margin-top: 0
-}
