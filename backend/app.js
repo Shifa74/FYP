@@ -10,11 +10,12 @@ const allowanceRoutes = require("./routes/allowance");
 const deductionRoutes = require("./routes/deduction");
 const usersRoutes = require("./routes/users");
 const salaryRoutes = require("./routes/salary");
+const reportRoutes = require('./routes/report')
 const cookieParser = require("cookie-parser");
+const connectDB = require("./db/conn");
 const app = express();
 
 dotenv.config({ path: "./config.env" });
-require("./db/conn");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -28,6 +29,7 @@ app.use("/api/allowance", allowanceRoutes);
 app.use("/api/deduction", deductionRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/salary", salaryRoutes);
+app.use('/api/report', reportRoutes)
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
@@ -41,6 +43,27 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(8800, () => {
-  console.log("App is running on port no 8800");
+const startServer = async () => {
+  try {
+    console.log("Starting server...");
+    const db = await connectDB();
+
+    if (!db.readyState) {
+      throw new Error("Database connection failed");
+    }
+
+    app.listen(8800, () => {
+      console.log("App is running on port no 8800");
+    });
+  } catch (err) {
+    console.error("Failed to start server:", err);
+    process.exit(1);
+  }
+};
+
+process.on("unhandledRejection", (err) => {
+  console.error("Unhandled Rejection:", err);
+  process.exit(1);
 });
+
+startServer();

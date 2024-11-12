@@ -23,7 +23,6 @@ const generateSalary = async (req, res, next) => {
         "Salary record already exists for this month and year."
       );
     }
-
     const salaryDetails = await calculateSalary(
       employee._id,
       month,
@@ -38,6 +37,7 @@ const generateSalary = async (req, res, next) => {
       month,
       year,
       baseSalary: salaryDetails.baseSalary,
+      overtimeHours,
       overtimePay: salaryDetails.overtimePay,
       allowances: salaryDetails.totalAllowance,
       deductions: salaryDetails.deductionReference,
@@ -56,7 +56,13 @@ const generateSalary = async (req, res, next) => {
 const getSalaries = async (req, res, next) => {
   try {
     const salaries = await Salary.find()
-      .populate("employeeID")
+      .populate({
+        path: "employeeID",
+        populate: [
+          { path: "gradeNo", model: "Grade" },
+          { path: "deptName", model: "Department" },
+        ],
+      })
       .populate("allowances")
       .populate("deductions");
     res.status(200).json(salaries);
@@ -65,7 +71,71 @@ const getSalaries = async (req, res, next) => {
   }
 };
 
+const confirmPayment = async (req, res, next) => {
+  try {
+    const updatedSalary = await Salary.findByIdAndUpdate(
+      req.params.id,
+      { status: "Paid", paidAt: new Date() },
+      { new: true }
+    );
+    res.status(200).json(updatedSalary);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const payrollSummary = async (req, res, next) => {
+  try {
+    const { month, year } = req.query;
+
+    if (!month || !year) {
+      return next(createError(400, "Month and year are required"));
+    }
+
+    // Convert month and year to numbers to match MongoDB field types
+    const monthNumber = parseInt(month);
+    const yearNumber = parseInt(year);
+
+    const payrollCosts = await Salary.aggregate([
+      {
+        $match: {
+          month: monthNumber,
+          year: yearNumber,
+        },
+      },
+      { $group: { _id: null, total: { $sum: "$netSalary" } } },
+    ]);
+
+    const pendingPayments = await Salary.aggregate([
+      {
+        $match: {
+          status: "Pending",
+          month: monthNumber,
+          year: yearNumber,
+        },
+      },
+      { $group: { _id: null, total: { $sum: "$netSalary" } } },
+    ]);
+
+    const totalPayrolls = await Salary.countDocuments({
+      month: monthNumber,
+      year: yearNumber,
+    });
+
+    res.json({
+      payrollCosts: payrollCosts[0]?.total || 0,
+      pendingPayments: pendingPayments[0]?.total || 0,
+      totalPayrolls,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports = {
   generateSalary,
   getSalaries,
+  confirmPayment,
+  payrollSummary,
 };
