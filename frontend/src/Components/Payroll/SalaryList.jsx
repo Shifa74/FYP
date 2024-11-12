@@ -1,15 +1,23 @@
 // SalaryList.js
-import React, { useEffect, useState } from 'react';
-import './SalaryList.css';
-import SalaryDetails from './SalaryDetails';
+import React, { useEffect, useState } from "react";
+import "./SalaryList.css";
+import SalaryDetails from "./SalaryDetails";
+import axios from "axios";
 
 const SalaryList = () => {
   const [salaries, setSalaries] = useState([]);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
 
   useEffect(() => {
-    const salaryData = JSON.parse(localStorage.getItem('salaryData')) || [];
-    setSalaries(salaryData);
+    try {
+      const fetchSalaries = async () => {
+        const res = await axios.get("/salary/get");
+        setSalaries(res.data);
+      };
+      fetchSalaries();
+    } catch (error) {
+      console.error("Error fetching salaries", error.message);
+    }
   }, []);
 
   const handleViewDetails = (employeeId) => {
@@ -33,13 +41,13 @@ const SalaryList = () => {
           </tr>
         </thead>
         <tbody>
-          {salaries.map((salary, index) => (
-            <tr key={index}>
-              <td>{salary.id}</td>
-              <td>{salary.employeeName}</td>
-              <td>${salary.netAmount.toFixed(2)}</td>
+          {salaries.map((salary) => (
+            <tr key={salary._id}>
+              <td>{salary.employeeID.employeeId}</td>
+              <td>{salary.employeeID.firstName}</td>
+              <td>${salary.netSalary ? salary.netSalary.toFixed(2) : "N/A"}</td>
               <td>
-                <button onClick={() => handleViewDetails(salary.id)}>
+                <button onClick={() => handleViewDetails(salary._id)}>
                   View Details
                 </button>
               </td>
@@ -50,7 +58,11 @@ const SalaryList = () => {
 
       {/* Render SalaryDetails as a popup if an employee ID is selected */}
       {selectedEmployeeId && (
-        <SalaryDetails employeeId={selectedEmployeeId} onClose={closePopup} />
+        <SalaryDetails
+          employeeId={selectedEmployeeId}
+          salaries={salaries}
+          onClose={closePopup}
+        />
       )}
     </div>
   );

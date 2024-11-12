@@ -35,7 +35,6 @@ const Attendance = () => {
     try {
       const response = await axios.get("/attendance/get");
       setAttendanceRecords(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -49,8 +48,6 @@ const Attendance = () => {
     )?.name;
 
     setSelectedMonth(currentMonthName);
-
-    
   }, []);
 
   const handleAddAttendance = (attendanceData) => {

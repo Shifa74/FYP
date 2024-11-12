@@ -1,52 +1,101 @@
-import React, { useState } from 'react';
-import './PayrollList.css';
-import { FaPrint, FaDownload } from 'react-icons/fa';
-import { jsPDF } from 'jspdf';
+import React, { useEffect, useState } from "react";
+import "./PayrollList.css";
+import { FaPrint, FaDownload } from "react-icons/fa";
+import { jsPDF } from "jspdf";
+import axios from "axios";
 
-const PayrollList = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [payrollData, setPayrollData] = useState([
-    { id: 1, name: 'M SHAHRIYAR', grade: 'A', date: '2023-07-01', time: '10:00 AM', salary: '$3000', status: 'Pending' },
-    { id: 2, name: 'M ALI', grade: 'B', date: '2023-07-02', time: '11:00 AM', salary: '$2500', status: 'Pending' },
-    { id: 3, name: 'EMAN FATIMA', grade: 'A', date: '2023-07-03', time: '12:00 PM', salary: '$4000', status: 'Pending' },
-    // Add more data as needed
-  ]);
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-  const handleGenerateSlip = (id, action) => {
-    const selectedData = payrollData.find(item => item.id === id);
+const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [payrollData, setPayrollData] = useState([]);
 
-    if (action === 'print') {
-      printSlip(selectedData);
-    } else if (action === 'download') {
-      downloadSlip(selectedData);
+  const selectedMonthNumber = monthNames.indexOf(selectedMonth) + 1;
+
+  const fetchPayrollData = async () => {
+    const res = await axios.get("/salary/get");
+    setPayrollData(res.data);
+  };
+  useEffect(() => {
+    fetchPayrollData();
+  }, [selectedMonth, selectedYear]);
+
+  const handleGenerateSlip = async (id, action) => {
+    const selectedData = payrollData.find((item) => item._id === id);
+    try {
+      const res = await axios.patch(
+        `/salary/confirm-payment/${selectedData._id}`
+      );
+      setPayrollData((prevData) =>
+        prevData.map((item) =>
+          item._id === id
+            ? { ...item, status: "Paid", paidAt: res.data.paidAt }
+            : item
+        )
+      );
+      onPayrollChange();
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        console.log(error.response.data.message);
+        return; // Exit if there's an error updating status
+      }
     }
 
-    setPayrollData(prevData =>
-      prevData.map(item =>
-        item.id === id ? { ...item, status: 'Paid' } : item
-      )
-    );
+    // After updating, generate the slip with the updated status
+    if (action === "print") {
+      printSlip({ ...selectedData, status: "Paid" });
+    } else if (action === "download") {
+      downloadSlip({ ...selectedData, status: "Paid" });
+    }
   };
 
   const printSlip = (data) => {
     const printContent = `
-      <div>
-        <h2>Payroll Details</h2>
-        <p>ID: ${data.id}</p>
-        <p>Name: ${data.name}</p>
-        <p>Grade: ${data.grade}</p>
-        <p>Date: ${data.date}</p>
-        <p>Time: ${data.time}</p>
-        <p>Salary: ${data.salary}</p>
-        <p>Status: ${data.status}</p>
+  <div>
+  <h2>Payroll Details</h2>
+  <p><strong>ID: </strong> ${
+    data.employeeID ? data.employeeID.employeeId : "N/A"
+  }</p>
+        <p><strong>Name: </strong> ${
+          data.employeeID ? data.employeeID.firstName : "N/A"
+        }</p>
+        <p><strong>Grade: </strong>${
+          data.employeeID ? data.employeeID.gradeNo.gradeNo : "N/A"
+        }</p>
+        <p><strong>Date: </strong>${new Date(data.createdAt)
+          .toISOString()
+          .slice(0, 10)}</p>
+        <p><strong>Time: </strong> ${new Date(
+          data.updatedAt
+        ).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}</p>
+        <p><strong>Salary: </strong>${Math.round(data.netSalary)}</p>
+        <p><strong>Status: </strong>${data.status}</p>
       </div>
     `;
 
-    const printWindow = window.open('', '', 'width=800,height=600');
-    printWindow.document.write('<html><head><title>Print Payroll Slip</title></head><body>');
+    const printWindow = window.open("", "", "width=800,height=600");
+    printWindow.document.write(
+      "<html><head><title>Print Payroll Slip</title></head><body>"
+    );
     printWindow.document.write(printContent);
-    printWindow.document.write('</body></html>');
+    printWindow.document.write("</body></html>");
     printWindow.document.close();
     printWindow.print();
   };
@@ -54,22 +103,50 @@ const PayrollList = () => {
   const downloadSlip = (data) => {
     const doc = new jsPDF();
     doc.setFontSize(16);
-    doc.text('Payroll Details', 20, 20);
-    doc.text(`ID: ${data.id}`, 20, 30);
-    doc.text(`Name: ${data.name}`, 20, 40);
-    doc.text(`Grade: ${data.grade}`, 20, 50);
-    doc.text(`Date: ${data.date}`, 20, 60);
-    doc.text(`Time: ${data.time}`, 20, 70);
-    doc.text(`Salary: ${data.salary}`, 20, 80);
+    doc.text("Payroll Details", 20, 20);
+    doc.text(
+      `ID: ${data.employeeID ? data.employeeID.employeeId : "N/A"}`,
+      20,
+      30
+    );
+    doc.text(
+      `Name: ${data.employeeID ? data.employeeID.firstName : "N/A"}`,
+      20,
+      40
+    );
+    doc.text(
+      `Grade: ${data.employeeID ? data.employeeID.gradeNo.gradeNo : "N/A"}`,
+      20,
+      50
+    );
+    doc.text(
+      `Date: ${new Date(data.createdAt).toISOString().slice(0, 10)}`,
+      20,
+      60
+    );
+    doc.text(
+      `Time: ${new Date(data.updatedAt).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}`,
+      20,
+      70
+    );
+    doc.text(`Salary: ${Math.round(data.netSalary)}`, 20, 80);
     doc.text(`Status: ${data.status}`, 20, 90);
 
-    doc.save(`${data.name}_PayrollSlip.pdf`);
+    doc.save(`${data.employeeID.firstName}_PayrollSlip.pdf`);
   };
 
-  const filteredData = payrollData.filter(item => {
+  const filteredData = payrollData.filter((item) => {
     return (
-      (statusFilter === 'All' || item.status === statusFilter) &&
-      (item.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      (statusFilter === "All" || item.status === statusFilter) &&
+      item.employeeID &&
+      item.employeeID.firstName
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) &&
+      item.month === selectedMonthNumber &&
+      item.year === selectedYear
     );
   });
 
@@ -86,9 +163,9 @@ const PayrollList = () => {
             className="search-bar"
           />
           <div className="filter-buttons">
-            <button onClick={() => setStatusFilter('All')}>All Status</button>
-            <button onClick={() => setStatusFilter('Paid')}>Paid</button>
-            <button onClick={() => setStatusFilter('Pending')}>Pending</button>
+            <button onClick={() => setStatusFilter("All")}>All Status</button>
+            <button onClick={() => setStatusFilter("Paid")}>Paid</button>
+            <button onClick={() => setStatusFilter("Pending")}>Pending</button>
           </div>
         </div>
       </div>
@@ -106,29 +183,47 @@ const PayrollList = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.grade}</td>
-              <td>{item.date}</td>
-              <td>{item.time}</td>
-              <td>{item.salary}</td>
+          {filteredData.length === 0 ? (
+            <tr>
+              <td colSpan="4" className="no-data-cell">
+                No payroll records found.
+              </td>
+            </tr>
+          ) : (filteredData.map((item) => (
+            <tr key={item._id}>
+              <td>{item.employeeID ? item.employeeID.employeeId : "N/A"}</td>
+              <td>{item.employeeID ? item.employeeID.firstName : "N/A"}</td>
+              <td>
+                {item.employeeID ? item.employeeID.gradeNo.gradeNo : "N/A"}
+              </td>
+              <td>{new Date(item.createdAt).toISOString().slice(0, 10)}</td>
+              <td>
+                {item.status === "Paid"
+                  ? new Date(item.paidAt).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
+                  : new Date(item.createdAt).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+              </td>
+              <td>{Math.round(item.netSalary)}</td>
               <td>{item.status}</td>
               <td>
                 <FaPrint
                   className="icon print-icon"
                   title="Print"
-                  onClick={() => handleGenerateSlip(item.id, 'print')}
+                  onClick={() => handleGenerateSlip(item._id, "print")}
                 />
                 <FaDownload
                   className="icon download-icon"
                   title="Download"
-                  onClick={() => handleGenerateSlip(item.id, 'download')}
+                  onClick={() => handleGenerateSlip(item._id, "download")}
                 />
               </td>
             </tr>
-          ))}
+          )))}
         </tbody>
       </table>
     </div>

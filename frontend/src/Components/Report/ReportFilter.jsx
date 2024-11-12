@@ -1,36 +1,45 @@
-import React, { useState } from 'react';
-import './report.css';
+import React, { useState } from "react";
+import "./report.css";
+import axios from "axios";
 
-const ReportFilter = ({ onGenerateReport }) => {
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
+const ReportFilter = ({ onGenerateReport, monthNames }) => {
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
 
-  const handleGenerate = () => {
-    if (month && year) {
-      onGenerateReport({ month, year });
+  const monthNumber = monthNames.indexOf(month) + 1;
+
+  const handleGenerate = async () => {
+    if (monthNumber && year) {
+      try {
+        await axios.post("/report/add", {
+          month: monthNumber,
+          year,
+        });
+        onGenerateReport({ monthNumber, year });
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          alert(error.response.data.message);
+        }
+      }
     } else {
-      alert('Please select both month and year!');
+      alert("Please select both month and year!");
     }
   };
 
   return (
     <div className="filter-container">
       <select value={month} onChange={(e) => setMonth(e.target.value)}>
-        <option value="">Select Month</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
+        <option>Select Month</option>
+        {monthNames.map((month) => (
+          <option key={month} value={month}>
+            {month}
+          </option>
+        ))}
       </select>
-
       <select value={year} onChange={(e) => setYear(e.target.value)}>
         <option value="">Select Year</option>
         <option value="2023">2023</option>
