@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./Navbar.css";
-import { FaSignInAlt, FaSearch,FaBell  } from "react-icons/fa"; // Import FaSearch icon
+import { FaSignInAlt, FaSearch, FaBell } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Navbar.css";
+// import NotificationsAndAlerts from "./NotificationsAndAlerts";
 
 export default function Navbar(props) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
+  const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -16,6 +19,24 @@ export default function Navbar(props) {
     } catch (error) {
       console.error("Logout failed: ", error);
     }
+  };
+
+  // Fetch notifications when the component mounts
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      const data = [
+        { id: 1, type: "reminder", message: "Upcoming salary payment due in 3 days" },
+        { id: 2, type: "alert", message: "Missing information for Employee ID: 1023" },
+        { id: 3, type: "task", message: "Pending task: Approve leave requests" },
+      ];
+      setNotifications(data);
+    };
+
+    fetchNotifications();
+  }, []);
+
+  const toggleNotifications = () => {
+    setIsNotificationsVisible(!isNotificationsVisible);
   };
 
   return (
@@ -42,9 +63,13 @@ export default function Navbar(props) {
           className={`collapse navbar-collapse ${isExpanded ? "show" : ""}`}
           id="navbarSupportedContent"
         >
+
+
+
+          
           <div className="mx-auto">
             <form className="d-flex" role="search">
-              <div className="position-relative ">
+              <div className="position-relative">
                 <FaSearch
                   className="search-icon"
                   style={{
@@ -70,12 +95,31 @@ export default function Navbar(props) {
               </button>
             </form>
           </div>
+
+
           <ul className="navbar-nav">
-          <li className="nav-item">
-              <a href="/notifications" className="nav-link">
+            <li className="nav-item position-relative">
+              <span className="nav-link" onClick={toggleNotifications} style={{ cursor: "pointer" }}>
                 <FaBell className="icon" /> {/* Notification icon */}
-              </a>
+              </span>
+              {isNotificationsVisible && (
+                <div className="notifications-dropdown">
+
+                  <h5>Notifications & Alerts</h5>
+                  <ul className="notifications-list">
+
+                    {notifications.map((notification) => (
+                      <li key={notification.id} className={`notification-item ${notification.type}`}>
+                        {notification.message}
+                      </li>
+                     ))}
+
+                  </ul>
+
+                </div>
+              )}
             </li>
+
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={handleLogout}>
                 <FaSignInAlt className="icon" /> Logout

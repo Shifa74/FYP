@@ -11,17 +11,17 @@ import './AllowancesAndDeduction.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const IncentivesAndBonuses = () => {
+const AllowancesAndDeduction = () => {
   const navigate = useNavigate();
 
-  const totalIncentives = 300;
-  const totalBonuses = 150;
+  const totalAllowances = 300;
+  const totalDeduction = 150;
 
   const data = {
-    labels: ['Incentives', 'Bonuses'],
+    labels: ['Allowances', 'Deduction'],
     datasets: [
       {
-        data: [totalIncentives, totalBonuses],
+        data: [totalAllowances, totalDeduction],
         backgroundColor: ['#64919e', '#f39c12'],
         hoverBackgroundColor: ['#527b87', '#e67e22'],
       },
@@ -45,25 +45,25 @@ const IncentivesAndBonuses = () => {
   };
 
   const handleMoreDetails = () => {
-    navigate('/incentives-bonuses-details'); // Navigate to the detailed page
+    navigate('/Allowances-Deduction-details'); // Navigate to the detailed page
   };
 
   return (
-    <div className="incentives-bonuses-container">
-      <h2 className="heading">Incentives and Bonuses</h2>
+    <div className="Allowances-Deduction-container">
+      <h2 className="heading">Allowances And Deduction</h2>
       <div className="chart-container">
         <Doughnut data={data} options={options} />
         <div className="center-text">
           <p>Total</p>
-          <p>${totalIncentives + totalBonuses}</p>
+          <p>${totalAllowances + totalDeduction}</p>
         </div>
       </div>
       <div className="legend">
         <div className="legend-item">
-          <span className="legend-color" style={{ backgroundColor: '#64919e' }}></span> Incentives
+          <span className="legend-color" style={{ backgroundColor: '#64919e' }}></span> Allowances
         </div>
         <div className="legend-item">
-          <span className="legend-color" style={{ backgroundColor: '#f39c12' }}></span> Bonuses
+          <span className="legend-color" style={{ backgroundColor: '#f39c12' }}></span> Deduction
         </div>
       </div>
       <button className="more-details-button" onClick={handleMoreDetails}>More Details</button>
@@ -71,4 +71,4 @@ const IncentivesAndBonuses = () => {
   );
 };
 
-export default IncentivesAndBonuses;
+export default AllowancesAndDeduction;

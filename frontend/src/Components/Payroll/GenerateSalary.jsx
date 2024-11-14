@@ -76,7 +76,7 @@ const GenerateSalary = ({ onClose }) => {
             placeholder="Employee ID"
             value={employeeId}
             onChange={(e) => setEmployeeId(e.target.value)}
-            className="salary-input-field"
+            className="salary-input-field  id_input_field"
           />
         </div>
         <div className="salary-dropdown-container">

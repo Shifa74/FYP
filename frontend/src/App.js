@@ -12,6 +12,7 @@ import Administration from './Components/Administration/AdminPage';
 import Attendance from './Components/Attendance/Attendance';
 import Layout from './Layout'; // Import the Layout component
 import SalaryList from "./Components/Payroll/SalaryList";
+import AllowancesAndDeductionDetails from './Components/Dashboard/AllowancesAndDeductionDetails'
 // Import Admin page components
 import ManageDepartments from './Components/Administration/DepartmentManagement/DepartmentList';
 import ManageUsers from './Components/Administration/UserManagement/UserManagement';
@@ -52,6 +53,7 @@ function App() {
             </ProtectedRoute>
           } 
         />
+      
         <Route 
           path="/employee" 
           element={
@@ -97,6 +99,14 @@ function App() {
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               <Layout><SalaryList/></Layout>
+            </ProtectedRoute>
+          }
+        /> 
+           <Route 
+          path="/allowances-deduction-details" 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout><AllowancesAndDeductionDetails/></Layout>
             </ProtectedRoute>
           }
         /> 

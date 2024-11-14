@@ -9,11 +9,6 @@ const EmployeeGrades = ({ gradesData }) => {
                     <h4 className="heading">Number of Employees</h4>
                     <p className='subtitle'>Department or Grade wise</p>
                 </div>
-                <select className="grade-dropdown">
-                    {gradesData.map((grade, index) => (
-                        <option key={index} value={index + 1}>Grade {index + 1}</option>
-                    ))}
-                </select>
             </div>
             <div className="employee-grades">
                 {gradesData.map((grade, index) => (

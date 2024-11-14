@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Employees.css';
 import  AllowancesAndDeduction from './AllowancesAndDeduction';
-// import NotificationsAndAlerts from './NotificationsAndAlerts';
 import EmployeeGrades from './EmployeeGrades';
 import GradeWiseSalary from './GradeWiseSalary';
 
@@ -37,7 +36,7 @@ const StatsDashboard = () => {
     <div className="stats-dashboard">
       {/* Total Employees Card */}
       <div className="stat-box">
-        <h2>Total Employees</h2>
+        <h2 >Total Employees</h2>
         <p className="stat-description">Total number of employees</p>
         <p className="stat-count">{totalEmployees}</p>
         {/* <p className="sub">Employees</p> */}
@@ -55,21 +54,21 @@ const StatsDashboard = () => {
       <div className="stat-box">
         <h2>Paid Salary</h2>
         <p className="stat-description">Total salary paid this month</p>
-        <p className="stat-count">${salaryPaid}</p>
+        <p className="stat-count paid_salary">${salaryPaid}</p>
         {/* <p className="sign">Dollars</p> */}
       </div>
 
+   
+      <div className="components-container">
+        <AllowancesAndDeduction />
+        <GradeWiseSalary />
+        <EmployeeGrades gradesData={gradesData} />
+      </div>
+      
+   
+    
 
-      <div>
-        <EmployeeGrades gradesData={gradesData}/>
-      </div>
-
-      <div>
-        <GradeWiseSalary/>
-      </div>
-      <div>
-        <AllowancesAndDeduction/>
-      </div>
+    
 
     </div>
   );

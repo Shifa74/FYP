@@ -15,7 +15,7 @@ const PayrollDashboard = () => {
       <div className="payroll-dashboard-header">
         <h1>Payroll Management</h1>
         
-        {/* Filters Section */}
+        {/* Filters Section
         <div className="payroll-header-filters">
           <label>
             Month:
@@ -24,7 +24,7 @@ const PayrollDashboard = () => {
               <option>February</option>
               <option>March</option>
               {/* Add more months as needed */}
-            </select>
+            {/* </select>
           </label>
           <label>
             Employee:
@@ -33,9 +33,9 @@ const PayrollDashboard = () => {
               <option>Employee 1</option>
               <option>Employee 2</option>
               {/* Add more employees as needed */}
-            </select>
-          </label>
-        </div>
+            {/* </select>
+          </label> */}
+        {/* </div> */} 
         
         {/* Generate Salary Button */}
         <button onClick={handleOpenPopup} className="payroll-generate-salary-button">
@@ -68,7 +68,6 @@ const PayrollDashboard = () => {
         </div>
       </div>
       <div>
-        <h2>PayrollList Details</h2>
         <PayrollList /> 
       </div>
     </div>

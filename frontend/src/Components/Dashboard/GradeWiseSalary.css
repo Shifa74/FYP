@@ -1,27 +1,208 @@
 .grade-wise-salary-card {
   border: 2px solid #64919e;
   border-radius: 8px;
-  padding: 10px; /* Reduced padding */
+  padding: 10px;
   background-color: #f1f4f5;
-  height: 302px; /* Further reduced height */
-  min-width: 390px;
-  max-width: 390px;/* Slightly reduced width */
+  height: 420px;
+  max-width: 90%; /* Allow full width initially */
+  min-width: 395px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0 auto; /* Center the card */
 }
 
 .grade-wise-salary-card h2 {
   margin: 0;
-  font-size: 1.1rem; /* Slightly smaller font size */
+  font-size: 1.9rem;
   color: #64919e;
 }
 
 .description {
-  font-size: 0.9rem; /* Slightly smaller font size */
+  font-size: 0.9rem;
   color: #64919e;
+  text-align: center;
 }
 
 .graph-container {
-  height: 180px; /* Further reduced height for the graph */
+  height: 120px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1590px) {
+  .grade-wise-salary-card {
+    
+    height: 420px;
+    max-width: 60%; /* Allow full width initially */
+    min-width: 220px;
+    margin: 0 auto; /* Center the card */
+  }
+
+  .grade-wise-salary-card h2 {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+  .graph-container {
+    height: 320px;
+  }
+}
+@media (max-width: 1400px) {
+  .grade-wise-salary-card {
+    padding: 10px; /* Slightly reduced padding */
+    min-width: 170px; /* Adjusted min-width for flexibility */
+    max-width: 350px;
+    height: 420px; 
+    margin: 0 auto
+  }
+
+  .grade-wise-salary-card h2 {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .grade-wise-salary-card {
+    padding: 30px; /* Slightly reduced padding */
+    min-width: 530px; /* Adjusted min-width for flexibility */
+    max-width: 380px;
+    height: 330px; 
+    margin: 0 auto
+  }
+
+  .graph-container {
+    height: 160px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .grade-wise-salary-card {
+    padding: 30px; /* Slightly reduced padding */
+    min-width: 400px; /* Adjusted min-width for flexibility */
+    max-width: 380px;
+    height: 330px; 
+    margin: 0 auto
+  }
+
+  .graph-container {
+    height: 160px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .grade-wise-salary-card {
+    padding: 30px; /* Slightly reduced padding */
+    min-width: 220px; /* Adjusted min-width for flexibility */
+    max-width: 290px;
+    height: 330px; 
+    margin: 0 auto
+  }
+
+  .graph-container {
+    height: 160px;
+  }
+}
+@media (max-width: 992px) {
+  .grade-wise-salary-card {
+    padding: 30px; /* Slightly reduced padding */
+    min-width: 120px; /* Adjusted min-width for flexibility */
+    max-width: 290px;
+    height: 330px; 
+    margin: 0 auto
+  }
+
+  .graph-container {
+    height: 160px;
+  }
+}
+
+@media (max-width: 800px) {
+  .grade-wise-salary-card {
+    padding: 30px; /* Slightly reduced padding */
+    min-width: 220px; /* Adjusted min-width for flexibility */
+    max-width: 290px;
+    height: 330px; 
+    margin: 0 auto
+  }
+
+  .graph-container {
+    height: 160px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .grade-wise-salary-card {
+    padding: 30px; /* Slightly reduced padding */
+    min-width: 480px; /* Adjusted min-width for flexibility */
+    max-width: 190px;
+    height: 330px; 
+    margin: 0 auto
+  }
+
+  .graph-container {
+    height: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .grade-wise-salary-card {
+    /* width: 70%; */
+    /* margin-left: 10px; */
+    min-width: 350px; /* Adjusted min-width for flexibility */
+    max-width: 280px;
+    padding: 10px;
+  }
+
+
+  .graph-container {
+    height: 220px;
+  }
+
+  .grade-wise-salary-card h2 {
+    font-size: 0.9rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
 }

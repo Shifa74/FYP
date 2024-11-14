@@ -1,20 +1,21 @@
+/* Base styling for .employee-grades-container */
 .employee-grades-container {
-    background-color: #f1f4f5; /* Container background color */
-    padding: 26px; /* Further reduced padding */
+    background-color: #f1f4f5;
+    padding: 26px;
     border-radius: 8px;
     border: 2px solid #64919e;
-    min-width: 390px;
-    max-width: 390px; /* Reduced width */
-    height: 302px;
-    margin-bottom: 5px;
-    margin-right: 5px;
+    width: 100%;
+    max-width: 410px;
+    height: auto;
+    margin: 5px auto;
+    box-sizing: border-box;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px; /* Further reduced margin */
+    margin-bottom: 8px;
 }
 
 .title-section {
@@ -24,57 +25,201 @@
 
 .heading {
     margin: 0;
-    font-size: 0.9rem; /* Reduced font size */
+    font-size: 0.9rem;
 }
 
 .subtitle {
     margin: 0;
-    font-size: 0.6rem; /* Further reduced subtitle font size */
-    color: #64919e;
-}
-
-.grade-dropdown {
-    margin-left: auto;
-    padding: 3px; /* Further reduced padding */
-    border: 1px solid #64919e;
-    border-radius: 4px;
-    background-color: #ffffff;
+    font-size: 0.8rem;
     color: #64919e;
 }
 
 .employee-grades {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px; /* Further reduced gap */
-    justify-content: start; /* Align items to the left */
+    gap: 5px;
+    justify-content: start;
 }
 
 .grade-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: calc((100% / 3) - 6px); /* Reduced width */
+    padding: 10px;
     box-sizing: border-box;
+    width: calc(33.33% - 10px); /* 3 columns by default */
 }
 
 .grade-box {
-    background-color: #ffffff; /* White background for each grade box */
+    background-color: #ffffff;
     border: 1px solid #64919e;
     border-radius: 6px;
-    padding: 6px; /* Further reduced padding */
+    padding: 6px;
     text-align: center;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
 .grade-box h3 {
-    margin: 6px; /* Further reduced margin */
-    font-size: 0.7em; /* Further reduced font size */
+    margin: 6px;
+    font-size: 0.9em;
     color: #64919e;
 }
 
 .employee-count {
-    margin: 6px 0 0; /* Further reduced margin */
-    font-size: 0.8rem; /* Further reduced font size */
+    margin: 6px 0 0;
+    font-size: 0.8rem;
     color: #64919e;
 }
+
+/* Media Queries for Responsive Adjustments */
+
+/* Large screens, adjust container padding */
+@media (max-width: 1590px) {
+    .employee-grades-container {
+        padding: 20px;
+        height: 420px;
+        margin-top: 2px;
+    }
+}
+@media (max-width: 1500px) {
+    .employee-grades-container {
+        padding: 10px;
+        height: 420px;
+        margin-top: 2px;
+    }
+}
+@media (max-width: 1400px) {
+    .employee-grades-container {
+        padding: 4px;
+        height: 420px;
+        margin-top: 2px;
+    }
+}
+@media (max-width: 1300px) {
+    .employee-grades-container {
+        padding: 4px;
+        height: 420px;
+        margin-top: 2px;
+    }
+    .grade-item {
+        width: calc(30% - 10px); /* Switch to 2 columns */
+    }
+}
+
+/* Medium screens, reduce columns and container width */
+@media (max-width: 1200px) {
+    .employee-grades-container {
+        padding: 20px;
+        /* height: 430px; */
+        max-width: 100%;
+    }
+    .grade-item {
+        box-sizing: border-box;
+        width: calc(30% - 20px); /* 3 columns by default */
+    }
+    .heading{
+        font-size: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1130px) {
+    .employee-grades-container {
+        padding: 10px;
+        max-width: 100%;
+    }
+    
+}
+
+
+
+
+
+@media (max-width: 1050px) {
+    .employee-grades-container {
+        padding: 30px;
+        min-width: 380px;
+    }
+    .grade-item {
+      
+        padding: 10px;
+        box-sizing: border-box;
+        width: calc(33.33% - 20px); /* 3 columns by default */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Small screens, reduce padding and keep items aligned in single column */
+@media (max-width: 992px) {
+        .employee-grades-container {
+            padding: 30px;
+            max-width: 100%;
+        }
+        .grade-item {
+          
+            padding: 10px;
+            box-sizing: border-box;
+            width: calc(33.33% - 20px); /* 3 columns by default */
+        }
+    }
+
+   
+
+
+
+/* Extra small screens, make each grade item full width */
+@media (max-width: 768px) {
+    .employee-grades-container {
+        /* padding: 10px; */
+        max-width: 480px;
+    }
+    .grade-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            width: calc(33.33% - 10px); /* 3 columns by default */
+        }
+}
+@media (max-width: 576px) {
+    .employee-grades-container {
+        /* padding: 10px; */
+        max-width: 350px;
+        min-width: 300px;
+        height:450px
+    }
+    .grade-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            width: calc(33.33% - 10px); /* 3 columns by default */
+        }
+}
+

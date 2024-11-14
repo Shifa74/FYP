@@ -1,11 +1,37 @@
 .salary-list-container {
-  padding: 20px;
+  padding: 10px;
   position: absolute;
-  top: 100px;
-  left:200px;
+  top: 90px;
+  left: 200px;
   width: calc(100% - 250px);
+  border: 2px solid #46919e;
 }
 
+.salary-table-wrapper {
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin-top: 20px;
+}
+
+/* Main heading styling */
+.salary-table-heading {
+  font-size: 1.5rem;
+  color: #46919e;
+  margin: 0;
+  padding: 15px;
+  text-align: center;
+  background-color: #f4f4f4;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  border-bottom: 2px solid #ddd;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Table and cell styling */
 .salary-table {
   width: 100%;
   border-collapse: collapse;
@@ -13,23 +39,192 @@
 
 .salary-table th,
 .salary-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
 }
 
 .salary-table th {
-  background-color: #f4f4f4;
+  background-color: #46919e;
+  color: #ffffff;
+  font-weight: 600;
+  position: sticky;
+  top: 50px;
+  z-index: 2;
 }
 
+.salary-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.salary-table tr:hover {
+  background-color: #eef7f9;
+  transition: background-color 0.3s ease;
+}
+
+.salary-table td {
+  color: #3f3f3f;
+}
+
+/* Button styling */
 .salary-table button {
   padding: 8px 12px;
-  background-color: #4caf50;
+  background-color: #46919e;
   color: #fff;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem;
 }
 
 .salary-table button:hover {
-  background-color: #45a049;
+  background-color: #3a7b85;
+  transform: scale(1.05);
+}
+
+.salary-table button:active {
+  background-color: #2f6268;
+  transform: scale(1);
+}
+
+.salary-table button:focus {
+  outline: 2px solid #80c3c5;
+  outline-offset: 2px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1020px) {
+  .salary-list-container {
+    padding: 10px;
+    width: 80%;
+    left: 180px;
+    top: 90px;
+
+  }
+
+  .salary-table-heading {
+    font-size: 1.3rem;
+    padding: 10px;
+  }
+
+  .salary-table-wrapper {
+    max-height: 500px;
+    margin-top: 50px;
+  }
+
+  .salary-table th,
+  .salary-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .salary-table button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 900px) {
+  .salary-list-container {
+    padding: 10px;
+    width: 70%;
+    left: 180px;
+    top: 80px;
+
+  }
+
+  .salary-table-heading {
+    font-size: 1.3rem;
+    padding: 10px;
+  }
+
+  .salary-table-wrapper {
+    max-height: 500px;
+    margin-top: 50px;
+  }
+
+  .salary-table th,
+  .salary-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .salary-table button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 768px) {
+  .salary-list-container {
+    padding: 10px;
+    width: 70%;
+    left: 130px;
+    top: 80px;
+
+  }
+
+  .salary-table-heading {
+    font-size: 1.3rem;
+    padding: 10px;
+  }
+
+  .salary-table-wrapper {
+    max-height: 500px;
+    margin-top: 50px;
+  }
+
+  .salary-table th,
+  .salary-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .salary-table button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .salary-list-container {
+    padding: 5px;
+    width: 100%;
+    top: 10px;
+  }
+
+  .salary-table-heading {
+    font-size: 1.1rem;
+    padding: 8px;
+  }
+
+  .salary-table-wrapper {
+    max-height: 250px;
+    margin-top: 40px;
+  }
+
+  .salary-table th,
+  .salary-table td {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+
+  .salary-table button {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+
+  /* Stacked layout for table rows in smaller screens */
+  .salary-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .salary-table th,
+  .salary-table td {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+  }
 }

@@ -22,8 +22,10 @@ const SalaryList = () => {
 
   return (
     <div className="salary-list-container">
-      <h2>Salary List</h2>
-      <table className="salary-table">
+  <div class="salary-table-wrapper">
+      <h2 className='salary-table-heading'>Salary List</h2>
+
+      <table class="salary-table">
         <thead>
           <tr>
             <th>Employee ID</th>
@@ -52,6 +54,7 @@ const SalaryList = () => {
       {selectedEmployeeId && (
         <SalaryDetails employeeId={selectedEmployeeId} onClose={closePopup} />
       )}
+    </div>
     </div>
   );
 };

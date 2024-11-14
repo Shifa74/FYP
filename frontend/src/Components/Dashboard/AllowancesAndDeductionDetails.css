@@ -1,13 +1,15 @@
-.incentives-bonuses-details-container {
-    width: 100%;
-    max-width: 800px;
+.allowances-deduction-details-container {
+    /* width: 100%; */
+    /* max-width: 800px; */
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
-    position: relative;
+    position: absolute;
     top: 100px;
+    left: 200px;
+    width: calc(100% - 300px);
   }
   
   .heading {

@@ -131,6 +131,7 @@ th.wider-column {
 .add-employee-button .icon {
   margin-right: 8px; /* Reduced margin */
   font-size: 1.2rem; /* Slightly reduced icon size */
+  color:#333;
 }
 
 /* Text inside the add employee button */
