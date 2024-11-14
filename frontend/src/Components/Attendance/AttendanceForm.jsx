@@ -45,9 +45,6 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
         `/attendance/getWorkingDays?month=${monthNumber}&year=${year}`
       );
       setTotalWorkingDays(response.data.workingDays);
-      console.log(
-        `Total working days for ${month} ${year}: ${response.data.workingDays}`
-      );
     } catch (error) {
       console.error("Error fetching working days:", error);
       setTotalWorkingDays(0);
@@ -80,7 +77,6 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
     const monthNumber = monthMap.find((m) => m.name === month)?.number;
     console.log(monthNumber);
     const attendanceData = {
-      // _id: initialData ? initialData._id : new Date().toISOString(),  // Generate new ID if adding
       employeeId,
       presentDays: Number(presentDays),
       year,

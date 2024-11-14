@@ -1,7 +1,7 @@
-import React from 'react';
-import './report.css';
+import React from "react";
+import "./report.css";
 
-const ReportList = ({ reports, onReportClick }) => {
+const ReportList = ({ reports, onReportClick, monthNames}) => {
   return (
     <div className="report-list">
       <h3>Previous Reports</h3>
@@ -9,11 +9,17 @@ const ReportList = ({ reports, onReportClick }) => {
         <p>No previous reports available.</p>
       ) : (
         <ul>
-          {reports.map((report, index) => (
-            <li key={index} onClick={() => onReportClick(report.month, report.year)}>
-              {report.month} {report.year} - {report.employeeCount} Employees
-            </li>
-          ))}
+          {reports.map((report) => {
+             const monthName = monthNames[report.month - 1];
+            return (
+              <li
+                key={report._id}
+                onClick={() => onReportClick(report.month, report.year)}
+              >
+                {monthName} {report.year} - {report.reportData.length} Employees
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

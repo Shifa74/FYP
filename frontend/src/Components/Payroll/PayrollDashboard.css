@@ -12,7 +12,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   top: 80px;
-  left: 200px;
+  left: 205px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
@@ -46,6 +46,10 @@
 .payroll-header-filters label {
   font-size: 0.9rem;
   color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold
 }
 
 .payroll-header-filters select {
@@ -53,6 +57,7 @@
   border: 1px solid #d1d9dd;
   border-radius: 6px;
   background-color: #eef6f8;
+  font-weight: 500;
   font-size: 0.9rem;
   transition: background-color 0.3s ease, border 0.3s ease;
 }
@@ -69,7 +74,7 @@
   margin-top: 20px;
   position: relative;
   top: 80px;
-  left: 220px;
+  left: 205px;
   width: 80%;
   flex-wrap: wrap; /* Enable wrapping for responsive design */
 }

@@ -93,42 +93,6 @@ const deleteEmployee = async (req, res, next) => {
   }
 };
 
-// const getEmpCountByDept = async (req, res, next) => {
-//   try {
-//     const employeeCounts = await Employee.aggregate([
-//       {
-//         $group: {
-//           _id: "$employee",
-//           employeeCount: { $sum: 1 },
-//         },
-//       },
-//       {
-//         $lookup: {
-//           from: "departments",
-//           localField: "_id",
-//           foreignField: "_id",
-//           as: "department",
-//         },
-//       },
-//       {
-//         $unwind: "$department",
-//       },
-//       {
-//         $project: {
-//           _id: 0,
-//           departmentName: "$department.name",
-//           employeeCount: 1,
-//         },
-//       },
-//     ]);
-//     res.status(200).json(employeeCounts);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-
-
 module.exports = {
   addEmployee,
   getEmployees,

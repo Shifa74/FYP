@@ -1,14 +1,15 @@
 import React from 'react';
 import './report.css';
 
-const ReportComponent = ({ payrollData }) => {
+const ReportComponent = ({ payrollData, monthNames }) => {
   if (!payrollData) {
     return <p>No report data available. Please select a month and year to generate the report.</p>;
   }
+  const monthName = monthNames[payrollData.month - 1];
 
   return (
     <div className="report-container">
-      <h2>{payrollData.month} {payrollData.year} Payroll Report</h2>
+      <h2>{monthName} {payrollData.year} Payroll Report</h2>
       <div className="report-table-container">
         <table className="report-table">
           <thead>
@@ -22,14 +23,14 @@ const ReportComponent = ({ payrollData }) => {
             </tr>
           </thead>
           <tbody>
-            {payrollData.employees.map((employee, index) => (
-              <tr key={index}>
-                <td>{employee.id}</td>
-                <td>{employee.name}</td>
-                <td>{employee.grossSalary}</td>
-                <td>{employee.bonuses}</td>
-                <td>{employee.deductions}</td>
-                <td>{employee.netSalary}</td>
+            {payrollData.reportData.map((employee) => (
+              <tr key={employee._id}>
+                <td>{employee.employeeDetails.employeeId}</td>
+                <td>{employee.employeeDetails.firstName}</td>
+                <td>{employee.baseSalary}</td>
+                <td>{employee.allowanceDetails.amount}</td>
+                <td>{Math.round(employee.totalDeductions)}</td>
+                <td>{Math.round(employee.netSalary)}</td>
               </tr>
             ))}
           </tbody>

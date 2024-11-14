@@ -10,8 +10,10 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  -webkit-backdrop-filter: blur(5px); /* Webkit prefix for Safari */
-  backdrop-filter: blur(5px); /* Standard property */
+  -webkit-backdrop-filter: blur(5px);
+  /* Webkit prefix for Safari */
+  backdrop-filter: blur(5px);
+  /* Standard property */
   padding: 20px; /* Allows space on smaller screens */
 }
 
@@ -36,6 +38,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+ 
 }
 
 .salary-heading {
@@ -72,14 +75,16 @@
 }
 
 /* Form Fields */
-.salary-input-group, .salary-dropdown-container {
+.salary-input-group,
+.salary-dropdown-container {
   margin: 15px 0;
   display: flex;
   gap: 15px;
   justify-content: space-between;
 }
 
-.salary-dropdown, .salary-input-field {
+.salary-dropdown,
+.salary-input-field {
   width: 48%;
   padding: 10px;
   border: 1px solid #b6d1d0;
@@ -95,9 +100,11 @@
   font-size: 1rem;
   transition: border-color 0.3s ease, transform 0.2s ease;
 }
-.salary-dropdown:focus, .salary-input-field:focus {
+.salary-dropdown:focus,
+.salary-input-field:focus {
   border-color: #3f6c74;
   transform: scale(1.02);
+ 
 }
 
 .salary-dropdown {
@@ -128,8 +135,15 @@
 
 /* Animation for fade-in */
 @keyframes fadeIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Responsive Adjustments */
@@ -139,14 +153,22 @@
     padding: 30px;
     max-width: 90%; /* Flexible width for small screens */
   }
-  .salary-dropdown-container, .salary-input-group {
+
+  .salary-dropdown-container,
+  .salary-input-group {
     flex-direction: column;
     gap: 10px;
   }
-  .salary-dropdown, .salary-input-field {
+
+  .salary-dropdown,
+  .salary-input-field {
     width: 100%;
   }
-  .salary-subtitle, .salary-heading {
-    font-size: 1.2rem; /* Smaller font for headers on smaller screens */
-  }
+}
+
+.salary-err-mess {
+  color: red;
+}
+.salary-err-input{
+  border: 2px solid red;
 }

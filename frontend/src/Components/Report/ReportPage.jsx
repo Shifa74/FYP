@@ -1,45 +1,53 @@
-import React, { useState } from 'react';
-import ReportFilter from './ReportFilter';
-import ReportComponent from './ReportComponent';
-import ReportList from './ReportList';
-import './report.css';
+import React, { useState, useEffect } from "react";
+import ReportFilter from "./ReportFilter";
+import ReportComponent from "./ReportComponent";
+import ReportList from "./ReportList";
+import "./report.css";
+import axios from "axios";
+
+const monthNames = [
+  "January", "February", "March", "April", "May", "June", 
+  "July", "August", "September", "October", "November", "December"
+];
 
 const ReportPage = () => {
   const [payrollData, setPayrollData] = useState(null);
+  const [reports, setReports] = useState([]);
+ 
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        const res = await axios.get("/report/get");
+        setReports(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.error("Error fetching reports", error.message);
+      }
+    };
+    fetchReports();
+  }, []);
 
-  // Static data for the previous 3 months
-  const [reports] = useState([
-    { month: 'August', year: '2024', employeeCount: 10 },
-    { month: 'July', year: '2024', employeeCount: 8 },
-    { month: 'June', year: '2024', employeeCount: 12 },
-  ]);
 
-  // Mock data to simulate report generation
-  const mockPayrollData = {
-    month: 'August',
-    year: '2024',
-    employees: [
-      { id: 1, name: 'John Doe', grossSalary: 5000, bonuses: 300, deductions: 200, netSalary: 5100 },
-      { id: 2, name: 'Jane Smith', grossSalary: 4800, bonuses: 200, deductions: 100, netSalary: 4900 },
-      { id: 1, name: 'John Doe', grossSalary: 5000, bonuses: 300, deductions: 200, netSalary: 5100 },
-      { id: 2, name: 'Jane Smith', grossSalary: 4800, bonuses: 200, deductions: 100, netSalary: 4900 },
-      { id: 1, name: 'John Doe', grossSalary: 5000, bonuses: 300, deductions: 200, netSalary: 5100 },
-      { id: 2, name: 'Jane Smith', grossSalary: 4800, bonuses: 200, deductions: 100, netSalary: 4900 },
-      
-      // More employee data...
-    ],
-  };
+   const fetchReportDetails = async(monthNumber, year) => {
+    try {
+      const res = await axios.get("/report/get/details", {
+        params: { month: monthNumber, year },
+      });
+      setPayrollData(res.data);
+    } catch (error) {
+      if (error.response.data.message) {
+        console.log(error.response.data.message);
+      }
+    }
+   }
 
-  const handleGenerateReport = ({ month, year }) => {
-    setPayrollData({ ...mockPayrollData, month, year });
+  const handleGenerateReport = async ({ monthNumber, year }) => {
+   fetchReportDetails(monthNumber, year)
+  
   };
 
   const handleReportClick = (month, year) => {
-    setPayrollData({
-      ...mockPayrollData,
-      month,
-      year,
-    });
+    fetchReportDetails(month, year)
   };
 
   return (
@@ -47,13 +55,13 @@ const ReportPage = () => {
       <header className="report-header">
         <h1>Payroll Report</h1>
         <div className="filter-container">
-          <ReportFilter onGenerateReport={handleGenerateReport} />
+          <ReportFilter onGenerateReport={handleGenerateReport} monthNames={monthNames}/>
         </div>
       </header>
-      
+
       <div className="report-content">
-        <ReportComponent payrollData={payrollData} />
-        <ReportList reports={reports} onReportClick={handleReportClick} />
+        <ReportComponent payrollData={payrollData} monthNames={monthNames}/>
+        <ReportList reports={reports} onReportClick={handleReportClick} monthNames={monthNames} />
       </div>
     </div>
   );

@@ -23,10 +23,10 @@ const calculateSalary = async (
   if (!grade) throw createError(404, "Grade not found for the employee.");
   const baseSalary = grade.baseSalary;
 
-  const allowanceDoc = await Allowance.findOne({ allowanceType });
+  const allowanceDoc = await Allowance.findById(allowanceType);
   if (!allowanceDoc) throw createError(404, "Allowance type not found.");
 
-  const deductionDoc = await Deduction.findOne({ deductionType });
+  const deductionDoc = await Deduction.findById(deductionType);
   if (!deductionDoc) throw createError(404, "Deduction type not found.");
 
   const attendance = await Attendance.findOne({
@@ -37,6 +37,7 @@ const calculateSalary = async (
   if (!attendance)
     throw createError(404, "Attendance record not found for this month.");
 
+  // calculate absence deduction
   const workingDays = getWorkingDays(month, year);
   const absentDays = attendance.absentDays;
   const dailySalary = baseSalary / workingDays;
@@ -46,7 +47,6 @@ const calculateSalary = async (
   // calculate overtime pay
   const presentDays = attendance.presentDays;
   const hourlyRate = baseSalary / (presentDays * 8);
-  console.log(hourlyRate);
   const overtimePay = overtimeHours * hourlyRate * 1.5; // overtimeRate = 1.5
 
   const finalSalary = baseSalary + allowanceDoc.amount - totalDeduction;
