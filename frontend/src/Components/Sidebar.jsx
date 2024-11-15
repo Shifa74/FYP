@@ -1,52 +1,54 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './Sidebar.css';
-import { FaMoneyCheckAlt } from 'react-icons/fa'; // Import FaMoneyCheckAlt icon
+ // Import FaMoneyCheckAlt icon
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <ul>
-        <li style={{marginBottom:'30px'}}>
-          <div className='icon_header'>
-            <FaMoneyCheckAlt className="icon" style={{ marginRight: '0.5rem'}} /> {/* Payroll icon */}
-            <span className="text">Payroll</span>
-          </div>
-        </li>
-        <li>
+        
+       
+        <li title=" Dashboard">
           <Link to="/dashboard">
             <i className="fas fa-tachometer-alt icon"></i>
             <span className="text">Dashboard</span>
           </Link>
         </li>
-        <li>
+        <li title="Employees">
           <Link to="/Employee">
             <i className="fas fa-users icon"></i>
             <span className="text">Employees</span>
           </Link>
         </li>
-        <li>
+        <li title="Payroll">
           <Link to="/payroll">
             <i className="fas fa-money-bill-wave icon"></i>
             <span className="text">Payroll</span>
           </Link>
         </li>
-        <li>
+        <li title="Administration">
           <Link to="/administration">
             <i className="fas fa-cog icon"></i>
             <span className="text">Administration</span>
           </Link>
         </li>
-        <li>
+        <li title=" Report">
           <Link to="/report">
             <i className="fas fa-file-alt icon"></i>
             <span className="text">Report</span>
           </Link>
         </li>
-        <li>
+        <li title=" Attendance">
           <Link to="/attendance">
             <i className="fas fa-clipboard-list icon"></i>
             <span className="text">Attendance</span>
+          </Link>
+        </li>
+        <li title="Salary">
+          <Link to="/Salary-List">
+            <i className="fas fa-clipboard-list icon"></i>
+            <span className="text">SalaryList</span>
           </Link>
         </li>
       </ul>

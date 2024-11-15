@@ -100,7 +100,7 @@ const PayrollDashboard = () => {
           </label> 
          </div>  
 
-        {/* Generate Salary Button */}
+        {/* Generate Salary Button  */}
         <button
           onClick={handleOpenPopup}
           className="payroll-generate-salary-button"
@@ -108,7 +108,7 @@ const PayrollDashboard = () => {
           Generate Salary
         </button>
 
-        {/* Popup Overlay */}
+         {/* Popup Overlay  */}
         {isPopupOpen && (
           <div className="payroll-popup-overlay" onClick={handleClosePopup}>
             <div

@@ -47,7 +47,7 @@ const ReportFilter = ({ onGenerateReport, monthNames }) => {
         <option value="2025">2025</option>
       </select>
 
-      <button onClick={handleGenerate}>Generate Report</button>
+      <button onClick={handleGenerate} className="generatereport">Generate Report</button>
     </div>
   );
 };

@@ -37,7 +37,7 @@ top: 50px;
 
 .filter-container select,
 .filter-container button {
-  padding: 8px 12px;
+  padding: 8px 15px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
@@ -149,4 +149,233 @@ button:hover {
 
 .report-list li:hover {
   background-color: #bbdefb;
+}
+
+
+
+
+@media (max-width: 1200px) {
+  .report-page {
+    width: 80%;
+    left: 200px;
+  }
+
+  .report-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    /* margin-top: 10px; */
+  }
+
+  .report-header h1 {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+
+  .filter-container {
+    flex-wrap: wrap;
+  }
+
+  .report-container {
+    width: calc(100% - 40px);
+  }
+
+  .report-list {
+    padding: 8px;
+    margin-left: 20px;
+    width: 95%;
+  }
+
+  .report-list li {
+    font-size: 0.9em;
+  }
+}
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .report-page {
+    width: 75%;
+    left: 170px;
+  }
+
+  .report-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .report-header h1 {
+    font-size: 1.2em;
+  }
+
+  .filter-container {
+    flex-wrap: wrap;
+  }
+
+  .report-container {
+    width: calc(100% - 40px);
+  }
+
+  .report-list {
+    padding: 8px;
+  }
+
+  .report-list li {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 820px) {
+  .report-page {
+    width: 75%;
+    left: 170px;
+  }
+
+  .report-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .report-header h1 {
+    font-size: 1.0em;
+  }
+
+  /* .filter-container {
+    flex-wrap: wrap;
+  } */
+
+  .report-container{
+    min-width: 400px;
+
+  }
+  .report-list {
+    padding: 8px;
+  }
+
+  .report-list li {
+    font-size: 0.9em;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* For screens up to 768px */
+@media (max-width: 768px) {
+  .report-page {
+    width: 80%;
+    left: 90px;
+    padding-top: 10px;
+  }
+  .report-container{
+    min-width: 400px;
+
+  }
+  /* Header adjustments */
+  .report-header {
+    flex-direction: row; /* Stack heading and filters as separate rows */
+    align-items: flex-start;
+  }
+
+  .report-header h1 {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  /* Keep filter selects and button on the same line */
+  .filter-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .filter-container select,
+  .filter-container button {
+    padding: 8px 10px;
+    font-size: 0.85em;
+    min-width: 150px;
+  }
+
+  /* Table adjustments */
+  .report-table-container {
+    width: 100%; /* Match header width */
+    overflow-x: auto;
+  }
+
+  .report-table {
+   max-width: 2000px;
+  }
+
+  .report-table th,
+  .report-table td {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+}
+
+/* For screens up to 600px */
+@media (max-width: 600px) {
+  .report-page {
+    width: 80%;
+    left: 90px;
+    padding-top: 10px;
+  }
+
+  /* Header adjustments */
+  .report-header {
+    flex-direction: column; /* Keep heading and filters stacked */
+    align-items: flex-start;
+  }
+
+  .report-header h1 {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+  }
+
+  /* Keep filter selects and button on the same line */
+  .filter-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .filter-container select,
+  .filter-container button {
+    padding: 6px 8px;
+    font-size: 0.8em;
+    min-width: 170px;
+  }
+
+  /* Table adjustments */
+  .report-table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .report-table {
+    width: 100%;
+  }
+
+  .report-table th,
+  .report-table td {
+    font-size: 0.8em;
+    padding: 5px;
+  }
 }

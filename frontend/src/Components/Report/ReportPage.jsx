@@ -49,6 +49,23 @@ const ReportPage = () => {
   const handleReportClick = (month, year) => {
     fetchReportDetails(month, year)
   };
+  const handleDelete = async (employeeId) => {
+    try {
+      // Call your API to delete the employee's report
+      await axios.delete(`/payroll/deleteReport/${employeeId}`);
+
+      // Update the state to reflect the deletion
+      setPayrollData(prevData => ({
+        ...prevData,
+        reportData: prevData.reportData.filter(employee => employee._id !== employeeId),
+      }));
+
+      alert('Employee report deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting employee report:', error.message);
+      alert('Failed to delete the report.');
+    }
+  };
 
   return (
     <div className="report-page">
@@ -60,7 +77,7 @@ const ReportPage = () => {
       </header>
 
       <div className="report-content">
-        <ReportComponent payrollData={payrollData} monthNames={monthNames}/>
+        <ReportComponent payrollData={payrollData} monthNames={monthNames}  handleDelete={handleDelete}/>
         <ReportList reports={reports} onReportClick={handleReportClick} monthNames={monthNames} />
       </div>
     </div>

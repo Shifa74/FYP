@@ -4,7 +4,7 @@
   top: 90px;
   left: 200px;
   width: calc(100% - 250px);
-  border: 2px solid #46919e;
+  /* border: px solid #46919e; */
 }
 
 .salary-table-wrapper {

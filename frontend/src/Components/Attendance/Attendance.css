@@ -20,60 +20,89 @@
   flex-grow: 1;
 }
 
-.aattendnace-buttons {
-  display: flex;
-  gap: 60px;
-  margin-top: 10px;
-  margin-left: 30px;
-}
+  .attendance-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
 
 .aadd-attendance-btn, .month-select {
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.aadd-attendance-btn {
-  background-color: #46919e;
-  color: white;
-  border: none;
-  margin-right: 6px;
   margin-top: 10px;
 }
 
-.aadd-attendance-btn:hover {
-  background-color: #387a84;
+  .aadd-attendance-btn {
+    background-color: #46919e; /* Prominent color for Add Attendance */
+    color: white;
+    border: none;
+    margin-right: 6px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+
+  .aadd-attendance-btn:hover {
+    background-color: #387a84;
+  }
+  .attendance-filters {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background to separate from Add Attendance */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+.month-select, .year-select {
+  background-color: #f0f0f0; /* Light background for filter buttons */
+  border: 1px solid #ccc;
+  color: #333;
+  transition: background-color 0.3s;
+}
+.filter-month-select{
+  background-color: #f0f0f0; /* Light background for filter buttons */
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 10px;
+  transition: background-color 0.3s;
 }
 
-.attendance-filters {
-  display: flex;
-  gap: 10px; /* Adjust spacing as needed */
-  margin-top: 10px;
+.month-select:hover, .year-select:hover {
+  background-color: #e0e0e0; /* Darken slightly on hover */
 }
-
-.month-select, .year-select, .apply-btn, .clear-btn {
+ .apply-btn, .clear-btn {
   padding: 10px;
   border-radius: 4px;
   margin: 4px;
 }
 
+/* Button container */
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
 .apply-btn {
-  background-color: #46919e;
+  background-color: #4CAF50; /* Different color for apply button */
   color: white;
   border: none;
   cursor: pointer;
   width: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .clear-btn {
-  background-color: #f44336; /* Red color for clear button */
+  background-color: #f44336;
   color: white;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .apply-btn:hover, .clear-btn:hover {
-  opacity: 0.8; /* Slightly dim buttons on hover */
+  opacity: 0.85; /* Slightly dim on hover */
 }
 
 
@@ -179,163 +208,173 @@
 
 @media (max-width: 1030px) {
   .attendance-page {
-    left: 300px;
-    width: 40%;
+    left: 200px;
+    width: 70%;
     padding: 10px;
   }
 
   .attendance-header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
 
-  .attendance-table {
-    width: 120%; /* Increase width of the table */
+ 
+  .attendance-buttons {
+    flex-direction: row;
+    /* align-items: center; */
+    /* justify-content: center; */
+    gap: 30px;
+    /* margin-left: 20px; */
   }
-  .aattendnace-buttons {
+  .month-select, .year-select, .apply-btn, .clear-btn{
+    margin-left:20px;
+
+    
+  }
+  .attendance-buttons {
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    margin-left: 0;
+    margin-left: 120px;
   }
 
-  .attendance-table th, .attendance-table td {
-    padding: 8px;
-    font-size: 16px;
-    align-items: center;
-    text-align: center;
-  }
 }
 
 @media (max-width: 1000px) {
   .attendance-page {
     left: 250px;
-    width: 40%;
+    width: 70%;
     padding: 10px;
   }
 
   .attendance-header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-align: center; 
-     margin-left: 70px;
+     margin-left: 50px;
   }
 
-  .attendance-table {
-    width: 600px; /* Increase width of the table */
-  }
-  .aattendnace-buttons {
+  
+  .month-select, .year-select, .apply-btn, .clear-btn{
+    margin-left:10px;
+}
+
+  .attendance-buttons {
     flex-direction: row;
     align-items: center;
     gap: 30px;
-    margin-left: 0;
+    margin-left: 100px;
   }
 
-  .attendance-table th, .attendance-table td {
-    padding: 8px;
-    font-size: 16px;
-    align-items: center;
-    text-align: center;
-  }
 }
 
 
 
 @media (max-width: 900px) {
   .attendance-page {
-    left: 200px;
-    width: 40%;
+    left: 180px;
+    width: 70%;
     padding: 10px;
     
   }
 
   .attendance-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    /* flex-direction: column; */
+     font-size: 20px;
+     font-weight: bold;
+     margin-left: 20px;
   }
 
-  .attendance-table {
-    width: 500px; /* Increase width of the table */
+  
+   .year-select, .apply-btn, .clear-btn{
+    margin-left:20px;
+    font-size: 17px;
   }
-  .aattendnace-buttons {
+  .month-select{
+    margin-left:10px;
+    font-size: 17px;
+    width: 200px;
+  }
+  .attendance-buttons {
     flex-direction: row;
     align-items: center;
-    gap: 20px;
-    margin-left: 0;
+    gap: 15px;
+    font-size: 17px;
+    margin-left: 10px;
   }
-
-  .attendance-table th, .attendance-table td {
-    padding: 6px;
-    font-size: 16px;
-    align-items: center;
-    text-align: center;
+  .attendance-table{
+    margin-left: 30px;
   }
 }
+
+
+
 @media (max-width: 830px) {
   .attendance-page {
-    left: 190px;
-    width: 40%;
+    left: 130px;
+    width: 80%;
     padding: 10px;
   }
+  
 
-  .attendance-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+ 
+  .year-select, .apply-btn, .clear-btn{
+    margin-left:20px;
+    font-size: 17px;
   }
-
-  .attendance-table {
-    width: 550px; /* Increase width of the table */
+  .month-select{
+    margin-left:10px;
+    font-size: 17px;
+    width: 200px;
   }
-  .aattendnace-buttons {
+  .attendance-buttons {
     flex-direction: row;
     align-items: center;
-    gap: 40px;
-    margin-left: 0;
-  }
-
-  .attendance-table th, .attendance-table td {
-    padding: 6px;
-    font-size: 15px;
-    align-items: center;
-    text-align: center;
+    gap: 15px;
+    font-size: 17px;
+    margin-left: 100px;
   }
 }
+
+
+
+
+
+
 
 /* Responsive Design for Tablets */
 @media (max-width: 768px) {
   .attendance-page {
     left: 80px;
-    width: 50%;
-    padding: -20px;
-  }
-  .attendance-table {
-    width: 450px; /* Increase width of the table */
+    width: 80%;
+    padding: 10px;
   }
   
-.month-select, .year-select, .apply-btn, .clear-btn{
+  
+ .year-select{
 width: 90px;
 padding: 10px;
 }
+.apply-btn, .clear-btn{
+  width: 90px;
+padding: 10px;
+}
+.month-select{
+  width: 200px;
+  padding: 10px;
+}
 
+  .attendance-buttons {
+    width: 400px;
+    padding: 20px;
+    margin-left: 30px;
+  }
+  .aadd-attendance-btn{
+    width: 200px;
+    font-size:12px;
 
-
- 
-
-  .aattendnace-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    margin-left: 20px;
   }
 
-  .attendance-table th, .attendance-table td {
-    padding: 8px;
-    font-size: 12px;
-    align-items: center;
-    text-align: center;
-  }
 
   .popup-form-container {
     width: 100%;
@@ -346,4 +385,41 @@ padding: 10px;
   }
 }
 
+@media (max-width: 680px) {
+  .attendance-page {
+    padding: 10px;
+    max-width: 70%;
+  }
 
+  .attendance-heading {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .attendance-filters, .attendance-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-input {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .month-select, .add-attendance-btn {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+
+
+
+}
