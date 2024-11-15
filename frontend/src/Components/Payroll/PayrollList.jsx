@@ -85,7 +85,7 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
           hour: "2-digit",
           minute: "2-digit",
         })}</p>
-        <p><strong>Salary: </strong>${Math.round(data.netSalary)}</p>
+        <p><strong>Salary: </strong>${Math.round(data.netSalary).toLocaleString()}</p>
         <p><strong>Status: </strong>${data.status}</p>
       </div>
     `;
@@ -132,7 +132,7 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
       20,
       70
     );
-    doc.text(`Salary: ${Math.round(data.netSalary)}`, 20, 80);
+    doc.text(`Salary: ${Math.round(data.netSalary).toLocaleString()}`, 20, 80);
     doc.text(`Status: ${data.status}`, 20, 90);
 
     doc.save(`${data.employeeID.firstName}_PayrollSlip.pdf`);
@@ -208,7 +208,7 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
                       minute: "2-digit",
                     })}
               </td>
-              <td>{Math.round(item.netSalary)}</td>
+              <td>{Math.round(item.netSalary).toLocaleString()}</td>
               <td>{item.status}</td>
               <td>
                 <FaPrint

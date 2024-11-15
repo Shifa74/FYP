@@ -32,23 +32,23 @@ const SalaryDetails = ({ employeeId, salaries, onClose }) => {
               {salaryDetails.employeeID.firstName}
             </p>
             <p>
-              <strong>Base Salary:</strong> ${salaryDetails.baseSalary}
+              <strong>Base Salary:</strong> ${(salaryDetails.baseSalary).toLocaleString()}
             </p>
             <p>
               <strong>Allowances:</strong> $
-              {salaryDetails.allowances.allowanceType}
+              {(salaryDetails.allowances.amount).toLocaleString()}
             </p>
             <p>
-              <strong>Deductions:</strong> ${salaryDetails.totalDeductions}
+              <strong>Deductions:</strong> ${Math.round(salaryDetails.totalDeductions).toLocaleString()}
             </p>
             <p>
               <strong>Overtime Hours:</strong> {salaryDetails.overtimeHours}
             </p>
             <p>
-              <strong>Overtime Pay:</strong> ${salaryDetails.overtimePay}
+              <strong>Overtime Pay:</strong> ${Math.round(salaryDetails.overtimePay).toLocaleString()}
             </p>
             <p>
-              <strong>Total Salary:</strong> ${salaryDetails.netSalary}
+              <strong>Total Salary:</strong> ${Math.round(salaryDetails.netSalary).toLocaleString()}
             </p>
           </div>
         ) : (

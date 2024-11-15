@@ -76,7 +76,7 @@ const PayrollDashboard = () => {
       <div className="payroll-dashboard-header">
         <h1>Payroll Management</h1>
 
-        {/* Filters Section
+        {/* {Filters Section */}
         <div className="payroll-header-filters">
           <label>
             Month:
@@ -86,7 +86,7 @@ const PayrollDashboard = () => {
                   {month}
                 </option>
               ))}
-            {/* </select>
+            </select>
           </label>
           <label>
             Year:
@@ -96,9 +96,9 @@ const PayrollDashboard = () => {
                   {year}
                 </option>
               ))}
-            {/* </select>
-          </label> */}
-        {/* </div> */} 
+            </select>
+          </label> 
+         </div>  
 
         {/* Generate Salary Button */}
         <button
@@ -125,11 +125,11 @@ const PayrollDashboard = () => {
       <div className="payroll-dashboard">
         <div className="payroll-dashboard-card">
           <h3>Payroll Costs</h3>
-          <p>${Math.round(payrollSummary.payrollCosts)}</p>
+          <p>${Math.round(payrollSummary.payrollCosts).toLocaleString()}</p>
         </div>
         <div className="payroll-dashboard-card">
           <h3>Pending Payments</h3>
-          <p>${Math.round(payrollSummary.pendingPayments)}</p>
+          <p>${Math.round(payrollSummary.pendingPayments).toLocaleString()}</p>
         </div>
         <div className="payroll-dashboard-card">
           <h3>Total Payrolls</h3>

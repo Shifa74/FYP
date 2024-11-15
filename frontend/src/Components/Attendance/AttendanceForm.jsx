@@ -75,7 +75,6 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
     }
 
     const monthNumber = monthMap.find((m) => m.name === month)?.number;
-    console.log(monthNumber);
     const attendanceData = {
       employeeId,
       presentDays: Number(presentDays),

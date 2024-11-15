@@ -1,15 +1,25 @@
-import React from 'react';
-import './AllowancesAndDeductionDetails.css';
+import React from "react";
+import "./AllowancesAndDeductionDetails.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const AllowancesAndDeductionDetails = () => {
-  // Sample data
-  const data = [
-    { id: 1, employee: 'John Doe', allowances: 200, deduction: 100, date: '2024-07-01' },
-    { id: 2, employee: 'Jane Smith', allowances: 150, deduction: 120, date: '2024-07-02' },
-    { id: 3, employee: 'Mark Johnson', allowances: 180, deduction: 90, date: '2024-07-03' },
-    { id: 4, employee: 'Emily Brown', allowances: 220, deduction: 110, date: '2024-07-04' },
-    { id: 5, employee: 'Michael White', allowances: 170, deduction: 80, date: '2024-07-05' },
-  ];
+  const [details, setDetails] = useState([]);
+  
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const res = await axios.get("/dashboard/allow/deduct/details");
+        setDetails(res.data);
+      } catch (error) {
+        console.log(
+          "Error fetching allowance and deduction details",
+          error.message
+        );
+      }
+    };
+    fetchDetails();
+  }, []);
 
   return (
     <div className="allowances-deduction-details-container">
@@ -20,18 +30,20 @@ const AllowancesAndDeductionDetails = () => {
             <th>ID</th>
             <th>Employee</th>
             <th>Allowances</th>
-            <th>Deduction</th>
+            <th>Deductions</th>
             <th>Date</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.employee}</td>
-              <td>${item.allowances}</td>
-              <td>${item.deduction}</td>
-              <td>{item.date}</td>
+          {details.map((item) => (
+            <tr key={item._id}>
+              <td>{item.employeeDetails.employeeId}</td>
+              <td>
+                {item.employeeDetails.firstName} {item.employeeDetails.lastName}
+              </td>
+              <td>${item.allowanceDetails.amount}</td>
+              <td>${Math.round(item.totalDeductions)}</td>
+              <td>{new Date(item.createdAt).toISOString().slice(0, 10)}</td>
             </tr>
           ))}
         </tbody>

@@ -1,24 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import './GradeWiseSalary.css';
+import React, { useState, useEffect } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import "./GradeWiseSalary.css";
+import axios from "axios";
 
 const GradeWiseSalary = () => {
   const [gradeWiseSalary, setGradeWiseSalary] = useState([]);
 
   useEffect(() => {
-    // Simulated data fetching
-    const fetchGradeWiseSalary = () => {
-      setGradeWiseSalary([
-        { grade: '9', salary: 1 },
-        { grade: '8', salary: 2 },
-        { grade: '7', salary: 3 },
-        { grade: '6', salary: 4 },
-        { grade: '5', salary: 3.5 },
-        { grade: '4', salary: 2.5 },
-        { grade: '3', salary: 1.5 },
-        { grade: '2', salary: 1.2 },
-        { grade: '1', salary: 1.8 },
-      ]);
+    const fetchGradeWiseSalary = async () => {
+      try {
+        const res = await axios.get("/grade/get");
+        const formattedData = res.data.map((item) => ({
+          grade: item.gradeNo,
+          salary: item.baseSalary 
+        }));
+        setGradeWiseSalary(formattedData);
+      } catch (error) {
+        console.error("Error fetching grade-wise salary data:", error);
+      }
     };
 
     fetchGradeWiseSalary();
@@ -33,9 +40,8 @@ const GradeWiseSalary = () => {
           <BarChart data={gradeWiseSalary}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="grade" />
-            <YAxis tickFormatter={(value) => `${value} lac`} />
-              
-            <Tooltip formatter={(value) => `${value} lac`} />
+            <YAxis tickFormatter={(value) => `${value}`} />
+            <Tooltip formatter={(value) => `${value} thousand`} />
             <Bar dataKey="salary" fill="#64919e" />
           </BarChart>
         </ResponsiveContainer>
