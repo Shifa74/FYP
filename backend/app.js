@@ -10,7 +10,8 @@ const allowanceRoutes = require("./routes/allowance");
 const deductionRoutes = require("./routes/deduction");
 const usersRoutes = require("./routes/users");
 const salaryRoutes = require("./routes/salary");
-const reportRoutes = require('./routes/report')
+const reportRoutes = require("./routes/report");
+const dashboradRoutes = require("./routes/dashboard");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./db/conn");
 const app = express();
@@ -29,7 +30,8 @@ app.use("/api/allowance", allowanceRoutes);
 app.use("/api/deduction", deductionRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/salary", salaryRoutes);
-app.use('/api/report', reportRoutes)
+app.use("/api/report", reportRoutes);
+app.use("/api/dashboard", dashboradRoutes);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

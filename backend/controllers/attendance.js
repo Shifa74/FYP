@@ -115,7 +115,6 @@ const workingDays = (req, res, next) => {
   }
   try {
     const tworkDays = getWorkingDays(month, year);
-    console.log(tworkDays);
     return res.status(200).json({ workingDays: tworkDays });
   } catch (error) {
     next(error);

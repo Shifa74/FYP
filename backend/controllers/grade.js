@@ -18,7 +18,7 @@ const addGrade = async (req, res, next) => {
 
 const getGrades = async (req, res, next) => {
   try {
-    const grades = await Grade.find();
+    const grades = await Grade.find().sort({gradeNo: 1});
     res.status(200).json(grades);
   } catch (error) {
     next(error);
