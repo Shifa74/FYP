@@ -1,7 +1,7 @@
 /* Sidebar styling */
 .sidebar {
   width: 150px;
-  background-color: #2c3e50;
+  background-color: #334b63;
   height: 820vh;
   position: fixed;
   top: 58px;
@@ -39,7 +39,7 @@
 }
 
 .sidebar ul li a:hover {
-  background-color: #3b8c8f;
+  background-color: #46919e;
   color: #e3eeed;
 }
 

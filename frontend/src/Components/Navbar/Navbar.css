@@ -23,7 +23,7 @@
 }
 
 .payroll_icon {
-  color: #00796b;
+  color: white;
   font-size: 40px;
   margin-right: 0.5rem;  /* Space between the icon and text */
 }
@@ -40,13 +40,13 @@
   display: flex;
   align-items: center;  /* Center the icon and text vertically */
   position: absolute;
-  top: 10px;
+  /* top: 10px; */
   left: 30px;
 }
 
 .navbar-brand .text {
   font-size: 25px;
-  background: linear-gradient(to right, #83cdeb, #05bada);
+  background: linear-gradient(to right, #2bbdf7, #bcf4fd);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -58,7 +58,7 @@
   right: 0;
   width: 250px;
   background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(253, 7, 7, 0.2);
+  box-shadow: 0 4px 8px #b9dae0;
   border-radius: 8px;
   z-index: 1000;
   padding: 10px;
@@ -66,7 +66,7 @@
 
 .logout_icon {
   /* margin-top: 10px; */
-  color: #0ec7f5;
+  color: whitesmoke;
 }
 
 .notifications-dropdown h5 {
@@ -107,7 +107,7 @@
 
 .logout_nav-item a{
   
-    color: rgb(13, 210, 224);
+    color: white;
     font-size: 1.2rem;
   
 }
@@ -117,7 +117,7 @@
 }
 
 .noti_icon{
-  color: #0dc4f1;
+  color: white;
   margin-top: 7px;
 }
 
