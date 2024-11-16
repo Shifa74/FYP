@@ -25,15 +25,9 @@
 
 
 
-@media (max-width: 768px) {
-  .employee-details-container  {
-    margin-left: 70px;
-    width: calc(100% - 100px);
-  }
-}
 
 /* Heading for the page, aligned to the left */
-.heading {
+.employee_heading {
   font-size: 1.5rem; /* Reduced font size */
   margin-bottom: 10px; /* Reduced margin */
   color: #333;
@@ -220,3 +214,87 @@ th.wider-column {
   opacity: 0.5;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* Employee Details Container */
+  .employee-details-container {
+    margin-left: 70px;
+    width: calc(90% - 40px);
+
+  }
+  
+  /* Heading adjustments */
+  .employee_heading {
+    font-size: 20px; /* Smaller font size */
+    text-align: center; /* Center-align on smaller screens */
+    margin-bottom: 8px;
+    left: 60px;
+  }
+
+  /* Filter container and search bar adjustments */
+  .filter-container {
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start; /* Align items to the start on small screens */
+    width: 70%;
+  }
+  .filter-container select{
+    width: 20%; /* Full width on smaller screens */
+  }
+  .filter-container input {
+    width: 60%; /* Full width on smaller screens */
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+
+  /* Button adjustments */
+  .add-employee-button {
+    width: 210px; /* Full width on smaller screens */
+    padding: 8px;
+    font-size: 10px;
+    display: flex;
+    margin-left: 3px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Pagination button adjustments */
+  .pagination-button {
+    padding: 5px 10px; /* Reduced padding for smaller buttons */
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 576px) {
+  
+  /* Heading font size */
+  .employee_heading {
+    font-size: 15px; /* Even smaller on very small screens */
+  }
+  
+  /* Filter container and search bar */
+  .filter-container {
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start; /* Align items to the start on small screens */
+    width: 50%;
+  }
+  .filter-container select{
+    width: 10%; /* Full width on smaller screens */
+  }
+  .filter-container input {
+    width: 100%; /* Full width on smaller screens */
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+  
+  /* Add Employee button */
+  .add-employee-button {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+  
+  /* Pagination button */
+  .pagination-button {
+    padding: 4px 8px;
+  }
+}

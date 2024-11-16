@@ -76,7 +76,7 @@ const PayrollDashboard = () => {
       <div className="payroll-dashboard-header">
         <h1>Payroll Management</h1>
 
-        {/* Filters Section
+         {/* Filters Section */}
         <div className="payroll-header-filters">
           <label>
             Month:
@@ -86,7 +86,7 @@ const PayrollDashboard = () => {
                   {month}
                 </option>
               ))}
-            {/* </select>
+             </select>
           </label>
           <label>
             Year:
@@ -96,11 +96,11 @@ const PayrollDashboard = () => {
                   {year}
                 </option>
               ))}
-            {/* </select>
-          </label> */}
-        {/* </div> */} 
+             </select>
+          </label> 
+        </div> 
 
-        {/* Generate Salary Button */}
+        {/* Generate Salary Button  */}
         <button
           onClick={handleOpenPopup}
           className="payroll-generate-salary-button"
@@ -108,7 +108,7 @@ const PayrollDashboard = () => {
           Generate Salary
         </button>
 
-        {/* Popup Overlay */}
+         {/* Popup Overlay  */}
         {isPopupOpen && (
           <div className="payroll-popup-overlay" onClick={handleClosePopup}>
             <div

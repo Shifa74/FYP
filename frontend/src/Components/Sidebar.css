@@ -1,43 +1,26 @@
 /* Sidebar styling */
 .sidebar {
   width: 150px;
-  background-color: #343a40;
-  height: 100vh;
+  background-color: #2c3e50;
+  height: 820vh;
   position: fixed;
-  top: 0px;
+  top: 58px;
   left: 0;
   padding-top: 20px;
   z-index: 1000;
   transition: width 0.3s;
+  border-right: 1px solid #46919e;
 }
-.icon_header {
-  display: flex;
-}
-.icon_header .text{
-  /* color: white; */
-  font-size: 22px;
-    font-size: 22px;
-    background: linear-gradient(to right, #83cdeb, #05bada); /* Define your gradient */
-    -webkit-background-clip: text; /* For WebKit browsers (Chrome, Safari) */
-    background-clip: text; /* Standard property */
-    color: transparent; /* Make the text color transparent to reveal the gradient */
-  
-  
-}
-.icon_header .icon{
-   left: 200px;
-   color: #00796b;
-   font-size:35px;
-}
+
 
 .sidebar ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  /* margin-top: 0px; */
 }
 
 .sidebar ul li {
-  padding: 8px;
+  padding: 8px 0;
   text-align: left;
   margin-bottom: 8px;
   display: flex;
@@ -45,7 +28,7 @@
 }
 
 .sidebar ul li a {
-  color: white ;
+  color: white;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -56,33 +39,34 @@
 }
 
 .sidebar ul li a:hover {
-  background-color: #e0f7fa;
-  color: #00796b;
+  background-color: #3b8c8f;
+  color: #e3eeed;
 }
+
+
 
 .sidebar ul li a .icon {
   margin-right: 8px;
-  font-size: 18px;
+  font-size: 20px;
   min-width: 20px;
+color: white;
 }
 
 .sidebar ul li a .text {
   flex-grow: 1;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .brandLink{
   text-decoration-color: linear-gradient(90deg, #64c7cc, #3b8c8f); /* Gradient colors */
 }
+
 /* Responsive sidebar */
 @media (max-width: 768px) {
   .sidebar {
     width: 60px; /* Collapse sidebar to icon-only */
     overflow-x: hidden;
   }
- .icon_header .text{
-  display: none;
- }
   .sidebar ul li a .text {
     display: none; /* Hide text when collapsed */
   }
@@ -90,4 +74,10 @@
   .sidebar ul li {
     justify-content: center; /* Center icons */
   }
+  .payroll_icon_header {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  
 }

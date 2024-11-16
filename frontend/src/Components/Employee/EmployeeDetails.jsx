@@ -139,7 +139,7 @@ const EmployeeDetails = () => {
   return (
     <div className="employee-details-container">
       <div className="top-bar">
-        <h1 className="heading">Employee Details</h1>
+        <h1 className="employee_heading">Employee Details</h1>
         <div className="filter-container">
           <select
             style={{ width: "185px" }}

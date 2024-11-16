@@ -122,6 +122,16 @@ const GenerateSalary = ({ onClose }) => {
             }}
             className={`salary-input-field  id_input_field ${error ? "salary-err-input" : ""}`}
           />
+            <input
+            type="number"
+            placeholder="Overtime Hours"
+            value={overtimeHours}
+            onChange={(e) => {
+              setOvertimeHours(e.target.value);
+              setError("");
+            }}
+            className="salary-input-field"
+          />
         </div>
         <div className="salary-dropdown-container">
           <select
@@ -197,16 +207,7 @@ const GenerateSalary = ({ onClose }) => {
               </option>
             ))}
           </select>
-          <input
-            type="number"
-            placeholder="Overtime Hours"
-            value={overtimeHours}
-            onChange={(e) => {
-              setOvertimeHours(e.target.value);
-              setError("");
-            }}
-            className="salary-input-field"
-          />
+        
         </div>
         <button
           onClick={handleGenerateSalary}

@@ -125,10 +125,10 @@ const Attendance = () => {
   return (
     <div className="attendance-page">
       <div className="attendance-header">
-        <h1 className="attendance-header">Employee Attendance</h1>
+        <h1 className="attendance-heading">Employee Attendance</h1>
         <div className="attendance-filters">
           <select
-            className="month-select"
+            className="filter-month-select"
             value={selectedMonth}
             onChange={handleMonthChange}
           >
@@ -151,12 +151,15 @@ const Attendance = () => {
               </option>
             ))}
           </select>
+          <div className="button-container">
           <button className="apply-btn" onClick={handleApplyFilter}>
             Apply
           </button>
           <button className="clear-btn" onClick={handleClearFilter}>
             Clear
           </button>
+          </div>
+         
         </div>
         <div className="attendance-buttons">
           <button className="aadd-attendance-btn" onClick={toggleForm}>

@@ -28,6 +28,22 @@ const SalaryList = () => {
     setSelectedEmployeeId(null); // Reset the selected employee ID to close the modal
   };
 
+  const handleDelete = async (employeeId) => {
+    try {
+      // Call the API to delete the salary entry
+      await axios.delete(`/salary/delete/${employeeId}`);
+      
+      // Remove the deleted salary from the state
+      setSalaries(salaries.filter(salary => salary._id !== employeeId));
+      
+      // Optionally, display a success message or notification
+      alert("Salary record deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting salary", error.message);
+      alert("Failed to delete salary record.");
+    }
+  };
+
   return (
     <div className="salary-list-container">
   <div class="salary-table-wrapper">
@@ -52,6 +68,9 @@ const SalaryList = () => {
                 <button onClick={() => handleViewDetails(salary._id)}>
                   View Details
                 </button>
+                <button onClick={() => handleDelete(salary._id)} style={{ marginLeft: "10px" }}>
+                    Delete
+                  </button>
               </td>
             </tr>
           ))}

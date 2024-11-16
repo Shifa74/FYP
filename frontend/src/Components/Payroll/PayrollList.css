@@ -109,8 +109,9 @@
 }
 
 .icon {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   cursor: pointer;
+  padding: 3px;
   color: #64919e;
   transition: color 0.3s ease;
 }
@@ -139,7 +140,7 @@
   .payroll-list-container {
     width: calc(100% - 200px);
     left: 180px;
-    top: 290px;
+    top: 320px;
   }
 
   .search-bar {
@@ -154,7 +155,7 @@
 @media (max-width: 768px) {
   .payroll-list-container {
     width: 80%;
-    left: 110px;
+    left: 95px;
     padding: 5px 15px;
     height: auto; /* Allows flexible height for smaller screens */
     top:300px
@@ -191,7 +192,7 @@
   .payroll-list-container {
     padding: 5px 10px;
     position: absolute;
-    top: 480px;
+    top: 520px;
     left: 90px;
     /* margin-bottom: 200px; */
   }
