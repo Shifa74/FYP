@@ -102,7 +102,7 @@ const Signup = () => {
             />
             <FaLock className="icon" />
           </div>
-          <button type="submit">Signup</button>
+          <button type="submit" className="register_button">Signup</button>
         </form>
         <div className="register-link">
           <p>

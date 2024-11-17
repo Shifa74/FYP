@@ -167,8 +167,7 @@ function LoginForm({ onLogin }) {
               <a href="#!" onClick={navigateToRegister}>
                 Register
               </a>
-            </p>{" "}
-            {/* Add onClick to navigate */}
+            </p>
           </div>
         </form>
 
