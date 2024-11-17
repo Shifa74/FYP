@@ -65,6 +65,7 @@ const getSalaries = async (req, res, next) => {
       })
       .populate("allowances")
       .populate("deductions");
+      salaries.sort((a, b) => a.employeeID.employeeId - b.employeeID.employeeId);
     res.status(200).json(salaries);
   } catch (error) {
     next(error);
@@ -132,10 +133,20 @@ const payrollSummary = async (req, res, next) => {
   }
 };
 
+const deleteSalary = async(req, res, next) => {
+  try {
+    const employeeId = req.params.id;
+    await Salary.findByIdAndDelete(employeeId);
+    res.status(200).json("Salary record has been deleted.");
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   generateSalary,
   getSalaries,
   confirmPayment,
   payrollSummary,
+  deleteSalary
 };
