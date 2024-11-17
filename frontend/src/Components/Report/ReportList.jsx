@@ -10,14 +10,6 @@ const ReportList = ({ reports, onReportClick, monthNames, handleDelete }) => {
     ) {
       handleDelete(employeeId);
     }
-    // try {
-    //   await axios.delete(`/report/delete/${employeeId}`);
-    //   reports.filter((report) => report._id !== employeeId);
-    //   alert("Report record deleted successfully!");
-    // } catch (error) {
-    //   console.error("Error deleting salary", error.message);
-    //   alert("Failed to delete salary record.");
-    // }
   };
   return (
     <div className="report-list">

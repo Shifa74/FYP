@@ -32,8 +32,6 @@ const ReportComponent = ({ payrollData, monthNames, }) => {
                 <td>{employee.allowanceDetails.amount}</td>
                 <td>{Math.round(employee.totalDeductions)}</td>
                 <td>{Math.round(employee.netSalary)}</td>
-                <td>
-                </td>
               </tr>
             ))}
           </tbody>
