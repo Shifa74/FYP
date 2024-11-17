@@ -37,6 +37,11 @@ const generateMontlyReport = async (month, year) => {
         $unwind: "$allowanceDetails",
       },
       {
+        $sort: {
+          "employeeDetails.employeeId": 1,
+        }
+      },
+      {
         $project: {
           _id: 0,
           "employeeDetails.employeeId": 1,
