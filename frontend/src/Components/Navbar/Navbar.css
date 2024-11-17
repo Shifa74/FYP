@@ -52,7 +52,7 @@
   color: transparent;
 }
 
-.notifications-dropdown {
+/* .notifications-dropdown {
   position: absolute;
   top: 40px;
   right: 0;
@@ -62,27 +62,27 @@
   border-radius: 8px;
   z-index: 1000;
   padding: 10px;
-}
+} */
 
 .logout_icon {
   /* margin-top: 10px; */
   color: #0ec7f5;
 }
 
-.notifications-dropdown h5 {
+/* .notifications-dropdown h5 {
   font-size: 1rem;
   margin: 0;
   padding-bottom: 8px;
   border-bottom: 1px solid #ddd;
-}
+} */
 
-.notifications-list {
+/* .notifications-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
+} */
 
-.notification-item {
+/* .notification-item {
   padding: 8px;
   font-size: 0.9rem;
   color: rgb(17, 240, 248)fca;
@@ -103,7 +103,7 @@
 
 .notification-item.task {
   color: #28a745;
-}
+} */
 
 .logout_nav-item a{
   
@@ -143,3 +143,30 @@
   color: #00796b;
   font-size:30px;
 } */
+
+/* .noti_icon {
+  font-size: 24px;
+  position: relative;
+} */
+
+.ringing {
+  animation: ring 0.5s linear infinite;
+}
+
+@keyframes ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

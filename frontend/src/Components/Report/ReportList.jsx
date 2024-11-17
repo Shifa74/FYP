@@ -1,26 +1,50 @@
 import React from "react";
 import "./report.css";
+import { FaTrashAlt } from "react-icons/fa";
 
-const ReportList = ({ reports, onReportClick, monthNames}) => {
+
+const ReportList = ({ reports, onReportClick, monthNames, handleDelete }) => {
+  const handleDeleteClick =async (employeeId) => {
+    if (
+      window.confirm("Are you sure you want to delete this employee's report?")
+    ) {
+      handleDelete(employeeId);
+    }
+    // try {
+    //   await axios.delete(`/report/delete/${employeeId}`);
+    //   reports.filter((report) => report._id !== employeeId);
+    //   alert("Report record deleted successfully!");
+    // } catch (error) {
+    //   console.error("Error deleting salary", error.message);
+    //   alert("Failed to delete salary record.");
+    // }
+  };
   return (
     <div className="report-list">
       <h3>Previous Reports</h3>
       {reports.length === 0 ? (
         <p>No previous reports available.</p>
       ) : (
-        <ul>
-          {reports.map((report) => {
-             const monthName = monthNames[report.month - 1];
-            return (
-              <li
-                key={report._id}
-                onClick={() => onReportClick(report.month, report.year)}
-              >
-                {monthName} {report.year} - {report.reportData.length} Employees
-              </li>
-            );
-          })}
-        </ul>
+        <>
+          <ul>
+            {reports.map((report) => {
+              const monthName = monthNames[report.month - 1];
+              return (
+                <li
+                  key={report._id}
+                  onClick={() => onReportClick(report.month, report.year)}
+                >
+                  {monthName} {report.year} - {report.reportData.length}{" "}
+                  Employees
+                  <FaTrashAlt
+                    className="icon"
+                    onClick={() => handleDeleteClick(report._id)}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </>
       )}
     </div>
   );

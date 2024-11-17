@@ -1,36 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import './NotificationsAndAlerts.css';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import "./NotificationsAndAlerts.css";
+import axios from "axios";
 
-const NotificationsAndAlerts = () => {
+const NotificationsAndAlerts = ({ setHasNotifications }) => {
   const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  
   useEffect(() => {
-    // Fetch notifications from the server or generate dummy data
     const fetchNotifications = async () => {
-      // Example data
-      const data = [
-        { id: 1, type: 'reminder', message: 'Upcoming salary payment due in 3 days' },
-        { id: 2, type: 'alert', message: 'Missing information for Employee ID: 1023' },
-        { id: 3, type: 'task', message: 'Pending task: Approve leave requests' },
-      ];
-      setNotifications(data);
+      try {
+        setLoading(true);
+        const res = await axios.get("/notifications/employee/missing-info");
+        setNotifications(res.data);
+        setHasNotifications(res.data.length > 0); // Notify Navbar
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching notifications", error.message);
+        setLoading(false);
+      }
     };
-
     fetchNotifications();
-  }, []);
+  }, [setHasNotifications]);
 
   return (
-    <div className="notifications-container">
+    <div className="notifications-dropdown">
       <h2>Notifications & Alerts</h2>
       <ul className="notifications-list">
-        {notifications.map((notification) => (
-          <li key={notification.id} className={`notification-item ${notification.type}`}>
-            {notification.message}
-          </li>
-        ))}
+        {loading ? (
+          <li className="notification-item">Loading...</li>
+        ) : notifications.length > 0 ? (
+          notifications.map((notification, index) => (
+            <li key={index} className={`notification-item ${notification.type}`}>
+              {notification.message}
+            </li>
+          ))
+        ) : (
+          <li className="notification-item">No notifications.</li>
+        )}
       </ul>
     </div>
   );
+};
+
+NotificationsAndAlerts.propTypes = {
+  setHasNotifications: PropTypes.func.isRequired,
 };
 
 export default NotificationsAndAlerts;

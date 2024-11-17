@@ -31,12 +31,11 @@ function LoginForm({ onLogin }) {
     }
 
     try {
-      const res = await axios.post("/auth/login", {
+       await axios.post("/auth/login", {
         email,
         password,
         rememberMe,
       });
-      console.log(res.data);
       // Assuming successful login, navigate to the dashboard
       navigate("/dashboard");
       if (onLogin) onLogin(); // Call onLogin to update authentication state in App

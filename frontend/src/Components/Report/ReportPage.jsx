@@ -6,20 +6,29 @@ import "./report.css";
 import axios from "axios";
 
 const monthNames = [
-  "January", "February", "March", "April", "May", "June", 
-  "July", "August", "September", "October", "November", "December"
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const ReportPage = () => {
   const [payrollData, setPayrollData] = useState(null);
   const [reports, setReports] = useState([]);
- 
+
   useEffect(() => {
     const fetchReports = async () => {
       try {
         const res = await axios.get("/report/get");
         setReports(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error("Error fetching reports", error.message);
       }
@@ -27,8 +36,7 @@ const ReportPage = () => {
     fetchReports();
   }, []);
 
-
-   const fetchReportDetails = async(monthNumber, year) => {
+  const fetchReportDetails = async (monthNumber, year) => {
     try {
       const res = await axios.get("/report/get/details", {
         params: { month: monthNumber, year },
@@ -39,31 +47,24 @@ const ReportPage = () => {
         console.log(error.response.data.message);
       }
     }
-   }
+  };
 
   const handleGenerateReport = async ({ monthNumber, year }) => {
-   fetchReportDetails(monthNumber, year)
-  
+    fetchReportDetails(monthNumber, year);
   };
 
   const handleReportClick = (month, year) => {
-    fetchReportDetails(month, year)
+    fetchReportDetails(month, year);
   };
+  
   const handleDelete = async (employeeId) => {
     try {
-      // Call your API to delete the employee's report
-      await axios.delete(`/payroll/deleteReport/${employeeId}`);
-
-      // Update the state to reflect the deletion
-      setPayrollData(prevData => ({
-        ...prevData,
-        reportData: prevData.reportData.filter(employee => employee._id !== employeeId),
-      }));
-
-      alert('Employee report deleted successfully!');
+      await axios.delete(`/report/delete/${employeeId}`);
+      setReports(reports.filter((employee) => employee._id !== employeeId));
+      alert("Employee report deleted successfully!");
     } catch (error) {
-      console.error('Error deleting employee report:', error.message);
-      alert('Failed to delete the report.');
+      console.error("Error deleting employee report:", error.message);
+      alert("Failed to delete the report.");
     }
   };
 
@@ -72,13 +73,21 @@ const ReportPage = () => {
       <header className="report-header">
         <h1>Payroll Report</h1>
         <div className="filter-container">
-          <ReportFilter onGenerateReport={handleGenerateReport} monthNames={monthNames}/>
+          <ReportFilter
+            onGenerateReport={handleGenerateReport}
+            monthNames={monthNames}
+          />
         </div>
       </header>
 
       <div className="report-content">
-        <ReportComponent payrollData={payrollData} monthNames={monthNames}  handleDelete={handleDelete}/>
-        <ReportList reports={reports} onReportClick={handleReportClick} monthNames={monthNames} />
+        <ReportComponent payrollData={payrollData} monthNames={monthNames} />
+        <ReportList
+          reports={reports}
+          onReportClick={handleReportClick}
+          monthNames={monthNames}
+          handleDelete={handleDelete}
+        />
       </div>
     </div>
   );
