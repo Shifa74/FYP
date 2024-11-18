@@ -32,6 +32,15 @@
   border-bottom: 1px solid #ddd;
 }
 
+/* .noti_icon{
+  color: #0dc4f1;
+  margin-top: 7px;
+}  */
+
+.nav-link:hover {
+  color: #1abc9c;
+}
+
 .notification-item:last-child {
   border-bottom: none;
 }

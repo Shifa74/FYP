@@ -54,4 +54,13 @@ const getReportDetails = async (req, res, next) => {
   }
 };
 
-module.exports = { generateReport, getReportList, getReportDetails };
+const deleteReport = async(req, res, next) => {
+  try {
+    await Report.findByIdAndDelete(req.params.id);
+    res.status(200).json("Report has been deleted.")
+  } catch (error) {
+    next(error)
+  }
+}
+
+module.exports = { generateReport, getReportList, getReportDetails, deleteReport };

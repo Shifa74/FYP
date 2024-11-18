@@ -85,7 +85,9 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
           hour: "2-digit",
           minute: "2-digit",
         })}</p>
-        <p><strong>Salary: </strong>${Math.round(data.netSalary).toLocaleString()}</p>
+        <p><strong>Salary: </strong>${Math.round(
+          data.netSalary
+        ).toLocaleString()}</p>
         <p><strong>Status: </strong>${data.status}</p>
       </div>
     `;
@@ -189,41 +191,56 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
                 No payroll records found.
               </td>
             </tr>
-          ) : (filteredData.map((item) => (
-            <tr key={item._id}>
-              <td>{item.employeeID ? item.employeeID.employeeId : "N/A"}</td>
-              <td>{item.employeeID ? item.employeeID.firstName : "N/A"}</td>
-              <td>
-                {item.employeeID ? item.employeeID.gradeNo.gradeNo : "N/A"}
-              </td>
-              <td>{new Date(item.createdAt).toISOString().slice(0, 10)}</td>
-              <td>
-                {item.status === "Paid"
-                  ? new Date(item.paidAt).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })
-                  : new Date(item.createdAt).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-              </td>
-              <td>{Math.round(item.netSalary).toLocaleString()}</td>
-              <td>{item.status}</td>
-              <td>
-                <FaPrint
-                  className="icon print-icon"
-                  title="Print"
-                  onClick={() => handleGenerateSlip(item._id, "print")}
-                />
-                <FaDownload
-                  className="icon download-icon"
-                  title="Download"
-                  onClick={() => handleGenerateSlip(item._id, "download")}
-                />
-              </td>
-            </tr>
-          )))}
+          ) : (
+            filteredData.map((item) => (
+              <tr key={item._id}>
+                <td>{item.employeeID ? item.employeeID.employeeId : "N/A"}</td>
+                <td>{item.employeeID ? item.employeeID.firstName : "N/A"}</td>
+                <td>
+                  {item.employeeID ? item.employeeID.gradeNo.gradeNo : "N/A"}
+                </td>
+                <td>{new Date(item.createdAt).toISOString().slice(0, 10)}</td>
+                <td>
+                  {item.status === "Paid"
+                    ? new Date(item.paidAt).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : new Date(item.createdAt).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                </td>
+                <td>{Math.round(item.netSalary).toLocaleString()}</td>
+                <td>{item.status}</td>
+
+                <td>
+                  <FaPrint
+                    className={`icon print-icon ${
+                      item.status === "Paid" ? "disabled" : ""
+                    }`}
+                    title="Print"
+                    onClick={() => handleGenerateSlip(item._id, "print")}
+                    style={{
+                      pointerEvents: item.status === "Paid" ? "none" : "auto",
+                      opacity: item.status === "Paid" ? 0.5 : 1,
+                    }}
+                  />
+                  <FaDownload
+                    className={`icon download-icon ${
+                      item.status === "Paid" ? "disabled" : ""
+                    }`}
+                    title="Download"
+                    onClick={() => handleGenerateSlip(item._id, "download")}
+                    style={{
+                      pointerEvents: item.status === "Paid" ? "none" : "auto",
+                      opacity: item.status === "Paid" ? 0.5 : 1,
+                    }}
+                  />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FaSignInAlt, FaBell } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Navbar.css";
-import { FaMoneyCheckAlt } from 'react-icons/fa';
+import { FaMoneyCheckAlt } from "react-icons/fa";
+import NotificationsAndAlerts from "./NotificationsAndAlerts";
+
 export default function Navbar(props) {
   const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
-  const [notifications, setNotifications] = useState([]);
+  const [hasNotifications, setHasNotifications] = useState(false);
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -19,47 +22,35 @@ export default function Navbar(props) {
     }
   };
 
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      const data = [
-        { id: 1, type: "reminder", message: "Upcoming salary payment due in 3 days" },
-        { id: 2, type: "alert", message: "Missing information for Employee ID: 1023" },
-        { id: 3, type: "task", message: "Pending task: Approve leave requests" },
-      ];
-      setNotifications(data);
-    };
-    fetchNotifications();
-  }, []);
-
   const toggleNotifications = () => {
     setIsNotificationsVisible(!isNotificationsVisible);
+    if (isNotificationsVisible) {
+      setHasNotifications(false); // Stop ringing when notifications are viewed
+    }
   };
 
   return (
     <nav className="navbar">
       <div className="container-fluid">
         <div className="navbar-brand payroll_icon_header">
-          <FaMoneyCheckAlt className="payroll_icon" style={{ marginRight: '0.5rem'}} /> {/* Payroll icon */}
-          
+          <FaMoneyCheckAlt
+            className="payroll_icon"
+            style={{ marginRight: "0.5rem" }}
+          />
           <span className="text">Payroll</span>
         </div>
 
         <ul className="navbar-nav ml-auto">
           <li className="nav-item position-absolute">
-            <span className="nav-link" onClick={toggleNotifications} style={{ cursor: "pointer" }}>
-              <FaBell className="noti_icon" />
+            <span
+              className="nav-link"
+              onClick={toggleNotifications}
+              style={{ cursor: "pointer" }}
+            >
+              <FaBell className={`noti_icon ${hasNotifications ? "ringing" : ""}`} />
             </span>
             {isNotificationsVisible && (
-              <div className="notifications-dropdown">
-                <h5>Notifications & Alerts</h5>
-                <ul className="notifications-list">
-                  {notifications.map((notification) => (
-                    <li key={notification.id} className={`notification-item ${notification.type}`}>
-                      {notification.message}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <NotificationsAndAlerts setHasNotifications={setHasNotifications} />
             )}
           </li>
           <li className="logout_nav-item">
