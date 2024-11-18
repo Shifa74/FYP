@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import "./LoginRegisterForm.css"
 
 function EmailPopup({ onClose, onNext }) {
   const emailRef = useRef(null);
@@ -33,8 +34,8 @@ function EmailPopup({ onClose, onNext }) {
   };
 
   return (
-    <div className="popup-container">
-      <div className="popup">
+    <div className="login-popup-container">
+      <div className="login-popup">
         <h2>Enter your email</h2>
         <form onSubmit={handleSubmit}>
           {error && <p className="error-message">{error}</p>}

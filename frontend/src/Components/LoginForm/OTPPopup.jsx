@@ -20,7 +20,14 @@ const OTPPopup = ({ onNext, message }) => {
       }
     }
   };
-
+  const handleKeyDown = (e, index) => {
+    // Handle backspace key press
+    if (e.key === "Backspace" && otp[index] === "") {
+      if (index > 0) {
+        document.getElementById(`otp-${index - 1}`).focus();
+      }
+    }
+  };
   const handleVerify = async () => {
     const otpCode = otp.join("");
     // Handle OTP verification logic here
@@ -43,7 +50,7 @@ const OTPPopup = ({ onNext, message }) => {
         <div className="otp-icon">
           <FaCheckCircle size={50} color="#fff" />
         </div>
-        {displayMessage && <p className="success-message">{displayMessage}</p>}
+        {displayMessage && <p className="otp-success-message">{displayMessage}</p>}
         {error && <p className="error-message">{error}</p>}
         <div className="otp-inputs">
           {otp.map((digit, index) => (
@@ -54,6 +61,7 @@ const OTPPopup = ({ onNext, message }) => {
               maxLength="1"
               value={digit}
               onChange={(e) => handleChange(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)} // Added event listener for keydown
               className="otp-input"
               autoComplete="off"
             />
@@ -63,8 +71,8 @@ const OTPPopup = ({ onNext, message }) => {
           Verify OTP
         </button>
         <div className="go-back">
-          <span>Go back to sign in ? </span>
-          <a href="/sign-in" className="sign-in-link">
+          <span>Go back to log in ? </span>
+          <a href="/login" className="sign-in-link">
             Sign In
           </a>
         </div>
