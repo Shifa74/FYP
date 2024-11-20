@@ -17,10 +17,10 @@ const EmployeeGrades = () => {
   }, []);
   return (
     <div className="employee-grades-container">
-      <div className="header">
+      <div className="grade-header">
         <div className="title-section">
-          <h4 className="heading">Number of Employees</h4>
-          <p className="subtitle">Department or Grade wise</p>
+          <h4 className="grade-heading">Number of Employees</h4>
+          <p className="grade-subtitle">Department or Grade wise</p>
         </div>
       </div>
       <div className="employee-grades">

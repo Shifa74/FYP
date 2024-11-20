@@ -12,15 +12,19 @@
   margin: 0 auto; /* Center the card */
 }
 
-.grade-wise-salary-card h2 {
-  margin: 0;
-  font-size: 1.9rem;
-  color: #64919e;
+.grade-wise-heading {
+  color: #005f73;
+  font-weight: 900;
+  margin: 10px;
+  padding: 5px;
+  font-size: larger;
+  text-align: center;
 }
 
-.description {
-  font-size: 0.9rem;
-  color: #64919e;
+.grade-description {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
   text-align: center;
 }
 
@@ -189,6 +193,30 @@
     /* width: 70%; */
     /* margin-left: 10px; */
     min-width: 350px; /* Adjusted min-width for flexibility */
+    max-width: 280px;
+    padding: 10px;
+  }
+
+
+  .graph-container {
+    height: 220px;
+  }
+
+  .grade-wise-salary-card h2 {
+    font-size: 0.9rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .grade-wise-salary-card {
+    /* width: 70%; */
+    /* margin-left: 10px; */
+    min-width: 320px; /* Adjusted min-width for flexibility */
     max-width: 280px;
     padding: 10px;
   }

@@ -32,8 +32,8 @@ const AllowancesAndDeduction = () => {
     datasets: [
       {
         data: [totalAllowances, totalDeductions],
-        backgroundColor: ["#64919e", "#f39c12"],
-        hoverBackgroundColor: ["#527b87", "#e67e22"],
+        backgroundColor: ["#f39c12", "#64919e"],
+        hoverBackgroundColor: ["#11b1e2", "#0beff7"],
       },
     ],
   };
@@ -50,8 +50,8 @@ const AllowancesAndDeduction = () => {
         display: false, // Hide data labels
       },
     },
-    responsive: true,
-    maintainAspectRatio: false,
+    responsive: true, // Makes the chart responsive
+    maintainAspectRatio: false, // Allows better sizing
   };
 
   const handleMoreDetails = () => {
@@ -60,7 +60,7 @@ const AllowancesAndDeduction = () => {
 
   return (
     <div className="Allowances-Deduction-container">
-      <h2 className="heading">Allowances And Deduction</h2>
+      <h2 className="A-d-heading">Allowances And Deduction</h2>
       <div className="chart-container">
         <Doughnut data={data} options={options} />
         <div className="center-text">
@@ -72,14 +72,14 @@ const AllowancesAndDeduction = () => {
         <div className="legend-item">
           <span
             className="legend-color"
-            style={{ backgroundColor: "#64919e" }}
+            style={{ backgroundColor: "#f39c12" }}
           ></span>{" "}
           Allowances
         </div>
         <div className="legend-item">
           <span
             className="legend-color"
-            style={{ backgroundColor: "#f39c12" }}
+            style={{ backgroundColor: " #64919e" }}
           ></span>{" "}
           Deduction
         </div>

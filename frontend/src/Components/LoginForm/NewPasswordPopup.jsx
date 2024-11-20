@@ -37,8 +37,8 @@ function NewPasswordPopup({ onClose, onPasswordUpdate }) {
   };
 
   return (
-    <div className="popup-container">
-      <div className="popup">
+    <div className="login-popup-container">
+      <div className="login-popup">
         <h2>Set New Password</h2>
         <form onSubmit={handleSubmit}>
           {error && <p className="error-message">{error}</p>}

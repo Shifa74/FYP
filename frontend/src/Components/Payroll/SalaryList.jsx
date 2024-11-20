@@ -73,7 +73,7 @@ const SalaryList = () => {
 
   return (
     <div className="salary-list-container">
-      <div class="salary-table-wrapper">
+      <div className="salary-table-wrapper">
         <div className="filter-wrapper">
           <h2 className="salary-table-heading">Salary List</h2>
           <div className="salary-header-filters">
@@ -99,7 +99,7 @@ const SalaryList = () => {
             </label>
           </div>
         </div>
-        <table class="salary-table">
+        <table className="salary-table">
           <thead>
             <tr>
               <th>Employee ID</th>

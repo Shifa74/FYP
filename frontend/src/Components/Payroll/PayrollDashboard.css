@@ -231,3 +231,22 @@ font-weight: bold;
     font-size: 20px;
   }
 }
+@media (max-width: 480px) {
+  .payroll-dashboard-header {
+    width: calc(100% - 90px);
+    padding: 10px;
+    left: 100px;
+    height: 200px;
+  }
+  .payroll-dashboard-card {
+    flex: 1 1 60%;
+    padding: 8px;  
+  }
+  .payroll-generate-salary-button {
+    font-size: 10px;
+    padding: 10px 11px;
+  }
+  .payroll-dashboard-card h3{
+    font-size: 20px;
+  }
+}

@@ -122,10 +122,10 @@ th.wider-column {
 }
 
 /* Icon inside the add employee button */
-.add-employee-button .icon {
+.add-employee-button .employee-button-icon {
   margin-right: 8px; /* Reduced margin */
-  font-size: 1.2rem; /* Slightly reduced icon size */
-  color:#333;
+  font-size: 20px; /* Slightly reduced icon size */
+  color:white;
 }
 
 /* Text inside the add employee button */
@@ -290,11 +290,60 @@ th.wider-column {
   /* Add Employee button */
   .add-employee-button {
     padding: 8px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
+ 
   
   /* Pagination button */
   .pagination-button {
     padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  /* Heading font size */
+  .employee_heading {
+    font-size: 25px; /* Smaller font size for headings */
+    font-weight: 900;
+  }
+
+  /* Employee details container adjustments */
+  .employee-details-container {
+    margin-left: 63px;
+    min-width: 450px;
+  }
+
+  /* Filter container and search bar */
+  .filter-container {
+    width: auto; /* Allow the container to adjust width */
+    display: flex; /* Align elements horizontally */
+    gap: 8px; /* Add some spacing between elements */
+  }
+
+  .filter-container select,
+  .filter-container input {
+    width: 60% !important; /* Ensure both are the same width */
+    padding: 4px; /* Equalize padding */
+    font-size: 0.75rem; /* Match font sizes */
+  }
+
+  /* Add Employee button */
+  .add-employee-button {
+    width: auto; /* Let the width adjust dynamically */
+    /* padding: 4px 6px; Smaller padding for compact size */
+    margin-left: auto; /* Align button to the right if needed */
+    width: 140px;
+    margin-top: 40px;
+  }
+  .employee-button-text{
+    font-size: 10px;
+    font-weight:900;
+  }
+
+  /* Pagination button */
+  .pagination-button {
+    padding: 4px 8px; /* Compact size */
+    font-size: 0.7rem; /* Adjust font size */
   }
 }

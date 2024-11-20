@@ -33,8 +33,8 @@ const GradeWiseSalary = () => {
 
   return (
     <div className="grade-wise-salary-card">
-      <h2>Grade-wise Salary</h2>
-      <p className="description">Salary distribution by grade</p>
+      <h1 className="grade-wise-heading">Grade-wise Salary</h1>
+      <p className="grade-description">Salary distribution by grade</p>
       <div className="graph-container">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={gradeWiseSalary}>

@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 // Import components
@@ -12,7 +12,7 @@ import Administration from './Components/Administration/AdminPage';
 import Attendance from './Components/Attendance/Attendance';
 import Layout from './Layout'; // Import the Layout component
 import SalaryList from "./Components/Payroll/SalaryList";
-import AllowancesAndDeductionDetails from './Components/Dashboard/AllowancesAndDeductionDetails'
+import AllowancesAndDeductionDetails from './Components/Dashboard/AllowancesAndDeductionDetails';
 // Import Admin page components
 import ManageDepartments from './Components/Administration/DepartmentManagement/DepartmentList';
 import ManageUsers from './Components/Administration/UserManagement/UserManagement';
@@ -25,7 +25,15 @@ import ReportPage from './Components/Report/ReportPage';
 import ProtectedRoute from './ProtectedRoute'; // Import the ProtectedRoute component
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    // Get the initial state from localStorage
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
+
+  // Update localStorage whenever `isAuthenticated` changes
+  useEffect(() => {
+    localStorage.setItem('isAuthenticated', isAuthenticated);
+  }, [isAuthenticated]);
 
   return (
     <Router>
@@ -94,7 +102,7 @@ function App() {
             </ProtectedRoute>
           }
         /> 
-          <Route 
+        <Route 
           path="/Salary-List" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
@@ -102,7 +110,7 @@ function App() {
             </ProtectedRoute>
           }
         /> 
-           <Route 
+        <Route 
           path="/allowances-deduction-details" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>

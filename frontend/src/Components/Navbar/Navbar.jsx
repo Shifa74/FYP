@@ -7,7 +7,7 @@ import "./Navbar.css";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import NotificationsAndAlerts from "./NotificationsAndAlerts";
 
-export default function Navbar(props) {
+export default function Navbar({ title = "set title here" }) {
   const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(false);
 
@@ -68,6 +68,3 @@ Navbar.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-Navbar.defaultProps = {
-  title: "set title here",
-};
