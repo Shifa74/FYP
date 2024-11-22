@@ -135,59 +135,6 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 1400px) {
-  .payroll-dashboard-header {
-    width: calc(100% - 220px);
-    left: 190px;
-  }
-  .payroll-dashboard {
-    width: 70%;
-    left: 250px;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .payroll-dashboard-header {
-    width: calc(100% - 200px);
-    left: 180px;
-  }
-  .payroll-dashboard {
-    width: 70%;
-    left: 220px;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 992px) {
-  .payroll-dashboard-header, .payroll-dashboard {
-    width: calc(100% - 200px);
-    left: 170px;
-  }
-}
-
-@media (max-width: 900px) {
-  .payroll-dashboard-header, .payroll-dashboard {
-    width: calc(100% - 240px);
-    left: 200px;
-    height: 90px;
-  }
-  .payroll-dashboard-card h3{
-    font-size: 14px;
-  }
-  .payroll-dashboard-header h1{
-font-size: 15px;
-font-weight: bold;
-  }
-  .payroll-header-filters{
-    font-size: 2px;
-    flex-direction: column;
-    margin: 0;
-
-
-  }
-  
-}
 
 
 
@@ -215,19 +162,63 @@ font-weight: bold;
 
 @media (max-width: 576px) {
   .payroll-dashboard-header {
-    width: calc(100% - 130px);
-    padding: 10px;
-    left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    width: 80%;
+    margin-left: -10px;
+  }
+
+  .payroll-header-filters {
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
   }
   .payroll-dashboard-card {
-    flex: 1 1 90%;
+    /* flex: 1 1 100%; */
     padding: 8px;
+    /* min-width: 70%; */
+    margin-left: 10px;
   }
+  
   .payroll-generate-salary-button {
-    font-size: 10px;
+    font-size: 15px;
     padding: 10px 11px;
   }
   .payroll-dashboard-card h3{
     font-size: 20px;
+  }
+}
+/* Responsive Design for max-width 480px */
+@media (max-width: 480px) {
+  .payroll-dashboard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    /* margin-left: -10px; */
+    width: 470px;
+    /* padding: -90px; */
+    border: 2px solid beige;
+    
+  }
+
+  .payroll-header-filters {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .payroll-dashboard-card {
+    flex: 1 1 auto;  /* Allow cards to grow and shrink */
+    padding: 8px;
+    min-width: 450px; /* Make cards full width */
+   
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+  }
+
+  .payroll-generate-salary-button {
+    width: 50%;
+    margin-top: 10px;
   }
 }

@@ -46,8 +46,8 @@ const AdminPage = () => {
   return (
     <div className="admin-page">
       <div className="dashboard-header">
-        <h1>Admin Dashboard</h1>
-        <p>Manage all aspects of your application from a single place</p>
+        <h1 className="Admin-heading">Admin Dashboard</h1>
+        <p className="admin-description">Manage all aspects of payroll from a single place</p>
       </div>
       <div className="dashboard-grid">
         {/* Existing links */}
@@ -56,7 +56,7 @@ const AdminPage = () => {
             <FaBuilding />
           </div>
           <h3>Manage Departments</h3>
-          <p>View and edit department details</p>
+          <p>View & manage department</p>
         </Link>
         <Link to="/users" className="dashboard-card">
           <div className="card-icon">
@@ -95,7 +95,7 @@ const AdminPage = () => {
         </Link>
 
         {/* Link to Grade Management page */}
-        <Link to="/grade-management" className="dashboard-card">
+        <Link to="/grade-management" className="dashboard-card deduct ">
           <div className="card-icon">
             <FaGraduationCap />
           </div>

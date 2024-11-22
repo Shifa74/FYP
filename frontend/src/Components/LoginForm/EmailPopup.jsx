@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import "./LoginRegisterForm.css"
+// import "./LoginRegisterForm.css"
 
 function EmailPopup({ onClose, onNext }) {
   const emailRef = useRef(null);
@@ -20,6 +20,7 @@ function EmailPopup({ onClose, onNext }) {
       const message = res.data.message;
       setIsLoading(false);
       onNext(message); // Proceed to OTP popup
+      alert(message);
     } catch (error) {
       setIsLoading(false);
       emailRef.current.value = "";

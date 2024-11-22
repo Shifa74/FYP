@@ -32,18 +32,21 @@
 
 .deduction-form-close {
   position: absolute;
-  top: 15px; /* Slightly lower for better visual balance */
-  right: 15px; /* Adjusted for padding */
-  background: none;
-  border: none;
+  top: 25px; /* Slightly lower for better visual balance */
+  right: 10px; /* Adjusted for padding */
+  background: #3b747b;
+  border: 2px solid #2e5c61;
+  border-radius: 10px;
   font-size: 1.5rem;
-  color: #dc3545; /* Red color for close button */
+  width: 50px;
+  color: #fff; /* Red color for close button */
   cursor: pointer;
   transition: color 0.3s; /* Smooth color transition */
 }
 
 .deduction-form-close:hover {
-  color: #a71c1c; /* Darker red on hover */
+  color: #ffffff; /* Darker red on hover */
+  background: #eb3406;
 }
 
 .deduction-form-group {

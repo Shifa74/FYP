@@ -34,7 +34,7 @@ userlist-heading h2 {
 }
 
 .add-user-button:hover {
-  background-color: #007B9E;
+  background-color: #1d0eee;
 }
 
 .user-table-container {
@@ -83,35 +83,40 @@ userlist-heading h2 {
   display: flex;
   gap: 10px;
 }
-
-.useredit-button, .userdelete-button {
-  padding: 5px 15px;
-  text-decoration: none;
-  border: none;
+.action-buttons {
+  display: flex;
+  gap: 2px;
+}
+.user-edit-button{
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #0BBCDB; /* Blue background */
+  border: 2px solid #3182ce; /* Blue border */
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-
+  transition: background-color 0.3s, transform 0.2s;
+}
+.user-edit-button:hover {
+  background-color: #2b6cb0; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+.user-delete-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #82a9b0;
+  border: 2px solid #82a9b0;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.useredit-button {
-  background-color: #3ae5eb;
-  color: white;
+.user-delete-button:hover {
+  background-color: #c53030;
+  transform: translateY(-2px);
 }
-
-.useredit-button:hover {
-  background-color: rgb(0, 0, 0);
-}
-
-.userdelete-button {
-  background-color: #f44336;
-  color: white;
-}
-
-.delete-button:hover {
-  background-color: #e41e26;
-}
-
 /* Responsive Design for 1400px */
 @media (max-width: 1400px) {
   .user-list-container {

@@ -146,7 +146,7 @@ const EmployeeDetails = () => {
             value={filterType}
             onChange={handleFilterTypeChange}
           >
-            <option value="id">Filter by ID</option>
+            <option value="id"   >Filter by ID</option>
             <option value="name">Filter by Name</option>
           </select>
           <input
@@ -161,8 +161,8 @@ const EmployeeDetails = () => {
             className="add-employee-button"
             onClick={handleAddEmployeeClick}
           >
-            <FaUserPlus className="icon" />
-            <span className="text">Add New Employee</span>
+            <FaUserPlus className="employee-button-icon" />
+            <span className="employee-button-text">Add New Employee</span>
           </button>
         </div>
       </div>

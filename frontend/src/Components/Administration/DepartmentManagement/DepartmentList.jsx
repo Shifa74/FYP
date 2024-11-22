@@ -72,13 +72,13 @@ const DepartmentList = () => {
               <td className="department-actions">
                 <button
                   onClick={() => openEditPopup(department)}
-                  className="edit-button"
+                  className="dept-list-edit-button"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDelete(department._id)}
-                  className="delete-button"
+                  className="dept-list-delete-button"
                 >
                   Delete
                 </button>

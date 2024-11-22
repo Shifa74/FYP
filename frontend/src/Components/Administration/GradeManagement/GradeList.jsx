@@ -81,13 +81,13 @@ const GradeList = () => {
               <td>
                 <button
                   onClick={() => openPopup(grade)}
-                  className="edit-button"
+                  className="grade-edit-button"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => deleteGrade(grade._id)}
-                  className="delete-button"
+                  className="grade-delete-button"
                 >
                   Delete
                 </button>

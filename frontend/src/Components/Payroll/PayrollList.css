@@ -192,7 +192,7 @@
   .payroll-list-container {
     padding: 5px 10px;
     position: absolute;
-    top: 520px;
+    top: 600px;
     left: 90px;
     /* margin-bottom: 200px; */
   }
@@ -223,5 +223,81 @@
   }
   .payroll-table thead th {
     font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payroll-list-container {
+    padding: 5px 10px;
+    position: relative;
+    top:100px;
+    left: 80px;
+    width: 400px; /* Full width */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    min-width: 520px;
+    border: none;
+    box-shadow: none;
+  }
+
+  .search-bar {
+    font-size: 0.8rem;
+    width: 70%;
+    margin: 10px auto; /* Center search bar */
+    display: block; /* Ensure full width */
+  }
+
+  .filter-buttons {
+    flex-direction: column; /* Stack buttons */
+    align-items: center;
+    gap: 5px;
+  }
+
+  .filter-buttons button {
+    font-size: 10px;
+    width: 40%;
+    margin: 5px auto;
+  }
+
+
+ 
+  .payroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures consistent column widths */
+    /* max-width: 400px; */
+  
+  }
+  
+  .payroll-table thead, 
+  .payroll-table tbody {
+    display: table; /* Retain table structure */
+    width: 100%;
+    
+  }
+  
+  .payroll-table-container {
+    max-height: 200px; /* Adjust for visible rows */
+    
+    overflow-y: auto; /* Enable scrolling */
+    display: block; /* Allow scrolling inside the container */
+  }
+  
+
+  .payroll-table td {
+    text-align: center;
+    font-size: 0.6rem;
+    padding: 4px;
+    word-wrap: break-word; /* Prevent text overflow */
+  }
+
+  .payroll-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .icon {
+    font-size: 10px;
+    cursor: pointer;
+    color: #64919e;
+    transition: color 0.3s ease;
   }
 }

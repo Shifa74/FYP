@@ -84,3 +84,20 @@
   font-weight: bold;
   font-size: 1.1em;
 }
+.salary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.salary-label {
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+}
+
+.salary-value {
+  flex: 1;
+  text-align: right;
+  color: #333; /* Optional: Add styling for the value */
+}

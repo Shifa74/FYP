@@ -389,3 +389,61 @@ button:hover {
     padding: 5px;
   }
 }
+
+
+@media (max-width: 480px) {
+  .report-page {
+    width: 500px;
+    left: 60px;
+    padding-top: 30px;
+    padding-right: 20px;
+    
+  }
+
+  /* Header adjustments */
+  .report-header {
+    flex-direction: column; /* Keep heading and filters stacked */
+    align-items: center;
+    /* background: no; */
+  }
+
+  .report-header h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* Keep filter selects and button on the same line */
+  .filter-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 80%;
+    flex-wrap: nowrap;
+  }
+
+  .filter-container select,
+  .filter-container button {
+    padding: 6px 8px;
+    font-size: 0.8em;
+    min-width: 170px;
+  }
+
+  /* Table adjustments */
+  .report-table-container {
+    width: 450px;
+    overflow-x: auto;
+  }
+
+  .report-table {
+    width: 95%;
+  }
+
+  .report-table th,
+  .report-table td {
+    font-size: 0.8em;
+    padding: 5px;
+  }
+  .report-list{
+       width:80%;
+  }
+}

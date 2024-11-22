@@ -13,6 +13,7 @@
 }
 
 
+
 .sidebar ul {
   list-style-type: none;
   padding: 0;
@@ -65,6 +66,26 @@ color: white;
 @media (max-width: 768px) {
   .sidebar {
     width: 60px; /* Collapse sidebar to icon-only */
+    overflow-x: hidden;
+  }
+  .sidebar ul li a .text {
+    display: none; /* Hide text when collapsed */
+  }
+
+  .sidebar ul li {
+    justify-content: center; /* Center icons */
+  }
+  .payroll_icon_header {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 50px; /* Collapse sidebar to icon-only */
     overflow-x: hidden;
   }
   .sidebar ul li a .text {

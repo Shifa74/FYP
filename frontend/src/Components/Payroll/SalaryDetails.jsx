@@ -27,30 +27,44 @@ const SalaryDetails = ({ employeeId, salaries, onClose }) => {
         </div>
         {salaryDetails ? (
           <div className="salary-breakdown">
-            <p>
-              <strong>Employee Name:</strong>{" "}
-              {salaryDetails.employeeID.firstName}
-            </p>
-            <p>
-              <strong>Base Salary:</strong> ${(salaryDetails.baseSalary).toLocaleString()}
-            </p>
-            <p>
-              <strong>Allowances:</strong> $
-              {(salaryDetails.allowances.amount).toLocaleString()}
-            </p>
-            <p>
-              <strong>Deductions:</strong> ${Math.round(salaryDetails.totalDeductions).toLocaleString()}
-            </p>
-            <p>
-              <strong>Overtime Hours:</strong> {salaryDetails.overtimeHours}
-            </p>
-            <p>
-              <strong>Overtime Pay:</strong> ${Math.round(salaryDetails.overtimePay).toLocaleString()}
-            </p>
-            <p>
-              <strong>Total Salary:</strong> ${Math.round(salaryDetails.netSalary).toLocaleString()}
-            </p>
+          <div className="salary-item">
+            <span className="salary-label">Employee Name:</span>
+            <span className="salary-value">{salaryDetails.employeeID.firstName}</span>
           </div>
+          <div className="salary-item">
+            <span className="salary-label">Base Salary:</span>
+            <span className="salary-value">${salaryDetails.baseSalary.toLocaleString()}</span>
+          </div>
+          <div className="salary-item">
+            <span className="salary-label">Allowances:</span>
+            <span className="salary-value">
+              ${salaryDetails.allowances.amount.toLocaleString()}
+            </span>
+          </div>
+          <div className="salary-item">
+            <span className="salary-label">Deductions:</span>
+            <span className="salary-value">
+              ${Math.round(salaryDetails.totalDeductions).toLocaleString()}
+            </span>
+          </div>
+          <div className="salary-item">
+            <span className="salary-label">Overtime Hours:</span>
+            <span className="salary-value">{salaryDetails.overtimeHours}</span>
+          </div>
+          <div className="salary-item">
+            <span className="salary-label">Overtime Pay:</span>
+            <span className="salary-value">
+              ${Math.round(salaryDetails.overtimePay).toLocaleString()}
+            </span>
+          </div>
+          <div className="salary-item">
+            <span className="salary-label">Total Salary:</span>
+            <span className="salary-value">
+              ${Math.round(salaryDetails.netSalary).toLocaleString()}
+            </span>
+          </div>
+        </div>
+        
         ) : (
           <p>Loading salary details...</p>
         )}

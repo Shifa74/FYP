@@ -25,7 +25,7 @@ const Attendance = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingAttendance, setEditingAttendance] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 5;
+  const recordsPerPage = 8;
 
   // State for month and year
   const [selectedMonth, setSelectedMonth] = useState("");
@@ -99,8 +99,8 @@ const Attendance = () => {
     )?.number;
     return (
       (selectedMonth === "" || record.month === monthNumber) &&
-      (selectedYear === "" || record.year === selectedYear)
-    );
+      (selectedYear === "" || record.year === Number(selectedYear))
+      );
   });
 
   // Pagination logic
@@ -140,7 +140,7 @@ const Attendance = () => {
             ))}
           </select>
           <select
-            className="year-select"
+            className="filter-year-select"
             value={selectedYear}
             onChange={handleYearChange}
           >
@@ -166,7 +166,7 @@ const Attendance = () => {
             {editingAttendance ? "Cancel Edit" : "Add Attendance"}
           </button>
           <select
-            className="month-select"
+            className="attendance-month-select"
             value={selectedMonth}
             onChange={handleMonthChange}
           >
