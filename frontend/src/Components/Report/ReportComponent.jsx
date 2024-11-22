@@ -17,8 +17,8 @@ const ReportComponent = ({ payrollData, monthNames, }) => {
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Gross Salary</th>
-              <th>Bonuses</th>
+              <th>Base Salary</th>
+              <th>Allowances</th>
               <th>Deductions</th>
               <th>Net Salary</th>
             </tr>
