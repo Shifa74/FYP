@@ -89,7 +89,7 @@
     .employee-grades-container {
         padding: 10px;
         height: 420px;
-        /* margin-left: 10px; */
+        /* margin-left: 30px; */
     }
 }
 @media (max-width: 1400px) {
@@ -172,8 +172,8 @@
 @media (max-width: 768px) {
     .employee-grades-container {
         /* padding: 10px; */
-        max-width: 480px;
-        margin-left: 30px;
+        max-width: 430px;
+        margin-left: 60px;
     }
     .grade-item {
             display: flex;
@@ -187,8 +187,8 @@
 @media (max-width: 576px) {
     .employee-grades-container {
         /* padding: 10px; */
-        max-width: 100px;
-        margin-left: 40px;
+        min-width: 300px;
+        margin-left: 20px;
     }
     .grade-item {
             display: flex;

@@ -100,10 +100,10 @@
 }
 @media (max-width: 1500px) {
   .Allowances-Deduction-container {
-    left: 200px;
+    /* left: 200px; */
     height: 420px;
-    min-width: 295px;
-    max-width: 400px;  
+    min-width: 320px;
+    max-width: 430px;  
   }
   .heading {
       font-size: 0.95rem;
@@ -121,16 +121,17 @@
 }
 @media (max-width: 1200px) {
   .Allowances-Deduction-container {
-    left: 200px;
-    width:calc(100% - 300px) ; 
-    height: 330px;    
+    height: 420px;
+    min-width: 320px;
+    max-width: 430px;  
+   
   }
   .heading {
       font-size: 2px;
   }
   .chart-container {
-      max-width: 100px;
-      height: 100px;
+      max-width: 140px;
+      height: 140px;
   }
   .more-details-button{
     padding: 10px;
@@ -144,7 +145,7 @@
 
 @media (max-width: 900px) {
   .Allowances-Deduction-container {
-      max-width: 130px;
+      min-width: 130px;
       padding: 8px 15px;
   }
   .heading {
@@ -178,7 +179,7 @@
 @media (max-width: 768px) {
   .Allowances-Deduction-container {
       padding: 8px 10px;
-      min-width: 480px;
+      min-width: 380px;
       margin-left: 60px;
   }
   .heading {
@@ -197,10 +198,10 @@
 
 @media (max-width: 576px) {
   .Allowances-Deduction-container {
-    min-width: 350px; /* Adjusted min-width for flexibility */
+    min-width: 230px; /* Adjusted min-width for flexibility */
     /* max-width: 280px; */
     padding: 10px;
-    margin-left: 50px;
+    margin-left: 20px;
     height: 300px;
   }
   .heading {
@@ -209,7 +210,7 @@
   .chart-container {
       max-width: 220px;
       height: 120px;
-      margin-left: -30px;
+      margin-left:2px;
   }
   .legend {
       flex-direction: row;
