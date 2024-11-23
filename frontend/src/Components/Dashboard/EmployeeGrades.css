@@ -173,7 +173,7 @@
     .employee-grades-container {
         /* padding: 10px; */
         max-width: 430px;
-        margin-left: 60px;
+        margin-left: 20px;
     }
     .grade-item {
             display: flex;
