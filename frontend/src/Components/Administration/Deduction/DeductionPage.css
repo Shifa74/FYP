@@ -41,8 +41,9 @@
 
 /* Add hover effect */
 .open-form-button:hover {
-    background-color: #305e68;  /* Darker hover effect */
-    transform: translateY(-2px);  /* Lift effect */
+    background-color: #12ebe0;  /* Darker hover effect */
+    transform: translateY(-5px);  /* Lift effect */
+    font-weight: 900;
 }
 
 .open-form-button:active {
@@ -55,6 +56,29 @@
     .heading-button-container {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .deduction-page-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .open-form-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .deduction-page-container{
+        min-width: 300px;
+        position: absolute;
+        right: 300px;         
+    }
+    .heading-button-container {
+        flex-direction: column;
+        align-items: flex-start;
+     
     }
 
     .deduction-page-title {

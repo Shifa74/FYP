@@ -1,14 +1,14 @@
 /* Base styling for .employee-grades-container */
 .employee-grades-container {
     background-color: #f1f4f5;
-    padding: 26px;
+    padding: 10px;
     border-radius: 8px;
     border: 2px solid #64919e;
     width: 100%;
     max-width: 390px;
-    height: fit-content;
-    margin: 5px auto;
+
     box-sizing: border-box;
+    /* margin-top: px; */
 }
 
 .grade-header {
@@ -84,18 +84,12 @@
 /* Media Queries for Responsive Adjustments */
 
 /* Large screens, adjust container padding */
-@media (max-width: 1590px) {
-    .employee-grades-container {
-        padding: 20px;
-        height: 420px;
-        margin-top: 2px;
-    }
-}
+
 @media (max-width: 1500px) {
     .employee-grades-container {
         padding: 10px;
         height: 420px;
-        margin-top: 2px;
+        /* margin-left: 10px; */
     }
 }
 @media (max-width: 1400px) {
@@ -112,20 +106,20 @@
         margin-top: 2px;
     }
     .grade-item {
-        width: calc(30% - 10px); /* Switch to 2 columns */
+        width: calc(60% - 60px); /* Switch to 2 columns */
+        margin-left: 10px;
     }
 }
 
 /* Medium screens, reduce columns and container width */
 @media (max-width: 1200px) {
     .employee-grades-container {
-        padding: 20px;
-        /* height: 430px; */
         max-width: 100%;
+
     }
     .grade-item {
         box-sizing: border-box;
-        width: calc(30% - 20px); /* 3 columns by default */
+        width: calc(50% - 50px); /* 3 columns by default */
     }
     .heading{
         font-size: 20px;
@@ -139,30 +133,16 @@
 
 
 
-
-
-@media (max-width: 1130px) {
-    .employee-grades-container {
-        padding: 10px;
-        max-width: 100%;
-    }
-    
-}
-
-
-
-
-
 @media (max-width: 1050px) {
     .employee-grades-container {
         padding: 30px;
-        min-width: 380px;
+        min-width: 360px;
     }
     .grade-item {
-      
+         
         padding: 10px;
         box-sizing: border-box;
-        width: calc(33.33% - 20px); /* 3 columns by default */
+        width: calc(50% - 40px); /* 3 columns by default */
     }
 }
 
@@ -183,18 +163,6 @@
 
 
 /* Small screens, reduce padding and keep items aligned in single column */
-@media (max-width: 992px) {
-        .employee-grades-container {
-            padding: 30px;
-            max-width: 100%;
-        }
-        .grade-item {
-          
-            padding: 10px;
-            box-sizing: border-box;
-            width: calc(33.33% - 20px); /* 3 columns by default */
-        }
-    }
 
    
 
@@ -205,6 +173,7 @@
     .employee-grades-container {
         /* padding: 10px; */
         max-width: 480px;
+        margin-left: 30px;
     }
     .grade-item {
             display: flex;
@@ -218,9 +187,8 @@
 @media (max-width: 576px) {
     .employee-grades-container {
         /* padding: 10px; */
-        max-width: 350px;
-        min-width: 300px;
-        height:450px
+        max-width: 100px;
+        margin-left: 40px;
     }
     .grade-item {
             display: flex;

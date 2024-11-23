@@ -39,8 +39,8 @@ const UserList = ({ users, onSave, onDelete, loading }) => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td className="user-actions">
-                                    <button className="useredit-button" onClick={() => openPopup(user)}>Edit</button>
-                                    <button className="userdelete-button" onClick={() => onDelete(user._id)}>Delete</button>
+                                    <button className="user-edit-button" onClick={() => openPopup(user)}>Edit</button>
+                                    <button className="user-delete-button" onClick={() => onDelete(user._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

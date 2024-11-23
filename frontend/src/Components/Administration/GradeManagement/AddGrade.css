@@ -25,7 +25,7 @@
 
 .add-grade-popup h2 {
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 30px;
     color: #46919e;
     text-align: center;
     font-family: 'Arial', sans-serif;
@@ -59,21 +59,22 @@
     outline: none;
 }
 
-.submit-button {
-    background-color: #46919e;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.add-grade-submit-button {
+    width: 160px;
+    padding: 10px 12px;
     font-size: 18px;
-    width: 100%;
-    transition: background-color 0.3s;
+    color: #fff;
+    background-color: #46919e;
+    border: 2px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.submit-button:hover {
-    background-color: #397b88;
+.add-grade-submit-button:hover {
+    background-color: #18e4b1; /* Slightly darker shade on hover */
 }
+
 
 /* Animation for the popup appearance */
 @keyframes fadeIn {

@@ -26,3 +26,31 @@
     padding: 20px;
   }
   
+
+/* Responsive styles for max-width 480px */
+@media (max-width: 480px) {
+  .attendance-list-container{
+    position: absolute;
+    right:19px;
+  }
+  .attendance-table {
+      font-size: 12px;
+      min-width: 400px;
+  }
+
+  .attendance-table th, .attendance-table td {
+      padding: 8px;
+      word-wrap: break-word;
+      width: 25px;
+
+  }
+
+  .attendance-table th {
+      font-size: 10px;
+  }
+
+  .no-data-cell {
+      font-size: 14px;
+      padding: 15px;
+  }
+}

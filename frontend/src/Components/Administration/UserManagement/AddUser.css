@@ -32,25 +32,40 @@
     color: red;
     margin-bottom: 10px;
 }
-
-.user-submit-button,
-.user-cancel-button {
+.form-actions{
+    display: flex;
+    justify-content: center;
+}
+.user-submit-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%; /* Full width for buttons */
+    width: 40%; /* Full width for buttons */
     margin-top: 4px; /* Space above buttons */
-}
-
-.user-submit-button {
-    background-color: #4CAF50; /* Save button color */
+    background-color: #0BBCDB; /* Save button color */
     color: white;
+    text-align: center;
 }
 
 .user-cancel-button {
-    background-color: #f44336; /* Cancel button color */
+    background-color: #82a9b0; /* Cancel button color */
     color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%; /* Full width for buttons */
+    margin-top: 4px; /* Space above buttons */
+    margin-left:10px;
+}
+.user-submit-button:hover{
+    background-color: #2b6cb0; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+.user-cancel-button:hover{
+    background-color: #c53030;
+    transform: translateY(-2px);
 }
 
 /* Popup styling */

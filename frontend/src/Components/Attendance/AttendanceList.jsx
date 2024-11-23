@@ -36,7 +36,7 @@ const AttendanceList = ({
             <th>Employee ID</th>
             <th>No. of Days Present</th>
             <th>No. of Absent Days</th>
-            <th style={{ width: "150px" }}>Actions</th>
+            <th style={{ width: "50px" }}>Actions</th>
           </tr>
         </thead>
         <tbody>

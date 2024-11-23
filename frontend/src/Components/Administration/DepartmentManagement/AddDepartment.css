@@ -31,25 +31,44 @@ label {
     color: red;
     margin-bottom: 10px;
 }
+.dept-buttons{
+    display: flex;
+    justify-content: center;
+}
 
-.deptsubmit-button, .deptcancel-button {
+
+.dept-submit-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 90%;
-    margin: 4px 30px;
+    width: 40%; /* Full width for buttons */
+    margin-top: 4px; /* Space above buttons */
+    background-color: #0BBCDB; /* Save button color */
+    color: white;
+    text-align: center;
 }
 
-.deptsubmit-button {
-    background-color: #4CAF50;
+.dept-cancel-button {
+    background-color: #82a9b0; /* Cancel button color */
     color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%; /* Full width for buttons */
+    margin-top: 4px; /* Space above buttons */
+    margin-left:10px;
+}
+.dept-submit-button:hover{
+    background-color: #2b6cb0; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+.dept-cancel-button:hover{
+    background-color: #c53030;
+    transform: translateY(-2px);
 }
 
-.deptcancel-button {
-    background-color: #f44336;
-    color: white;
-}
 
 /* Popup styling */
 .deptpopup-overlay {
@@ -204,12 +223,12 @@ label {
     }
 
     h2 {
-        font-size: 1.1rem;
-        margin-bottom: 15px;
+        font-size: 20px;
+        /* margin-bottom: 5px; */
     }
 
     .deptform-group label {
-        font-size: 0.8rem;
+        font-size: 15px;
     }
 
     .usersinputs {
@@ -223,7 +242,7 @@ label {
 
     .deptpopup {
         padding: 10px;
-        max-width: 30%; /* Keeps the popup centered within the screen */
+        max-width: 60%; /* Keeps the popup centered within the screen */
         box-shadow: none;
         font-size: 0.8rem;
     }

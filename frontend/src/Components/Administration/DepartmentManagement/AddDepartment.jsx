@@ -71,12 +71,17 @@ const AddDepartment = ({
               required
             />
           </div>
-          <button type="submit" className="deptsubmit-button">
+
+          <div className="dept-buttons">
+
+          <button type="submit" className="dept-submit-button">
             {departmentToEdit ? "Update Department" : "Add Department"}
           </button>
-          <button type="button" className="deptcancel-button" onClick={closePopup}>
+          <button type="button" className="dept-cancel-button" onClick={closePopup}>
             Cancel
           </button>
+          </div>
+
         </form>
       </div>
     </div>

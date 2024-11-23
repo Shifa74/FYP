@@ -36,25 +36,45 @@
 
 .department-actions {
   display: flex;
-  gap: 10px;
+  gap: 20px;
 }
-
-.edit-button, .delete-button {
-  padding: 5px 10px;
-  text-decoration: none;
-  border: none;
+.action-buttons {
+  display: flex;
+  gap: 2px;
+}
+.dept-list-edit-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #0BBCDB; /* Blue background */
+  border: 2px solid #3182ce; /* Blue border */
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.dept-list-edit-button:hover {
+  background-color: #2b6cb0; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+.dept-list-delete-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #82a9b0;
+  border: 2px solid #82a9b0;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.edit-button {
-  background-color: #4CAF50;
-  color: white;
+.dept-list-delete-button:hover {
+  background-color: #c53030;
+  transform: translateY(-2px);
 }
 
-.delete-button {
-  background-color: #f44336;
-  color: white;
-}
+
+
 
 .add-department-button {
   padding: 10px 20px;
@@ -129,7 +149,7 @@
 @media (max-width: 768px) {
   .department-list-container {
     width: 70%;
-    left: 120px;
+    left: 100px;
     padding: 15px;
   }
   .department-table {
@@ -138,8 +158,12 @@
   }
 
   .department-heading {
-    flex-direction: column; /* Stack heading and button vertically on smaller screens */
+    flex-direction: row; /* Stack heading and button vertically on smaller screens */
     align-items: center;
+  }
+  .department-page-title{
+    font-size: 18px;
+    font-weight: 800;
   }
 
   .add-department-button {
@@ -147,29 +171,37 @@
   }
 
   .department-table th, .department-table td {
-    font-size: 14px;
+    font-size: 10px;
   }
+
 }
 
 @media (max-width: 480px) {
   .department-list-container {
-    width: 20%;
-    left: 0;
+    width: 80%;
+    left: 60px;
     padding: 10px;
-    top: 60px;
+    top: 90px;
   }
   .department-table {
-    width: 50%;
+    width: 100%;
     padding: 10px;
   }
 
   .department-table th, .department-table td {
     padding: 4px;
-    font-size: 12px;
+    font-size: 8px;
   }
-
+  .department-heading{
+    display: flex;
+    flex-direction: row;
+  }
+  .department-page-title{
+    font-size: 15px;
+    font-weight: 800;
+  }
   .add-department-button {
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 8px;
   }
 }

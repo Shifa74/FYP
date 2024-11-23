@@ -30,6 +30,7 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
+    
     try {
       if (initialData && initialData._id) {
         const res = await axios.put(`/users/edit/${initialData._id}`, {
@@ -43,6 +44,7 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
       }
       setIsSubmitted(false);
       closePopup(); // Ensure closePopup is triggered here
+      navigate("/users");
     } catch (error) {
       if (
         error.response &&
@@ -53,11 +55,12 @@ const AddEditUser = ({ onSave, initialData, closePopup }) => {
         console.log(error.response.data.message);
       }
     }
+    
   };
 
   const handleClose = () => {
     closePopup(); // Correct closePopup function
-    navigate("/users"); // Navigate back to the admin page
+   
   };
 
   return (

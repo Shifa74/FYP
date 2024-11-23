@@ -140,7 +140,7 @@ const Attendance = () => {
             ))}
           </select>
           <select
-            className="year-select"
+            className="filter-year-select"
             value={selectedYear}
             onChange={handleYearChange}
           >
@@ -166,7 +166,7 @@ const Attendance = () => {
             {editingAttendance ? "Cancel Edit" : "Add Attendance"}
           </button>
           <select
-            className="month-select"
+            className="attendance-month-select"
             value={selectedMonth}
             onChange={handleMonthChange}
           >

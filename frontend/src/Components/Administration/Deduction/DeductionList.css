@@ -44,29 +44,32 @@
   background-color: #fff;
 }
 
-.deduction-edit-btn,
-.deduction-delete-btn {
-  padding: 5px 10px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 3px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
 .deduction-edit-btn {
-  background-color: #4CAF50;
-  color: white;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #0BBCDB; /* Blue background */
+  border: 2px solid #0BBCDB; /* Blue border */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.deduction-delete-btn {
-  background-color: #f44336;
-  color: white;
+.deduction-delete-btn{
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #82a9b0;
+  border: 2px solid #82a9b0;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
+
 
 .deduction-edit-btn:hover {
-  background-color: #45a049;
+  background-color: #021c91;
 }
 
 .deduction-delete-btn:hover {
@@ -87,3 +90,18 @@
       width: 90%;
   }
 }
+@media (max-width: 480px) {
+  .deduction-list-container {
+      max-height: 100px;
+      min-width: 200px;
+  }
+
+  .deduction-list-title {
+      font-size: 1.2rem;
+  }
+
+  .popup-form-container {
+      width: 90%;
+  }
+}
+

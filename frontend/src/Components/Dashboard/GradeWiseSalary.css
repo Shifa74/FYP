@@ -37,9 +37,9 @@
   .grade-wise-salary-card {
     
     height: 420px;
-    max-width: 60%; /* Allow full width initially */
-    min-width: 220px;
-    margin: 0 auto; /* Center the card */
+    /* max-width: 90%; Allow full width initially */
+    min-width: 340px;
+    /* margin: 0 auto; Center the card */
   }
 
   .grade-wise-salary-card h2 {
@@ -75,8 +75,8 @@
 @media (max-width: 1200px) {
   .grade-wise-salary-card {
     padding: 30px; /* Slightly reduced padding */
-    min-width: 530px; /* Adjusted min-width for flexibility */
-    max-width: 380px;
+    min-width: 500px; /* Adjusted min-width for flexibility */
+    max-width: 430px;
     height: 330px; 
     margin: 0 auto
   }

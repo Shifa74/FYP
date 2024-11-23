@@ -143,13 +143,13 @@ const AllowancesPage = () => {
                 <td>
                   <div className="action-buttons">
                     <button
-                      className="edit-btn"
+                      className="allowances-edit-btn"
                       onClick={() => handleEdit(allowance._id)}
                     >
                       Edit
                     </button>
                     <button
-                      className="delete-btn"
+                      className="allowances-delete-btn"
                       onClick={() => handleDelete(allowance._id)}
                     >
                       Delete

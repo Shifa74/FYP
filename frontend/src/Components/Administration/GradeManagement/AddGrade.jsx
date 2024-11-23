@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import "./AddGrade.css"
 
 const AddGrade = ({ closePopup, addGrade, currentGrade }) => {
   const [gradeNo, setGradeNo] = useState("");
@@ -73,13 +74,11 @@ const AddGrade = ({ closePopup, addGrade, currentGrade }) => {
               required
             />
           </div>
-          <button type="submit" className="submit-button">
+          <button type="submit" className="add-grade-submit-button">
             {currentGrade ? "Update" : "Add"}
           </button>
         </form>
-        <button onClick={closePopup} className="close-button">
-          Close
-        </button>
+       
       </div>
     </div>
   );
