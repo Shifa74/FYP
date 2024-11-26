@@ -12,8 +12,6 @@
   border-right: 1px solid #46919e;
 }
 
-
-
 .sidebar ul {
   list-style-type: none;
   padding: 0;
@@ -44,13 +42,17 @@
   color: #e3eeed;
 }
 
-
+.sidebar ul li a.active {
+  background-color: #46919e;
+  color: #e3eeed;
+  font-weight: bold;
+}
 
 .sidebar ul li a .icon {
   margin-right: 8px;
   font-size: 20px;
   min-width: 20px;
-color: white;
+  color: white;
 }
 
 .sidebar ul li a .text {
@@ -58,47 +60,58 @@ color: white;
   font-size: 15px;
 }
 
-.brandLink{
-  text-decoration-color: linear-gradient(90deg, #64c7cc, #3b8c8f); /* Gradient colors */
+.brandLink {
+  text-decoration-color: linear-gradient(90deg, #64c7cc, #3b8c8f);
+  /* Gradient colors */
 }
 
 /* Responsive sidebar */
 @media (max-width: 768px) {
   .sidebar {
-    width: 60px; /* Collapse sidebar to icon-only */
+    width: 60px;
+    /* Collapse sidebar to icon-only */
     overflow-x: hidden;
   }
+
   .sidebar ul li a .text {
-    display: none; /* Hide text when collapsed */
+    display: none;
+    /* Hide text when collapsed */
   }
 
   .sidebar ul li {
-    justify-content: center; /* Center icons */
+    justify-content: center;
+    /* Center icons */
   }
+
   .payroll_icon_header {
     display: flex;
     margin-left: 10px;
   }
-  
-  
+
+
 }
 
 @media (max-width: 480px) {
   .sidebar {
-    width: 50px; /* Collapse sidebar to icon-only */
+    width: 50px;
+    /* Collapse sidebar to icon-only */
     overflow-x: hidden;
   }
+
   .sidebar ul li a .text {
-    display: none; /* Hide text when collapsed */
+    display: none;
+    /* Hide text when collapsed */
   }
 
   .sidebar ul li {
-    justify-content: center; /* Center icons */
+    justify-content: center;
+    /* Center icons */
   }
+
   .payroll_icon_header {
     display: flex;
     margin-left: 10px;
   }
-  
-  
+
+
 }

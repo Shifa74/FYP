@@ -1,55 +1,52 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { NavLink } from 'react-router-dom'; // Use NavLink instead of Link
 import './Sidebar.css';
- // Import FaMoneyCheckAlt icon
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <ul>
-        
-       
-        <li title=" Dashboard">
-          <Link to="/dashboard">
+        <li title="Dashboard">
+          <NavLink to="/dashboard" activeClassName="active">
             <i className="fas fa-tachometer-alt icon"></i>
             <span className="text">Dashboard</span>
-          </Link>
+          </NavLink>
         </li>
         <li title="Employees">
-          <Link to="/Employee">
+          <NavLink to="/Employee" activeClassName="active">
             <i className="fas fa-users icon"></i>
             <span className="text">Employees</span>
-          </Link>
+          </NavLink>
         </li>
         <li title="Payroll">
-          <Link to="/payroll">
+          <NavLink to="/payroll" activeClassName="active">
             <i className="fas fa-money-bill-wave icon"></i>
             <span className="text">Payroll</span>
-          </Link>
+          </NavLink>
         </li>
         <li title="Administration">
-          <Link to="/administration">
+          <NavLink to="/administration" activeClassName="active">
             <i className="fas fa-cog icon"></i>
             <span className="text">Administration</span>
-          </Link>
+          </NavLink>
         </li>
-        <li title=" Report">
-          <Link to="/report">
+        <li title="Report">
+          <NavLink to="/report" activeClassName="active">
             <i className="fas fa-file-alt icon"></i>
             <span className="text">Report</span>
-          </Link>
+          </NavLink>
         </li>
-        <li title=" Attendance">
-          <Link to="/attendance">
+        <li title="Attendance">
+          <NavLink to="/attendance" activeClassName="active">
             <i className="fas fa-clipboard-list icon"></i>
             <span className="text">Attendance</span>
-          </Link>
+          </NavLink>
         </li>
         <li title="Salary">
-          <Link to="/Salary-List">
+          <NavLink to="/Salary-List" activeClassName="active">
             <i className="fas fa-clipboard-list icon"></i>
             <span className="text">SalaryList</span>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>
