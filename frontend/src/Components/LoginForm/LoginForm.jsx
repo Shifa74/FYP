@@ -19,7 +19,6 @@ function LoginForm({onLogin}) {
   const [message, setMessage] = useState("");
 
   const navigate = useNavigate(); // Initialize the useNavigate hook
-
   useEffect(() => {
     // Check for remembered email in localStorage and pre-fill if found
     const rememberedEmail = localStorage.getItem("rememberedEmail");
@@ -28,7 +27,7 @@ function LoginForm({onLogin}) {
       setRememberMe(true); // Pre-check the "Remember Me" checkbox
     }
   }, []);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (rememberMe) {

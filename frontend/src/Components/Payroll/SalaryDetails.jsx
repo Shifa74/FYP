@@ -22,7 +22,7 @@ const SalaryDetails = ({ employeeId, salaries, onClose }) => {
             {salaryDetails ? salaryDetails.employeeID.employeeId : "N/A"}
           </h2>
           <button onClick={onClose} className="close-btn">
-            ✖
+          &times;
           </button>
         </div>
         {salaryDetails ? (

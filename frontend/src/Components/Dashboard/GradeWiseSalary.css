@@ -59,7 +59,7 @@
     
     height: 420px;
     /* max-width: 90%; Allow full width initially */
-    min-width: 300px;
+    min-width: 380px;
     /* margin: 0 auto;  */
   }
 
@@ -173,7 +173,7 @@
     min-width: 430px; /* Adjusted min-width for flexibility */
     /* max-width: 150px; */
     height: 330px; 
-    margin: 0 20px;
+    margin: 0 10px;
   }
 
   .graph-container {
@@ -184,7 +184,7 @@
 @media (max-width: 576px) {
   .grade-wise-salary-card {
     /* width: 70%; */
-    margin-left: 20px;
+    margin-left: 10px;
     min-width: 430px; /* Adjusted min-width for flexibility */
     max-width: 280px;
     padding: 10px;

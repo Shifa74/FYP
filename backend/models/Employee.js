@@ -31,10 +31,6 @@ const employeeSchema = new mongoose.Schema({
     ref: "Department",
     required: true
   },
-  role: {
-    type: String,
-    // required: true
-  },
   gradeNo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Grade",

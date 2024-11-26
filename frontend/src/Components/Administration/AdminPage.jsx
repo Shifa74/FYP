@@ -12,14 +12,13 @@ import {
 import "./AdminPage.css";
 import AddDepartment from "./DepartmentManagement/AddDepartment";
 import AddEditUser from "./UserManagement/AddUser";
-import AddGrade from "./GradeManagement/AddGrade"; // Assuming this is your Add Grade component
+
 
 const AdminPage = () => {
   const [departments, setDepartments] = useState([]);
   const [users, setUsers] = useState([]);
   const [showAddDeptPopup, setShowAddDeptPopup] = useState(false);
   const [showAddUserPopup, setShowAddUserPopup] = useState(false);
-  const [showAddGradePopup, setShowAddGradePopup] = useState(false); // New state for Add Grade popup
 
   const toggleAddDeptPopup = () => {
     setShowAddDeptPopup(!showAddDeptPopup);
@@ -29,9 +28,7 @@ const AdminPage = () => {
     setShowAddUserPopup(!showAddUserPopup);
   };
 
-  const toggleAddGradePopup = () => {
-    setShowAddGradePopup(!showAddGradePopup); // Toggle for Add Grade popup
-  };
+  
 
   const addOrUpdateDepartment = (newDept) => {
     const updatedDepartments = [...departments, newDept];
@@ -105,17 +102,11 @@ const AdminPage = () => {
 
         {/* Popup components */}
         {showAddDeptPopup && (
-          <div className="popup-overlay">
-            <div className="popup-content">
-              <button className="close-popup" onClick={toggleAddDeptPopup}>
-                X
-              </button>
               <AddDepartment
                 closePopup={toggleAddDeptPopup}
                 addOrUpdateDepartment={addOrUpdateDepartment}
               />
-            </div>
-          </div>
+            
         )}
         {showAddUserPopup && (
           <AddEditUser
@@ -123,17 +114,7 @@ const AdminPage = () => {
             closePopup={toggleAddUserPopup}
           />
         )}
-        {showAddGradePopup && (
-          <div className="popup-overlay">
-            <div className="popup-content">
-              <button className="close-popup" onClick={toggleAddGradePopup}>
-                X
-              </button>
-              <AddGrade closePopup={toggleAddGradePopup} />{" "}
-              {/* Add Grade component */}
-            </div>
-          </div>
-        )}
+    
       </div>
     </div>
   );

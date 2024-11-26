@@ -1,34 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FaSignInAlt, FaBell } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 import "./Navbar.css";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import NotificationsAndAlerts from "./NotificationsAndAlerts";
 
-export default function Navbar({
-  title = "set title here",
-}) {
+export default function Navbar({ title, handleLogout }) {
   const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(false);
 
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      const response = await axios.get("/auth/logout");
-      console.log(response.data.message);
-      if (response.status === 200) {
-          // setIsAuthenticated(false);
-          localStorage.setItem('isAuthenticated', 'false')
-        }
-      navigate("/login");
-    } catch (error) {
-      console.error("Error Message:", error.message);
-    }
-  };
-
+  
   const toggleNotifications = () => {
     setIsNotificationsVisible(!isNotificationsVisible);
     if (isNotificationsVisible) {
@@ -44,7 +27,7 @@ export default function Navbar({
             className="payroll_icon"
             style={{ marginRight: "0.5rem" }}
           />
-          <span className="text">Payroll</span>
+          <span className="text">{title}</span> {/* Display the passed title */}
         </div>
 
         <ul className="navbar-nav ml-auto">
@@ -76,5 +59,6 @@ export default function Navbar({
 }
 
 Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,  // Validate the title prop type
+  handleLogout: PropTypes.func.isRequired,  // Validate the handleLogout prop type
 };
