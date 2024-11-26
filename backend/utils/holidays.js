@@ -1,5 +1,3 @@
-
-
 const customHolidays = [
   { date: "02-05", name: "Kashmir Day", type: "public" },
   { date: "03-23", name: "Pakistan Day", type: "public" },
@@ -53,4 +51,4 @@ const getCustomHolidays = (year) => {
 
 
 
-module.exports = { getCustomHolidays };
+export default getCustomHolidays;

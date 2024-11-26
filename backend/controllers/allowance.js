@@ -1,8 +1,8 @@
-const createError = require("../error");
-const Allowance = require("../models/Allowance");
+import createError from "../middlewares/error.js";
+import Allowance from '../models/Allowance.js'
 
 // ADD ALLOWANCE
-const addAllowance = async (req, res, next) => {
+export const addAllowance = async (req, res, next) => {
   try {
     const allowance = await Allowance.findOne({
       allowanceType: req.body.allowanceType
@@ -19,7 +19,7 @@ const addAllowance = async (req, res, next) => {
 };
 
 // GET ALLOWANCES
-const getAllowances = async (req, res, next) => {
+export const getAllowances = async (req, res, next) => {
   try {
     const allowances = await Allowance.find();
     res.status(200).json(allowances);
@@ -29,7 +29,7 @@ const getAllowances = async (req, res, next) => {
 };
 
 // EDIT ALLOWANCE
-const editAllowance = async (req, res, next) => {
+export const editAllowance = async (req, res, next) => {
   try {
     const deduction = await Allowance.findOne({
       allowanceType: req.body.allowanceType,
@@ -57,7 +57,7 @@ const editAllowance = async (req, res, next) => {
 };
 
 // DELTE ALLOWANCE
-const deleteAllowance = async (req, res, next) => {
+export const deleteAllowance = async (req, res, next) => {
   try {
     const allowanceId = req.params.id;
     await Allowance.findByIdAndDelete(allowanceId);
@@ -67,9 +67,3 @@ const deleteAllowance = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  addAllowance,
-  getAllowances,
-  editAllowance,
-  deleteAllowance,
-};

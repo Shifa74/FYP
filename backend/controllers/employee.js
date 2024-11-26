@@ -1,10 +1,10 @@
-const createError = require("../error");
-const Department = require("../models/Department");
-const Employee = require("../models/Employee");
-const Grade = require("../models/Grade");
+import createError from "../middlewares/error.js";
+import Department from "../models/Department.js";
+import Employee from "../models/Employee.js";
+import Grade from "../models/Grade.js";
 
 // ADD AN EMPLOYEE
-const addEmployee = async (req, res, next) => {
+export const addEmployee = async (req, res, next) => {
   try {
     const errors = [];
     const emp = await Employee.findOne({ employeeId: req.body.employeeId });
@@ -47,7 +47,7 @@ const addEmployee = async (req, res, next) => {
 };
 
 // GET ALL EMPLOYEES
-const getEmployees = async (req, res, next) => {
+export const getEmployees = async (req, res, next) => {
   try {
     const employees = await Employee.find()
       .populate("deptName")
@@ -59,8 +59,7 @@ const getEmployees = async (req, res, next) => {
 };
 
 // UPDATE EMPLOYEE
-
-const updateEmployee = async (req, res, next) => {
+export const updateEmployee = async (req, res, next) => {
   try {
     const employeeId = req.params.id;
     const fieldsToUpdate = req.body;
@@ -83,7 +82,7 @@ const updateEmployee = async (req, res, next) => {
 };
 
 // DELETE AN EMPLOYEE
-const deleteEmployee = async (req, res, next) => {
+export const deleteEmployee = async (req, res, next) => {
   try {
     const employeeId = req.params.id;
     await Employee.findByIdAndDelete(employeeId);
@@ -93,9 +92,4 @@ const deleteEmployee = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  addEmployee,
-  getEmployees,
-  updateEmployee,
-  deleteEmployee,
-};
+

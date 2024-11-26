@@ -1,7 +1,7 @@
-const createError = require("../error");
-const Grade = require("../models/Grade");
+import createError from "../middlewares/error.js";
+import Grade from "../models/Grade.js";
 
-const addGrade = async (req, res, next) => {
+export const addGrade = async (req, res, next) => {
   try {
     const grade = await Grade.findOne({ gradeNo: req.body.gradeNo });
     if (grade) {
@@ -16,7 +16,7 @@ const addGrade = async (req, res, next) => {
   }
 };
 
-const getGrades = async (req, res, next) => {
+export const getGrades = async (req, res, next) => {
   try {
     const grades = await Grade.find().sort({gradeNo: 1});
     res.status(200).json(grades);
@@ -25,7 +25,7 @@ const getGrades = async (req, res, next) => {
   }
 };
 
-const updateGrade = async (req, res, next) => {
+export const updateGrade = async (req, res, next) => {
   try {
     const grade = await Grade.findOne({
       gradeNo: req.body.gradeNo,
@@ -53,7 +53,7 @@ const updateGrade = async (req, res, next) => {
   }
 };
 
-const deleteGrade = async(req, res, next) => {
+export const deleteGrade = async(req, res, next) => {
   try {
     const gradeId = req.params.id;
     await Grade.findByIdAndDelete(gradeId);
@@ -65,4 +65,4 @@ const deleteGrade = async(req, res, next) => {
 
 
 
-module.exports = { addGrade, getGrades, updateGrade, deleteGrade };
+

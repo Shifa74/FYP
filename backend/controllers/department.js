@@ -1,7 +1,7 @@
-const createError = require("../error");
-const Department = require("../models/Department");
+import createError from "../middlewares/error.js";
+import Department from "../models/Department.js";
 
-const addDept = async (req, res, next) => {
+export const addDept = async (req, res, next) => {
   try {
     const dept = await Department.findOne({ name: req.body.name });
     if (dept) {
@@ -16,7 +16,7 @@ const addDept = async (req, res, next) => {
   }
 };
 
-const getDept = async (req, res, next) => {
+export const getDept = async (req, res, next) => {
   try {
     const depts = await Department.find();
     res.status(200).json(depts);
@@ -25,7 +25,7 @@ const getDept = async (req, res, next) => {
   }
 };
 
-const getEmpCountByDept = async (req, res, next) => {
+export const getEmpCountByDept = async (req, res, next) => {
   try {
     const employeeCounts = await Department.aggregate([
       {
@@ -51,7 +51,7 @@ const getEmpCountByDept = async (req, res, next) => {
 };
 
 
-const updateDept = async (req, res, next) => {
+export const updateDept = async (req, res, next) => {
   try {
     const dept = await Department.findOne({
       name: req.body.name,
@@ -80,7 +80,7 @@ const updateDept = async (req, res, next) => {
   }
 };
 
-const deleteDept = async (req, res, next) => {
+export const deleteDept = async (req, res, next) => {
   try {
     const deptId = req.params.id;
     await Department.findByIdAndDelete(deptId);
@@ -90,4 +90,4 @@ const deleteDept = async (req, res, next) => {
   }
 };
 
-  module.exports = { addDept, getDept, updateDept, deleteDept,   getEmpCountByDept,};
+

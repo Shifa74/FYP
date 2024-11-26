@@ -1,9 +1,9 @@
-const createError = require("../error");
-const Employee = require("../models/Employee");
-const Salary = require("../models/Salary");
-const { calculateSalary } = require("../utils/calculateSalary");
+import createError from "../middlewares/error.js";
+import Employee from "../models/Employee.js";
+import Salary from "../models/Salary.js";
+import { calculateSalary } from "../utils/calculateSalary.js";
 
-const generateSalary = async (req, res, next) => {
+export const generateSalary = async (req, res, next) => {
   try {
     const { employeeId, month, year, allowance, deduction, overtimeHours } =
       req.body;
@@ -53,7 +53,7 @@ const generateSalary = async (req, res, next) => {
   }
 };
 
-const getSalaries = async (req, res, next) => {
+export const getSalaries = async (req, res, next) => {
   try {
     const salaries = await Salary.find()
       .populate({
@@ -72,7 +72,7 @@ const getSalaries = async (req, res, next) => {
   }
 };
 
-const confirmPayment = async (req, res, next) => {
+export const confirmPayment = async (req, res, next) => {
   try {
     const updatedSalary = await Salary.findByIdAndUpdate(
       req.params.id,
@@ -85,7 +85,7 @@ const confirmPayment = async (req, res, next) => {
   }
 };
 
-const payrollSummary = async (req, res, next) => {
+export const payrollSummary = async (req, res, next) => {
   try {
     const { month, year } = req.query;
 
@@ -133,7 +133,7 @@ const payrollSummary = async (req, res, next) => {
   }
 };
 
-const deleteSalary = async(req, res, next) => {
+export const deleteSalary = async(req, res, next) => {
   try {
     const employeeId = req.params.id;
     await Salary.findByIdAndDelete(employeeId);
@@ -143,10 +143,3 @@ const deleteSalary = async(req, res, next) => {
   }
 }
 
-module.exports = {
-  generateSalary,
-  getSalaries,
-  confirmPayment,
-  payrollSummary,
-  deleteSalary
-};

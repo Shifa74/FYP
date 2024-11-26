@@ -1,5 +1,5 @@
-const { eachDayOfInterval, isWeekend} = require("date-fns");
-const { getCustomHolidays, getIslamicHolidays } = require("./holidays");
+import { eachDayOfInterval, isWeekend} from "date-fns";
+import getCustomHolidays from "./holidays.js";
 
 const getWorkingDays = (month, year) => {
   const daysInMonth = eachDayOfInterval({
@@ -23,4 +23,4 @@ const getWorkingDays = (month, year) => {
   return workingDays.length;
 };
 
-module.exports = { getWorkingDays };
+export default getWorkingDays;

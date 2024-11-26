@@ -1,15 +1,15 @@
-const Admin = require("../models/Admin");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const createError = require("../error");
+import Admin from "../models/Admin.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import createError from "../middlewares/error.js";
 
 // SIGNUP
 
-const signup = async (req, res, next) => {
+export const signup = async (req, res, next) => {
   // console.log(req.body);
   const { email, password, confirmPassword } = req.body;
   try {
-    adminExist = await Admin.findOne({ email: email });
+    const adminExist = await Admin.findOne({ email: email });
     if (adminExist) {
       return next(createError(422, "Email already exists", "email"));
     } else if (password !== confirmPassword) {
@@ -19,7 +19,13 @@ const signup = async (req, res, next) => {
       const hashedPassword = bcrypt.hashSync(password, salt);
       const newAdmin = new Admin({ email, password: hashedPassword });
       await newAdmin.save();
-      res.status(200).json(newAdmin);
+      const token = jwt.sign({ id: newAdmin._id }, process.env.JWT, { expiresIn: '1h' }); 
+     res
+       .cookie("access_token", token, {
+         httpOnly: true,
+       })
+       .status(200)
+       .json(newAdmin);
     }
   } catch (error) {
     next(error);
@@ -28,7 +34,7 @@ const signup = async (req, res, next) => {
 
 // LOGIN
 
-const login = async (req, res, next) => {
+export const login = async (req, res, next) => {
   const { email, password,rememberMe } = req.body;
   try {
     const adminExist = await Admin.findOne({ email: email });
@@ -54,7 +60,7 @@ const login = async (req, res, next) => {
 
 // LOGOUT
 
-const logout = (res, req, next) => {
+export const logout = (req, res, next) => {
   try {
     res.clearCookie("access_token");
     res.status(200).json({ message: "Successfully logged out." });
@@ -63,8 +69,3 @@ const logout = (res, req, next) => {
   }
 };
 
-module.exports = {
-  signup,
-  login,
-  logout,
-};

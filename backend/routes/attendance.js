@@ -1,11 +1,11 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   addAttendance,
   getAttendance,
   editAttendance,
   deleteAttendance,
   workingDays,
-} = require("../controllers/attendance");
+} from "../controllers/attendance.js";
 const router = express.Router();
 
 router.post("/add", addAttendance);
@@ -18,4 +18,4 @@ router.delete("/delete/:id", deleteAttendance);
 
 router.get("/getWorkingDays", workingDays);
 
-module.exports = router;
+export default router;

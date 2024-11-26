@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const allowanceSchema = new mongoose.Schema({
   allowanceType: {
@@ -13,4 +13,4 @@ const allowanceSchema = new mongoose.Schema({
 
 const Allowance = mongoose.model("Allowance", allowanceSchema);
 
-module.exports = Allowance;
+export default Allowance;

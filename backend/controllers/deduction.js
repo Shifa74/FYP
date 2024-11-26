@@ -1,8 +1,8 @@
-const createError = require("../error");
-const Deduction = require("../models/Deduction");
+import createError from "../middlewares/error.js";
+import Deduction from "../models/Deduction.js"; 
 
 // ADD DEDUCTION
-const addDeduction = async (req, res, next) => {
+export const addDeduction = async (req, res, next) => {
   try {
     const deduction = await Deduction.findOne({
       deductionType: req.body.deductionType,
@@ -20,7 +20,7 @@ const addDeduction = async (req, res, next) => {
 };
 
 // GET ADEDUCTION
-const getDeductions = async (req, res, next) => {
+export const getDeductions = async (req, res, next) => {
   try {
     const deductions = await Deduction.find();
     res.status(200).json(deductions);
@@ -30,7 +30,7 @@ const getDeductions = async (req, res, next) => {
 };
 
 // EDIT DEDUCTION
-const editDeduction = async (req, res, next) => {
+export const editDeduction = async (req, res, next) => {
   try {
     const deduction = await Deduction.findOne({
       deductionType: req.body.deductionType,
@@ -57,8 +57,8 @@ const editDeduction = async (req, res, next) => {
   }
 };
 
-// DELTEE DEDUCTION
-const deleteDeduction = async (req, res, next) => {
+// DELETE DEDUCTION
+export const deleteDeduction = async (req, res, next) => {
   try {
     const deductionId = req.params.id;
     await Deduction.findByIdAndDelete(deductionId);
@@ -68,9 +68,3 @@ const deleteDeduction = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  addDeduction,
-  getDeductions,
-  editDeduction,
-  deleteDeduction,
-};

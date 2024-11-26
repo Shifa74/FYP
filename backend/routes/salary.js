@@ -1,5 +1,5 @@
-const express = require("express");
-const { generateSalary, getSalaries, confirmPayment, payrollSummary, deleteSalary } = require("../controllers/salary");
+import express from "express";
+import { generateSalary, getSalaries, confirmPayment, payrollSummary, deleteSalary } from "../controllers/salary.js";
 const router = express.Router();
 
 router.post("/add", generateSalary);
@@ -12,4 +12,4 @@ router.get('/summary',payrollSummary)
 
 router.delete('/delete/:id',deleteSalary)
 
-module.exports = router;
+export default router;

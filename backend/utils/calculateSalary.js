@@ -1,12 +1,12 @@
-const Attendance = require("../models/Attendance");
-const Allowance = require("../models/Allowance");
-const Deduction = require("../models/Deduction");
-const Grade = require("../models/Grade");
-const Employee = require("../models/Employee");
-const { getWorkingDays } = require("../utils/workingDays");
-const createError = require("../error");
+import Attendance from "../models/Attendance.js";
+import Allowance from "../models/Allowance.js";
+import Deduction from "../models/Deduction.js";
+import Grade from "../models/Grade.js";
+import Employee from "../models/Employee.js";
+import getWorkingDays from "../utils/workingDays.js";
+import createError from "../middlewares/error.js";
 
-const calculateSalary = async (
+export const calculateSalary = async (
   employeeId,
   month,
   year,
@@ -64,4 +64,4 @@ const calculateSalary = async (
   };
 };
 
-module.exports = { calculateSalary };
+export default calculateSalary ;

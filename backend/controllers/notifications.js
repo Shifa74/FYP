@@ -1,6 +1,6 @@
-const Department = require("../models/Department");
-const Employee = require("../models/Employee");
-const Grade = require("../models/Grade");
+import Department from "../models/Department.js";
+import Employee from "../models/Employee.js";
+import Grade from "../models/Grade.js";
 
 const employeeMissingInfo = async (req, res, next) => {
   try {
@@ -34,4 +34,4 @@ const employeeMissingInfo = async (req, res, next) => {
   }
 };
 
-module.exports = { employeeMissingInfo };
+export default employeeMissingInfo;

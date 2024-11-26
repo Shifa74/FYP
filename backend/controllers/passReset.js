@@ -1,12 +1,12 @@
-const crypto = require("crypto");
-const nodemailer = require("nodemailer");
-const bcrypt = require("bcryptjs");
-const Admin = require("../models/Admin");
-const createError = require("../error");
+import crypto from "crypto";
+import nodemailer from "nodemailer";
+import bcrypt from "bcryptjs";
+import Admin from "../models/Admin.js";
+import createError from "../middlewares/error.js";
 
 // request reset password
 
-const requestPasswordReset = async (req, res, next) => {
+export const requestPasswordReset = async (req, res, next) => {
   const { email } = req.body;
   try {
     const user = await Admin.findOne({ email });
@@ -57,7 +57,7 @@ const requestPasswordReset = async (req, res, next) => {
 
 //  verify otp
 
-const verifyOtp = async (req, res, next) => {
+export const verifyOtp = async (req, res, next) => {
   const { otp } = req.body;
   const email = req.cookies.resetEmail;
   try {
@@ -81,7 +81,7 @@ const verifyOtp = async (req, res, next) => {
 
 // Reset Password
 
-const resetPassword = async (req, res, next) => {
+export const resetPassword = async (req, res, next) => {
   const { newPassword } = req.body;
   const email = req.cookies.resetEmail;
   try {
@@ -102,4 +102,4 @@ const resetPassword = async (req, res, next) => {
   }
 };
 
-module.exports = { requestPasswordReset, verifyOtp, resetPassword };
+

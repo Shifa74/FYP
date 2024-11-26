@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const salarySchema = new mongoose.Schema(
   {
@@ -59,4 +59,4 @@ const salarySchema = new mongoose.Schema(
 
 const Salary = mongoose.model("Salary", salarySchema);
 
-module.exports = Salary;
+export default Salary;

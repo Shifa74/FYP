@@ -1,13 +1,13 @@
-const Employee = require("../models/Employee");
-const {
+import Employee from "../models/Employee.js";
+import {
   currentMonthSalary,
   salaryPerMonth,
   gradeWiseCount,
   calculateAllowAndDeduct,
   getAllowAndDeductDetails,
-} = require("../utils/dashboard");
+} from "../utils/dashboard.js";
 
-const employeeCount = async (req, res, next) => {
+export const employeeCount = async (req, res, next) => {
   try {
     const totalEmployee = await Employee.countDocuments();
     res.status(200).json(totalEmployee);
@@ -16,7 +16,7 @@ const employeeCount = async (req, res, next) => {
   }
 };
 
-const getPaidSalary = async (req, res, next) => {
+export const getPaidSalary = async (req, res, next) => {
   try {
     const totalPaidSalary = await currentMonthSalary();
     res.status(200).json(totalPaidSalary);
@@ -25,7 +25,7 @@ const getPaidSalary = async (req, res, next) => {
   }
 };
 
-const getSalaryPerMonth = async (req, res, next) => {
+export const getSalaryPerMonth = async (req, res, next) => {
   try {
     const totalSalary = await salaryPerMonth();
     res.status(200).json(totalSalary);
@@ -34,7 +34,7 @@ const getSalaryPerMonth = async (req, res, next) => {
   }
 };
 
-const gradeWiseEmployees = async (req, res, next) => {
+export const gradeWiseEmployees = async (req, res, next) => {
   try {
     const gradeWise = await gradeWiseCount();
     res.status(200).json(gradeWise);
@@ -43,7 +43,7 @@ const gradeWiseEmployees = async (req, res, next) => {
   }
 };
 
-const allowAndDeductTotal = async (req, res, next) => {
+export const allowAndDeductTotal = async (req, res, next) => {
   try {
     const totals = await calculateAllowAndDeduct();
     res.status(200).json(totals);
@@ -52,7 +52,7 @@ const allowAndDeductTotal = async (req, res, next) => {
   }
 };
 
-const allowAndDeductDetails = async (req, res, next) => {
+export const allowAndDeductDetails = async (req, res, next) => {
   try {
     const details = await getAllowAndDeductDetails();
     res.status(200).json(details);
@@ -60,11 +60,4 @@ const allowAndDeductDetails = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = {
-  employeeCount,
-  getPaidSalary,
-  getSalaryPerMonth,
-  gradeWiseEmployees,
-  allowAndDeductTotal,
-  allowAndDeductDetails,
-};
+

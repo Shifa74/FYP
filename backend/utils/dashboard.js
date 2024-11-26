@@ -1,11 +1,10 @@
-const { get } = require("mongoose");
-const Employee = require("../models/Employee");
-const Salary = require("../models/Salary");
+import Employee from "../models/Employee.js";
+import Salary from "../models/Salary.js";
 
 const currentMonth = new Date().getMonth() + 1;
 const currentYear = new Date().getFullYear();
 
-const currentMonthSalary = async () => {
+export const currentMonthSalary = async () => {
   try {
     const totalPaidSalary = await Salary.aggregate([
       {
@@ -29,7 +28,7 @@ const currentMonthSalary = async () => {
   }
 };
 
-const salaryPerMonth = async () => {
+export const salaryPerMonth = async () => {
   try {
     const totalSalaryPerMonth = await Salary.aggregate([
       {
@@ -52,7 +51,7 @@ const salaryPerMonth = async () => {
   }
 };
 
-const gradeWiseCount = async () => {
+export const gradeWiseCount = async () => {
   try {
     const gradeWiseCount = await Employee.aggregate([
       {
@@ -93,7 +92,7 @@ const gradeWiseCount = async () => {
   }
 };
 
-const calculateAllowAndDeduct = async () => {
+export const calculateAllowAndDeduct = async () => {
   try {
     const totals = await Salary.aggregate([
       {
@@ -130,7 +129,7 @@ const calculateAllowAndDeduct = async () => {
   }
 };
 
-const getAllowAndDeductDetails = async () => {
+export const getAllowAndDeductDetails = async () => {
   try {
     const details = await Salary.aggregate([
       {
@@ -183,10 +182,4 @@ const getAllowAndDeductDetails = async () => {
     throw error;
   }
 };
-module.exports = {
-  currentMonthSalary,
-  salaryPerMonth,
-  gradeWiseCount,
-  calculateAllowAndDeduct,
-  getAllowAndDeductDetails,
-};
+

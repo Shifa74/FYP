@@ -1,26 +1,32 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const authRoutes = require("./routes/auth");
-const passResetRoutes = require("./routes/passReset");
-const employeeRoutes = require("./routes/employee");
-const attendanceRoutes = require("./routes/attendace");
-const deptRoutes = require("./routes/department");
-const gradeRoutes = require("./routes/grade");
-const allowanceRoutes = require("./routes/allowance");
-const deductionRoutes = require("./routes/deduction");
-const usersRoutes = require("./routes/users");
-const salaryRoutes = require("./routes/salary");
-const reportRoutes = require("./routes/report");
-const dashboradRoutes = require("./routes/dashboard");
-const notificationRoutes = require("./routes/notifications");
-const cookieParser = require("cookie-parser");
-const connectDB = require("./db/conn");
+import express from "express";
+import dotenv from "dotenv";
+
+import {
+  allowanceRoutes,
+  deductionRoutes,
+  authRoutes,
+  dashboardRoutes,
+  deptRoutes,
+  reportRoutes,
+  gradeRoutes,
+  protectedRoutes,
+  salaryRoutes,
+  attendanceRoutes,
+  employeeRoutes,
+  usersRoutes,
+  notificationRoutes,
+  passResetRoutes,
+} from "./routes/index.js";
+
+import cookieParser from "cookie-parser";
+import connectDB from "./db/conn.js";
 const app = express();
 
 dotenv.config({ path: "./config.env" });
 
 app.use(express.json());
 app.use(cookieParser());
+app.use("/api", protectedRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api", passResetRoutes);
 app.use("/api/employee", employeeRoutes);
@@ -32,7 +38,7 @@ app.use("/api/deduction", deductionRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/salary", salaryRoutes);
 app.use("/api/report", reportRoutes);
-app.use("/api/dashboard", dashboradRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/notifications", notificationRoutes);
 
 app.use((err, req, res, next) => {
