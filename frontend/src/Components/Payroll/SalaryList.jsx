@@ -5,10 +5,19 @@ import SalaryDetails from "./SalaryDetails";
 import axios from "axios";
 
 const monthNames = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
-
 
 const SalaryList = () => {
   const [salaries, setSalaries] = useState([]);
@@ -27,10 +36,9 @@ const SalaryList = () => {
         console.error("Error fetching salaries", error.message);
       }
     };
-    
+
     fetchSalaries();
   }, [selectedMonth, selectedYear]); // Refetch data when month or year changes
-  
 
   const handleViewDetails = (employeeId) => {
     setSelectedEmployeeId(employeeId); // Set selected employee ID to open the modal
@@ -61,7 +69,10 @@ const SalaryList = () => {
   }
 
   const filteredData = salaries.filter((item) => {
-    return item.month === selectedMonthNumber && item.year === selectedYear;
+    return (
+      (selectedMonth === "" || item.month === selectedMonthNumber) &&
+      (selectedYear === "" || item.year === Number(selectedYear))
+    );
   });
 
   return (

@@ -141,8 +141,8 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
       item.employeeID.firstName
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) &&
-      item.month === selectedMonthNumber &&
-      item.year === selectedYear
+      (selectedMonth === ""|| item.month === selectedMonthNumber ) &&
+      (selectedYear === "" || item.year === Number(selectedYear))
     );
   });
 
@@ -153,7 +153,7 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
         <div className="filters">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search by name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-bar"
