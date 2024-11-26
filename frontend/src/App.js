@@ -45,7 +45,7 @@ function App() {
         />
         <Route 
           path="/register" 
-          element={<Register />} 
+          element={<Register onSignup={() => setIsAuthenticated(true)} />} 
         />
         <Route 
           path="/login" 

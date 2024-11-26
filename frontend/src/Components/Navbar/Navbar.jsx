@@ -7,7 +7,9 @@ import "./Navbar.css";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import NotificationsAndAlerts from "./NotificationsAndAlerts";
 
-export default function Navbar({ title = "set title here" }) {
+export default function Navbar({
+  title = "set title here",
+}) {
   const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(false);
 
@@ -15,10 +17,15 @@ export default function Navbar({ title = "set title here" }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post("/auth/logout");
-      navigate("/register");
+      const response = await axios.get("/auth/logout");
+      console.log(response.data.message);
+      if (response.status === 200) {
+          // setIsAuthenticated(false);
+          localStorage.setItem('isAuthenticated', 'false')
+        }
+      navigate("/login");
     } catch (error) {
-      console.error("Logout failed: ", error);
+      console.error("Error Message:", error.message);
     }
   };
 
@@ -47,10 +54,14 @@ export default function Navbar({ title = "set title here" }) {
               onClick={toggleNotifications}
               style={{ cursor: "pointer" }}
             >
-              <FaBell className={`noti_icon ${hasNotifications ? "ringing" : ""}`} />
+              <FaBell
+                className={`noti_icon ${hasNotifications ? "ringing" : ""}`}
+              />
             </span>
             {isNotificationsVisible && (
-              <NotificationsAndAlerts setHasNotifications={setHasNotifications} />
+              <NotificationsAndAlerts
+                setHasNotifications={setHasNotifications}
+              />
             )}
           </li>
           <li className="logout_nav-item">
@@ -67,4 +78,3 @@ export default function Navbar({ title = "set title here" }) {
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
 };
-
