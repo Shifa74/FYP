@@ -30,7 +30,6 @@ const AllowancesPage = () => {
       console.log("Error fetching allowances", error.message);
     }
   };
-
   useEffect(() => {
     fetchAllowances();
   }, []);
