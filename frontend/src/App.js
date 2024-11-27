@@ -37,16 +37,21 @@ function App() {
   }, [isAuthenticated]);
 
 
+
+
   const handleLogout = async () => {
     try {
-      console.log('Logging out...');
-      await axios.post('/auth/logout');  // Notify the backend
-      setIsAuthenticated(false); // Update authentication state
-      localStorage.removeItem('isAuthenticated'); // Clear local storage
+      const response = await axios.get("/auth/logout");
+      console.log(response.data.message);
+      if (response.status === 200) {
+          // setIsAuthenticated(false);
+          localStorage.setItem('isAuthenticated', 'false')
+        }
     } catch (error) {
-      console.error('Logout failed: ', error);
+      console.error("Error Message:", error.message);
     }
   };
+
 
   return (
     <Router>
@@ -59,7 +64,7 @@ function App() {
         />
         <Route 
           path="/register" 
-          element={<Register />} 
+          element={<Register onSignup={() => setIsAuthenticated(true)} />} 
         />
         <Route 
           path="/login" 

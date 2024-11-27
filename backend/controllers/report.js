@@ -1,8 +1,8 @@
-const createError = require("../error");
-const Report = require("../models/report");
-const generateMontlyReport = require("../utils/generateMonthlyReport");
+import createError from "../middlewares/error.js";
+import Report from "../models/report.js";
+import { generateMontlyReport } from "../utils/generateMonthlyReport.js";
 
-const generateReport = async (req, res, next) => {
+export const generateReport = async (req, res, next) => {
   const { month, year } = req.body;
   const monthNumber = parseInt(month);
   const yearNumber = parseInt(year);
@@ -26,7 +26,7 @@ const generateReport = async (req, res, next) => {
   }
 };
 
-const getReportList = async (req, res, next) => {
+export const getReportList = async (req, res, next) => {
   try {
     const report = await Report.find();
     res.status(200).json(report);
@@ -35,7 +35,7 @@ const getReportList = async (req, res, next) => {
   }
 };
 
-const getReportDetails = async (req, res, next) => {
+export const getReportDetails = async (req, res, next) => {
   const { month, year } = req.query;
 
   const monthNumber = parseInt(month);
@@ -54,7 +54,7 @@ const getReportDetails = async (req, res, next) => {
   }
 };
 
-const deleteReport = async(req, res, next) => {
+export const deleteReport = async(req, res, next) => {
   try {
     await Report.findByIdAndDelete(req.params.id);
     res.status(200).json("Report has been deleted.")
@@ -63,4 +63,3 @@ const deleteReport = async(req, res, next) => {
   }
 }
 
-module.exports = { generateReport, getReportList, getReportDetails, deleteReport };

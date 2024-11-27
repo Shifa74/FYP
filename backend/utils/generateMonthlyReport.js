@@ -1,7 +1,7 @@
-const createError = require("../error");
-const Salary = require("../models/Salary");
+import createError from "../middlewares/error.js";
+import Salary from "../models/Salary.js";
 
-const generateMontlyReport = async (month, year) => {
+export const generateMontlyReport = async (month, year) => {
   try {
     const record = await Salary.findOne({month, year});
     if (!record) {
@@ -60,4 +60,4 @@ const generateMontlyReport = async (month, year) => {
   }
 };
 
-module.exports = generateMontlyReport;
+export default generateMontlyReport;

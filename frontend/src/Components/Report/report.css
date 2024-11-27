@@ -107,6 +107,7 @@ button:hover {
   padding: 15px 10px; /* Adjust padding for height */
   height: 50px; /* Adjust height as needed */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for clarity */
+  text-align: center;
 }
 
 /* Fixed Heading */
@@ -153,13 +154,13 @@ button:hover {
   background-color: #bbdefb;
 }
 
-.icon{
+.del-icon{
   color:  #dc3545;
   font-size: 1.5rem;
   transition: color 0.3s;
 }
 
-.icon:hover {
+.del-icon:hover {
    color: #07e3eb;
 }
 

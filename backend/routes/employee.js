@@ -1,10 +1,10 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   addEmployee,
   getEmployees,
   updateEmployee,
   deleteEmployee,
-} = require("../controllers/employee");
+} from "../controllers/employee.js";
 const router = express();
 
 //  CREATE
@@ -19,4 +19,4 @@ router.put("/edit/:id", updateEmployee);
 // DELETE
 router.delete("/delete/:id", deleteEmployee);
 
-module.exports = router;
+export default router;

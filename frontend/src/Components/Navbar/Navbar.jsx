@@ -11,8 +11,7 @@ export default function Navbar({ title, handleLogout }) {
   const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(false);
 
-  // const navigate = useNavigate();
-
+  
   const toggleNotifications = () => {
     setIsNotificationsVisible(!isNotificationsVisible);
     if (isNotificationsVisible) {
@@ -38,10 +37,14 @@ export default function Navbar({ title, handleLogout }) {
               onClick={toggleNotifications}
               style={{ cursor: "pointer" }}
             >
-              <FaBell className={`noti_icon ${hasNotifications ? "ringing" : ""}`} />
+              <FaBell
+                className={`noti_icon ${hasNotifications ? "ringing" : ""}`}
+              />
             </span>
             {isNotificationsVisible && (
-              <NotificationsAndAlerts setHasNotifications={setHasNotifications} />
+              <NotificationsAndAlerts
+                setHasNotifications={setHasNotifications}
+              />
             )}
           </li>
           <li className="logout_nav-item">

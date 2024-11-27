@@ -1,9 +1,9 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   requestPasswordReset,
   verifyOtp,
   resetPassword,
-} = require("../controllers/passReset");
+} from "../controllers/passReset.js";
 
 const router = express();
 
@@ -13,4 +13,4 @@ router.post("/verify-otp", verifyOtp);
 
 router.post("/reset-password", resetPassword)
 
-module.exports = router;
+export default router;

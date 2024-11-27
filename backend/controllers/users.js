@@ -1,7 +1,7 @@
-const createError = require("../error");
-const User = require("../models/Users");
+import createError from "../middlewares/error.js";
+import User from "../models/Users.js";
 
-const addUser = async (req, res, next) => {
+export const addUser = async (req, res, next) => {
   try {
     const userExist = await User.findOne({ email: req.body.email });
     if (userExist) {
@@ -16,7 +16,7 @@ const addUser = async (req, res, next) => {
   }
 };
 
-const getUsers = async (req, res, next) => {
+export const getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
@@ -25,7 +25,7 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-const updateUser = async (req, res, next) => {
+export const updateUser = async (req, res, next) => {
   const userId = req.params.id;
   try {
     // Check for the current user record
@@ -57,7 +57,7 @@ const updateUser = async (req, res, next) => {
   }
 };
 
-const deleteUser = async (req, res, next) => {
+export const deleteUser = async (req, res, next) => {
   try {
     const userId = req.params.id;
     await User.findByIdAndDelete(userId);
@@ -67,4 +67,3 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-module.exports = { addUser, getUsers, updateUser, deleteUser };

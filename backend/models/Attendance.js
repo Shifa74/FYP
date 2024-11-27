@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { getWorkingDays } = require("../utils/workingDays");
+import mongoose from "mongoose";
+import getWorkingDays from "../utils/workingDays.js";
 
 const attendanceSchema = new mongoose.Schema(
   {
@@ -28,7 +28,6 @@ const attendanceSchema = new mongoose.Schema(
   }
 );
 
-
 // virtual field for absentDays
 
 attendanceSchema.virtual("absentDays").get(function () {
@@ -41,4 +40,4 @@ attendanceSchema.set("toObject", { virtuals: true });
 
 const Attendance = mongoose.model("Attendance", attendanceSchema);
 
-module.exports = Attendance;
+export default Attendance;

@@ -1,10 +1,10 @@
-const createError = require("../error");
-const Attendance = require("../models/Attendance");
-const Employee = require("../models/Employee");
-const { getWorkingDays } = require("../utils/workingDays");
+import createError from "../middlewares/error.js";
+import Attendance from "../models/Attendance.js";
+import Employee from "../models/Employee.js";
+import getWorkingDays from "../utils/workingDays.js";
 
 // ADD ATTENDANCE
-const addAttendance = async (req, res, next) => {
+export const addAttendance = async (req, res, next) => {
   try {
     const employee = await Employee.findOne({
       employeeId: req.body.employeeId,
@@ -37,7 +37,7 @@ const addAttendance = async (req, res, next) => {
 };
 
 // GET ATTENDANCES
-const getAttendance = async (req, res, next) => {
+export const getAttendance = async (req, res, next) => {
   try {
     const attendance = await Attendance.find().populate(
       "employeeId",
@@ -51,7 +51,7 @@ const getAttendance = async (req, res, next) => {
 
 // UPDATE ATTENDANCE
 
-const editAttendance = async (req, res, next) => {
+export const editAttendance = async (req, res, next) => {
   try {
     const employee = await Employee.findOne({
       employeeId: req.body.employeeId,
@@ -95,7 +95,7 @@ const editAttendance = async (req, res, next) => {
 };
 
 // DELETE ATTENDANCE
-const deleteAttendance = async (req, res, next) => {
+export const deleteAttendance = async (req, res, next) => {
   try {
     const employeeId = req.params.id;
     await Attendance.findByIdAndDelete(employeeId);
@@ -107,7 +107,7 @@ const deleteAttendance = async (req, res, next) => {
 
 // GET TOTAL WORKING DAYS
 
-const workingDays = (req, res, next) => {
+export const workingDays = (req, res, next) => {
   const { month, year } = req.query;
 
   if (!month || !year) {
@@ -121,10 +121,4 @@ const workingDays = (req, res, next) => {
   }
 };
 
-module.exports = {
-  addAttendance,
-  getAttendance,
-  editAttendance,
-  deleteAttendance,
-  workingDays,
-};
+

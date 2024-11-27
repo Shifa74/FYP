@@ -1,7 +1,7 @@
-const express = require("express");
-const { employeeMissingInfo } = require("../controllers/notifications");
+import express from "express";
+import employeeMissingInfo from "../controllers/notifications.js";
 const router = express.Router();
 
 router.get("/employee/missing-info", employeeMissingInfo);
 
-module.exports = router;
+export default router;

@@ -29,7 +29,7 @@ const ReportList = ({ reports, onReportClick, monthNames, handleDelete }) => {
                   {monthName} {report.year} - {report.reportData.length}{" "}
                   Employees
                   <FaTrashAlt
-                    className="icon"
+                    className="del-icon"
                     onClick={() => handleDeleteClick(report._id)}
                   />
                 </li>

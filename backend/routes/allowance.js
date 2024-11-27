@@ -1,10 +1,10 @@
-const express = require("express");
-const {
+import express from 'express';
+import{
   addAllowance,
   getAllowances,
   editAllowance,
   deleteAllowance,
-} = require("../controllers/allowance");
+} from "../controllers/allowance.js"
 
 const router = express.Router();
 
@@ -16,4 +16,4 @@ router.put("/edit/:id", editAllowance);
 
 router.delete("/delete/:id", deleteAllowance);
 
-module.exports = router;
+export default router;

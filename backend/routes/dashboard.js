@@ -1,12 +1,12 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   employeeCount,
   getPaidSalary,
   getSalaryPerMonth,
   gradeWiseEmployees,
   allowAndDeductTotal,
   allowAndDeductDetails,
-} = require("../controllers/dashboard");
+} from "../controllers/dashboard.js";
 
 const router = express.Router();
 
@@ -22,4 +22,4 @@ router.get("/allow/deduct/details", allowAndDeductDetails);
 
 router.get("/grade-wise/employees", gradeWiseEmployees);
 
-module.exports = router;
+export default router;

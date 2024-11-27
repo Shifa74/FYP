@@ -1,5 +1,5 @@
-const express = require("express");
-const {addDept, getDept, updateDept, deleteDept, getEmpCountByDept} = require("../controllers/department");
+import express from "express";
+import { addDept, getDept, updateDept, deleteDept, getEmpCountByDept } from "../controllers/department.js";
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.put('/edit/:id', updateDept);
 router.delete('/delete/:id', deleteDept)
 
 
-module.exports = router;
+export default router;

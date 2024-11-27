@@ -7,7 +7,7 @@ import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-function LoginForm({ onLogin }) {
+function LoginForm({onLogin}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -19,7 +19,14 @@ function LoginForm({ onLogin }) {
   const [message, setMessage] = useState("");
 
   const navigate = useNavigate(); // Initialize the useNavigate hook
-
+  useEffect(() => {
+    // Check for remembered email in localStorage and pre-fill if found
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    if (rememberedEmail) {
+      setEmail(rememberedEmail);
+      setRememberMe(true); // Pre-check the "Remember Me" checkbox
+    }
+  }, []);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,9 +42,9 @@ function LoginForm({ onLogin }) {
         password,
         rememberMe,
       });
-      // Assuming successful login, navigate to the dashboard
+      if (onLogin) onLogin();
       navigate("/dashboard");
-      if (onLogin) onLogin(); // Call onLogin to update authentication state in App
+      
     } catch (error) {
       setEmail("");
       setPassword("");
@@ -61,6 +68,8 @@ function LoginForm({ onLogin }) {
       setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
     }
   }, [password]);
+
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

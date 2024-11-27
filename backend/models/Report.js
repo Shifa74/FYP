@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const reportSchema = new mongoose.Schema({
   month: {
@@ -20,4 +20,5 @@ const reportSchema = new mongoose.Schema({
 });
 
 const Report = mongoose.model("Report", reportSchema);
-module.exports = Report;
+
+export default Report;
