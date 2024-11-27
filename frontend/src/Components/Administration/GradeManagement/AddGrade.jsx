@@ -19,6 +19,11 @@ const AddGrade = ({ closePopup, addGrade, currentGrade }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+      // Client-side validation
+  if (!gradeNo.trim() || !baseSalary.trim() || Number(baseSalary) <= 0) {
+    setError("Please enter a valid grade number and a positive base salary.");
+    return;
+  }
     const grade = { gradeNo, baseSalary };
     try {
       let res;

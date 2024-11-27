@@ -14,6 +14,10 @@ const AllowancesPage = () => {
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+      // Allow only letters and spaces for the allowanceType
+       if (name === "allowanceType" && !/^[A-Za-z\s]*$/.test(value)) {
+           return; // Ignore any input that isn't alphabetic or a space
+    }
     setAllowanceForm({ ...allowanceForm, [name]: value });
     setError("");
   };

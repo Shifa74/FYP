@@ -152,6 +152,16 @@
     background-color: #c53030;
     transform: translateY(-2px);
 }
+
+.err-mess {
+    color: #c9302c;
+    font-size: 25px;
+}
+
+.err-mess1 {
+    border: 3px solid #c9302c !important;
+}
+
 /* Responsive adjustments */
 
 /* Tablet screens (between 768px and 1024px) */
@@ -259,12 +269,3 @@
     }
 }
 
-.err-mess {
-    color: #c9302c;
-}
-
-.err-mess1 {
-    border: 2px solid #c9302c;
-    background-color: #ffe6e6;
-
-}
