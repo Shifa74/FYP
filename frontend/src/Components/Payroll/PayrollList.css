@@ -119,6 +119,11 @@
 .icon:hover {
   color: #527b87;
 }
+.icon.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  color: #07bcee;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 1200px) {

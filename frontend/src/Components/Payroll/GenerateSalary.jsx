@@ -4,18 +4,8 @@ import "./GenerateSalary.css";
 import axios from "axios";
 
 const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January", "February", "March", "April", "May", "June", "July", "August",
+  "September", "October", "November", "December"
 ];
 
 const GenerateSalary = ({ onClose }) => {
@@ -99,7 +89,7 @@ const GenerateSalary = ({ onClose }) => {
     <div className="salary-modal-overlay" onClick={handleOverlayClick}>
       <div
         className="generate-salary-popup"
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()} // Prevents closing popup when clicking inside
       >
         <div className="salary-popup-header">
           <h2 className="salary-heading">Generate Salary</h2>
@@ -163,9 +153,9 @@ const GenerateSalary = ({ onClose }) => {
               Select Year
             </option>
             {Array.from(
-              { length: 10 },
-              (_, index) => new Date().getFullYear() - index
-            ).map((year) => (
+              { length: 10 },                        // Creates an array with 10 elements
+              (_, index) => new Date().getFullYear() - index          // Fills the array with the current year minus the index
+            ).map((year) => (                                         // Maps each year to an <option> element
               <option key={year} value={year}>
                 {year}
               </option>

@@ -5,19 +5,10 @@ import { jsPDF } from "jspdf";
 import axios from "axios";
 
 const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January", "February", "March", "April", "May", "June", "July", "August",
+  "September", "October", "November", "December"
 ];
+
 
 const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,11 +26,14 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
   }, [selectedMonth, selectedYear]);
 
   const handleGenerateSlip = async (id, action) => {
+     // Find the payroll item that matches the given ID
     const selectedData = payrollData.find((item) => item._id === id);
     try {
       const res = await axios.patch(
         `/salary/confirm-payment/${selectedData._id}`
       );
+          
+    // Update the payroll data state with the new status and payment date
       setPayrollData((prevData) =>
         prevData.map((item) =>
           item._id === id
@@ -202,10 +196,9 @@ const PayrollList = ({ selectedMonth, selectedYear, onPayrollChange }) => {
                 <td>{new Date(item.createdAt).toISOString().slice(0, 10)}</td>
                 <td>
                   {item.status === "Paid"
-                    ? new Date(item.paidAt).toLocaleTimeString([], {
+                       ? new Date(item.paidAt).toLocaleTimeString([], {
                         hour: "2-digit",
-                        minute: "2-digit",
-                      })
+                        minute: "2-digit",})
                     : new Date(item.createdAt).toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",

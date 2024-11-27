@@ -49,21 +49,34 @@ const ShadowContainer = ({
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
-    setErrors((prevState) => ({ ...prevState, [name]: "" }));
-  };
-
-  const handleDeptChange = (e) => {
-    const selectedDeptId = e.target.value;
-    setSelectedDept(selectedDeptId);
+    const { name, value } = e.target; // Get the input field's name and value
+  
     setFormData((prevState) => ({
-      ...prevState,
-      deptName: selectedDeptId,
+      ...prevState, // Copy previous state
+      [name]: value, // Update the current field's value
     }));
-    setErrors((prevState) => ({ ...prevState, deptName: "" }));
+  
+    setErrors((prevState) => ({
+      ...prevState, // Copy previous errors
+      [name]: "", // Clear error for the current field
+    }));
   };
-
+  const handleDeptChange = (e) => {
+    const selectedDeptId = e.target.value; // Get the value of the selected department (from the event)
+    
+    setSelectedDept(selectedDeptId); // Update the state to store the selected department ID
+  
+    setFormData((prevState) => ({
+      ...prevState, // Copy the previous form data
+      deptName: selectedDeptId, // Update the deptName field in formData with the selected department ID
+    }));
+  
+    setErrors((prevState) => ({
+      ...prevState, // Copy the previous errors
+      deptName: "", // Clear the error message for the department field
+    }));
+  };
+  
   const handleGradeChange = (e) => {
     const selectedGradeId = e.target.value;
     setSelectedGrade(selectedGradeId);

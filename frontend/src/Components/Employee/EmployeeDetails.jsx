@@ -87,12 +87,14 @@ const EmployeeDetails = () => {
       const employeeToDelete = employees.find(
         (employee) => employee._id === id
       );
+      // DELETE request to the server to delete the employee from the database
       await axios.delete(`/employee/delete/${employeeToDelete._id}`);
-      fetchEmployees();
-      setEmployees(employees.filter((employee) => employee._id !== id));
+      fetchEmployees(); // Fetch updated list of employees from the server
+      setEmployees(employees.filter((employee) => employee._id !== id)); // Remove the employee from the local state
       setFilteredEmployees(
         filteredEmployees.filter((employee) => employee._id !== id)
-      );
+      ); // Remove the employee from the filtered list (if you have filters applied)
+  
     } catch (error) {
       console.error("Error deleting employee", error);
     }
@@ -117,9 +119,9 @@ const EmployeeDetails = () => {
   };
 
   const handleFilterTypeChange = (e) => {
-    setFilterType(e.target.value);
-    setFilter("");
-    setFilteredEmployees(employees);
+    setFilterType(e.target.value);   // Step 1: Update the filter type
+    setFilter("");                    // Step 2: Reset the current filter value
+    setFilteredEmployees(employees);  // Step 3: Reset the displayed employees list
   };
 
   const indexOfLastEmployee = currentPage * employeesPerPage;
@@ -179,7 +181,7 @@ const EmployeeDetails = () => {
               <th style={{ width: "200px" }}>Phone Number</th>
               <th className="wide-column">Email</th>
               <th style={{ width: "350px" }}>Date of Joining</th>
-              <th className="wider-column" style={{ width: "500px" }}>City</th>
+              <th className="wider-column" >City</th>
               <th style={{ width: "150px" }}>Actions</th>
             </tr>
             {loading && (
@@ -242,6 +244,10 @@ const EmployeeDetails = () => {
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
         </div>
+
+         { /* <div key={0}><button onClick={() => setCurrentPage(1)} className="pagination-button active">1</button></div> */}
+
+
         {Array.from({ length: totalPages }, (_, i) => (
           <div key={i}>
             <button

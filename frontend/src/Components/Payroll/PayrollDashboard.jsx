@@ -5,18 +5,8 @@ import PayrollList from "./PayrollList";
 import axios from "axios";
 
 const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 
 const PayrollDashboard = () => {
@@ -37,10 +27,14 @@ const PayrollDashboard = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
+        // Convert selected month to its corresponding number (e.g., "November" -> 11)
         const monthNumber = monthNames.indexOf(selectedMonth) + 1;
+          // API call to fetch payroll summary based on selected month and year
         const res = await axios.get("/salary/summary", {
           params: { month: monthNumber, year: selectedYear },
         });
+
+      // Update the payroll summary state with fetched data
         setPayrollSummary(res.data);
       } catch (error) {
         if (
@@ -53,12 +47,18 @@ const PayrollDashboard = () => {
       }
     };
 
-    fetchSummary();
-  }, [selectedMonth, selectedYear, refresh]);
+    fetchSummary(); // Call the function to fetch data
+  }, [selectedMonth, selectedYear, refresh]);    // Re-run when selected month/year or refresh changes
 
-  const handleMonthChange = (e) => setSelectedMonth(e.target.value);
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+    setRefresh((prev) => !prev); // Trigger refresh to fetch data
+  };
 
-  const handleYearChange = (e) => setSelectedYear(e.target.value);
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+    setRefresh((prev) => !prev); // Trigger refresh to fetch data
+  };
 
   // Generate a list of years (e.g., from 2020 to current year)
   const yearOptions = [];
@@ -113,7 +113,7 @@ const PayrollDashboard = () => {
           <div className="payroll-popup-overlay" onClick={handleClosePopup}>
             <div
               className="payroll-popup-content"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()}     // Prevents closing popup when clicking inside
             >
               <GenerateSalary onClose={handleClosePopup} />
             </div>
@@ -125,11 +125,11 @@ const PayrollDashboard = () => {
       <div className="payroll-dashboard">
         <div className="payroll-dashboard-card">
           <h3>Payroll Costs</h3>
-          <p>${Math.round(payrollSummary.payrollCosts).toLocaleString()}</p>
+          <p>${Math.round(payrollSummary.payrollCosts).toLocaleString()}</p>          {/* Displaying the payroll costs, rounded and formatted with commas */}
         </div>
         <div className="payroll-dashboard-card">
           <h3>Pending Payments</h3>
-          <p>${Math.round(payrollSummary.pendingPayments).toLocaleString()}</p>
+          <p>${Math.round(payrollSummary.pendingPayments).toLocaleString()}</p>         {/* Displaying the payroll costs, rounded and formatted with commas */}
         </div>
         <div className="payroll-dashboard-card">
           <h3>Total Payrolls</h3>

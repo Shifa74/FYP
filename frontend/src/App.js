@@ -16,27 +16,41 @@ import AllowancesAndDeductionDetails from './Components/Dashboard/AllowancesAndD
 // Import Admin page components
 import ManageDepartments from './Components/Administration/DepartmentManagement/DepartmentList';
 import ManageUsers from './Components/Administration/UserManagement/UserManagement';
-import AddDepartment from './Components/Administration/DepartmentManagement/AddDepartment';
-import AddUser from './Components/Administration/UserManagement/AddUser';
 import ManageAllowances from './Components/Administration/Allowances/AllowanceList';
 import ManageDeductions from './Components/Administration/Deduction/DeductionPage';
 import GradeList from './Components/Administration/GradeManagement/GradeList';
 import ReportPage from './Components/Report/ReportPage';
 import ProtectedRoute from './ProtectedRoute'; // Import the ProtectedRoute component
+import axios from 'axios';
+
 
 function App() {
+  
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     // Get the initial state from localStorage
     return localStorage.getItem('isAuthenticated') === 'true';
   });
-
+  
   // Update localStorage whenever `isAuthenticated` changes
   useEffect(() => {
     localStorage.setItem('isAuthenticated', isAuthenticated);
   }, [isAuthenticated]);
 
+
+  const handleLogout = async () => {
+    try {
+      console.log('Logging out...');
+      await axios.post('/auth/logout');  // Notify the backend
+      setIsAuthenticated(false); // Update authentication state
+      localStorage.removeItem('isAuthenticated'); // Clear local storage
+    } catch (error) {
+      console.error('Logout failed: ', error);
+    }
+  };
+
   return (
     <Router>
+      
       <Routes>
         {/* Public Routes */}
         <Route 
@@ -57,7 +71,7 @@ function App() {
           path="/dashboard" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><Dashboard /></Layout>
+              <Layout handleLogout={handleLogout}><Dashboard /></Layout>
             </ProtectedRoute>
           } 
         />
@@ -66,7 +80,7 @@ function App() {
           path="/employee" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><EmployeeDetails /></Layout>
+              <Layout handleLogout={handleLogout}><EmployeeDetails /></Layout>
             </ProtectedRoute>
           } 
         />
@@ -74,7 +88,7 @@ function App() {
           path="/payroll" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><PayrollDashboard /></Layout>
+              <Layout handleLogout={handleLogout}><PayrollDashboard /></Layout>
             </ProtectedRoute>
           } 
         />
@@ -82,7 +96,7 @@ function App() {
           path="/Administration" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><Administration /></Layout>
+              <Layout handleLogout={handleLogout}><Administration /></Layout>
             </ProtectedRoute>
           }
         /> 
@@ -90,7 +104,7 @@ function App() {
           path="/report" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><ReportPage /></Layout>
+              <Layout handleLogout={handleLogout}><ReportPage /></Layout>
             </ProtectedRoute>
           }
         /> 
@@ -98,7 +112,7 @@ function App() {
           path="/Attendance" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><Attendance /></Layout>
+              <Layout handleLogout={handleLogout}><Attendance /></Layout>
             </ProtectedRoute>
           }
         /> 
@@ -106,7 +120,7 @@ function App() {
           path="/Salary-List" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><SalaryList/></Layout>
+              <Layout handleLogout={handleLogout}><SalaryList/></Layout>
             </ProtectedRoute>
           }
         /> 
@@ -114,7 +128,7 @@ function App() {
           path="/allowances-deduction-details" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><AllowancesAndDeductionDetails/></Layout>
+              <Layout handleLogout={handleLogout}><AllowancesAndDeductionDetails/></Layout>
             </ProtectedRoute>
           }
         /> 
@@ -124,7 +138,7 @@ function App() {
           path="/departments" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><ManageDepartments /></Layout>
+              <Layout handleLogout={handleLogout}><ManageDepartments /></Layout>
             </ProtectedRoute>
           }
         />
@@ -132,31 +146,16 @@ function App() {
           path="/users" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><ManageUsers /></Layout>
+              <Layout handleLogout={handleLogout}><ManageUsers /></Layout>
             </ProtectedRoute>
           }
         />
-        <Route 
-          path="/departments/add" 
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><AddDepartment /></Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route 
-          path="/users/add" 
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><AddUser /></Layout>
-            </ProtectedRoute>
-          }
-        />
+      
         <Route 
           path="/allowances" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><ManageAllowances /></Layout>
+              <Layout handleLogout={handleLogout}><ManageAllowances /></Layout>
             </ProtectedRoute>
           }
         />
@@ -164,7 +163,7 @@ function App() {
           path="/deductions" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><ManageDeductions /></Layout>
+              <Layout handleLogout={handleLogout}><ManageDeductions /></Layout>
             </ProtectedRoute>
           }
         />
@@ -172,7 +171,7 @@ function App() {
           path="/grade-management" 
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Layout><GradeList /></Layout>
+              <Layout handleLogout={handleLogout}><GradeList /></Layout>
             </ProtectedRoute>
           }
         />

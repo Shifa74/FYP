@@ -127,7 +127,7 @@ const AttendanceForm = ({ onAddAttendance, initialData }) => {
           onChange={handleInputChange(setEmployeeId)}
           required
           placeholder="Enter Employee ID"
-          className="attendnace-text"
+          className="attendance-text"
         />
       </div>
       <div className="form-group">

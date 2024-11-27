@@ -100,10 +100,29 @@
 }
 @media (max-width: 1500px) {
   .Allowances-Deduction-container {
-    /* left: 200px; */
+    /* margin-left:13px; */
     height: 420px;
-    min-width: 320px;
-    max-width: 430px;  
+    min-width: 370px;
+  }
+  .heading {
+      font-size: 0.95rem;
+  }
+  .chart-container {
+      max-width: 300px;
+      height: 130px;
+
+  }
+  .more-details-button{
+    padding: 10px;
+    width: 120px;
+    /* margin-left: 70px; */
+  }
+}
+@media (max-width: 1300px) {
+  .Allowances-Deduction-container {
+    /* margin-left:13px; */
+    height: 420px;
+    min-width: 310px;
   }
   .heading {
       font-size: 0.95rem;
@@ -179,15 +198,15 @@
 @media (max-width: 768px) {
   .Allowances-Deduction-container {
       padding: 8px 10px;
-      min-width: 380px;
-      margin-left: 20px;
+      min-width: 220px;
+      margin-left: 10px;
   }
   .heading {
       font-size: 20px;
   }
   .chart-container {
       min-width: 390px;
-      height: 200px;
+      height: 220px;
   }
   .more-details-button {
     padding: 2px 10px;
@@ -201,7 +220,7 @@
     min-width: 230px; /* Adjusted min-width for flexibility */
     /* max-width: 280px; */
     padding: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     height: 300px;
   }
   .heading {
@@ -209,7 +228,7 @@
   }
   .chart-container {
       max-width: 220px;
-      height: 120px;
+      height: 140px;
       margin-left:2px;
   }
   .legend {

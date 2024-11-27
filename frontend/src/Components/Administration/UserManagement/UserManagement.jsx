@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserList from "./UserList";
-import AddUser from "./AddUser";
-import { Route, Routes, useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const UserManagement = () => {
@@ -45,31 +44,17 @@ const UserManagement = () => {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
+    
           <UserList
             users={users}
             onSave={handleSaveUser}
             onDelete={handleDeleteUser}
             loading={loading}
           />
-        }
-      />
-      <Route path="add" element={<AddUser onSave={handleSaveUser} />} />
-      <Route
-        path="edit/:id"
-        element={<EditUser onSave={handleSaveUser} users={users} />}
-      />
-    </Routes>
+      
   );
 };
 
-const EditUser = ({ onSave, users }) => {
-  const { id } = useParams();
-  const user = users.find((u) => u.id === parseInt(id, 10));
-  return <AddUser onSave={onSave} initialData={user} />;
-};
+
 
 export default UserManagement;
